@@ -1,6 +1,5 @@
 package com.example.administrator.baseapp.base;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.administrator.baseapp.bind.ViewInjectorImpl;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by beini on 2017/2/8.
@@ -25,7 +23,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = ViewInjectorImpl.registerInstance(this, inflater, container);
-        ButterKnife.bind(this, view);
         this.initView();
         return view;
     }
@@ -38,15 +35,10 @@ public abstract class BaseFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        baseActivity = (BaseActivity) activity;
+    public void onAttach(Context context) {
+        baseActivity = (BaseActivity) context;
+        super.onAttach(context);
     }
-    //    @Override
-//    public void onAttach(Context context) {
-//        baseActivity = (BaseActivity) context;
-//        super.onAttach(context);
-//    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

@@ -2,7 +2,7 @@ package com.example.administrator.baseapp.ui.activity;
 
 
 import com.example.administrator.baseapp.base.BaseActivity;
-import com.example.administrator.baseapp.ui.fragment.LoginFragment;
+import com.example.administrator.baseapp.ui.fragment.login.LoginFragment;
 
 /**
  * Created by beini on 2017/2/9.

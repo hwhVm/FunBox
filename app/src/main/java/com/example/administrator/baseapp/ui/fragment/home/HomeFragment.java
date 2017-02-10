@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.ui.fragment;
+package com.example.administrator.baseapp.ui.fragment.home;
 
 
 import com.example.administrator.baseapp.R;

@@ -3,6 +3,12 @@ package com.example.administrator.baseapp.utils;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.view.View;
+
+import com.example.administrator.baseapp.R;
+import com.example.administrator.baseapp.base.BaseApplication;
+import com.example.administrator.baseapp.base.BaseFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +25,7 @@ public class FragmentHelper {
      * @param fragment
      * @param fragmentTag
      */
-    public static void addFragment(FragmentManager fragmentManager, Fragment fragment, String fragmentTag,int id) {
+    public static void addFragment(FragmentManager fragmentManager, Fragment fragment, String fragmentTag, int id) {
 
         if (fragmentManager != null && fragment != null) {
             FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -47,16 +53,21 @@ public class FragmentHelper {
     }
 
     /**
-     * show fragment
+     * remove fragment
      *
      * @param fragmentManager
      * @param fragment
      */
     public static void removeFragment(FragmentManager fragmentManager, Fragment fragment) {
         if (fragment != null) {
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.remove(fragment);
-            ft.commit();
+            if (tags != null && tags.size() > 1) {
+                if (fragment != null) {
+                    FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.remove(fragment);
+                    ft.commit();
+                    tags.remove(tags.size() - 1);
+                }
+            }
         }
     }
 
@@ -84,20 +95,31 @@ public class FragmentHelper {
      */
     public static void removeAllFragment(FragmentManager fragmentManager) {
         for (String str : tags) {
+            tags.remove(tags.size() - 1);
             Fragment fragment = fragmentManager.findFragmentByTag(str);
             removeFragment(fragmentManager, fragment);
         }
     }
 
-    public static void removePreFragment(FragmentManager fragmentManager) {
-        if (tags!=null&&tags.size() > 1) {
-            String old = tags.get(tags.size() - 2);
-//            BaseFragment oldFragment = (BaseFragment) getFragmentByTag(old);
-            tags.remove(tags.size() - 1);
+    static long mLastKeyDown = 0;
 
-//            if (oldFragment != null) {
-//                add(oldFragment, old, null, enterAnimation, exitAnimation);
-//            }
+    public static void removePreFragment(View view, FragmentManager fragmentManager) {
+        if (tags != null && tags.size() > 1) {
+            String old = tags.get(tags.size() - 2);
+            BaseFragment oldFragment = (BaseFragment) fragmentManager.findFragmentByTag(old);
+            tags.remove(tags.size() - 1);
+            if (oldFragment != null) {
+                showFragment(fragmentManager, oldFragment);
+            }
+        } else {
+            SnackbarUtil.showShort(view, BaseApplication.getInstance().getString(R.string.app_exit));
+            long timeMillis = System.currentTimeMillis();
+            if (timeMillis - mLastKeyDown >= 2000) {
+                mLastKeyDown = timeMillis;
+
+            } else {
+                System.exit(0);
+            }
         }
     }
 

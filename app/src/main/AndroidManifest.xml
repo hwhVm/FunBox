@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.baseapp">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -18,10 +18,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".base.BaseActivity"
-            android:label="@string/title_activity_base"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
