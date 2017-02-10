@@ -29,11 +29,9 @@ public class LoginModel {
         loginRequest.setUsername(((LoginFragment) fragment).getEd_username().getText().toString());
         loginRequest.setPassword(((LoginFragment) fragment).getEd_password().getText().toString());
 
-        NetUtil.sendRequestPost1("login", loginRequest).enqueue(new Callback<BaseResponseJson>() {
+        NetUtil.getSingleton().sendRequestPost1("login", loginRequest).enqueue(new Callback<BaseResponseJson>() {
             @Override
             public void onResponse(Call<BaseResponseJson> call, Response<BaseResponseJson> response) {
-                BLog.d("------>" + response.body().getReturnCode());
-                BLog.d("------>" + response.body().getReturnMessage());
                 if (response.body().getReturnCode() == 0) {
                     ((LoginFragment) fragment).goToNexPage();
                     ((LoginFragment) fragment).baseActivity.remove(fragment);

@@ -1,6 +1,7 @@
 package com.example.administrator.baseapp.net;
 
 
+import com.example.administrator.baseapp.constants.NetConstants;
 import com.example.administrator.baseapp.net.request.BaseRequestJson;
 import com.example.administrator.baseapp.net.request.LoginRequest;
 import com.example.administrator.baseapp.net.response.BaseResponseJson;
@@ -13,12 +14,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by beini on 2017/2/10.
  */
 
-public class NetUtil {
-    private static String baseUrl = "http://10.0.0.67:8080/SpringMVC/";
+public class NetUtil<T> {
+    public static NetUtil instance;
 
-    public static Call<BaseResponseJson> sendRequestGet(String url, BaseRequestJson baseRequest) {
+    public static NetUtil getSingleton() {
+        if (instance == null) {                         //Single Checked
+            synchronized (NetUtil.class) {
+                if (instance == null) {                 //Double Checked
+                    instance = new NetUtil();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public Call<BaseResponseJson> sendRequestGet(String url, BaseRequestJson baseRequest) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(NetConstants.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiServer apiServer = retrofit.create(ApiServer.class);
@@ -27,9 +39,9 @@ public class NetUtil {
         return call;
     }
 
-    public static Call<BaseResponseJson> sendRequestPost(String url, BaseRequestJson baseRequest) {
+    public Call<BaseResponseJson> sendRequestPost(String url, BaseRequestJson baseRequest) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(NetConstants.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -39,9 +51,9 @@ public class NetUtil {
         return call;
     }
 
-    public static Call<BaseResponseJson> sendRequestPost1(String url, LoginRequest baseRequest) {
+    public Call<BaseResponseJson> sendRequestPost1(String url, T baseRequest) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(NetConstants.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

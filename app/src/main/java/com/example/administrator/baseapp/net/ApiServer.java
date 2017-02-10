@@ -14,7 +14,7 @@ import retrofit2.http.Path;
  * Created by beini on 2017/2/10.
  */
 
-public interface ApiServer {
+public interface ApiServer<T> {
     @GET("{url}")
     Call<BaseResponseJson> sendRequestGet(@Path("url") String url, @Body BaseRequestJson baseRequestJson);
 
@@ -22,5 +22,5 @@ public interface ApiServer {
     Call<BaseResponseJson> sendRequestPost(@Path("url") String url, @Body BaseRequestJson baseRequestJson);
 
     @POST("{url}")
-    Call<BaseResponseJson> sendRequestPost1(@Path("url") String url, @Body LoginRequest baseRequestJson);
+    Call<BaseResponseJson> sendRequestPost1(@Path("url") String url, @Body T baseRequestJson);
 }
