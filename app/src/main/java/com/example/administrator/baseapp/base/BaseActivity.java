@@ -6,17 +6,19 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.bind.ViewInjectorImpl;
+import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
+import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
+import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
 import com.example.administrator.baseapp.utils.FragmentHelper;
 import com.example.administrator.baseapp.utils.ObjectUtil;
-import com.example.administrator.baseapp.utils.SnackbarUtil;
 
 /**
  * Created by beini on 2017/2/8.
@@ -29,6 +31,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     FragmentManager fragmentManager;
     @ViewInject(R.id.layout_coor)
     CoordinatorLayout layout_coor;
+    @ViewInject(R.id.rg_bottom)
+    RadioGroup rg_bottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,19 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         ViewInjectorImpl.registerInstance(this);
     }
 
-    @Event({})
+    @Event({R.id.rb_1, R.id.rb_2, R.id.rb_3})
     private void mEvent(View view) {
+        switch (view.getId()) {
+            case R.id.rb_1:
+                this.replaceFragment(HomeFragment.class);
+                break;
+            case R.id.rb_2:
+                this.replaceFragment(Rb2Fragment.class);
+                break;
+            case R.id.rb_3:
+                this.replaceFragment(Rb3Fragment.class);
+                break;
+        }
 
     }
 
@@ -71,5 +86,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     @Override
     public void remove(Fragment fragment) {
         FragmentHelper.removeFragment(fragmentManager, fragment);
+    }
+
+    @Override
+    public void setBottom(int isHide) {
+        rg_bottom.setVisibility(isHide);
     }
 }

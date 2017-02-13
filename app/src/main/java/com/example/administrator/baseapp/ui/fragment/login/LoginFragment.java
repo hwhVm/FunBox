@@ -3,6 +3,7 @@ package com.example.administrator.baseapp.ui.fragment.login;
 
 import android.view.View;
 import android.widget.EditText;
+
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
@@ -27,13 +28,16 @@ public class LoginFragment extends BaseFragment {
     @Override
     public void initView() {
         loginModel = new LoginModel(this);
+        baseActivity.setBottom(View.GONE);
     }
 
     @Event({R.id.btn_login})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                loginModel.login();
+//                loginModel.login();
+                baseActivity.replaceFragment(HomeFragment.class);
+                baseActivity.remove(this);
                 break;
         }
     }

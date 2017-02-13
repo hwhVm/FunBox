@@ -15,4 +15,6 @@ public interface BaseImpl {
     void back();
 
     void remove(Fragment fragment);
+
+    void setBottom(int isHide);
 }

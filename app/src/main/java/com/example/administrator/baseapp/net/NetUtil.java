@@ -18,9 +18,9 @@ public class NetUtil<T> {
     public static NetUtil instance;
 
     public static NetUtil getSingleton() {
-        if (instance == null) {                         //Single Checked
+        if (instance == null) {
             synchronized (NetUtil.class) {
-                if (instance == null) {                 //Double Checked
+                if (instance == null) {
                     instance = new NetUtil();
                 }
             }

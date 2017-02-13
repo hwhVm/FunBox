@@ -8,6 +8,9 @@ import android.view.View;
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseApplication;
 import com.example.administrator.baseapp.base.BaseFragment;
+import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
+import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
+import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +107,8 @@ public class FragmentHelper {
     static long mLastKeyDown = 0;
 
     public static void removePreFragment(View view, FragmentManager fragmentManager) {
-        if (tags != null && tags.size() > 1) {
+
+        if (tags != null && tags.size() > 1 && isHomeFragment(fragmentManager)) {
             String old = tags.get(tags.size() - 2);
             BaseFragment oldFragment = (BaseFragment) fragmentManager.findFragmentByTag(old);
             tags.remove(tags.size() - 1);
@@ -123,4 +127,11 @@ public class FragmentHelper {
         }
     }
 
+    private static boolean isHomeFragment(FragmentManager fragmentManager) {
+        if (fragmentManager.findFragmentById(R.id.content_frame) instanceof HomeFragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb2Fragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb3Fragment) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
