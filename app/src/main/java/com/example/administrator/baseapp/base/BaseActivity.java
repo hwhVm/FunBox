@@ -7,6 +7,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.administrator.baseapp.R;
@@ -17,6 +18,7 @@ import com.example.administrator.baseapp.bind.ViewInjectorImpl;
 import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
+import com.example.administrator.baseapp.utils.BLog;
 import com.example.administrator.baseapp.utils.FragmentHelper;
 import com.example.administrator.baseapp.utils.ObjectUtil;
 
@@ -47,16 +49,27 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.rb_1:
+                BLog.d("   rb_1");
                 this.replaceFragment(HomeFragment.class);
                 break;
             case R.id.rb_2:
+                BLog.d("   rb_2");
                 this.replaceFragment(Rb2Fragment.class);
                 break;
             case R.id.rb_3:
+                BLog.d("   rb_3");
                 this.replaceFragment(Rb3Fragment.class);
                 break;
         }
 
+    }
+
+    @ViewInject(R.id.rb_1)
+    RadioButton rb_1;
+
+    public void goToHome() {
+        mEvent(rb_1);
+        rb_1.setChecked(true);
     }
 
     public abstract void initView();
@@ -69,13 +82,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
             FragmentHelper.showFragment(fragmentManager, newFragment);
         } else {
             FragmentHelper.hideAllFragment(fragmentManager);
-            FragmentHelper.addFragment(fragmentManager, baseFragment, fragment.getName(), R.id.content_frame);
+            FragmentHelper.addFragment(fragmentManager, baseFragment, fragment.getName());
         }
     }
 
     @Override
     public void onBackPressed() {
         FragmentHelper.removePreFragment(layout_coor, fragmentManager);
+        FragmentHelper.logPrint();
     }
 
     @Override

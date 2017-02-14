@@ -36,8 +36,8 @@ public class LoginFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.btn_login:
 //                loginModel.login();
-                baseActivity.replaceFragment(HomeFragment.class);
-                baseActivity.remove(this);
+                baseActivity.remove(LoginFragment.this);
+                baseActivity.goToHome();
                 break;
         }
     }

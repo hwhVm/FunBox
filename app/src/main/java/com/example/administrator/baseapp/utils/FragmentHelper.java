@@ -3,6 +3,7 @@ package com.example.administrator.baseapp.utils;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.example.administrator.baseapp.R;
@@ -11,6 +12,7 @@ import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
+import com.example.administrator.baseapp.ui.fragment.login.LoginFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +30,15 @@ public class FragmentHelper {
      * @param fragment
      * @param fragmentTag
      */
-    public static void addFragment(FragmentManager fragmentManager, Fragment fragment, String fragmentTag, int id) {
-
+    public static void addFragment(FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
         if (fragmentManager != null && fragment != null) {
+            BLog.d("  fragmentTag=" + fragmentTag);
             FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.add(id, fragment, fragmentTag);
+            ft.add(R.id.content_frame, fragment, fragmentTag);
             tags.add(fragmentTag);
             ft.commit();
         }
+
         fragmentManager.popBackStack();
     }
 
@@ -47,7 +50,6 @@ public class FragmentHelper {
      */
     public static void showFragment(FragmentManager fragmentManager, Fragment fragment) {
         hideAllFragment(fragmentManager);
-
         FragmentTransaction ft = fragmentManager.beginTransaction();
         if (fragment != null) {
             ft.show(fragment);
@@ -62,14 +64,13 @@ public class FragmentHelper {
      * @param fragment
      */
     public static void removeFragment(FragmentManager fragmentManager, Fragment fragment) {
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        BLog.d("     remove fragment ==" + fragment.getClass());
         if (fragment != null) {
-            if (tags != null && tags.size() > 1) {
-                if (fragment != null) {
-                    FragmentTransaction ft = fragmentManager.beginTransaction();
-                    ft.remove(fragment);
-                    ft.commit();
-                    tags.remove(tags.size() - 1);
-                }
+            if (tags != null && tags.size() >= 1) {
+                ft.remove(fragment);
+                ft.commit();
+                tags.remove(tags.size() - 1);
             }
         }
     }
@@ -84,6 +85,7 @@ public class FragmentHelper {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         for (String str : tags) {
             Fragment fragment = fragmentManager.findFragmentByTag(str);
+            BLog.d("------>" + (fragment != null && !fragment.isHidden()) + "   str==" + str);
             if (fragment != null && !fragment.isHidden()) {
                 ft.hide(fragment);
             }
@@ -109,18 +111,19 @@ public class FragmentHelper {
     public static void removePreFragment(View view, FragmentManager fragmentManager) {
 
         if (tags != null && tags.size() > 1 && isHomeFragment(fragmentManager)) {
+            String current = tags.get(tags.size() - 1);
             String old = tags.get(tags.size() - 2);
+            removeFragment(fragmentManager, fragmentManager.findFragmentByTag(current));
             BaseFragment oldFragment = (BaseFragment) fragmentManager.findFragmentByTag(old);
-            tags.remove(tags.size() - 1);
             if (oldFragment != null) {
                 showFragment(fragmentManager, oldFragment);
             }
+
         } else {
             SnackbarUtil.showShort(view, BaseApplication.getInstance().getString(R.string.app_exit));
             long timeMillis = System.currentTimeMillis();
             if (timeMillis - mLastKeyDown >= 2000) {
                 mLastKeyDown = timeMillis;
-
             } else {
                 System.exit(0);
             }
@@ -132,6 +135,15 @@ public class FragmentHelper {
             return false;
         } else {
             return true;
+        }
+    }
+
+    public static void logPrint() {
+        if (tags != null) {
+            BLog.d("  logPrint=" + tags.size());
+            for (int i = 0; i < tags.size(); i++) {
+                BLog.d("  d    tags===" + tags.get(i));
+            }
         }
     }
 }
