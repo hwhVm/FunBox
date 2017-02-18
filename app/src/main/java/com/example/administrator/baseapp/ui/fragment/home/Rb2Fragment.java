@@ -1,6 +1,8 @@
 package com.example.administrator.baseapp.ui.fragment.home;
 
 
+import android.view.View;
+
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
@@ -14,7 +16,7 @@ public class Rb2Fragment extends BaseFragment {
 
     @Override
     public void initView() {
-
+        baseActivity.setBottom(View.VISIBLE);
     }
 
 }

@@ -51,14 +51,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
             case R.id.rb_1:
                 BLog.d("   rb_1");
                 this.replaceFragment(HomeFragment.class);
+                FragmentHelper.homeTag=0;
                 break;
             case R.id.rb_2:
                 BLog.d("   rb_2");
                 this.replaceFragment(Rb2Fragment.class);
+                FragmentHelper.homeTag=1;
                 break;
             case R.id.rb_3:
                 BLog.d("   rb_3");
                 this.replaceFragment(Rb3Fragment.class);
+                FragmentHelper.homeTag=2;
                 break;
         }
 
@@ -88,13 +91,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     @Override
     public void onBackPressed() {
-        FragmentHelper.removePreFragment(layout_coor, fragmentManager);
-        FragmentHelper.logPrint();
+        FragmentHelper.removePreFragment(layout_coor, fragmentManager,this);
     }
 
     @Override
     public void back() {
-        FragmentHelper.removePreFragment(layout_coor, fragmentManager);
+        FragmentHelper.removePreFragment(layout_coor, fragmentManager,this);
     }
 
     @Override

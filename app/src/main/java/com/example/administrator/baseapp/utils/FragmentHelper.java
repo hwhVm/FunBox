@@ -3,16 +3,15 @@ package com.example.administrator.baseapp.utils;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 
 import com.example.administrator.baseapp.R;
+import com.example.administrator.baseapp.base.BaseActivity;
 import com.example.administrator.baseapp.base.BaseApplication;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
-import com.example.administrator.baseapp.ui.fragment.login.LoginFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +21,7 @@ import java.util.List;
  */
 public class FragmentHelper {
     private static List<String> tags = new ArrayList<>();
+    public static int homeTag = 0;
 
     /**
      * add fragment
@@ -32,14 +32,11 @@ public class FragmentHelper {
      */
     public static void addFragment(FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
         if (fragmentManager != null && fragment != null) {
-            BLog.d("  fragmentTag=" + fragmentTag);
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.add(R.id.content_frame, fragment, fragmentTag);
             tags.add(fragmentTag);
             ft.commit();
         }
-
-        fragmentManager.popBackStack();
     }
 
     /**
@@ -65,7 +62,6 @@ public class FragmentHelper {
      */
     public static void removeFragment(FragmentManager fragmentManager, Fragment fragment) {
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        BLog.d("     remove fragment ==" + fragment.getClass());
         if (fragment != null) {
             if (tags != null && tags.size() >= 1) {
                 ft.remove(fragment);
@@ -85,7 +81,6 @@ public class FragmentHelper {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         for (String str : tags) {
             Fragment fragment = fragmentManager.findFragmentByTag(str);
-            BLog.d("------>" + (fragment != null && !fragment.isHidden()) + "   str==" + str);
             if (fragment != null && !fragment.isHidden()) {
                 ft.hide(fragment);
             }
@@ -108,15 +103,27 @@ public class FragmentHelper {
 
     static long mLastKeyDown = 0;
 
-    public static void removePreFragment(View view, FragmentManager fragmentManager) {
+    public static void removePreFragment(View view, FragmentManager fragmentManager, BaseActivity baseActivity) {
 
         if (tags != null && tags.size() > 1 && isHomeFragment(fragmentManager)) {
             String current = tags.get(tags.size() - 1);
             String old = tags.get(tags.size() - 2);
             removeFragment(fragmentManager, fragmentManager.findFragmentByTag(current));
+
             BaseFragment oldFragment = (BaseFragment) fragmentManager.findFragmentByTag(old);
-            if (oldFragment != null) {
-                showFragment(fragmentManager, oldFragment);
+            if (oldFragment instanceof HomeFragment || oldFragment instanceof Rb2Fragment || oldFragment instanceof Rb3Fragment) {
+                baseActivity.setBottom(View.VISIBLE);
+                Fragment baseFragment = fragmentManager.findFragmentByTag(HomeFragment.class.getName());
+                if (homeTag == 2) {
+                    baseFragment = fragmentManager.findFragmentByTag(Rb3Fragment.class.getName());
+                } else if (homeTag == 1) {
+                    baseFragment = fragmentManager.findFragmentByTag(Rb2Fragment.class.getName());
+                }
+                showFragment(fragmentManager, baseFragment);
+            } else {
+                if (oldFragment != null) {
+                    showFragment(fragmentManager, oldFragment);
+                }
             }
 
         } else {
@@ -138,6 +145,9 @@ public class FragmentHelper {
         }
     }
 
+    /**
+     * print  all   save  frgment
+     */
     public static void logPrint() {
         if (tags != null) {
             BLog.d("  logPrint=" + tags.size());
