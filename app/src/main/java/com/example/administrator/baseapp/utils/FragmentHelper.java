@@ -121,6 +121,7 @@ public class FragmentHelper {
                     baseFragment = fragmentManager.findFragmentByTag(Rb2Fragment.class.getName());
                 }
                 showFragment(fragmentManager, baseFragment);
+                
             } else {
                 if (oldFragment != null) {
                     showFragment(fragmentManager, oldFragment);

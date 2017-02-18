@@ -36,6 +36,21 @@ public class HomeFragment extends BaseFragment {
         homeListAdapter.setItemClick(onItemClickListener);
     }
 
+    @Override
+    protected void onInvisible() {
+
+    }
+
+    @Override
+    protected void onVisible() {
+
+    }
+
+    @Override
+    protected void lazyLoad() {
+
+    }
+
     public HomeListAdapter.OnItemClickListener onItemClickListener = new HomeListAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {

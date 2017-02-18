@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.baseapp.bind.ViewInjectorImpl;
+import com.example.administrator.baseapp.utils.BLog;
 
 
 /**
@@ -18,12 +19,15 @@ import com.example.administrator.baseapp.bind.ViewInjectorImpl;
 
 public abstract class BaseFragment extends Fragment {
     public BaseActivity baseActivity;
+    public boolean isVisible;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = ViewInjectorImpl.registerInstance(this, inflater, container);
         this.initView();
+        BLog.d("  onCreateView ");
         return view;
     }
 
@@ -32,7 +36,21 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        BLog.d("   setUserVisibleHint  getUserVisibleHint()= "+getUserVisibleHint());
+        if(getUserVisibleHint()) {//可见时调用
+            isVisible = true;
+            onVisible();
+            BLog.d("  onVisible");
+        } else {
+            isVisible = false;
+            BLog.d("  onInvisible");
+            onInvisible();
+        }
     }
+
+    protected abstract void onInvisible();
+
+    protected abstract void onVisible();
 
     @Override
     public void onAttach(Context context) {
@@ -43,6 +61,10 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+      
     }
-
+    /**
+     * 懒加载接口
+     */
+    protected abstract void lazyLoad();
 }
