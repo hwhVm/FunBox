@@ -1,35 +1,53 @@
 package com.example.administrator.baseapp.ui.fragment.home;
 
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.administrator.baseapp.R;
+import com.example.administrator.baseapp.adapter.HomeListAdapter;
 import com.example.administrator.baseapp.base.BaseFragment;
+import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
-import com.example.administrator.baseapp.bind.Event;
+import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
-import com.example.administrator.baseapp.utils.FragmentHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by beini on 2017/2/9.
  */
 @ContentView(R.layout.fragment_home)
 public class HomeFragment extends BaseFragment {
+    @ViewInject(R.id.recycler_view_home)
+    RecyclerView recycler_view_home;
+    private List<String> functionList = new ArrayList<>();
 
     @Override
     public void initView() {
+        functionList.add("test back");
         baseActivity.setBottom(View.VISIBLE);
-        FragmentHelper.logPrint();
+        baseActivity.setTopBar(View.GONE);
+        recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
+        HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean(R.layout.item_home,functionList));
+        recycler_view_home.setAdapter(homeListAdapter);
+        homeListAdapter.setItemClick(onItemClickListener);
     }
 
-
-    @Event({R.id.btn_next_page})
-    private void mEvent(View view) {
-        switch (view.getId()) {
-            case R.id.btn_next_page:
-                baseActivity.replaceFragment(MusicFragment.class);
-                break;
+    public HomeListAdapter.OnItemClickListener onItemClickListener = new HomeListAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            switch (position) {
+                case 0:
+                    baseActivity.replaceFragment(MusicFragment.class);
+                    break;
+                case 1:
+                    break;
+            }
         }
-    }
+    };
+
 
 }

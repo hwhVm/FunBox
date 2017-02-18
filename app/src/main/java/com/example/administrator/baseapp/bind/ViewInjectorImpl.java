@@ -57,6 +57,16 @@ public final class ViewInjectorImpl implements ViewInjector {
         return instance.inject(fragment, inflater, container);
     }
 
+    public static void registerInstance(View view) {
+        if (instance == null) {
+            synchronized (lock) {
+                if (instance == null) {
+                    instance = new ViewInjectorImpl();
+                }
+            }
+        }
+      instance.inject(view);
+    }
     @Override
     public void inject(View view) {
         injectObject(view, view.getClass(), new ViewFinder(view));

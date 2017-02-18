@@ -113,6 +113,7 @@ public class FragmentHelper {
             BaseFragment oldFragment = (BaseFragment) fragmentManager.findFragmentByTag(old);
             if (oldFragment instanceof HomeFragment || oldFragment instanceof Rb2Fragment || oldFragment instanceof Rb3Fragment) {
                 baseActivity.setBottom(View.VISIBLE);
+                baseActivity.setTopBar(View.GONE);
                 Fragment baseFragment = fragmentManager.findFragmentByTag(HomeFragment.class.getName());
                 if (homeTag == 2) {
                     baseFragment = fragmentManager.findFragmentByTag(Rb3Fragment.class.getName());

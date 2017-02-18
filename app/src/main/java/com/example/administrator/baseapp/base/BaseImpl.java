@@ -17,4 +17,8 @@ public interface BaseImpl {
     void remove(Fragment fragment);
 
     void setBottom(int isHide);
+
+    void setTopBar(int isHide);
+
+    void setTopBarTitle(String top_bar_title);
 }

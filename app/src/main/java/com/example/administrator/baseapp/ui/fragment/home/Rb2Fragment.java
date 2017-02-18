@@ -17,6 +17,7 @@ public class Rb2Fragment extends BaseFragment {
     @Override
     public void initView() {
         baseActivity.setBottom(View.VISIBLE);
+        baseActivity.setTopBar(View.GONE);
     }
 
 }
