@@ -9,9 +9,7 @@ import android.net.NetworkInfo;
 
 /**
  * 跟网络相关的工具类
- * 
- * @author zhy
- * 
+ *
  */
 public class NetUtils
 {

@@ -1,17 +1,12 @@
 package com.example.administrator.baseapp.adapter;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.bean.BaseBean;
-import com.example.administrator.baseapp.utils.BLog;
 
 import java.util.List;
 

@@ -27,7 +27,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        functionList.add("test back");
+        functionList.add("dlna demo");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -59,6 +59,7 @@ public class HomeFragment extends BaseFragment {
                     baseActivity.replaceFragment(MusicFragment.class);
                     break;
                 case 1:
+
                     break;
             }
         }

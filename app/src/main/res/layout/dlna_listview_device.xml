@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <!--<include layout="@layout/dlna_shadow" />-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="dlna_select_device"
+        android:maxLength="29"
+        android:paddingLeft="9dp"
+        android:paddingRight="50dp"
+        android:paddingTop="5dp"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        />
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="#000000"
+        />
+
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="#000000"
+        android:drawSelectorOnTop="false"
+        android:fastScrollAlwaysVisible="false"
+        android:fastScrollEnabled="false"
+        android:scrollbars="none"
+        android:background="#FFFFFF"
+  		android:divider="@android:color/black"
+  		android:dividerHeight="1dp"
+        />
+
+</LinearLayout>
+    <!--android:paddingRight="@dimen/listview_items_padding_top_bottom"-->
+    <!--android:paddingLeft="@dimen/listview_items_padding_top_bottom"  -->

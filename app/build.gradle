@@ -16,6 +16,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/beans.xml'
+        }
     }
 }
 
@@ -33,4 +41,18 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.google.code.gson:gson:2.8.0'
     testCompile 'junit:junit:4.12'
+    compile files('libs/jetty-client-8.1.12.v20130726.jar')
+    compile files('libs/jetty-continuation-8.1.12.v20130726.jar')
+    compile files('libs/jetty-http-8.1.12.v20130726.jar')
+    compile files('libs/jetty-io-8.1.12.v20130726.jar')
+    compile files('libs/jetty-security-8.1.12.v20130726.jar')
+    compile files('libs/jetty-server-8.1.12.v20130726.jar')
+    compile files('libs/jetty-servlet-8.1.12.v20130726.jar')
+    compile files('libs/jetty-util-8.1.12.v20130726.jar')
+    compile files('libs/servlet-api-3.0.jar')
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile files('libs/seamless-http-1.1.0.jar')
+    compile files('libs/seamless-util-1.1.0.jar')
+    compile files('libs/seamless-xml-1.1.0.jar')
+    compile files('libs/cling-core-2.0.1.jar')
 }

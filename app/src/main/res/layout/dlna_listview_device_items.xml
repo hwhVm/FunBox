@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_gravity="center_vertical"
+                android:background="#FFFFFF"
+    >
+
+
+
+    <TextView
+        android:id="@+id/listview_device_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true"
+        android:ellipsize="marquee"
+        android:maxLength="29"
+        android:paddingLeft="9dp"
+        android:paddingRight="50dp"
+        android:paddingTop="5dp"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        android:textColor="#000000"
+        android:background="#FFFFFF"
+        />
+
+    <ImageView
+        android:id="@+id/listview_item_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:src="@mipmap/game_icon_yes"
+        android:visibility="gone"
+        />
+</RelativeLayout>
+    <!--android:paddingBottom="@dimen/listview_items_padding_top_bottom"-->
+    <!--android:paddingTop="@dimen/listview_items_padding_top_bottom"-->

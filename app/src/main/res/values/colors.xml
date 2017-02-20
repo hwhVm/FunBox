@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_white">#FFFFFFFF</color>
+    <color name="orange">#ffa500</color>  <!-- 橙色 -->
+    <color name="gray">#808080</color>
+    <color name="red2">#cc2222</color>
+    <!--背景颜色-->
+    <color name="app_backound_color">#232629</color>
 </resources>

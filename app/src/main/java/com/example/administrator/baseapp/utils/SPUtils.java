@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
  */
 public class SPUtils
 {
+
+
 	public SPUtils()
 	{
 		/* cannot be instantiated */
@@ -149,8 +151,6 @@ public class SPUtils
 
 	/**
 	 * 创建一个解决SharedPreferencesCompat.apply方法的一个兼容类
-	 * 
-	 * @author zhy
 	 * 
 	 */
 	private static class SharedPreferencesCompat
