@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by Administrator on 2017/2/20.
+ * Created by beini on 2017/2/20.
  */
 
 public class MediaPlayerController {

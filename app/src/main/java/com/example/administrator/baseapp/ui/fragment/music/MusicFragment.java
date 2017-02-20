@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
@@ -18,8 +17,6 @@ import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.event.DLNAActionEvent;
 import com.example.administrator.baseapp.ui.fragment.SystemService;
 import com.example.administrator.baseapp.utils.BLog;
-import com.example.administrator.baseapp.utils.FragmentHelper;
-
 import org.fourthline.cling.model.ModelUtil;
 import org.fourthline.cling.support.model.MediaInfo;
 import org.fourthline.cling.support.model.PositionInfo;
@@ -28,32 +25,29 @@ import org.fourthline.cling.support.model.item.Item;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.concurrent.ExecutionException;
 
 /**
  * Created by beini on 2017/2/14.
  */
-@ContentView(R.layout.fragment_music)
+@ContentView(R.layout.dlna_main_fragment)
 public class MusicFragment extends BaseFragment {
-    @ViewInject(R.id.text_dlna_list)
-    TextView text_dlna_list;
 
     @ViewInject(R.id.img_dlna_play)
-    private ImageButton mPlayPauseButton;
+     ImageButton mPlayPauseButton;
     @ViewInject(R.id.dlna_cur_time)
-    private TextView mCurTime;
+     TextView mCurTime;
     @ViewInject(R.id.dlna_total_time)
-    private TextView mTotalTime;
+     TextView mTotalTime;
     @ViewInject(R.id.dlna_seekbar)
-    private SeekBar mSeekBar;
+     SeekBar mSeekBar;
     private int mTrackDurationSeconds = 0;
 
-    @ViewInject(R.id.song_title)
-    private TextView mTitleTextView;
+//    @ViewInject(R.id.song_title)
+//     TextView mTitleTextView;
     @ViewInject(R.id.song_singer)
-    private TextView mSingerTextView;
-    @ViewInject(R.id.img_dlna_select)
+     TextView mSingerTextView;
+
     private static  MediaPlayerController mMediaPlayerController;
     /**
      * Use this factory method to create a new instance.
@@ -179,7 +173,7 @@ public class MusicFragment extends BaseFragment {
         //如果当前能获取到当前歌曲，就刷新
         Item item = SystemManager.getInstance().getCurSong();
         if (item != null) {
-            mTitleTextView.setText(item.getTitle());
+//            mTitleTextView.setText(item.getTitle());
 
             if (!item.getCreator().equals("<unknown>"))
                 mSingerTextView.setText(item.getCreator());
@@ -202,8 +196,8 @@ public class MusicFragment extends BaseFragment {
             }
 //            mPlayPauseButton.setBackgroundColor(R.color.app_backound_color);
         } else if (state == TransportState.PAUSED_PLAYBACK || state == TransportState.STOPPED) {
-            mPlayPauseButton.setImageResource(R.mipmap.dibot_icon_bf);
-            mPlayPauseButton.setBackgroundColor(getResources().getColor(R.color.app_backound_color));
+//            mPlayPauseButton.setImageResource(R.mipmap.dibot_icon_bf);
+//            mPlayPauseButton.setBackgroundColor(getResources().getColor(R.color.app_backound_color));
         }
 
     }
@@ -354,7 +348,7 @@ public class MusicFragment extends BaseFragment {
                     Item item = SystemManager.getInstance().getCurSong();
 //                    DLog.i(TAG, "REFRESH_OBJECTS");
                     if (item != null) {
-                        mTitleTextView.setText(item.getTitle());
+//                        mTitleTextView.setText(item.getTitle());
                         if (!item.getCreator().equals("<unknown>"))
                             mSingerTextView.setText(item.getCreator());
                         else
@@ -369,5 +363,21 @@ public class MusicFragment extends BaseFragment {
 //            DLog.i(TAG, "SetCurrentStatus ExecutionException:" + e.getMessage());
         }
     }
+    /**按back页面返回的时候调用
+     * @param hidden
+     */
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        //show
+        if(!hidden){
+            fragmentChange();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
