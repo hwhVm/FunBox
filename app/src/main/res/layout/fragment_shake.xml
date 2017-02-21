@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.baseapp.ui.shake.ShakeFragment">
+
+
+    <ToggleButton
+        android:id="@+id/toggle_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textOff="off"
+        android:checked="false"
+        android:textOn="on" />
+
+</FrameLayout>
