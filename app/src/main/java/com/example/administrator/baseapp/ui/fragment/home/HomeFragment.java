@@ -12,6 +12,7 @@ import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
+import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,8 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         functionList.add("dlna demo");
+        functionList.add("recording");
+
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -59,7 +62,7 @@ public class HomeFragment extends BaseFragment {
                     baseActivity.replaceFragment(MusicFragment.class);
                     break;
                 case 1:
-
+                    baseActivity.replaceFragment(VoiceFragment.class);
                     break;
             }
         }

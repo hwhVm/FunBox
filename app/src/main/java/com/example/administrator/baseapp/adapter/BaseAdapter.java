@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.administrator.baseapp.bean.BaseBean;
-
 import java.util.List;
 
 
@@ -19,6 +18,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     private List<T> baseLit;
     private int layoutId;
+    private final int i = 0;
 
     public BaseAdapter(List<T> baseLit) {
         this.baseLit = baseLit;
@@ -28,6 +28,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         this.baseLit = baseBean.getBaseList();
         this.layoutId = baseBean.getId();
     }
+
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,6 +42,9 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     @Override
     public int getItemCount() {
+        if (baseLit == null || baseLit.size() == 0) {
+            return 0;
+        }
         return baseLit.size();
     }
 
