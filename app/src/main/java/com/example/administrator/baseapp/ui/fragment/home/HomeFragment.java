@@ -1,10 +1,10 @@
 package com.example.administrator.baseapp.ui.fragment.home;
 
 
+import android.Manifest;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.adapter.HomeListAdapter;
 import com.example.administrator.baseapp.base.BaseFragment;
@@ -14,7 +14,6 @@ import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
 import com.example.administrator.baseapp.ui.shake.ShakeFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +25,14 @@ public class HomeFragment extends BaseFragment {
     @ViewInject(R.id.recycler_view_home)
     RecyclerView recycler_view_home;
     private List<String> functionList = new ArrayList<>();
-
+    String[] perms = {Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE};
     @Override
     public void initView() {
+        checkPermissionMethod(perms," ask  camera permission",22);
         functionList.add("dlna demo");
         functionList.add("recording");
         functionList.add("Shake");
+
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -39,6 +40,8 @@ public class HomeFragment extends BaseFragment {
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
     }
+
+
 
     @Override
     protected void onInvisible() {
@@ -71,6 +74,7 @@ public class HomeFragment extends BaseFragment {
             }
         }
     };
+
 
 
 }

@@ -20,8 +20,11 @@ import com.example.administrator.baseapp.bind.ViewInjectorImpl;
 import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
+import com.example.administrator.baseapp.utils.BLog;
+import com.example.administrator.baseapp.utils.permission.EasyPermissions;
 import com.example.administrator.baseapp.utils.FragmentHelper;
 import com.example.administrator.baseapp.utils.ObjectUtil;
+import java.util.List;
 
 /**
  * Created by beini on 2017/2/8.
@@ -123,4 +126,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     public void setTopBarTitle(String title) {
         top_bar_title.setText(title);
     }
+
+
+
 }

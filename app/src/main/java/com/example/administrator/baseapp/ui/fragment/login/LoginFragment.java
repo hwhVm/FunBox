@@ -1,6 +1,8 @@
 package com.example.administrator.baseapp.ui.fragment.login;
 
 
+import android.Manifest;
+import android.os.Build;
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,6 +13,10 @@ import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.login.model.LoginModel;
+import com.example.administrator.baseapp.utils.BLog;
+import com.example.administrator.baseapp.utils.permission.EasyPermissions;
+
+import java.util.List;
 
 /**
  * Created by beini on 2017/2/9.
@@ -50,11 +56,27 @@ public class LoginFragment extends BaseFragment {
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
+                checkPermissionMethod(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},"ff",44);
 //                loginModel.login();
-                baseActivity.remove(LoginFragment.this);
-                baseActivity.goToHome();
                 break;
         }
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            BLog.d("     "+(!EasyPermissions.somePermissionPermanentlyDenied(this, perms)));
+
+            if (!EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+                baseActivity.remove(LoginFragment.this);
+                baseActivity.goToHome();
+            } else {
+
+                return;
+            }
+        }
+
+
     }
 
     // get   set

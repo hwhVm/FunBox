@@ -12,8 +12,8 @@ public class IndexActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        goToHome();
-//        replaceFragment(LoginFragment.class);
+//        goToHome();
+        replaceFragment(LoginFragment.class);
     }
 
 }
