@@ -56,7 +56,8 @@ public class LoginFragment extends BaseFragment {
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                checkPermissionMethod(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},"ff",44);
+                baseActivity.goToHome();
+//                checkPermissionMethod(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},"ff",44);
 //                loginModel.login();
                 break;
         }

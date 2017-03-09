@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.view.View;
-
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseActivity;
 import com.example.administrator.baseapp.base.BaseApplication;
@@ -12,7 +11,6 @@ import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +31,11 @@ public class FragmentHelper {
     public static void addFragment(FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
         if (fragmentManager != null && fragment != null) {
             FragmentTransaction ft = fragmentManager.beginTransaction();
+            if (!fragment.isAdded()) {
+                ft.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit, R.anim.fragment_slide_left_enter,
+                        R.anim.fragment_slide_left_exit);
+//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            }
             ft.add(R.id.content_frame, fragment, fragmentTag);
             tags.add(fragmentTag);
             ft.commit();
@@ -49,6 +52,8 @@ public class FragmentHelper {
         hideAllFragment(fragmentManager);
         FragmentTransaction ft = fragmentManager.beginTransaction();
         if (fragment != null) {
+            ft.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit, R.anim.fragment_slide_left_enter,
+                    R.anim.fragment_slide_left_exit);
             ft.show(fragment);
             ft.commit();
         }
@@ -64,6 +69,8 @@ public class FragmentHelper {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         if (fragment != null) {
             if (tags != null && tags.size() >= 1) {
+                ft.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit, R.anim.fragment_slide_left_enter,
+                        R.anim.fragment_slide_left_exit);
                 ft.remove(fragment);
                 ft.commit();
                 tags.remove(tags.size() - 1);
