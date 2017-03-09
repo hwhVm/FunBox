@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.test;
+package com.example.administrator.baseapp.pattern.proxy;
 
 /**
  * Created by Administrator on 2017/3/1.

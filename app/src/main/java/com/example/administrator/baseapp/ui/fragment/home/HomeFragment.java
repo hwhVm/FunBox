@@ -39,6 +39,8 @@ public class HomeFragment extends BaseFragment {
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean(R.layout.item_home, functionList));
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
+
+
     }
 
 

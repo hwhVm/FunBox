@@ -21,16 +21,17 @@ import com.example.administrator.baseapp.event.PlayVoiceStatus;
 import com.example.administrator.baseapp.ui.fragment.recording.model.VoiceModel;
 import com.example.administrator.baseapp.utils.BLog;
 import com.example.administrator.baseapp.utils.VoiceUtils;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.reactivestreams.Subscription;
 
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.ResourceObserver;
+import io.reactivex.subscribers.ResourceSubscriber;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +40,6 @@ import rx.functions.Action1;
 public class VoiceFragment extends BaseFragment implements RadioGroup.OnCheckedChangeListener, View.OnTouchListener {
     private VoiceUtils voice;
     private boolean isStart = false;
-    private Subscription subscription;
     @ViewInject(value = R.id.voice_text)
     TextView voice_text;
     @ViewInject(value = R.id.voice_say)
@@ -108,13 +108,24 @@ public class VoiceFragment extends BaseFragment implements RadioGroup.OnCheckedC
                     isStart = true;
 
                     voice.Start();
-                    subscription= Observable.just(true)
+                      Observable.just(true)
                             .delay(50, TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Action1<Boolean>() {
+                            .subscribe(new ResourceObserver<Boolean>() {
                                 @Override
-                                public void call(Boolean aBoolean) {
+                                public void onNext(Boolean value) {
+                                    BLog.d("    onNext");
                                     endRecordings();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+
+                                }
+
+                                @Override
+                                public void onComplete() {
+
                                 }
                             });
                 }
@@ -122,7 +133,6 @@ public class VoiceFragment extends BaseFragment implements RadioGroup.OnCheckedC
             case MotionEvent.ACTION_UP:
                 if (isStart){
                     endRecordings();
-                    subscription.unsubscribe();
                     isStart=false;
                 }
 
