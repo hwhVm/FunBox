@@ -20,19 +20,5 @@ public class Rb2Fragment extends BaseFragment {
         baseActivity.setTopBar(View.GONE);
     }
 
-    @Override
-    protected void onInvisible() {
-
-    }
-
-    @Override
-    protected void onVisible() {
-
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-    }
 
 }

@@ -37,21 +37,6 @@ public class LoginFragment extends BaseFragment {
         baseActivity.setBottom(View.GONE);
     }
 
-    @Override
-    protected void onInvisible() {
-
-    }
-
-    @Override
-    protected void onVisible() {
-
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-    }
-
     @Event({R.id.btn_login})
     private void mEvent(View view) {
         switch (view.getId()) {

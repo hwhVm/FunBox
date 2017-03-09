@@ -43,23 +43,6 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-
-
-    @Override
-    protected void onInvisible() {
-
-    }
-
-    @Override
-    protected void onVisible() {
-
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-    }
-
     public HomeListAdapter.OnItemClickListener onItemClickListener = new HomeListAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {

@@ -179,18 +179,4 @@ public class VoiceFragment extends BaseFragment implements RadioGroup.OnCheckedC
         }
     }
 
-    @Override
-    protected void onInvisible() {
-
-    }
-
-    @Override
-    protected void onVisible() {
-
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-    }
 }

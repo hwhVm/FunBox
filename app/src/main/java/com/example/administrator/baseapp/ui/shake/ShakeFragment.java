@@ -75,19 +75,4 @@ public class ShakeFragment extends BaseFragment {
         m_Camera.release();
     }
 
-    @Override
-    protected void onInvisible() {
-
-    }
-
-    @Override
-    protected void onVisible() {
-
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-    }
-
 }

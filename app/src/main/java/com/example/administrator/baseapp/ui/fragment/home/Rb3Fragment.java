@@ -18,19 +18,4 @@ public class Rb3Fragment extends BaseFragment {
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
     }
-
-    @Override
-    protected void onInvisible() {
-
-    }
-
-    @Override
-    protected void onVisible() {
-
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-    }
 }

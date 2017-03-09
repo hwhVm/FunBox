@@ -24,8 +24,6 @@ import java.util.List;
 
 public abstract class BaseFragment extends Fragment implements EasyPermissions.PermissionCallbacks{
     public BaseActivity baseActivity;
-    public boolean isVisible;
-
 
     @Nullable
     @Override
@@ -38,24 +36,6 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
 
     public abstract void initView();
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        BLog.d("   setUserVisibleHint  getUserVisibleHint()= "+getUserVisibleHint());
-        if(getUserVisibleHint()) {//可见时调用
-            isVisible = true;
-            onVisible();
-            BLog.d("  onVisible");
-        } else {
-            isVisible = false;
-            BLog.d("  onInvisible");
-            onInvisible();
-        }
-    }
-
-    protected abstract void onInvisible();
-
-    protected abstract void onVisible();
 
     @Override
     public void onAttach(Context context) {
@@ -68,11 +48,6 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
         super.onActivityCreated(savedInstanceState);
       
     }
-    /**
-     * 懒加载接口
-     */
-    protected abstract void lazyLoad();
-
 
     public void checkPermissionMethod(String[] perms, String tipStr, int code) {
         BLog.d("  EasyPermissions.hasPermissions(this, perms)="+EasyPermissions.hasPermissions(baseActivity, perms));

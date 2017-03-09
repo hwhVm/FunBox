@@ -143,20 +143,6 @@ public class MusicFragment extends BaseFragment {
                 break;
         }
     }
-    @Override
-    protected void onInvisible() {
-        BLog.d(" MusicFragment onInvisible");
-    }
-
-    @Override
-    protected void onVisible() {
-        BLog.d(" MusicFragment onVisible");
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-    }
     /**
      * UI更新时候调用
      */
