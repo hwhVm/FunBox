@@ -33,7 +33,7 @@ import java.util.List;
 @ContentView(R.layout.activity_base)
 public abstract class BaseActivity extends AppCompatActivity implements BaseImpl {
     @ViewInject(R.id.toolbar)
-    Toolbar toolbar;
+    public    Toolbar toolbar;
     @ViewInject(R.id.layout_coor)
     CoordinatorLayout layout_coor;
     @ViewInject(R.id.rg_bottom)
