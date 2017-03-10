@@ -13,6 +13,7 @@ import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
+import com.example.administrator.baseapp.ui.fragment.sideslip.SideslipFragment;
 import com.example.administrator.baseapp.ui.shake.ShakeFragment;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add("dlna demo");
         functionList.add("recording");
         functionList.add("Shake");
-
+        functionList.add("Sideslip");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -55,6 +56,9 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 2:
                     baseActivity.replaceFragment(ShakeFragment.class);
+                    break;
+                case 3:
+                    baseActivity.replaceFragment(SideslipFragment.class);
                     break;
             }
         }

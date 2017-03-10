@@ -21,6 +21,7 @@ import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
 import com.example.administrator.baseapp.utils.BLog;
+import com.example.administrator.baseapp.utils.listener.KeyBackListener;
 import com.example.administrator.baseapp.utils.permission.EasyPermissions;
 import com.example.administrator.baseapp.utils.FragmentHelper;
 import com.example.administrator.baseapp.utils.ObjectUtil;
@@ -45,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
 
     private FragmentManager fragmentManager;
-
+    public KeyBackListener keyBackListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +100,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     @Override
     public void onBackPressed() {
-        FragmentHelper.removePreFragment(layout_coor, fragmentManager, this);
+        if (keyBackListener != null) {
+            keyBackListener.keyBack();
+        } else {
+            FragmentHelper.removePreFragment(layout_coor, fragmentManager, this);
+        }
     }
 
     @Override
