@@ -5,6 +5,9 @@ import android.content.Context;
 import android.media.AudioManager;
 
 import com.example.administrator.baseapp.ndk.NDKMain;
+import com.example.administrator.baseapp.utils.CrashHandler;
+import com.example.administrator.baseapp.utils.SystemUtil;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,14 +32,20 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        application=this;
-        executorService = Executors.newCachedThreadPool();//创建线程池
-        ndk = new NDKMain();
+        String appName = getApplicationInfo().packageName;
+        application = this;
+        if (appName.equals(SystemUtil.getCurProcessName(getApplicationContext()))) {//避免多进程下会重复执行
+            executorService = Executors.newCachedThreadPool();//创建线程池
+            ndk = new NDKMain();
+            Fresco.initialize(getInstance());
+            CrashHandler.getInstance().init(getApplicationContext());
+        }
     }
 
     public ExecutorService getExecutorService() {
         return executorService;
     }
+
     /**
      * 获取ndk对象
      */
