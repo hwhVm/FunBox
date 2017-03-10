@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.administrator.baseapp.bean.BaseBean;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.List;
 
 
@@ -28,7 +31,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         this.baseLit = baseBean.getBaseList();
         this.layoutId = baseBean.getId();
     }
-
 
 
     @Override
@@ -72,6 +74,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     public ImageView getImageView(int viewId) {
         return (ImageView) getView().findViewById(viewId);
+    }
+
+    public SimpleDraweeView getSimpleDraweeView(int viewId) {
+        return (SimpleDraweeView) getView().findViewById(viewId);
     }
 
     //item  click 事件

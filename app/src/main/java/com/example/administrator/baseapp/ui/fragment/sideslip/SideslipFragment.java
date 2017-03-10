@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.administrator.baseapp.R;
@@ -32,7 +33,7 @@ public class SideslipFragment extends BaseFragment implements NavigationView.OnN
         drawer.addDrawerListener(drawerListener);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        baseActivity.keyBackListener = null;
+        baseActivity.setKeyBackListener(null);
 
     }
 
@@ -65,6 +66,11 @@ public class SideslipFragment extends BaseFragment implements NavigationView.OnN
         }
     }
 
+    @Override
+    public void onKeyDown(KeyEvent event) {
+
+    }
+
     DrawerLayout.DrawerListener drawerListener = new DrawerLayout.DrawerListener() {
         @Override
         public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -73,12 +79,13 @@ public class SideslipFragment extends BaseFragment implements NavigationView.OnN
 
         @Override
         public void onDrawerOpened(View drawerView) {
-            baseActivity.keyBackListener = SideslipFragment.this;
+
+            baseActivity.setKeyBackListener(SideslipFragment.this);
         }
 
         @Override
         public void onDrawerClosed(View drawerView) {
-            baseActivity.keyBackListener = null;
+            baseActivity.setKeyBackListener(null);
         }
 
         @Override
@@ -86,4 +93,6 @@ public class SideslipFragment extends BaseFragment implements NavigationView.OnN
 
         }
     };
+
+
 }

@@ -5,16 +5,20 @@ import android.Manifest;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.adapter.HomeListAdapter;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
+import com.example.administrator.baseapp.ui.fragment.camera.CameraFragment;
+import com.example.administrator.baseapp.ui.fragment.localmusic.LocalMusicFragment;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
 import com.example.administrator.baseapp.ui.fragment.sideslip.SideslipFragment;
 import com.example.administrator.baseapp.ui.shake.ShakeFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,21 +30,23 @@ public class HomeFragment extends BaseFragment {
     @ViewInject(R.id.recycler_view_home)
     RecyclerView recycler_view_home;
     private List<String> functionList = new ArrayList<>();
-    String[] perms = {Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE};
+    String[] perms = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
+
     @Override
     public void initView() {
-        checkPermissionMethod(perms," ask  camera permission",22);
+        checkPermissionMethod(perms, " ask  camera permission", 22);
         functionList.add("dlna demo");
         functionList.add("recording");
         functionList.add("Shake");
         functionList.add("Sideslip");
+        functionList.add("Local  Music");
+        functionList.add("Carmera");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean(R.layout.item_home, functionList));
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
-
 
     }
 
@@ -60,10 +66,15 @@ public class HomeFragment extends BaseFragment {
                 case 3:
                     baseActivity.replaceFragment(SideslipFragment.class);
                     break;
+                case 4:
+                    baseActivity.replaceFragment(LocalMusicFragment.class);
+                    break;
+                case 5:
+                    baseActivity.replaceFragment(CameraFragment.class);
+                    break;
             }
         }
     };
-
 
 
 }

@@ -22,7 +22,7 @@ import java.util.List;
  */
 
 
-public abstract class BaseFragment extends Fragment implements EasyPermissions.PermissionCallbacks{
+public abstract class BaseFragment extends Fragment implements EasyPermissions.PermissionCallbacks {
     public BaseActivity baseActivity;
 
     @Nullable
@@ -30,7 +30,7 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = ViewInjectorImpl.registerInstance(this, inflater, container);
         this.initView();
-        BLog.d("  onCreateView ");
+        this.returnLoad();
         return view;
     }
 
@@ -46,11 +46,22 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-      
+
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden) {
+            returnLoad();
+        }
+        super.onHiddenChanged(hidden);
+    }
+
+    public void returnLoad() {
     }
 
     public void checkPermissionMethod(String[] perms, String tipStr, int code) {
-        BLog.d("  EasyPermissions.hasPermissions(this, perms)="+EasyPermissions.hasPermissions(baseActivity, perms));
+        BLog.d("  EasyPermissions.hasPermissions(this, perms)=" + EasyPermissions.hasPermissions(baseActivity, perms));
         if (!EasyPermissions.hasPermissions(baseActivity, perms)) {
             EasyPermissions.requestPermissions(this, tipStr, code, perms);
         }
@@ -75,9 +86,16 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             BLog.d("   onPermissionsDenied  " + requestCode + "   " + (EasyPermissions.somePermissionPermanentlyDenied(this, perms)));
             if (!EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-    //            new AppSettingsDialog.Builder(this).build().show();
+                //            new AppSettingsDialog.Builder(this).build().show();
 
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        baseActivity.setKeyBackListener(null);
+        baseActivity.setOnTouchEventListener(null);
     }
 }

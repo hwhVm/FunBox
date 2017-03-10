@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -22,10 +25,9 @@ import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
 import com.example.administrator.baseapp.utils.BLog;
 import com.example.administrator.baseapp.utils.listener.KeyBackListener;
-import com.example.administrator.baseapp.utils.permission.EasyPermissions;
+import com.example.administrator.baseapp.utils.listener.OnTouchEventListener;
 import com.example.administrator.baseapp.utils.FragmentHelper;
 import com.example.administrator.baseapp.utils.ObjectUtil;
-import java.util.List;
 
 /**
  * Created by beini on 2017/2/8.
@@ -34,9 +36,9 @@ import java.util.List;
 @ContentView(R.layout.activity_base)
 public abstract class BaseActivity extends AppCompatActivity implements BaseImpl {
     @ViewInject(R.id.toolbar)
-    public    Toolbar toolbar;
+    public Toolbar toolbar;
     @ViewInject(R.id.layout_coor)
-    CoordinatorLayout layout_coor;
+    LinearLayout layout_coor;
     @ViewInject(R.id.rg_bottom)
     RadioGroup rg_bottom;
     @ViewInject(R.id.rb_1)
@@ -46,7 +48,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
 
     private FragmentManager fragmentManager;
-    public KeyBackListener keyBackListener;
+    private KeyBackListener keyBackListener;
+    private OnTouchEventListener onTouchEventListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,12 +103,39 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     }
 
     @Override
-    public void onBackPressed() {
-        if (keyBackListener != null) {
-            keyBackListener.keyBack();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (keyBackListener != null) {
+                keyBackListener.keyBack();
+            } else {
+                onBackPressed();
+            }
+            return true;
         } else {
-            FragmentHelper.removePreFragment(layout_coor, fragmentManager, this);
+            if (keyBackListener != null) {
+                keyBackListener.onKeyDown(event);
+            }
+            return super.onKeyDown(keyCode, event);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentHelper.removePreFragment(layout_coor, fragmentManager, this);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        BLog.d("  baseActivity  onTouchEvent ");
+        if (onTouchEventListener != null) {
+            onTouchEventListener.onTouchEvent(event);
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
@@ -133,5 +164,20 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     }
 
 
+    public KeyBackListener getKeyBackListener() {
+        return keyBackListener;
+    }
+
+    public void setKeyBackListener(KeyBackListener keyBackListener) {
+        this.keyBackListener = keyBackListener;
+    }
+
+    public OnTouchEventListener getOnTouchEventListener() {
+        return onTouchEventListener;
+    }
+
+    public void setOnTouchEventListener(OnTouchEventListener onTouchEventListener) {
+        this.onTouchEventListener = onTouchEventListener;
+    }
 
 }
