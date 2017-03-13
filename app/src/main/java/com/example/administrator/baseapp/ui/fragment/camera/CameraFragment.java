@@ -12,7 +12,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
@@ -23,7 +22,6 @@ import com.example.administrator.baseapp.utils.BLog;
 import com.example.administrator.baseapp.utils.SnackbarUtil;
 import com.example.administrator.baseapp.utils.listener.KeyBackListener;
 import com.example.administrator.baseapp.utils.listener.OnTouchEventListener;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 

@@ -11,6 +11,7 @@ import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
+import com.example.administrator.baseapp.event.ImageEvent;
 import com.example.administrator.baseapp.ui.fragment.camera.View.DividerGridItemDecoration;
 import com.example.administrator.baseapp.ui.fragment.camera.adapter.PicAdapter;
 import com.example.administrator.baseapp.ui.fragment.camera.bean.ImageBean;
@@ -19,7 +20,6 @@ import com.example.administrator.baseapp.ui.fragment.camera.presenter.ShowPicPre
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
@@ -37,7 +37,6 @@ public class ShowPicFragment extends BaseFragment {
     @Override
     public void initView() {
         picPresenter = new ShowPicPresenter();
-
     }
 
     @Override
@@ -68,7 +67,7 @@ public class ShowPicFragment extends BaseFragment {
     PicAdapter.OnItemClickListener itemClickListener = new PicAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            EventBus.getDefault().postSticky(imageBeens.get(position));
+            EventBus.getDefault().postSticky(new ImageEvent(imageBeens,position));
             baseActivity.replaceFragment(PicDetaiFragment.class);
         }
     };

@@ -91,4 +91,5 @@ dependencies {
     compile 'com.google.dagger:dagger:2.2'
     testCompile 'junit:junit:4.12'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
+
 }

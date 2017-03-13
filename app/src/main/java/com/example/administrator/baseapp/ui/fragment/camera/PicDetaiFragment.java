@@ -1,17 +1,23 @@
 package com.example.administrator.baseapp.ui.fragment.camera;
 
 
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.support.v4.view.ViewPager;
 
 import com.example.administrator.baseapp.R;
+import com.example.administrator.baseapp.adapter.ViewPagerAdapter;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
+import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
+import com.example.administrator.baseapp.event.ImageEvent;
 import com.example.administrator.baseapp.ui.fragment.camera.bean.ImageBean;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.example.administrator.baseapp.utils.BLog;
+
 import org.greenrobot.eventbus.EventBus;
 
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.senab.photoview.PhotoView;
 
@@ -20,19 +26,29 @@ import uk.co.senab.photoview.PhotoView;
  */
 @ContentView(R.layout.fragment_pic_detai)
 public class PicDetaiFragment extends BaseFragment {
-    @ViewInject(R.id.picDetail_simpleView)
-    SimpleDraweeView picDetail_simpleView;
     @ViewInject(R.id.photo_view)
     PhotoView photoView;
+    @ViewInject(R.id.view_page)
+    ViewPager view_page;
+
+    ViewPagerAdapter vpAdapter;
+    List<ImageBean> imageBeanList;
 
     @Override
     public void initView() {
-//        picDetail_simpleView.setImageURI("file://" + EventBus.getDefault().getStickyEvent(ImageBean.class).getUrl());
-//
-//        Drawable bitmap = getResources().getDrawable(R.mipmap.ic_launcher);
-//        photoView.setImageDrawable(bitmap);
-//        URL  url=new URL("file://" + EventBus.getDefault().getStickyEvent(ImageBean.class).getUrl())
-//        photoView.setImageURI();
+        ImageEvent imageEvent = EventBus.getDefault().getStickyEvent(ImageEvent.class);
+        if (imageEvent != null) {
+            imageBeanList = imageEvent.imageBeens;
+        }
+        photoView.setImageURI(Uri.parse("file://" + EventBus.getDefault().getStickyEvent(ImageBean.class).getUrl()));
+//        vpAdapter = new ViewPagerAdapter(views, this);
+        BLog.d("  PicDetaiFragment initView ");
+
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }
