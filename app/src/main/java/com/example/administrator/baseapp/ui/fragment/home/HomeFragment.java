@@ -17,7 +17,7 @@ import com.example.administrator.baseapp.ui.fragment.localmusic.LocalMusicFragme
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
 import com.example.administrator.baseapp.ui.fragment.sideslip.SideslipFragment;
-import com.example.administrator.baseapp.ui.shake.ShakeFragment;
+import com.example.administrator.baseapp.ui.fragment.shake.ShakeFragment;
 
 import java.util.ArrayList;
 import java.util.List;

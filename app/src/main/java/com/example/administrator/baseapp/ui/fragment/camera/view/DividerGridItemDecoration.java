@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.ui.fragment.camera.View;
+package com.example.administrator.baseapp.ui.fragment.camera.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

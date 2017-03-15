@@ -1,11 +1,7 @@
-package com.example.administrator.baseapp.ui.shake;
+package com.example.administrator.baseapp.ui.fragment.shake;
 
 import android.hardware.Camera;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
@@ -13,8 +9,6 @@ import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
-
-import static org.greenrobot.eventbus.EventBus.TAG;
 
 /**
  * A simple {@link Fragment} subclass.

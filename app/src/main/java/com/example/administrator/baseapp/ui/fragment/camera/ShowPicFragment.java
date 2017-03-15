@@ -12,7 +12,7 @@ import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.event.ImageEvent;
-import com.example.administrator.baseapp.ui.fragment.camera.View.DividerGridItemDecoration;
+import com.example.administrator.baseapp.ui.fragment.camera.view.DividerGridItemDecoration;
 import com.example.administrator.baseapp.ui.fragment.camera.adapter.PicAdapter;
 import com.example.administrator.baseapp.ui.fragment.camera.bean.ImageBean;
 import com.example.administrator.baseapp.ui.fragment.camera.presenter.ShowPicPresenter;

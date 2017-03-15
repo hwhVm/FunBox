@@ -1,6 +1,7 @@
 package com.example.administrator.baseapp.ui.fragment.camera;
 
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v4.view.ViewPager;
 
@@ -33,17 +34,39 @@ public class PicDetaiFragment extends BaseFragment {
 
     ViewPagerAdapter vpAdapter;
     List<ImageBean> imageBeanList;
+    int postion = 0;
 
     @Override
     public void initView() {
         ImageEvent imageEvent = EventBus.getDefault().getStickyEvent(ImageEvent.class);
         if (imageEvent != null) {
             imageBeanList = imageEvent.imageBeens;
+            postion = imageEvent.postiton;
         }
-        photoView.setImageURI(Uri.parse("file://" + EventBus.getDefault().getStickyEvent(ImageBean.class).getUrl()));
-//        vpAdapter = new ViewPagerAdapter(views, this);
-        BLog.d("  PicDetaiFragment initView ");
+        EventBus.getDefault().removeStickyEvent(ImageEvent.class);
 
+//        photoView.setImageURI(Uri.parse("file://" + EventBus.getDefault().getStickyEvent(ImageBean.class).getUrl()));
+
+        vpAdapter = new ViewPagerAdapter(imageBeanList, getPhotoView(), getActivity());
+        view_page.setAdapter(vpAdapter);
+        view_page.setCurrentItem(postion);
+
+        view_page.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                BLog.d("    onPageSelected  position=  " + position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
 
@@ -51,4 +74,16 @@ public class PicDetaiFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
     }
+
+    /**
+     * get set
+     */
+    public PhotoView getPhotoView() {
+        return photoView;
+    }
+
+    public void setPhotoView(PhotoView photoView) {
+        this.photoView = photoView;
+    }
+
 }

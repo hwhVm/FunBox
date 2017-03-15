@@ -9,4 +9,5 @@
     <color name="red2">#cc2222</color>
     <!--背景颜色-->
     <color name="app_backound_color">#232629</color>
+    <color name="gray2">#D8D8D8</color>
 </resources>

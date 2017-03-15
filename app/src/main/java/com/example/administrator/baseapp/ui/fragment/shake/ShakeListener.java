@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.ui.shake;
+package com.example.administrator.baseapp.ui.fragment.shake;
 
 import android.content.Context;
 import android.hardware.Sensor;

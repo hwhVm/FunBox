@@ -24,6 +24,7 @@ import com.example.administrator.baseapp.ui.fragment.home.HomeFragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
 import com.example.administrator.baseapp.utils.BLog;
+import com.example.administrator.baseapp.utils.WindowUtils;
 import com.example.administrator.baseapp.utils.listener.KeyBackListener;
 import com.example.administrator.baseapp.utils.listener.OnTouchEventListener;
 import com.example.administrator.baseapp.utils.FragmentHelper;
@@ -50,6 +51,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     private FragmentManager fragmentManager;
     private KeyBackListener keyBackListener;
     private OnTouchEventListener onTouchEventListener;
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            WindowUtils.setHide(this.getWindow().getDecorView());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
