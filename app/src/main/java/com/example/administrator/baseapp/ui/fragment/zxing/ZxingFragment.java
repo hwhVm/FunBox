@@ -14,6 +14,7 @@ import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.zxing.activity.CaptureActivity;
 import com.example.administrator.baseapp.ui.fragment.zxing.encoding.EncodingUtils;
+import com.example.administrator.baseapp.utils.BLog;
 import com.example.administrator.baseapp.utils.listener.ActivityResultListener;
 
 /**
@@ -32,7 +33,7 @@ public class ZxingFragment extends BaseFragment implements ActivityResultListene
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btnSan:
-                startActivityForResult(new Intent(baseActivity, CaptureActivity.class), 0);
+                baseActivity.startActivityForResult(new Intent(baseActivity, CaptureActivity.class), 0);
                 break;
             case R.id.btn_generate:
                 String str = et_input.getText().toString();
@@ -64,7 +65,9 @@ public class ZxingFragment extends BaseFragment implements ActivityResultListene
 
     @Override
     public void resultCallback(int requestCode, int resultCode, Intent data) {
+        BLog.d("  resultCallback");
         if (resultCode == baseActivity.RESULT_OK) {
+            BLog.d(" RESULT_OK resultCallback");
             String result = data.getExtras().getString("result");
             tv_content.setText(result);
         }

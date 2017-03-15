@@ -13,6 +13,7 @@
         android:src="@mipmap/music_icon_shoucang_k"
         fresco:actualImageScaleType="focusCrop"
         fresco:placeholderImage="@mipmap/dibot_txet_icon_open_w"
+        android:adjustViewBounds="true"
         fresco:progressBarImage="@mipmap/music_icon_shoucang_k"
         fresco:viewAspectRatio="1.33"/>
 

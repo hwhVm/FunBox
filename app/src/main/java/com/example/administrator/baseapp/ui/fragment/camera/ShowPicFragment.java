@@ -1,11 +1,9 @@
 package com.example.administrator.baseapp.ui.fragment.camera;
 
 
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bean.BaseBean;
@@ -13,13 +11,10 @@ import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.event.ImageEvent;
-import com.example.administrator.baseapp.ui.fragment.camera.view.DividerGridItemDecoration;
 import com.example.administrator.baseapp.ui.fragment.camera.adapter.PicAdapter;
 import com.example.administrator.baseapp.ui.fragment.camera.bean.ImageBean;
 import com.example.administrator.baseapp.ui.fragment.camera.presenter.ShowPicPresenter;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
