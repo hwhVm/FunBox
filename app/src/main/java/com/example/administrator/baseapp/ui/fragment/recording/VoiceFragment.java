@@ -52,7 +52,6 @@ public class VoiceFragment extends BaseFragment implements RadioGroup.OnCheckedC
 
     @Override
     public void initView() {
-        baseActivity.setBottom(View.GONE);
         EventBus.getDefault().register(this);
         voice = new VoiceUtils();
         checkPermission();

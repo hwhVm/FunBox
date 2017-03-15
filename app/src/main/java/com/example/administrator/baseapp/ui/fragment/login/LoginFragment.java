@@ -35,7 +35,6 @@ public class LoginFragment extends BaseFragment {
     @Override
     public void initView() {
         loginModel = new LoginModel(this);
-        baseActivity.setBottom(View.GONE);
     }
 
     @Event({R.id.btn_login})

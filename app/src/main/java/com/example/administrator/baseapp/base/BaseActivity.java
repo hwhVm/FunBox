@@ -100,6 +100,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     @Override
     public void replaceFragment(Class<?> fragment) {
         BaseFragment baseFragment = (BaseFragment) ObjectUtil.createInstance(fragment);
+        if (!(baseFragment instanceof HomeFragment || baseFragment instanceof Rb2Fragment || baseFragment instanceof Rb3Fragment)) {
+            this.setBottom(View.GONE);
+        }
         Fragment newFragment = fragmentManager.findFragmentByTag(fragment.getName());
 
         if (newFragment != null) {
@@ -189,4 +192,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         this.onTouchEventListener = onTouchEventListener;
     }
 
+    /**
+     * /**
+     * 释放activity的资源，例如释放网络连接，注销监听广播接收者
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    /**
+     * UI已经隐藏
+     *
+     * @param level
+     */
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (level == TRIM_MEMORY_UI_HIDDEN) {
+            //释放UI资源
+        }
+    }
 }

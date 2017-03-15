@@ -25,7 +25,6 @@ public class SideslipFragment extends BaseFragment implements NavigationView.OnN
 
     @Override
     public void initView() {
-        baseActivity.setBottom(View.GONE);
         baseActivity.setTopBar(View.VISIBLE);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 baseActivity, drawer, baseActivity.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

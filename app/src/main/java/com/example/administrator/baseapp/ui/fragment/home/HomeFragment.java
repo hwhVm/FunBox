@@ -12,6 +12,7 @@ import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
+import com.example.administrator.baseapp.ui.fragment.bluetooth.SppFragment;
 import com.example.administrator.baseapp.ui.fragment.camera.CameraFragment;
 import com.example.administrator.baseapp.ui.fragment.localmusic.LocalMusicFragment;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
@@ -41,6 +42,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add("Sideslip");
         functionList.add("Local  Music");
         functionList.add("Carmera");
+        functionList.add("spp");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -71,6 +73,9 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 5:
                     baseActivity.replaceFragment(CameraFragment.class);
+                    break;
+                case 6:
+                    baseActivity.replaceFragment(SppFragment.class);
                     break;
             }
         }

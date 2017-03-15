@@ -59,8 +59,6 @@ public class MusicFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        baseActivity.setBottom(View.GONE);
-
         fragmentChange();
 
         EventBus.getDefault().register(this);
