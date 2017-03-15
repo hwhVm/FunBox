@@ -12,10 +12,13 @@ import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
+import com.example.administrator.baseapp.ui.ani.AniFragment;
 import com.example.administrator.baseapp.ui.fragment.bluetooth.SppFragment;
+import com.example.administrator.baseapp.ui.fragment.broadcast.BroadcastFragment;
 import com.example.administrator.baseapp.ui.fragment.camera.CameraFragment;
 import com.example.administrator.baseapp.ui.fragment.localmusic.LocalMusicFragment;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
+import com.example.administrator.baseapp.ui.fragment.notification.NotificationFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
 import com.example.administrator.baseapp.ui.fragment.sideslip.SideslipFragment;
 import com.example.administrator.baseapp.ui.fragment.shake.ShakeFragment;
@@ -47,6 +50,9 @@ public class HomeFragment extends BaseFragment {
         functionList.add("spp");
         functionList.add("sms");
         functionList.add("QR code");
+        functionList.add("notification");
+        functionList.add("broadcast");
+        functionList.add("ani");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -86,6 +92,15 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 8:
                     baseActivity.replaceFragment(ZxingFragment.class);
+                    break;
+                case 9:
+                    baseActivity.replaceFragment(NotificationFragment.class);
+                    break;
+                case 10:
+                    baseActivity.replaceFragment(BroadcastFragment.class);
+                    break;
+                case 11:
+                    baseActivity.replaceFragment(AniFragment.class);
                     break;
             }
         }

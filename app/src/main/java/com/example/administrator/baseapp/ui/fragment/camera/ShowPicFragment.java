@@ -3,6 +3,7 @@ package com.example.administrator.baseapp.ui.fragment.camera;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.example.administrator.baseapp.R;
@@ -53,10 +54,10 @@ public class ShowPicFragment extends BaseFragment {
                     @Override
                     public void accept(List<ImageBean> imageBeen) throws Exception {
                         imageBeens = imageBeen;
-                        recycle_show_pic.addItemDecoration(new DividerGridItemDecoration(baseActivity));
-                        recycle_show_pic.setLayoutManager(new GridLayoutManager(baseActivity, 2));
+                        recycle_show_pic.addItemDecoration(new SpacesItemDecoration(8));
+//                        recycle_show_pic.setLayoutManager(new GridLayoutManager(baseActivity, 2));
+                        recycle_show_pic.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
                         PicAdapter picAdapter = new PicAdapter(new BaseBean(R.layout.pic_item, imageBeens));
-
                         recycle_show_pic.setAdapter(picAdapter);
                         picAdapter.setItemClick(itemClickListener);
                     }

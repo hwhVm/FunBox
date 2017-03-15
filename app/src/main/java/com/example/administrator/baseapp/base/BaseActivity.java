@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -155,7 +154,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        BLog.d("  baseActivity  onTouchEvent ");
         if (onTouchEventListener != null) {
             onTouchEventListener.onTouchEvent(event);
         }
