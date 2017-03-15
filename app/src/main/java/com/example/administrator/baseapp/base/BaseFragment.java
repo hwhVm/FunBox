@@ -99,12 +99,14 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
         super.onDestroy();
         baseActivity.setKeyBackListener(null);
         baseActivity.setOnTouchEventListener(null);
+        baseActivity.setActivityResultListener(null);
     }
+
     private UIDialog mProDialog;
 
 
     public void showProgressDialog() {
-        mProDialog =  DialogUtil.uploadDailog("");
+        mProDialog = DialogUtil.uploadDailog("");
         mProDialog.show();
     }
 

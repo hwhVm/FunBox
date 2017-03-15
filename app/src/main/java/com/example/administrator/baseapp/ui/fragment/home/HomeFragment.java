@@ -19,6 +19,8 @@ import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
 import com.example.administrator.baseapp.ui.fragment.sideslip.SideslipFragment;
 import com.example.administrator.baseapp.ui.fragment.shake.ShakeFragment;
+import com.example.administrator.baseapp.ui.fragment.sms.SmsFragment;
+import com.example.administrator.baseapp.ui.fragment.zxing.ZxingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,8 @@ public class HomeFragment extends BaseFragment {
         functionList.add("Local  Music");
         functionList.add("Carmera");
         functionList.add("spp");
+        functionList.add("sms");
+        functionList.add("QR code");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -76,6 +80,12 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 6:
                     baseActivity.replaceFragment(SppFragment.class);
+                    break;
+                case 7:
+                    baseActivity.replaceFragment(SmsFragment.class);
+                    break;
+                case 8:
+                    baseActivity.replaceFragment(ZxingFragment.class);
                     break;
             }
         }

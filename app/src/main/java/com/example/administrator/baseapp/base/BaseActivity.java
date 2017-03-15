@@ -2,6 +2,7 @@ package com.example.administrator.baseapp.base;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.example.administrator.baseapp.ui.fragment.home.Rb2Fragment;
 import com.example.administrator.baseapp.ui.fragment.home.Rb3Fragment;
 import com.example.administrator.baseapp.utils.BLog;
 import com.example.administrator.baseapp.utils.WindowUtils;
+import com.example.administrator.baseapp.utils.listener.ActivityResultListener;
 import com.example.administrator.baseapp.utils.listener.KeyBackListener;
 import com.example.administrator.baseapp.utils.listener.OnTouchEventListener;
 import com.example.administrator.baseapp.utils.FragmentHelper;
@@ -50,6 +52,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     private FragmentManager fragmentManager;
     private KeyBackListener keyBackListener;
+    private ActivityResultListener activityResultListener;
+
     private OnTouchEventListener onTouchEventListener;
 
     @Override
@@ -132,6 +136,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (activityResultListener != null) {
+            activityResultListener.resultCallback(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         FragmentHelper.removePreFragment(layout_coor, fragmentManager, this);
     }
@@ -190,6 +202,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     public void setOnTouchEventListener(OnTouchEventListener onTouchEventListener) {
         this.onTouchEventListener = onTouchEventListener;
+    }
+
+    public ActivityResultListener getActivityResultListener() {
+        return activityResultListener;
+    }
+
+    public void setActivityResultListener(ActivityResultListener activityResultListener) {
+        this.activityResultListener = activityResultListener;
     }
 
     /**
