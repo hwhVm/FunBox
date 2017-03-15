@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.baseapp.bind.ViewInjectorImpl;
+import com.example.administrator.baseapp.ui.view.dialog.DialogUtil;
+import com.example.administrator.baseapp.ui.view.dialog.UIDialog;
 import com.example.administrator.baseapp.utils.BLog;
 import com.example.administrator.baseapp.utils.permission.EasyPermissions;
 
@@ -97,5 +99,19 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
         super.onDestroy();
         baseActivity.setKeyBackListener(null);
         baseActivity.setOnTouchEventListener(null);
+    }
+    private UIDialog mProDialog;
+
+
+    public void showProgressDialog() {
+        mProDialog =  DialogUtil.uploadDailog("");
+        mProDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProDialog != null) {
+            mProDialog.dismiss();
+            mProDialog = null;
+        }
     }
 }

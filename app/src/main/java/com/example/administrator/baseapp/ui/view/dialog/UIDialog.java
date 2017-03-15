@@ -385,4 +385,9 @@ public class UIDialog {
 		this.loadingDelayedTime = loadingDelayedTime;
 		return this;
 	}
+	public UIDialog show() {
+		setLayout();
+		dialog.show();
+		return this;
+	}
 }
