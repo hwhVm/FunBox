@@ -63,7 +63,6 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
     }
 
     public void checkPermissionMethod(String[] perms, String tipStr, int code) {
-        BLog.d("  EasyPermissions.hasPermissions(this, perms)=" + EasyPermissions.hasPermissions(baseActivity, perms));
         if (!EasyPermissions.hasPermissions(baseActivity, perms)) {
             EasyPermissions.requestPermissions(this, tipStr, code, perms);
         }

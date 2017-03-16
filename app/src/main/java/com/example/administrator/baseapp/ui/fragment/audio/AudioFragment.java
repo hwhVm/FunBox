@@ -1,12 +1,25 @@
 package com.example.administrator.baseapp.ui.fragment.audio;
 
 
+import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Context;
 import android.media.AudioManager;
+import android.media.MediaMetadata;
+import android.media.session.MediaController;
+import android.media.session.MediaSession;
+import android.media.session.PlaybackState;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.ResultReceiver;
+import android.os.SystemClock;
+import android.support.annotation.RequiresApi;
+import android.support.v4.media.session.MediaSessionCompat;
 
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
+import com.example.administrator.baseapp.broadcast.ControlReceiver;
 import com.example.administrator.baseapp.utils.BLog;
 
 /**
@@ -18,10 +31,13 @@ import com.example.administrator.baseapp.utils.BLog;
  * http://blog.csdn.net/hellofeiya/article/details/9667879
  * http://blog.csdn.net/u011068702/article/details/51730042
  * http://blog.csdn.net/u010779707/article/details/51320267
+ * http://www.jianshu.com/p/b52754c50f89
+ * http://wenku.baidu.com/link?url=dRDN8d9yI1ZUFDFMIK0m5BAxeMv79qqZYLHimYUc9joABuPgl7WUhh3ESSAx6kJ4cGTzfQDp7-BgZSL8Js1MKqx6Z8OhKZe5Dl9z95kqx8K
  */
 @ContentView(R.layout.fragment_audio)
 public class AudioFragment extends BaseFragment {
     public AudioManager audioManager;
+    ComponentName mComponentName;
 
     @Override
     public void initView() {
@@ -29,6 +45,9 @@ public class AudioFragment extends BaseFragment {
         int current = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         int max = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         BLog.d("   curent volume ==" + current + "  max  volume==" + max);
+
+        mComponentName = new ComponentName(baseActivity.getPackageName(), ControlReceiver.class.getName());
+
         /**
          * AUDIOFOCUS_GAIN
          指示申请得到的Audio Focus不知道会持续多久，一般是长期占有；
@@ -40,13 +59,105 @@ public class AudioFragment extends BaseFragment {
 
         BLog.d("  request==" + request);
         if (request == audioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            BLog.d("    申请成功");
+            BLog.d("    申请成功  registerMediaButtonEventReceiver");
+            if (android.os.Build.VERSION.SDK_INT >= 21) {
+                //注册媒体按键 API 21+（Android 5.0）
+                setMediaButtonEvent();
+            } else {
+                //注册媒体按键 API 21 以下， 通常的做法
+                audioManager.registerMediaButtonEventReceiver(mComponentName);
+            }
         } else if (request == audioManager.AUDIOFOCUS_REQUEST_FAILED) {
             BLog.d("    申请失败");
-        } else {
-            BLog.d("    other");
+        }
+
+    }
+
+    MediaSession session;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setMediaButtonEvent() {
+        session = new MediaSession(baseActivity, "随便写一串 tag 就行");
+        session.setCallback(new MediaSession.Callback() {
+            @Override
+            public void onPlay() {
+                super.onPlay();
+                //这里处理播放器逻辑 播放
+                updatePlaybackState(true);//播放暂停更新控制中心播放状态
+            }
+
+            @Override
+            public void onPause() {
+                super.onPause();
+                //这里处理播放器逻辑 暂停
+                updatePlaybackState(false);//播放暂停更新控制中心播放状态
+            }
+
+            @Override
+            public void onSkipToNext() {
+                super.onSkipToNext();
+                //CMD NEXT 这里处理播放器逻辑 下一曲
+            }
+
+            @Override
+            public void onSkipToPrevious() {
+                super.onSkipToPrevious();
+                //这里处理播放器逻辑 上一曲
+            }
+        });
+        session.setActive(true  );
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void unRegisterMediaButton() {
+//        |mComponentName==null
+        if (audioManager == null) return;
+
+        audioManager.abandonAudioFocus(onAudioFocusChangeListener);
+        audioManager.unregisterMediaButtonEventReceiver(mComponentName);
+        if (session != null) {
+            session.setCallback(null);
+            session.setActive(false);
+            session.release();
         }
     }
+
+    /*
+    * update mediaCenter state
+    */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void updatePlaybackState(boolean isPlaying) {
+        PlaybackState.Builder stateBuilder = new PlaybackState.Builder()
+                .setActions(PlaybackState.ACTION_PLAY
+                        | PlaybackState.ACTION_PLAY_PAUSE
+                        | PlaybackState.ACTION_PLAY_FROM_MEDIA_ID
+                        | PlaybackState.ACTION_PAUSE
+                        | PlaybackState.ACTION_SKIP_TO_NEXT
+                        | PlaybackState.ACTION_SKIP_TO_PREVIOUS
+                        | PlaybackState.CONTENTS_FILE_DESCRIPTOR);
+        if (isPlaying) {
+            stateBuilder.setState(PlaybackState.STATE_PLAYING,
+                    PlaybackState.PLAYBACK_POSITION_UNKNOWN,
+                    SystemClock.elapsedRealtime());
+        } else {
+            stateBuilder.setState(PlaybackState.STATE_PAUSED,
+                    PlaybackState.PLAYBACK_POSITION_UNKNOWN,
+                    SystemClock.elapsedRealtime());
+        }
+        session.setPlaybackState(stateBuilder.build());
+    }
+
+    //点击播放 注册监听后调用此方法才能将媒体焦点抢过来
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void updateMediaCenterInfo(String title, String artist) {
+        if (session == null) return;
+        MediaMetadata.Builder metadataBuilder = new MediaMetadata.Builder();
+        metadataBuilder.putString(MediaMetadata.METADATA_KEY_TITLE, title);//歌曲名
+        metadataBuilder.putString(MediaMetadata.METADATA_KEY_ARTIST, artist);//歌手
+        session.setMetadata(metadataBuilder.build());
+        updatePlaybackState(true);
+    }
+
 
     /**
      * AUDIOFOCUS_GAIN：获得了Audio Focus；
@@ -67,9 +178,9 @@ public class AudioFragment extends BaseFragment {
                 //释放焦点，该方法可根据需要来决定是否调用
                 //若焦点释放掉之后，将不会再自动获得
                 BLog.d("   AudioManager.AUDIOFOCUS_LOSS");
-//                audioManager.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
+                audioManager.unregisterMediaButtonEventReceiver(mComponentName);
                 audioManager.abandonAudioFocus(afChangeListener);
-
+                unRegisterMediaButton();
                 // Stop playback
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                 BLog.d("    AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK");

@@ -72,5 +72,16 @@ public class NetUtils
 		intent.setAction("android.intent.action.VIEW");
 		activity.startActivityForResult(intent, 0);
 	}
-
+	/**
+	 * @param context to use to check for network connectivity.
+	 * @return true if connected, false otherwise.
+	 */
+	public static boolean isOnline(Context context) {
+		ConnectivityManager connMgr = (ConnectivityManager)
+				context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//		NetworkInfo activeNetInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//		NetworkInfo mobNetInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		return (networkInfo != null && networkInfo.isConnected());
+	}
 }

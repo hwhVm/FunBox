@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
@@ -36,17 +37,9 @@ import static android.content.Context.BIND_AUTO_CREATE;
  */
 @ContentView(R.layout.fragment_local_music)
 public class LocalMusicFragment extends BaseFragment {
-    @ViewInject(R.id.btn_last)
-    private Button btn_last;
-    @ViewInject(R.id.btn_start)
-    private Button btn_start;
-    @ViewInject(R.id.btn_stop)
-    private Button btn_stop;
-    @ViewInject(R.id.btn_next)
-    private Button btn_next;
-    @ViewInject(R.id.text_title)
-    private TextView text_all;
     @ViewInject(R.id.text_all)
+    private TextView text_all;
+    @ViewInject(R.id.text_title)
     private TextView text_title;
     @ViewInject(R.id.text_surplus)
     private TextView text_surplus;
@@ -65,7 +58,11 @@ public class LocalMusicFragment extends BaseFragment {
     }
 
     private void initRevice() {
-        IntentFilter filter = new IntentFilter(MusicService.MFILTER);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(MusicService.MFILTER);
+        filter.addAction(MusicService.NAME);
+        filter.addAction(MusicService.TOTALTIME);
+        filter.addAction(MusicService.CURTIME);
         baseActivity.registerReceiver(new MusicReceiver(), filter);
     }
 
@@ -89,20 +86,10 @@ public class LocalMusicFragment extends BaseFragment {
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            BLog.d("     "+(!EasyPermissions.somePermissionPermanentlyDenied(this, perms)));
-//
-//            if (!EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-//
-//            } else {
-//
-//                return;
-//            }
-//        }
-
 
     }
-    @Event({R.id.btn_last,R.id.btn_next,R.id.btn_start,R.id.btn_stop})
+
+    @Event({R.id.btn_last, R.id.btn_next, R.id.btn_start, R.id.btn_stop})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_last:
@@ -112,7 +99,6 @@ public class LocalMusicFragment extends BaseFragment {
                 musicService.playNext();
                 break;
             case R.id.btn_start:
-                BLog.d( "isStop==" + isStop);
                 if (isStop) {
                     musicService.restart();
                 } else {

@@ -52,6 +52,8 @@
         </activity>
         <activity android:name=".ui.fragment.zxing.activity.CaptureActivity" />
 
+        <receiver android:name=".broadcast.ControlReceiver"></receiver>
+
         <service android:name="org.fourthline.cling.android.AndroidUpnpServiceImpl" />
         <service
             android:name=".ui.fragment.music.utils.DivoomUpnpService"
@@ -60,6 +62,7 @@
             android:name=".ui.fragment.SystemService"
             android:exported="false" />
         <service android:name=".ui.fragment.broadcast.MyService" />
+        <service android:name=".ui.fragment.localmusic.service.MusicService"/>
     </application>
 
 </manifest>
