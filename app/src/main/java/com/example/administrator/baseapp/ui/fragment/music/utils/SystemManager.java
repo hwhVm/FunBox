@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.ui.fragment.music;
+package com.example.administrator.baseapp.ui.fragment.music.utils;
 
 import com.example.administrator.baseapp.ui.fragment.SystemService;
 

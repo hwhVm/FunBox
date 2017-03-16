@@ -54,7 +54,7 @@
 
         <service android:name="org.fourthline.cling.android.AndroidUpnpServiceImpl" />
         <service
-            android:name=".ui.fragment.music.DivoomUpnpService"
+            android:name=".ui.fragment.music.utils.DivoomUpnpService"
             android:exported="false" />
         <service
             android:name=".ui.fragment.SystemService"

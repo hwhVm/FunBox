@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.ui.fragment.music;
+package com.example.administrator.baseapp.ui.fragment.music.utils;
 
 import android.content.ContentUris;
 import android.database.Cursor;

@@ -1,5 +1,8 @@
-package com.example.administrator.baseapp.ui.fragment.music;
+package com.example.administrator.baseapp.ui.fragment.music.service;
 
+
+import com.example.administrator.baseapp.ui.fragment.music.utils.AudioResourceServlet;
+import com.example.administrator.baseapp.ui.fragment.music.utils.VideoResourceServlet;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;

@@ -1,4 +1,7 @@
-package com.example.administrator.baseapp.ui.fragment.music;
+package com.example.administrator.baseapp.ui.fragment.music.service;
+
+import com.example.administrator.baseapp.ui.fragment.music.utils.MediaResourceDao;
+import com.example.administrator.baseapp.ui.fragment.music.utils.Utils;
 
 import org.fourthline.cling.support.contentdirectory.AbstractContentDirectoryService;
 import org.fourthline.cling.support.contentdirectory.ContentDirectoryErrorCode;

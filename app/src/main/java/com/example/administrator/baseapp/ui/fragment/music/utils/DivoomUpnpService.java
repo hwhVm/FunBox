@@ -1,10 +1,10 @@
-package com.example.administrator.baseapp.ui.fragment.music;
+package com.example.administrator.baseapp.ui.fragment.music.utils;
 
 import android.content.Intent;
 import android.os.IBinder;
 
 import com.example.administrator.baseapp.constants.Constants;
-import com.example.administrator.baseapp.utils.BLog;
+import com.example.administrator.baseapp.ui.fragment.music.service.BeyondContentDirectoryService;
 
 import org.fourthline.cling.UpnpServiceConfiguration;
 import org.fourthline.cling.android.AndroidUpnpServiceConfiguration;

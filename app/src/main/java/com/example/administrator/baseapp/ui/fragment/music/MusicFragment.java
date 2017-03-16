@@ -16,6 +16,10 @@ import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.event.DLNAActionEvent;
 import com.example.administrator.baseapp.ui.fragment.SystemService;
+import com.example.administrator.baseapp.ui.fragment.music.utils.DivoomUpnpService;
+import com.example.administrator.baseapp.ui.fragment.music.utils.MediaPlayerController;
+import com.example.administrator.baseapp.ui.fragment.music.utils.PlaybackCommand;
+import com.example.administrator.baseapp.ui.fragment.music.utils.SystemManager;
 import com.example.administrator.baseapp.utils.BLog;
 import org.fourthline.cling.model.ModelUtil;
 import org.fourthline.cling.support.model.MediaInfo;
@@ -48,7 +52,7 @@ public class MusicFragment extends BaseFragment {
     @ViewInject(R.id.song_singer)
      TextView mSingerTextView;
 
-    private static  MediaPlayerController mMediaPlayerController;
+    private static MediaPlayerController mMediaPlayerController;
     /**
      * Use this factory method to create a new instance.
      *

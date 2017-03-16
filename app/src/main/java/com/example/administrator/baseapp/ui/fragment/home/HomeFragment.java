@@ -13,6 +13,7 @@ import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.ani.AniFragment;
+import com.example.administrator.baseapp.ui.fragment.audio.AudioFragment;
 import com.example.administrator.baseapp.ui.fragment.bluetooth.SppFragment;
 import com.example.administrator.baseapp.ui.fragment.broadcast.BroadcastFragment;
 import com.example.administrator.baseapp.ui.fragment.camera.CameraFragment;
@@ -53,6 +54,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add("notification");
         functionList.add("broadcast");
         functionList.add("ani");
+        functionList.add("AudioFragment");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -101,6 +103,9 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 11:
                     baseActivity.replaceFragment(AniFragment.class);
+                    break;
+                case 12:
+                    baseActivity.replaceFragment(AudioFragment.class);
                     break;
             }
         }

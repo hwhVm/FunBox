@@ -8,11 +8,11 @@ import android.util.Log;
 
 import com.example.administrator.baseapp.constants.Constants;
 import com.example.administrator.baseapp.event.DLNAActionEvent;
-import com.example.administrator.baseapp.ui.fragment.music.Intents;
-import com.example.administrator.baseapp.ui.fragment.music.JettyResourceServer;
-import com.example.administrator.baseapp.ui.fragment.music.PlaybackCommand;
-import com.example.administrator.baseapp.ui.fragment.music.SPUtils;
-import com.example.administrator.baseapp.ui.fragment.music.SystemManager;
+import com.example.administrator.baseapp.ui.fragment.music.utils.Intents;
+import com.example.administrator.baseapp.ui.fragment.music.service.JettyResourceServer;
+import com.example.administrator.baseapp.ui.fragment.music.utils.PlaybackCommand;
+import com.example.administrator.baseapp.ui.fragment.music.utils.SPUtils;
+import com.example.administrator.baseapp.ui.fragment.music.utils.SystemManager;
 
 import org.fourthline.cling.controlpoint.ControlPoint;
 import org.fourthline.cling.controlpoint.SubscriptionCallback;

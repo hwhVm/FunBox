@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.ui.fragment.music;
+package com.example.administrator.baseapp.ui.fragment.music.utils;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
