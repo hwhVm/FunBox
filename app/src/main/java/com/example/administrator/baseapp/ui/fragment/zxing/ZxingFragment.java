@@ -65,9 +65,7 @@ public class ZxingFragment extends BaseFragment implements ActivityResultListene
 
     @Override
     public void resultCallback(int requestCode, int resultCode, Intent data) {
-        BLog.d("  resultCallback");
         if (resultCode == baseActivity.RESULT_OK) {
-            BLog.d(" RESULT_OK resultCallback");
             String result = data.getExtras().getString("result");
             tv_content.setText(result);
         }
