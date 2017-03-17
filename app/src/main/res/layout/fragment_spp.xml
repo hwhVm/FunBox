@@ -1,13 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.baseapp.ui.fragment.bluetooth.SppFragment">
+    tools:context="com.example.administrator.baseapp.ui.fragment.bluetooth.SppFragment"
+    android:orientation="vertical">
 
-
-    <com.example.administrator.baseapp.ui.view.edit.EdWithClear
+    <Button
+        android:id="@+id/btn_sysc"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="sysc" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="light" />
+</LinearLayout>
