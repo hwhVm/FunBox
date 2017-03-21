@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.baseapp.ui.fragment.aidl.AIDLFragment"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_bind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bind  service" />
+    <Button
+        android:id="@+id/btn_aidl_add"
+        android:layout_width="match_parent"
+        android:text=" option  add  method  in  aidl  service"
+        android:layout_height="wrap_content" />
+</LinearLayout>

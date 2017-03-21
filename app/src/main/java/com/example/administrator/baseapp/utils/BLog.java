@@ -14,7 +14,7 @@ public class BLog {
 
     public static void d(String msg) {
         if (Constants.DEBUG) {
-            Log.i(TAG, "-------------------------------------->" + msg);
+            Log.d(TAG, "-------------------------------------->" + msg);
         }
 
     }

@@ -13,6 +13,7 @@ import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.ani.AniFragment;
+import com.example.administrator.baseapp.ui.fragment.aidl.AIDLFragment;
 import com.example.administrator.baseapp.ui.fragment.audio.AudioFragment;
 import com.example.administrator.baseapp.ui.fragment.bluetooth.SppFragment;
 import com.example.administrator.baseapp.ui.fragment.broadcast.BroadcastFragment;
@@ -21,6 +22,7 @@ import com.example.administrator.baseapp.ui.fragment.localmusic.LocalMusicFragme
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
 import com.example.administrator.baseapp.ui.fragment.notification.NotificationFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
+import com.example.administrator.baseapp.ui.fragment.service.ServiceFragment;
 import com.example.administrator.baseapp.ui.fragment.sideslip.SideslipFragment;
 import com.example.administrator.baseapp.ui.fragment.shake.ShakeFragment;
 import com.example.administrator.baseapp.ui.fragment.sms.SmsFragment;
@@ -48,17 +50,19 @@ public class HomeFragment extends BaseFragment {
         functionList.add("Sideslip");
         functionList.add("Local  Music");
         functionList.add("Carmera");
-        functionList.add("spp");
+        functionList.add("spp ble");
         functionList.add("sms");
         functionList.add("QR code");
         functionList.add("notification");
         functionList.add("broadcast");
         functionList.add("ani");
         functionList.add("AudioFragment");
+        functionList.add("AIDL");
+        functionList.add("service  bind unbind  start  stop");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
-        HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean(R.layout.item_home, functionList));
+        HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
 
@@ -106,6 +110,12 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 12:
                     baseActivity.replaceFragment(AudioFragment.class);
+                    break;
+                case 13:
+                    baseActivity.replaceFragment(AIDLFragment.class);
+                    break;
+                case 14:
+                    baseActivity.replaceFragment(ServiceFragment.class);
                     break;
             }
         }

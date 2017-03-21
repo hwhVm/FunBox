@@ -69,6 +69,7 @@
         <service android:name=".ui.fragment.broadcast.MyService" />
         <service android:name=".ui.fragment.localmusic.service.MusicService" />
         <service android:name=".ui.fragment.bluetooth.ble.SmartBLEService" />
+        <service android:name=".service.DemoService"/>
     </application>
 
 </manifest>

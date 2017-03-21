@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.bean.BaseBean;
+import com.example.administrator.baseapp.utils.BLog;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class HomeListAdapter extends BaseAdapter {
     List<String> strings;
 
-    public HomeListAdapter(BaseBean baseBean) {
+    public HomeListAdapter(BaseBean<String> baseBean) {
         super(baseBean);
         this.strings = baseBean.getBaseList();
     }
@@ -23,6 +24,7 @@ public class HomeListAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         holder.itemView.setTag(position);
+        BLog.d("  position="+position);
         getTextView(R.id.text_home_list).setText(strings.get(position));
     }
 }

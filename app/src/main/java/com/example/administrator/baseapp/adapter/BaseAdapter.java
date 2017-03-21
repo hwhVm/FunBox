@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.baseapp.bean.BaseBean;
+import com.example.administrator.baseapp.utils.BLog;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -21,13 +22,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     private List<T> baseLit;
     private int layoutId;
-    private final int i = 0;
 
-    public BaseAdapter(List<T> baseLit) {
-        this.baseLit = baseLit;
-    }
-
-    public BaseAdapter(BaseBean baseBean) {
+    public BaseAdapter(BaseBean<T> baseBean) {
         this.baseLit = baseBean.getBaseList();
         this.layoutId = baseBean.getId();
     }
@@ -56,6 +52,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
         public ViewHolder(View view) {
             super(view);
+            BLog.d(" --------->ViewHolder");
             setView(view);
         }
     }
