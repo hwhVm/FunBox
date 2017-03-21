@@ -21,6 +21,7 @@ import com.example.administrator.baseapp.ui.fragment.camera.CameraFragment;
 import com.example.administrator.baseapp.ui.fragment.localmusic.LocalMusicFragment;
 import com.example.administrator.baseapp.ui.fragment.music.MusicFragment;
 import com.example.administrator.baseapp.ui.fragment.notification.NotificationFragment;
+import com.example.administrator.baseapp.ui.fragment.popupwindow.PopupWindowFragment;
 import com.example.administrator.baseapp.ui.fragment.recording.VoiceFragment;
 import com.example.administrator.baseapp.ui.fragment.service.ServiceFragment;
 import com.example.administrator.baseapp.ui.fragment.sideslip.SideslipFragment;
@@ -59,6 +60,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add("AudioFragment");
         functionList.add("AIDL");
         functionList.add("service  bind unbind  start  stop");
+        functionList.add("PopupWindowFragment");
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -116,6 +118,9 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 14:
                     baseActivity.replaceFragment(ServiceFragment.class);
+                    break;
+                case 15:
+                    baseActivity.replaceFragment(PopupWindowFragment.class);
                     break;
             }
         }

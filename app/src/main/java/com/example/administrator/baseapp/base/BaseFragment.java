@@ -63,6 +63,7 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
     }
 
     public void checkPermissionMethod(String[] perms, String tipStr, int code) {
+        BLog.d("       EasyPermissions.hasPermissions(baseActivity, perms)="+EasyPermissions.hasPermissions(baseActivity, perms));
         if (!EasyPermissions.hasPermissions(baseActivity, perms)) {
             EasyPermissions.requestPermissions(this, tipStr, code, perms);
         }
@@ -71,7 +72,7 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
+        BLog.d("  onRequestPermissionsResult   "+ requestCode );
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
@@ -87,7 +88,7 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             BLog.d("   onPermissionsDenied  " + requestCode + "   " + (EasyPermissions.somePermissionPermanentlyDenied(this, perms)));
             if (!EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-                //            new AppSettingsDialog.Builder(this).build().show();
+//                            new AppSettingsDialog.Builder(this).build().show();
 
             }
         }
