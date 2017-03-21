@@ -15,6 +15,7 @@ import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.Event;
+import com.example.administrator.baseapp.utils.BLog;
 
 /**
  * Create by beini 2017/3/21
@@ -29,7 +30,8 @@ public class PopupWindowFragment extends BaseFragment implements PopupWindow.OnD
     public void initView() {
         int resourceId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
         navigationHeight = getResources().getDimensionPixelSize(resourceId);
-
+        BLog.d("     navigationHeight==="+navigationHeight);
+        navigationHeight=15;
     }
 
     @Event({R.id.btn_open})
