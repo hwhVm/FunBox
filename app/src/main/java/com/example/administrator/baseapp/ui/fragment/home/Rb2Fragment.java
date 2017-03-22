@@ -11,7 +11,7 @@ import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
-import com.example.administrator.baseapp.ui.fragment.camera.VideoFragment;
+import com.example.administrator.baseapp.ui.fragment.video.VideoFragment;
 import com.example.administrator.baseapp.ui.fragment.facerecognition.FacereCongnitioonFragment;
 
 import java.util.ArrayList;

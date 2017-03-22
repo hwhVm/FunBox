@@ -1,4 +1,4 @@
-package com.example.administrator.baseapp.ui.fragment.camera;
+package com.example.administrator.baseapp.ui.fragment.video;
 
 
 import android.media.MediaPlayer;
@@ -13,7 +13,6 @@ import com.example.administrator.baseapp.base.BaseFragment;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
-import com.example.administrator.baseapp.utils.BLog;
 
 import java.io.IOException;
 
@@ -71,7 +70,7 @@ public class VideoFragment extends BaseFragment {
         }
     }
 
-    @Event({R.id.btn_start_video, R.id.btn_stop_video, R.id.btn_play_video})
+    @Event({R.id.btn_start_video, R.id.btn_stop_video, R.id.btn_play_video,R.id.btn_video_view})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_start_video:
@@ -83,12 +82,15 @@ public class VideoFragment extends BaseFragment {
             case R.id.btn_play_video:
                 play();
                 break;
+            case R.id.btn_video_view:
+                baseActivity.replaceFragment(VideoViewFragment.class);
+                break;
+
         }
     }
 
     private void play() {
         try {
-            BLog.e("          filePath="+filePath);
             media.setDataSource(filePath);//这里
             media.prepare();
             media.start();

@@ -2,7 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.baseapp.ui.fragment.camera.VideoFragment">
+    tools:context="com.example.administrator.baseapp.ui.fragment.video.VideoFragment">
+
+    <Button
+        android:id="@+id/btn_video_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <SurfaceView
         android:id="@+id/surface_view_video"
