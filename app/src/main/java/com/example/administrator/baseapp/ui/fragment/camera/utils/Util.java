@@ -77,7 +77,21 @@ public class Util {
 		outputStream.write(data); // 写入sd卡中
 		outputStream.close(); // 关闭输出流
 	}
-
+	/**
+	 * 将拍下来的照片存放在SD卡中
+	 */
+	public static void saveToSDCard(byte[] data,String   filename) throws IOException {
+		BLog.d("   saveToSDCard");
+		File fileFolder = new File(Environment.getExternalStorageDirectory()
+				+ "/APIC/");
+		if (!fileFolder.exists()) { // 如果目录不存在，则创建一个名为"finger"的目录
+			fileFolder.mkdir();
+		}
+		File jpgFile = new File(fileFolder, filename);
+		FileOutputStream outputStream = new FileOutputStream(jpgFile); // 文件输出流
+		outputStream.write(data); // 写入sd卡中
+		outputStream.close(); // 关闭输出流
+	}
 	/**
 	 * 遍历文件夹下拍摄图片的SD卡地址
 	 */

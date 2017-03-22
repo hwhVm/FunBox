@@ -24,7 +24,6 @@ public class HomeListAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         holder.itemView.setTag(position);
-        BLog.d("  position="+position);
         getTextView(R.id.text_home_list).setText(strings.get(position));
     }
 }

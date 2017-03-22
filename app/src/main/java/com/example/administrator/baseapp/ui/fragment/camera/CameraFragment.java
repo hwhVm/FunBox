@@ -45,8 +45,6 @@ public class CameraFragment extends BaseFragment implements OnTouchEventListener
     public void initView() {
         presenter = new MainPresenter();
         baseActivity.setBottom(View.GONE);
-        surfaceView.getHolder()
-                .setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         surfaceView.getHolder().setFixedSize(176, 144); //设置Surface分辨率
         surfaceView.getHolder().setKeepScreenOn(true);// 屏幕常亮
         surfaceView.getHolder().addCallback(new SurfaceCallback());//为SurfaceView的句柄添加一个回调函数
@@ -96,7 +94,7 @@ public class CameraFragment extends BaseFragment implements OnTouchEventListener
             parameters = camera.getParameters(); // 获取各项参数
             parameters.setPictureFormat(PixelFormat.JPEG); // 设置图片格式
             parameters.setPreviewSize(width, height); // 设置预览大小
-            parameters.setPreviewFrameRate(5);  //设置每秒显示4帧
+            parameters.setPreviewFpsRange(0,1000);  //设置每秒显示4帧
             parameters.setPictureSize(width, height); // 设置保存的图片尺寸
             parameters.setJpegQuality(80); // 设置照片质量
         }

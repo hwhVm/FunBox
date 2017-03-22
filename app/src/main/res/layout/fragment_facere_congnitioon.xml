@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.baseapp.ui.fragment.facerecognition.FacereCongnitioonFragment">
+
+    <com.example.administrator.baseapp.ui.fragment.facerecognition.view.MImageView
+        android:id="@+id/image_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom" />
+
+    <com.example.administrator.baseapp.ui.fragment.facerecognition.view.MSurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btn_begin_testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Begin Testing" />
+
+
+</FrameLayout>

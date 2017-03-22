@@ -52,7 +52,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
         public ViewHolder(View view) {
             super(view);
-            BLog.d(" --------->ViewHolder");
             setView(view);
         }
     }
