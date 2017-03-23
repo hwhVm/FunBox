@@ -2,11 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.baseapp.ui.fragment.webview.WebViewkFragment">
+    tools:context="com.example.administrator.baseapp.ui.fragment.webview.WebViewTestFragment">
 
     <WebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/btn_use_js"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="btn_use_js_method" />
+
+    </LinearLayout>
 </FrameLayout>

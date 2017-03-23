@@ -4,6 +4,7 @@ package com.example.administrator.baseapp.ui.fragment.home;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebViewFragment;
 
 import com.example.administrator.baseapp.R;
 import com.example.administrator.baseapp.adapter.HomeListAdapter;
@@ -13,6 +14,7 @@ import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.video.VideoFragment;
 import com.example.administrator.baseapp.ui.fragment.facerecognition.FacereCongnitioonFragment;
+import com.example.administrator.baseapp.ui.fragment.webview.WebViewTestFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class Rb2Fragment extends BaseFragment {
         baseActivity.setTopBar(View.GONE);
         functionList.add(" face recognition");
         functionList.add("video ");
+        functionList.add("WebView");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -47,6 +50,9 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 1:
                     baseActivity.replaceFragment(VideoFragment.class);
+                    break;
+                case 2:
+                    baseActivity.replaceFragment(WebViewTestFragment.class);
                     break;
             }
         }
