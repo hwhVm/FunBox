@@ -32,10 +32,10 @@ public class PicAdapter extends BaseAdapter {
         holder.itemView.setTag(position);
         Bitmap bitmap = cache.get(imageBeens.get(position).getUrl());
         if (bitmap == null) {
-            getSimpleDraweeView(R.id.facebook_image).setImageBitmap(imageBeens.get(position).getBitmaps());
+            getSimpleDraweeView((ViewHolder) holder,R.id.facebook_image).setImageBitmap(imageBeens.get(position).getBitmaps());
             cache.put(imageBeens.get(position).getUrl(), imageBeens.get(position).getBitmaps());
         } else {
-            getSimpleDraweeView(R.id.facebook_image).setImageBitmap(bitmap);
+            getSimpleDraweeView((ViewHolder) holder,R.id.facebook_image).setImageBitmap(bitmap);
         }
 //		getSimpleDraweeView(R.id.facebook_image).setImageURI("file://" + imageBeens.get(position).getUrl());
     }

@@ -1,5 +1,8 @@
 package com.example.administrator.baseapp.bean;
 
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 /**
@@ -10,7 +13,7 @@ public class BaseBean<T> {
     private int id;
     private List<T> baseList;
 
-    public BaseBean(int id, List<T> baseList) {
+    public BaseBean(@LayoutRes int id, @NonNull List<T> baseList) {
         this.id = id;
         this.baseList = baseList;
     }
@@ -19,7 +22,7 @@ public class BaseBean<T> {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(@LayoutRes int id) {
         this.id = id;
     }
 
@@ -27,7 +30,7 @@ public class BaseBean<T> {
         return baseList;
     }
 
-    public void setBaseList(List<T> baseList) {
+    public void setBaseList(@NonNull List<T> baseList) {
         this.baseList = baseList;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.administrator.baseapp.adapter;
 
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +25,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
     private List<T> baseLit;
     private int layoutId;
 
-    public BaseAdapter(BaseBean<T> baseBean) {
+    public BaseAdapter(@NonNull BaseBean<T> baseBean) {
         this.baseLit = baseBean.getBaseList();
         this.layoutId = baseBean.getId();
     }
@@ -46,38 +48,31 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         return baseLit.size();
     }
 
-    private View view;
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+         View view;
 
         public ViewHolder(View view) {
             super(view);
-            setView(view);
+           this.view=view;
         }
     }
 
-    private void setView(View view) {
-        this.view = view;
+    public TextView getTextView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
+        return (TextView)   viewHolder.view.findViewById(viewId);
     }
 
-    private View getView() {
-        return this.view;
+    public ImageView getImageView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
+        return (ImageView) viewHolder.view.findViewById(viewId);
     }
 
-    public TextView getTextView(int viewId) {
-        return (TextView) getView().findViewById(viewId);
-    }
-
-    public ImageView getImageView(int viewId) {
-        return (ImageView) getView().findViewById(viewId);
-    }
-
-    public SimpleDraweeView getSimpleDraweeView(int viewId) {
-        return (SimpleDraweeView) getView().findViewById(viewId);
+    public SimpleDraweeView getSimpleDraweeView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
+        return (SimpleDraweeView) viewHolder.view.findViewById(viewId);
     }
 
     //item  click 事件
-    OnItemClickListener itemClickListener = null;
+   private OnItemClickListener itemClickListener = null;
 
     public void setItemClick(OnItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
@@ -94,7 +89,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
     }
 
     // item onlongClick 事件
-    onItemLongClickListener itemLongClickListener = null;
+    private  onItemLongClickListener itemLongClickListener = null;
 
     public void setOnItemLongClickListener(onItemLongClickListener onItemLongClickListener) {
         this.itemLongClickListener = onItemLongClickListener;
@@ -107,7 +102,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         return true;
     }
 
-    public interface onItemLongClickListener {
+    private interface onItemLongClickListener {
         void onItemLongClick(View view, int position);
     }
 }
