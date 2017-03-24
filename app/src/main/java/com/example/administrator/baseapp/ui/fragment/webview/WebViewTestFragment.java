@@ -9,6 +9,7 @@ import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -20,6 +21,9 @@ import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.Event;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.utils.BLog;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Create by beini 2017/3/22
@@ -48,7 +52,7 @@ public class WebViewTestFragment extends BaseFragment {
      * map.put("User-Agent","Android");
      * webView.loadUrl("www.xxx.com/index.html",map);
      * <p>
-     *  WebView本身也是会记录html缓存的，webview本身就提供了清理缓存的方法，其中参数true是指是否包括磁盘文件也一并清除：
+     * WebView本身也是会记录html缓存的，webview本身就提供了清理缓存的方法，其中参数true是指是否包括磁盘文件也一并清除：
      * webview.clearCache(true);
      * webview.clearHistory();
      */
@@ -132,13 +136,33 @@ public class WebViewTestFragment extends BaseFragment {
             return true;
         }
 
+        /**
+         * shouldInterceptRequest这个回调可以通知主程序WebView处理的资源（css,js,image等）请求，并允许主程序进行处理后返回数据。如果主程序返回的数据为null，WebView会自行请求网络加载资源，否则使用主程序提供的数据。注意这个回调发生在非UI线程中,所以进行UI系统相关的操作是不可以的。
+         *
+         * @param view
+         * @param request
+         * @return
+         */
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+            WebResourceResponse response = null;
+            if (url.contains("logo")) {
+                try {
+                    InputStream localCopy = baseActivity.getAssets().open("droidyue.png");
+                    response = new WebResourceResponse("image/png", "UTF-8", localCopy);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return response;
+        }
     }
 
     class MWebChromCLient extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
-            BLog.d("                onProgressChanged  newProgress="+newProgress);
+            BLog.d("                onProgressChanged  newProgress=" + newProgress);
         }
 
         @Override

@@ -19,6 +19,7 @@ import org.greenrobot.eventbus.ThreadMode;
 /**
  * Create by beini  2017/3/24.
  * http://mobile.51cto.com/android-527752.htm
+ * http://droidyue.com/blog/2016/08/14/android-annnotation/
  */
 @ContentView(R.layout.fragment_annotations)
 public class AnnotationsFragment extends BaseFragment {
