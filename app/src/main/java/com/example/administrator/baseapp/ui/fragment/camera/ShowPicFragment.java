@@ -52,7 +52,7 @@ public class ShowPicFragment extends BaseFragment {
                         recycle_show_pic.addItemDecoration(new SpacesItemDecoration(8));
 //                        recycle_show_pic.setLayoutManager(new GridLayoutManager(baseActivity, 2));
                         recycle_show_pic.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-                        PicAdapter picAdapter = new PicAdapter(new BaseBean(R.layout.pic_item, imageBeens));
+                        PicAdapter picAdapter = new PicAdapter(new BaseBean<>(R.layout.pic_item, imageBeens));
                         recycle_show_pic.setAdapter(picAdapter);
                         picAdapter.setItemClick(itemClickListener);
                     }

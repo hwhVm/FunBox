@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,6 +66,9 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     public ImageView getImageView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
         return (ImageView) viewHolder.view.findViewById(viewId);
+    }
+    public Button getButton(@NonNull ViewHolder viewHolder, @IdRes int viewId) {
+        return (Button) viewHolder.view.findViewById(viewId);
     }
 
     public SimpleDraweeView getSimpleDraweeView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
