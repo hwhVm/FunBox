@@ -85,4 +85,10 @@
             android:text="下一曲" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_play_net_music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="播放网络音乐" />
 </LinearLayout>

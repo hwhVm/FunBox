@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.baseapp.ui.fragment.net.NetFileFragment">
+
+
+    <Button
+        android:id="@+id/btn_download_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件下载" />
+
+    <Button
+        android:id="@+id/btn_download_file_break"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="断点文件下载" />
+
+    <Button
+        android:id="@+id/btn_download_file_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="断点文件暂停" />
+
+    <Button
+        android:id="@+id/btn_download_file_contiunte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="断点文件继续" />
+
+    <Button
+        android:id="@+id/btn_get_file_size"
+        android:layout_width="match_parent"
+        android:text="获取文件大小"
+        android:layout_height="wrap_content" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="0"
+        android:layout_height="55dp" />
+
+
+</LinearLayout>

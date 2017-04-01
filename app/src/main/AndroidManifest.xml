@@ -40,6 +40,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!-- 录像的权限-->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
     <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="face"/>
     <application
         android:name=".base.BaseApplication"
@@ -59,7 +60,7 @@
         </activity>
         <activity android:name=".ui.fragment.zxing.activity.CaptureActivity" />
 
-        <receiver android:name=".broadcast.ControlReceiver"></receiver>
+        <receiver android:name=".broadcast.ControlReceiver"/>
 
         <service android:name="org.fourthline.cling.android.AndroidUpnpServiceImpl" />
         <service
@@ -73,6 +74,9 @@
         <service android:name=".ui.fragment.bluetooth.ble.SmartBLEService" />
         <service android:name=".service.DemoService"/>
         <service android:name=".ui.fragment.screenrecord.RecordService"/>
+        <service android:name=".service.MJobService" />
+        <service android:name=".service.MJobService"
+            />
     </application>
 
 </manifest>

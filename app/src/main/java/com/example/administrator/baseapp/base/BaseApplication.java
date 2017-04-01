@@ -3,6 +3,7 @@ package com.example.administrator.baseapp.base;
 import android.app.Application;
 import android.content.Context;
 import android.media.AudioManager;
+import android.support.multidex.MultiDexApplication;
 
 import com.example.administrator.baseapp.ndk.NDKMain;
 import com.example.administrator.baseapp.utils.CrashHandler;
@@ -16,7 +17,7 @@ import java.util.concurrent.Executors;
  * Created by beini on 2017/2/8.
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     private static BaseApplication application;
     private ExecutorService executorService;

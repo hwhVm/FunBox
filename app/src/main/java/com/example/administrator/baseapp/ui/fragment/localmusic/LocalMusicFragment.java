@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.text.TextUtils;
@@ -45,6 +47,9 @@ public class LocalMusicFragment extends BaseFragment {
     private TextView text_surplus;
     @ViewInject(R.id.seekbar_music)
     SeekBar seekBar;
+    @ViewInject(R.id.btn_play_net_music)
+    Button btn_play_net_music;
+
     private MusicService musicService;
     private MusicConnect musicConnet;
 
@@ -89,7 +94,7 @@ public class LocalMusicFragment extends BaseFragment {
 
     }
 
-    @Event({R.id.btn_last, R.id.btn_next, R.id.btn_start, R.id.btn_stop})
+    @Event({R.id.btn_last, R.id.btn_next, R.id.btn_start, R.id.btn_stop,R.id.btn_play_net_music})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_last:
@@ -110,6 +115,20 @@ public class LocalMusicFragment extends BaseFragment {
                 Intent intent = new Intent("com.intent.musicplayer.MusicService");
                 baseActivity.unbindService(musicConnet);
                 baseActivity.stopService(intent);
+                break;
+            case R.id.btn_play_net_music:
+                String path="http://120.76.41.61/source/sound/sleep/Sleep_Bird_Chirping.mp3";     //这里给一个歌曲的网络地址就行了
+                Uri uri  =  Uri.parse(path);
+                MediaPlayer player  =   new MediaPlayer();
+                player.create(getActivity(),uri);
+                player.start();
+//                player.setDataSource();
+                player.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
+                    @Override
+                    public void onBufferingUpdate(MediaPlayer mp, int percent) {
+
+                    }
+                });
                 break;
         }
     }

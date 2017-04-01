@@ -13,26 +13,39 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Scheduler;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.subscribers.ResourceSubscriber;
 
 /**
- * Created by Administrator on 2017/3/9.
+ * Created by beini on 2017/3/9.
  */
 
 public class RxTest {
     public static void main(String[] args) {
         //
-//        Flowable.just("hellow").subscribe(new Consumer<String>() {
-//            @Override
-//            public void accept(String s) throws Exception {
-//                System.out.println("  s==" + s);
-//                List<String> list = new ArrayList<String>();
-//                list.get(33);
-//            }
-//        });
+        Flowable.just("hellow").subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println("  s==" + s);
+                List<String> list = new ArrayList<String>();
+                list.get(33);
+            }
+        });
+        Observable.create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(ObservableEmitter<Object> e) throws Exception {
+
+            }
+        }).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                
+            }
+        });
 //        //
 //        Flowable flowable = Flowable.create(new FlowableOnSubscribe<Object>() {
 //            @Override

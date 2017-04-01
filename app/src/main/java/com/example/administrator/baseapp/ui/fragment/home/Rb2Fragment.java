@@ -13,6 +13,7 @@ import com.example.administrator.baseapp.bean.BaseBean;
 import com.example.administrator.baseapp.bind.ContentView;
 import com.example.administrator.baseapp.bind.ViewInject;
 import com.example.administrator.baseapp.ui.fragment.annotations.AnnotationsFragment;
+import com.example.administrator.baseapp.ui.fragment.net.NetFileFragment;
 import com.example.administrator.baseapp.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.example.administrator.baseapp.ui.fragment.video.VideoFragment;
 import com.example.administrator.baseapp.ui.fragment.facerecognition.FacereCongnitioonFragment;
@@ -39,6 +40,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("WebView");
         functionList.add("annotations");
         functionList.add("screen record");
+        functionList.add("retrofit 2.0 ");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -63,6 +65,9 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 4:
                     baseActivity.replaceFragment(ScreenRecordFragment.class);
+                    break;
+                case 5:
+                    baseActivity.replaceFragment(NetFileFragment.class);
                     break;
             }
         }
