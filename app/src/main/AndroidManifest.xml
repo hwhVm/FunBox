@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.baseapp">
+    package="com.beini">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Wifi连接需要的权限 -->
