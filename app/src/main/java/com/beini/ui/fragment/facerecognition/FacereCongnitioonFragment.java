@@ -6,7 +6,6 @@ import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.View;
-
 import com.beini.R;
 import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;

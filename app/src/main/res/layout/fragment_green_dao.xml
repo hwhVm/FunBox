@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_green_insert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="insert" />
+
+    <Button
+        android:id="@+id/btn_green_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete" />
+
+    <Button
+        android:id="@+id/btn_green_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="edit" />
+
+    <Button
+        android:id="@+id/btn_green_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="query" />
+
+    <Button
+        android:id="@+id/btn_green_delete_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除表中数据" />
+
+    <Button
+        android:id="@+id/btn_green_query_by_condition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="根据条件更新" />
+
+    <Button
+        android:id="@+id/btn_green_query_condition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="根据条件更新" />
+
+</LinearLayout>

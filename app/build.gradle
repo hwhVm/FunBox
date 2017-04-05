@@ -56,8 +56,10 @@ android {
 
 
     greendao{
-        schemaVersion 1
+        schemaVersion 1//数据库更新版本号
         targetGenDir 'src/main/java'
+        //设置DaoMaster 、DaoSession、Dao包名
+        daoPackage 'com.beini.db.greendao'
     }
 }
 repositories {

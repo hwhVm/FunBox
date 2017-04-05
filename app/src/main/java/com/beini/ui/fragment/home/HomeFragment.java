@@ -11,7 +11,7 @@ import com.beini.base.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.ani.AniFragment;
+import com.beini.ui.fragment.ani.AniFragment;
 import com.beini.ui.fragment.aidl.AIDLFragment;
 import com.beini.ui.fragment.audio.AudioFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;

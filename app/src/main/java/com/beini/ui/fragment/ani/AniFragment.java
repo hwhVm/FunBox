@@ -1,4 +1,4 @@
-package com.beini.ui.ani;
+package com.beini.ui.fragment.ani;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

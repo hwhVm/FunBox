@@ -12,6 +12,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.annotations.AnnotationsFragment;
 import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
+import com.beini.ui.fragment.green.GreenDaoFragment;
 import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.beini.ui.fragment.video.VideoFragment;
@@ -39,6 +40,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("annotations");
         functionList.add("screen record");
         functionList.add("retrofit 2.0 ");
+        functionList.add("GreenDaoFragment");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -66,6 +68,9 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 5:
                     baseActivity.replaceFragment(NetFileFragment.class);
+                    break;
+                case 6:
+                    baseActivity.replaceFragment(GreenDaoFragment.class);
                     break;
             }
         }
