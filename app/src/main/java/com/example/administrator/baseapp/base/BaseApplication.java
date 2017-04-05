@@ -9,6 +9,7 @@ import com.example.administrator.baseapp.ndk.NDKMain;
 import com.example.administrator.baseapp.utils.CrashHandler;
 import com.example.administrator.baseapp.utils.SystemUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.stetho.Stetho;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -40,6 +41,7 @@ public class BaseApplication extends MultiDexApplication {
             ndk = new NDKMain();
             Fresco.initialize(getInstance());
             CrashHandler.getInstance().init(getApplicationContext());
+            Stetho.initializeWithDefaults(this);
         }
     }
 

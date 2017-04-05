@@ -9,6 +9,7 @@ import com.example.administrator.baseapp.net.request.BaseRequestJson;
 import com.example.administrator.baseapp.net.request.LoginRequest;
 import com.example.administrator.baseapp.net.response.BaseResponseJson;
 import com.example.administrator.baseapp.utils.BLog;
+import com.facebook.stetho.okhttp.StethoInterceptor;
 
 import java.io.File;
 import java.io.IOException;

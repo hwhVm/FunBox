@@ -69,10 +69,7 @@ public class MusicWaveView extends View {
                 }
             }, 500);
         }
-        super.onDraw(canvas);
-
         //画柱状 动态图，就要改变柱状的top值  rect_w:每根柱形宽度，  rect_t1-rect_t4:控件高度
-
         RectF r1 = new RectF(rect_w, rect_t1 * 4, rect_w * 2, height);
 
         RectF r2 = new RectF(rect_w * 3, rect_t2 * 4, rect_w * 4, height);
