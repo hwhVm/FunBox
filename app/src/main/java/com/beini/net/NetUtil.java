@@ -80,7 +80,7 @@ public class NetUtil<T> {
     }
 
     /**
-     * 单张
+     * 上传 单张
      *
      * @param file
      * @return
@@ -105,7 +105,7 @@ public class NetUtil<T> {
     }
 
     /**
-     * 多张不确定数量    List<MultipartBody.Part>
+     * 上传 多张不确定数量    List<MultipartBody.Part>
      *
      * @param fileList
      * @return
@@ -132,7 +132,7 @@ public class NetUtil<T> {
     }
 
     /**
-     * 多张不确定数量    List<MultipartBody.Part>
+     *  上传 多张不确定数量    List<MultipartBody.Part>
      *
      * @param fileList
      * @return

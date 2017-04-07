@@ -10,10 +10,13 @@ import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
+import com.beini.db.cache.FileUtil;
+import com.beini.net.NetUtil;
 import com.beini.net.help.ProgressDownloader;
 import com.beini.net.response.ProgressResponseBody;
 import com.beini.ui.fragment.net.model.NetModel;
 import com.beini.utils.BLog;
+import com.beini.utils.NetUtils;
 
 import java.io.File;
 
@@ -75,28 +78,18 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "aa.mp3");
                 BLog.d("        file.exists()="+file.exists());
                 if (file.exists()) {
-                    Toast.makeText(getActivity(), getSize(file)+"   --", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), FileUtil.getSize(file)+"   --", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case R.id.btn_upload_single:
+                File file1 = new File("");
+                NetUtil.getSingleton().uploadFileSingle(file1);
                 break;
         }
 
     }
 
-    /**
-     * 计算文件或者文件夹的大小 ，单位 MB
-     */
-    public double getSize(File file) {
-        if (!file.isFile()) {
-            File[] files = file.listFiles();
-            double size = 0;
-            for (File f : files)
-                size += getSize(f);
-            return size;
-        } else {
-            double size = (double) file.length() / 1024;
-            return size;
-        }
-    }
+
 
     @Override
     public void onPreExecute(long contentLength) {

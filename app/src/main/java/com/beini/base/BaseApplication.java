@@ -7,6 +7,7 @@ import com.beini.utils.CrashHandler;
 import com.beini.utils.SystemUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
+import com.idescout.sql.SqlScoutServer;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

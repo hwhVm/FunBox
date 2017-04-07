@@ -16,6 +16,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url 'http://www.idescout.com/maven/repo/'
+        }
     }
 }
 
