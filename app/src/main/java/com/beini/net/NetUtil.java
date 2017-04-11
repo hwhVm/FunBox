@@ -4,12 +4,10 @@ import com.beini.constants.NetConstants;
 import com.beini.net.request.BaseRequestJson;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.utils.BLog;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -61,7 +59,8 @@ public class NetUtil<T> {
     /**
      * 参数
      */
-    public void getMethod() {
+    public Call getMethod(String url) {
+        return apiServer.sendRequestGet(url);
     }
 
     /**
@@ -92,7 +91,7 @@ public class NetUtil<T> {
 
         // MultipartBody.Part is used to send also the actual file name
         MultipartBody.Part body =
-                MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
+                MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
         // add another part within the multipart request
 //        String descriptionString = "hello, this is description speaking";
@@ -101,7 +100,27 @@ public class NetUtil<T> {
 //                        MediaType.parse("multipart/form-data"), descriptionString);
 
         // finally, execute the request
+
         return apiServer.uploadFile("upload", body);
+    }
+
+    /**
+     * 上传 多张不确定数量   MultipartBody
+     *
+     * @param fileList
+     * @return
+     */
+    public Call<ResponseBody> uploadFileMultiPart(List<File> fileList) {//多张不确定数量
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+
+        for (File file : fileList) {
+            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            builder.addFormDataPart("file", file.getName(), requestBody);
+        }
+        builder.setType(MultipartBody.FORM);
+        MultipartBody multipartBody = builder.build();
+
+        return apiServer.uploadFileMultipartBody("multipart_upload", multipartBody);
     }
 
     /**
@@ -110,44 +129,15 @@ public class NetUtil<T> {
      * @param fileList
      * @return
      */
-    public Call<ResponseBody> uploadFileMultiPart(List<File> fileList) {//多张不确定数量
+    public Call<ResponseBody> uploadFilePart(List<File> fileList) {
+
         List<MultipartBody.Part> parts = new ArrayList<>(fileList.size());
         for (File file : fileList) {
             RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-            MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
             parts.add(part);
         }
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-        return apiServer.uploadFile("upload", parts);
-    }
-
-    /**
-     *  上传 多张不确定数量    List<MultipartBody.Part>
-     *
-     * @param fileList
-     * @return
-     */
-    public Call<ResponseBody> uploadFileMultiBody(List<File> fileList) {
-        MultipartBody.Builder builder = new MultipartBody.Builder();
-
-        for (File file : fileList) {
-            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-            builder.addFormDataPart("picture", file.getName(), requestBody);
-        }
-        builder.setType(MultipartBody.FORM);
-        MultipartBody multipartBody = builder.build();
-
-        return apiServer.uploadFile("upload", multipartBody);
+        return apiServer.uploadFilePart("multipart_upload", parts);
     }
     /**
      * 断点续传
@@ -170,7 +160,7 @@ public class NetUtil<T> {
      */
     public Call<ResponseBody> downLoadFile(String rang, String fileUrl) {
         String rangStr = "bytes=" + rang + "-";
-        BLog.d("        rangStr= "+rangStr);
+        BLog.d("        rangStr= " + rangStr);
         return apiServer.downloadBreakpoint(rangStr, fileUrl);
     }
 

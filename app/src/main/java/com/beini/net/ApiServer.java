@@ -6,13 +6,10 @@ import com.beini.net.response.BaseResponseJson;
 
 import java.util.List;
 import java.util.Map;
-
-import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -60,8 +57,13 @@ public interface ApiServer<T> {
 
     @POST("{url}")
     Call<BaseResponseJson> sendRequestPost1(@Path("url") String url, @Body T baseRequestJson);
+    /**
+     * 下载
+     */
 
     /**
+     * http://blog.csdn.net/sk719887916/article/details/51755427
+     *
      * @param file
      * @return
      * @Part(“description”) 就是RequestBody实例中包裹的字符串值
@@ -77,20 +79,14 @@ public interface ApiServer<T> {
     //单张
     Call<ResponseBody> uploadFile(@Path("url") String url,
                                   @Part MultipartBody.Part file);
-
-    /**
-     * http://blog.csdn.net/sk719887916/article/details/51755427
-     *
-     * @param url
-     * @return
-     */
-    @Multipart
     @POST("{url}")
-//多张
-    Call<ResponseBody> uploadFile(@Path("url") String url, @PartMap() List<MultipartBody.Part> parts);
+    //多张
+    Call<ResponseBody> uploadFileMultipartBody(@Path("url") String url, @Body MultipartBody multipartBody);
 
     //多张
-    Call<ResponseBody> uploadFile(@Path("url") String url, @Body MultipartBody multipartBody);
+    @Multipart
+    @POST("{url}")
+    Call<ResponseBody> uploadFilePart(@Path("url") String url, @Part() List<MultipartBody.Part> parts);
     /**
      * 断点续传
      * 可以做取消、继续下载的功能，或者从异常情况下恢复的再下载功能。

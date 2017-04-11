@@ -49,4 +49,21 @@
         android:text="上传单个文件"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btn_upload_mutile"
+        android:layout_width="match_parent"
+        android:text="上传多个文件 MultipartBody"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_upload_part"
+        android:layout_width="match_parent"
+        android:text="上传多个文件 , @Part()"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_text_connect"
+        android:text="测试服务器是否连接"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
