@@ -2,6 +2,8 @@ package com.beini.net;
 
 import com.beini.constants.NetConstants;
 import com.beini.net.request.BaseRequestJson;
+import com.beini.net.request.PageRequest;
+import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.utils.BLog;
 import java.io.File;
@@ -77,7 +79,13 @@ public class NetUtil<T> {
     public Call<BaseResponseJson> sendRequestPost1(String url, T baseRequest) {
         return apiServer.sendRequestPost1(url, baseRequest);
     }
+    public Call<BaseResponseJson> insertUserRequest(String url, UserRequest baseRequest) {
+        return apiServer.insertUserRequest(url, baseRequest);
+    }
 
+    public Call<BaseResponseJson> queryByPage(String url, PageRequest baseRequest) {
+        return apiServer.queryByPage(url, baseRequest);
+    }
     /**
      * 上传 单张
      *

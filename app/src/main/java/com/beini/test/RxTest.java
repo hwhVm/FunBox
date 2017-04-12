@@ -1,5 +1,7 @@
 package com.beini.test;
 
+import com.beini.utils.BLog;
+
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
@@ -16,6 +18,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -26,26 +29,80 @@ import io.reactivex.subscribers.ResourceSubscriber;
 
 public class RxTest {
     public static void main(String[] args) {
-        //
-        Flowable.just("hellow").subscribe(new Consumer<String>() {
+        Subscriber<String> mSubscriber = new Subscriber<String>() {
             @Override
-            public void accept(String s) throws Exception {
-                System.out.println("  s==" + s);
-                List<String> list = new ArrayList<String>();
-                list.get(33);
+            public void onSubscribe(Subscription s) {
+                System.out.println(" onSubscribe");
+                s.request(1);
             }
-        });
-        Observable.create(new ObservableOnSubscribe<Object>() {
+
             @Override
-            public void subscribe(ObservableEmitter<Object> e) throws Exception {
+            public void onNext(String string) {
+                System.out.println(" onNext");
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                System.out.println(" onError");
+            }
+
+            @Override
+            public void onComplete() {
+                System.out.println(" onComplete");
+            }
+        };
+
+        ResourceSubscriber<String> mResourceSubscriber = new ResourceSubscriber<String>() {
+
+            @Override
+            public void onNext(String string) {
+                System.out.println("           onNext   string=" + string);
 
             }
-        }).subscribe(new Consumer<Object>() {
+
             @Override
-            public void accept(Object o) throws Exception {
-                
+            public void onError(Throwable t) {
+                System.out.println("           onError   ");
             }
-        });
+
+            @Override
+            public void onComplete() {
+                System.out.println("           onComplete   ");
+            }
+        };
+
+        Flowable.create(new FlowableOnSubscribe<String>() {
+            @Override
+            public void subscribe(FlowableEmitter<String> e) throws Exception {
+                e.onNext("ddddddd");
+                e.onComplete();
+            }
+        }, BackpressureStrategy.BUFFER).subscribe(mResourceSubscriber);
+
+    }
+
+
+    private static void test1() {
+        //
+//        Flowable.just("hellow").subscribe(new Consumer<String>() {
+//            @Override
+//            public void accept(String s) throws Exception {
+//                System.out.println("  s==" + s);
+//                List<String> list = new ArrayList<String>();
+//                list.get(33);
+//            }
+//        });
+//        Observable.create(new ObservableOnSubscribe<Object>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Object> e) throws Exception {
+//
+//            }
+//        }).subscribe(new Consumer<Object>() {
+//            @Override
+//            public void accept(Object o) throws Exception {
+//
+//            }
+//        });
 //        //
 //        Flowable flowable = Flowable.create(new FlowableOnSubscribe<Object>() {
 //            @Override
@@ -67,30 +124,28 @@ public class RxTest {
 //                        System.out.println("  s"+s);
 //                    }
 //                });
-
-    System.out.println("  "+(1%2));
     }
 
-    static ResourceSubscriber<Integer> subscriber = new ResourceSubscriber<Integer>() {
-        @Override
-        public void onStart() {
-            request(Long.MAX_VALUE);
-        }
-
-        @Override
-        public void onNext(Integer t) {
-            System.out.println(t);
-        }
-
-        @Override
-        public void onError(Throwable t) {
-            t.printStackTrace();
-        }
-
-        @Override
-        public void onComplete() {
-            System.out.println("Done");
-        }
-    };
+//    static ResourceSubscriber<Integer> subscriber = new ResourceSubscriber<Integer>() {
+//        @Override
+//        public void onStart() {
+//            request(Long.MAX_VALUE);
+//        }
+//
+//        @Override
+//        public void onNext(Integer t) {
+//            System.out.println(t);
+//        }
+//
+//        @Override
+//        public void onError(Throwable t) {
+//            t.printStackTrace();
+//        }
+//
+//        @Override
+//        public void onComplete() {
+//            System.out.println("Done");
+//        }
+//    };
 
 }

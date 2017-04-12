@@ -13,6 +13,8 @@ import com.beini.bind.ViewInject;
 import com.beini.db.cache.FileUtil;
 import com.beini.net.NetUtil;
 import com.beini.net.help.ProgressDownloader;
+import com.beini.net.request.PageRequest;
+import com.beini.net.request.UserRequest;
 import com.beini.net.response.ProgressResponseBody;
 import com.beini.ui.fragment.net.model.NetModel;
 import com.beini.utils.BLog;
@@ -53,7 +55,7 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
         netModel = new NetModel(this);
     }
 
-    @Event({R.id.btn_upload_part, R.id.btn_upload_mutile, R.id.btn_download_file, R.id.btn_download_file_break, R.id.btn_download_file_stop, R.id.btn_download_file_contiunte, R.id.btn_get_file_size, R.id.btn_upload_single, R.id.btn_text_connect})
+    @Event({R.id.btn_request_body,R.id.btn_query_by_page,R.id.btn_insert_web_user,R.id.btn_upload_part, R.id.btn_upload_mutile, R.id.btn_download_file, R.id.btn_download_file_break, R.id.btn_download_file_stop, R.id.btn_download_file_contiunte, R.id.btn_get_file_size, R.id.btn_upload_single, R.id.btn_text_connect})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_download_file:
@@ -144,6 +146,58 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                     @Override
                     public void onFailure(Call call, Throwable t) {
                         BLog.d("  onFailure  " + t.getLocalizedMessage());
+                    }
+                });
+                break;
+            case R.id.btn_insert_web_user:
+                UserRequest userRequest = new UserRequest();
+                userRequest.setAge(22);
+                userRequest.setName("beini");
+                NetUtil.getSingleton().insertUserRequest("insertUserM", userRequest).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                     BLog.d("     response.isSuccessful()="+response.isSuccessful());
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        BLog.d(" "+t.getLocalizedMessage());
+                    }
+                });
+                break;
+            case R.id.btn_query_by_page:
+                PageRequest pageRequest=new PageRequest();
+                pageRequest.setStart(1);
+                pageRequest.setNum(2);
+                NetUtil.getSingleton().queryByPage("getUserByPage",pageRequest).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+
+                    }
+                });
+                break;
+            case R.id.btn_request_body:
+                NetUtil.getSingleton().getMethod("test_request_body").enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        BLog.d("    test_request_body    " + response.isSuccessful());
+                        if (response.isSuccessful()) {
+                            BLog.d("     response.body().toString()= " + response.body().toString());
+                            BLog.d("     response.body()= " + response.body());
+                            BLog.d("     response.message()= " + response.message());
+                            BLog.d("      response.code()= " + response.code());
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        BLog.d("test_request_body   onFailure     " + t.getMessage());
                     }
                 });
                 break;

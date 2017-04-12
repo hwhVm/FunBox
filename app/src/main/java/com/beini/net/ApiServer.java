@@ -2,10 +2,13 @@ package com.beini.net;
 
 
 import com.beini.net.request.BaseRequestJson;
+import com.beini.net.request.PageRequest;
+import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 
 import java.util.List;
 import java.util.Map;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -57,6 +60,12 @@ public interface ApiServer<T> {
 
     @POST("{url}")
     Call<BaseResponseJson> sendRequestPost1(@Path("url") String url, @Body T baseRequestJson);
+
+    @POST("{url}")
+    Call<BaseResponseJson> insertUserRequest(@Path("url") String url, @Body UserRequest baseRequestJson);
+
+    @POST("{url}")
+    Call<BaseResponseJson> queryByPage(@Path("url") String url, @Body PageRequest baseRequestJson);
     /**
      * 下载
      */
@@ -79,8 +88,9 @@ public interface ApiServer<T> {
     //单张
     Call<ResponseBody> uploadFile(@Path("url") String url,
                                   @Part MultipartBody.Part file);
+
     @POST("{url}")
-    //多张
+        //多张
     Call<ResponseBody> uploadFileMultipartBody(@Path("url") String url, @Body MultipartBody multipartBody);
 
     //多张
