@@ -17,6 +17,7 @@ import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.beini.ui.fragment.video.VideoFragment;
 import com.beini.ui.fragment.webview.WebViewTestFragment;
+import com.beini.ui.fragment.wifi.WfiListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("screen record");
         functionList.add("retrofit 2.0 ");
         functionList.add("GreenDaoFragment");
+        functionList.add("WfiListFragment");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -71,6 +73,9 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 6:
                     baseActivity.replaceFragment(GreenDaoFragment.class);
+                    break;
+                case 7:
+                    baseActivity.replaceFragment(WfiListFragment.class);
                     break;
             }
         }

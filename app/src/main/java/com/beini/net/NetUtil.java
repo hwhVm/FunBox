@@ -79,6 +79,8 @@ public class NetUtil<T> {
     public Call<BaseResponseJson> sendRequestPost1(String url, T baseRequest) {
         return apiServer.sendRequestPost1(url, baseRequest);
     }
+
+
     public Call<BaseResponseJson> insertUserRequest(String url, UserRequest baseRequest) {
         return apiServer.insertUserRequest(url, baseRequest);
     }

@@ -213,7 +213,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     }
 
     /**
-     * /**
+     *
      * 释放activity的资源，例如释放网络连接，注销监听广播接收者
      */
     @Override
