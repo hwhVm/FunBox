@@ -12,15 +12,20 @@ import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.db.cache.FileUtil;
 import com.beini.net.NetUtil;
+import com.beini.net.RxNetUtil;
 import com.beini.net.help.ProgressDownloader;
 import com.beini.net.request.PageRequest;
 import com.beini.net.request.UserRequest;
+import com.beini.net.response.BaseResponseJson;
 import com.beini.net.response.ProgressResponseBody;
 import com.beini.ui.fragment.net.model.NetModel;
 import com.beini.utils.BLog;
 import com.beini.utils.NetUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.greendao.annotation.NotNull;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,6 +34,8 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.ResourceSubscriber;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,7 +62,7 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
         netModel = new NetModel(this);
     }
 
-    @Event({R.id.btn_request_body,R.id.btn_query_by_page,R.id.btn_insert_web_user,R.id.btn_upload_part, R.id.btn_upload_mutile, R.id.btn_download_file, R.id.btn_download_file_break, R.id.btn_download_file_stop, R.id.btn_download_file_contiunte, R.id.btn_get_file_size, R.id.btn_upload_single, R.id.btn_text_connect})
+    @Event({R.id.btn_request_body, R.id.btn_query_by_page, R.id.btn_insert_web_user, R.id.btn_upload_part, R.id.btn_upload_mutile, R.id.btn_download_file, R.id.btn_download_file_break, R.id.btn_download_file_stop, R.id.btn_download_file_contiunte, R.id.btn_get_file_size, R.id.btn_upload_single, R.id.btn_text_connect})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_download_file:
@@ -75,7 +82,7 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                 break;
             case R.id.btn_download_file_stop:
                 downloader.pause();
-                Toast.makeText(getActivity(), "下载暂停", Toast.LENGTH_SHORT).show();
+                Toast.makeText(baseActivity, "下载暂停", Toast.LENGTH_SHORT).show();
                 // 存储此时的totalBytes，即断点位置。
                 breakPoints = totalBytes;
                 break;
@@ -87,7 +94,7 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "aa.mp3");
                 BLog.d("        file.exists()=" + file.exists());
                 if (file.exists()) {
-                    Toast.makeText(getActivity(), FileUtil.getSize(file) + "   --", Toast.LENGTH_LONG).show();
+                    Toast.makeText(baseActivity, FileUtil.getSize(file) + "   --", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btn_upload_single:
@@ -153,23 +160,60 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                 UserRequest userRequest = new UserRequest();
                 userRequest.setAge(22);
                 userRequest.setName("beini");
-                NetUtil.getSingleton().insertUserRequest("insertUserM", userRequest).enqueue(new Callback() {
+//                NetUtil.getSingleton().insertUserRequest("insertUserM", userRequest).enqueue(new Callback() {
+//                    @Override
+//                    public void onResponse(Call call, Response response) {
+//                     BLog.d("     response.isSuccessful()="+response.isSuccessful());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call call, Throwable t) {
+//                        BLog.d(" "+t.getLocalizedMessage());
+//                    }
+//                });
+//                RxNetUtil.getSingleton().insertRxUserRequest(userRequest, new ResourceSubscriber<BaseResponseJson>() {
+//
+//                    @Override
+//                    public void onNext(@NotNull BaseResponseJson baseResponseJson) {
+//                        BLog.d("        onNext  " + (baseResponseJson == null));
+//                        if (baseResponseJson != null) {
+//                            BLog.d("        " + baseResponseJson.getReturnCode());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable t) {
+//                        BLog.d("        onError  " + t.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        BLog.d("        onComplete  ");
+//                    }
+//                }, AndroidSchedulers.mainThread());
+
+                RxNetUtil.getSingleton().inserUserRequest(userRequest, new ResourceSubscriber<BaseResponseJson>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
-                     BLog.d("     response.isSuccessful()="+response.isSuccessful());
+                    public void onNext(BaseResponseJson baseResponseJson) {
+                        BLog.d("        onNext  ");
                     }
 
                     @Override
-                    public void onFailure(Call call, Throwable t) {
-                        BLog.d(" "+t.getLocalizedMessage());
+                    public void onError(Throwable t) {
+                        BLog.d("        onError  ");
                     }
-                });
+
+                    @Override
+                    public void onComplete() {
+                        BLog.d("        onComplete  ");
+                    }
+                }, AndroidSchedulers.mainThread());
                 break;
             case R.id.btn_query_by_page:
-                PageRequest pageRequest=new PageRequest();
+                PageRequest pageRequest = new PageRequest();
                 pageRequest.setStart(1);
                 pageRequest.setNum(2);
-                NetUtil.getSingleton().queryByPage("getUserByPage",pageRequest).enqueue(new Callback() {
+                NetUtil.getSingleton().queryByPage("getUserByPage", pageRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) {
 
