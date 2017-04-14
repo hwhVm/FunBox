@@ -1,87 +1,94 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.fragment.net.NetFileFragment">
 
-
-    <Button
-        android:id="@+id/btn_download_file"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="文件下载" />
-
-    <Button
-        android:id="@+id/btn_download_file_break"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="断点文件下载" />
-
-    <Button
-        android:id="@+id/btn_download_file_stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="断点文件暂停" />
-
-    <Button
-        android:id="@+id/btn_download_file_contiunte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="断点文件继续" />
-
-    <Button
-        android:id="@+id/btn_get_file_size"
-        android:layout_width="match_parent"
-        android:text="获取文件大小"
-        android:layout_height="wrap_content" />
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:max="100"
-        android:progress="0"
-        android:layout_height="55dp" />
-
-    <Button
-        android:id="@+id/btn_upload_single"
-        android:layout_width="match_parent"
-        android:text="上传单个文件"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btn_upload_mutile"
-        android:layout_width="match_parent"
-        android:text="上传多个文件 MultipartBody"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btn_upload_part"
-        android:layout_width="match_parent"
-        android:text="上传多个文件 , @Part()"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btn_text_connect"
-        android:text="测试服务器是否连接"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/btn_insert_web_user"
-        android:layout_width="match_parent"
-        android:text="插入用户"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_download_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="文件下载" />
 
-    <Button
-        android:id="@+id/btn_query_by_page"
-        android:layout_width="match_parent"
-        android:text="分页查询"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btn_request_body"
-        android:layout_width="match_parent"
-        android:text="  test_request_body"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_download_file_break"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="断点文件下载" />
+
+        <Button
+            android:id="@+id/btn_download_file_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="断点文件暂停" />
+
+        <Button
+            android:id="@+id/btn_download_file_contiunte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="断点文件继续" />
+
+        <Button
+            android:id="@+id/btn_get_file_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取文件大小" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:max="100"
+            android:progress="0" />
+
+        <Button
+            android:id="@+id/btn_upload_single"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="上传单个文件" />
+
+        <Button
+            android:id="@+id/btn_upload_mutile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="上传多个文件 MultipartBody" />
+
+        <Button
+            android:id="@+id/btn_upload_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="上传多个文件 , @Part()" />
+
+        <Button
+            android:id="@+id/btn_text_connect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试服务器是否连接" />
+
+
+        <Button
+            android:id="@+id/btn_insert_web_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="插入用户" />
+
+        <Button
+            android:id="@+id/btn_query_by_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="分页查询" />
+
+        <Button
+            android:id="@+id/btn_request_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  test_request_body" />
+    </LinearLayout>
+</ScrollView>

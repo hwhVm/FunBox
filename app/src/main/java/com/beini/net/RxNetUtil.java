@@ -1,6 +1,7 @@
 package com.beini.net;
 
 import com.beini.constants.NetConstants;
+import com.beini.net.request.BaseRequestJson;
 import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.utils.BLog;
@@ -26,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by beini on 2017/4/14.
  */
 
-public class RxNetUtil {
+public class RxNetUtil<T> {
     private static RxNetUtil instance;
     private static Retrofit retrofit;
     private static RxReServer rxReServer;
@@ -58,17 +59,16 @@ public class RxNetUtil {
         flowable.subscribeOn(Schedulers.io()).observeOn(scheduler).subscribe(subscriber);
     }
 
-    public void inserUserRequest(final UserRequest userRequest, final ResourceSubscriber<BaseResponseJson> subscriber, Scheduler scheduler) {
+    public void sendRequest(final String url, final Object userRequest, final ResourceSubscriber<BaseResponseJson> subscriber, Scheduler scheduler) {
         Flowable.create(new FlowableOnSubscribe<BaseResponseJson>() {
             @Override
             public void subscribe(FlowableEmitter<BaseResponseJson> baseResponseJson) throws Exception {
                 try {
-                    Response<BaseResponseJson> baseResponseJsonResponse = rxReServer.inserUserRequest("insertUserM", userRequest).execute();
-                    BLog.d("      baseResponseJsonResponse== "+(baseResponseJsonResponse.body()==null));
+                    Response baseResponseJsonResponse = rxReServer.inserUserRequest(url, userRequest).execute();
                     if (baseResponseJsonResponse.body() == null) {
                         subscriber.onError(new Throwable("error"));
                     } else {
-                        subscriber.onNext(baseResponseJsonResponse.body());
+                        subscriber.onNext((BaseResponseJson) baseResponseJsonResponse.body());
                         subscriber.onComplete();
                     }
                 } catch (IOException e) {

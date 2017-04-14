@@ -192,7 +192,7 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
 //                    }
 //                }, AndroidSchedulers.mainThread());
 
-                RxNetUtil.getSingleton().inserUserRequest(userRequest, new ResourceSubscriber<BaseResponseJson>() {
+                RxNetUtil.getSingleton().sendRequest("insertUserM", userRequest, new ResourceSubscriber<BaseResponseJson>() {
                     @Override
                     public void onNext(BaseResponseJson baseResponseJson) {
                         BLog.d("        onNext  ");
@@ -200,7 +200,7 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
 
                     @Override
                     public void onError(Throwable t) {
-                        BLog.d("        onError  ");
+                        BLog.d("        onError  " + t.getLocalizedMessage());
                     }
 
                     @Override

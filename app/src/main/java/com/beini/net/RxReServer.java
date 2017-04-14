@@ -17,7 +17,7 @@ import retrofit2.http.Path;
  * Created by beini on 2017/4/14.
  */
 
-public interface RxReServer {
+public interface RxReServer<T> {
     /**
      * @FormUrlEncoded: 表单的方式传递键值对
      */
@@ -26,5 +26,5 @@ public interface RxReServer {
     Flowable<BaseResponseJson> insertRxUserRequest(@Path("url") String url, @Body UserRequest baseRequestJson);
 
     @POST("{url}")
-    Call<BaseResponseJson> inserUserRequest(@Path("url") String url, @Body UserRequest baseRequestJson);
+    Call<BaseResponseJson> inserUserRequest(@Path("url") String url, @Body Object baseRequestJson);
 }
