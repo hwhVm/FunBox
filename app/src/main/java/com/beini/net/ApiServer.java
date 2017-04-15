@@ -31,7 +31,10 @@ import retrofit2.http.Url;
  * Created by beini on 2017/2/10.
  */
 
-public interface ApiServer<T> {
+public interface ApiServer {
+
+    @GET("{url}")
+    Call<ResponseBody>  sendRequestGetNoP(@Path("url") String url);
     /**
      * 参数
      * Query 其实就是 Url 中 ‘?’ 后面的 key-value
@@ -56,16 +59,8 @@ public interface ApiServer<T> {
     Call<BaseResponseJson> sendRequestGet(@Path("url") String url, @Body BaseRequestJson baseRequestJson);
 
     @POST("{url}")
-    Call<BaseResponseJson> sendRequestPost(@Path("url") String url, @Body BaseRequestJson baseRequestJson);
+    Call<BaseResponseJson> sendRequestPost(@Path("url") String url, @Body Object baseRequestJson);
 
-    @POST("{url}")
-    Call<BaseResponseJson> sendRequestPost1(@Path("url") String url, @Body T baseRequestJson);
-
-    @POST("{url}")
-    Call<BaseResponseJson> insertUserRequest(@Path("url") String url, @Body UserRequest baseRequestJson);
-
-    @POST("{url}")
-    Call<BaseResponseJson> queryByPage(@Path("url") String url, @Body PageRequest baseRequestJson);
     /**
      * 下载
      */

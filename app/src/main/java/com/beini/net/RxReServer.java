@@ -6,7 +6,6 @@ import com.beini.net.request.BaseRequestJson;
 import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -26,5 +25,5 @@ public interface RxReServer<T> {
     Flowable<BaseResponseJson> insertRxUserRequest(@Path("url") String url, @Body UserRequest baseRequestJson);
 
     @POST("{url}")
-    Call<BaseResponseJson> inserUserRequest(@Path("url") String url, @Body Object baseRequestJson);
+    Call<BaseResponseJson> sendRequest(@Path("url") String url, @Body Object baseRequestJson);
 }

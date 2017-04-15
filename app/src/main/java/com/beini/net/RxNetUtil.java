@@ -1,5 +1,7 @@
 package com.beini.net;
 
+import android.support.annotation.NonNull;
+
 import com.beini.constants.NetConstants;
 import com.beini.net.request.BaseRequestJson;
 import com.beini.net.request.UserRequest;
@@ -59,12 +61,12 @@ public class RxNetUtil<T> {
         flowable.subscribeOn(Schedulers.io()).observeOn(scheduler).subscribe(subscriber);
     }
 
-    public void sendRequest(final String url, final Object userRequest, final ResourceSubscriber<BaseResponseJson> subscriber, Scheduler scheduler) {
+    public void sendRequest(@NonNull final String url, @NonNull final Object userRequest, @NonNull final ResourceSubscriber<BaseResponseJson> subscriber,@NonNull Scheduler scheduler) {
         Flowable.create(new FlowableOnSubscribe<BaseResponseJson>() {
             @Override
             public void subscribe(FlowableEmitter<BaseResponseJson> baseResponseJson) throws Exception {
                 try {
-                    Response baseResponseJsonResponse = rxReServer.inserUserRequest(url, userRequest).execute();
+                    Response baseResponseJsonResponse = rxReServer.sendRequest(url, userRequest).execute();
                     if (baseResponseJsonResponse.body() == null) {
                         subscriber.onError(new Throwable("error"));
                     } else {

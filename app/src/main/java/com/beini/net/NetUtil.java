@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 是否加入统一管理所有请求
  */
 
-public class NetUtil<T> {
+public class NetUtil {
     private static NetUtil instance;
     private static Retrofit retrofit;
     private static ApiServer apiServer;
@@ -62,7 +62,7 @@ public class NetUtil<T> {
      * 参数
      */
     public Call getMethod(String url) {
-        return apiServer.sendRequestGet(url);
+        return apiServer.sendRequestGetNoP(url);
     }
 
     /**
@@ -72,22 +72,10 @@ public class NetUtil<T> {
         return apiServer.sendRequestGet(url, baseRequest);
     }
 
-    public Call<BaseResponseJson> sendRequestPost(String url, BaseRequestJson baseRequest) {
+    public Call<BaseResponseJson> sendRequestPost(String url, Object baseRequest) {
         return apiServer.sendRequestPost(url, baseRequest);
     }
 
-    public Call<BaseResponseJson> sendRequestPost1(String url, T baseRequest) {
-        return apiServer.sendRequestPost1(url, baseRequest);
-    }
-
-
-    public Call<BaseResponseJson> insertUserRequest(String url, UserRequest baseRequest) {
-        return apiServer.insertUserRequest(url, baseRequest);
-    }
-
-    public Call<BaseResponseJson> queryByPage(String url, PageRequest baseRequest) {
-        return apiServer.queryByPage(url, baseRequest);
-    }
     /**
      * 上传 单张
      *

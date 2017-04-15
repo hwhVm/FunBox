@@ -90,5 +90,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="  test_request_body" />
+
+
+        <Button
+            android:id="@+id/btn_mybatis_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>
