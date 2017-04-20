@@ -1,7 +1,11 @@
 package com.beini.ui.fragment.net;
 
+import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -20,22 +24,17 @@ import com.beini.net.response.BaseResponseJson;
 import com.beini.net.response.ProgressResponseBody;
 import com.beini.ui.fragment.net.model.NetModel;
 import com.beini.utils.BLog;
-import com.beini.utils.NetUtils;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.greendao.annotation.NotNull;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,6 +48,11 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
     NetModel netModel;
     @ViewInject(R.id.progressBar)
     ProgressBar progressBar;
+    @ViewInject(R.id.image_auth_code)
+    ImageView image_auth_code;
+    @ViewInject(R.id.ed_authod_code)
+    EditText ed_authod_code;
+
     private long breakPoints;
     //    private FileDownload downloader;
     private ProgressDownloader downloader;
@@ -62,7 +66,7 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
         netModel = new NetModel(this);
     }
 
-    @Event({R.id.btn_mybatis_xml, R.id.btn_request_body, R.id.btn_query_by_page, R.id.btn_insert_web_user, R.id.btn_upload_part, R.id.btn_upload_mutile, R.id.btn_download_file, R.id.btn_download_file_break, R.id.btn_download_file_stop, R.id.btn_download_file_contiunte, R.id.btn_get_file_size, R.id.btn_upload_single, R.id.btn_text_connect})
+    @Event({R.id.btn_yan_zheng, R.id.btn_auth_code, R.id.btn_mybatis_xml, R.id.btn_request_body, R.id.btn_query_by_page, R.id.btn_insert_web_user, R.id.btn_upload_part, R.id.btn_upload_mutile, R.id.btn_download_file, R.id.btn_download_file_break, R.id.btn_download_file_stop, R.id.btn_download_file_contiunte, R.id.btn_get_file_size, R.id.btn_upload_single, R.id.btn_text_connect})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_download_file:
@@ -101,22 +105,22 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                 String path = Environment.getExternalStorageDirectory() + File.separator + "aa.mp3";
                 BLog.d("   path==" + path);
                 File file1 = new File(path);
-                NetUtil.getSingleton().uploadFileSingle(file1).enqueue(new Callback() {
+                NetUtil.getSingleton().uploadFileSingle(file1).enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         BLog.d("        " + response.isSuccessful());
                     }
 
                     @Override
-                    public void onFailure(Call call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                         BLog.d("   onFailure     " + t.getMessage());
                     }
                 });
                 break;
             case R.id.btn_text_connect:
-                NetUtil.getSingleton().getMethod("queryAllM").enqueue(new Callback() {
+                NetUtil.getSingleton().getMethod("queryAllM").enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         BLog.d("    getMethod    " + response.isSuccessful());
                         if (response.isSuccessful()) {
                             BLog.d("      " + response.body().toString());
@@ -125,36 +129,37 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                     }
 
                     @Override
-                    public void onFailure(Call call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                         BLog.d("getMethod   onFailure     " + t.getMessage());
                     }
                 });
                 break;
             case R.id.btn_upload_mutile:
-                NetUtil.getSingleton().uploadFileMultiPart(returnFileLists()).enqueue(new Callback() {
+                NetUtil.getSingleton().uploadFileMultiPart(returnFileLists()).enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         BLog.d("   upload  mutile   " + response.isSuccessful());
                     }
 
                     @Override
-                    public void onFailure(Call call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                         BLog.d("   upload  mutile   " + t.getLocalizedMessage());
                     }
                 });
                 break;
             case R.id.btn_upload_part:
-                NetUtil.getSingleton().uploadFilePart(returnFileLists()).enqueue(new Callback() {
+                NetUtil.getSingleton().uploadFilePart(returnFileLists()).enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         BLog.d("  uploadFilePart  " + response.isSuccessful());
                     }
 
                     @Override
-                    public void onFailure(Call call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                         BLog.d("  onFailure  " + t.getLocalizedMessage());
                     }
                 });
+
                 break;
             case R.id.btn_insert_web_user:
                 UserRequest userRequest = new UserRequest();
@@ -226,9 +231,9 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                 });
                 break;
             case R.id.btn_request_body:
-                NetUtil.getSingleton().getMethod("test_request_body").enqueue(new Callback() {
+                NetUtil.getSingleton().getMethod("test_request_body").enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         BLog.d("    test_request_body    " + response.isSuccessful());
                         if (response.isSuccessful()) {
                             BLog.d("     response.body().toString()= " + response.body().toString());
@@ -240,24 +245,64 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                     }
 
                     @Override
-                    public void onFailure(Call call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                         BLog.d("test_request_body   onFailure     " + t.getMessage());
                     }
                 });
                 break;
             case R.id.btn_mybatis_xml:
-                NetUtil.getSingleton().getMethod("testConnect").enqueue(new Callback() {
+                NetUtil.getSingleton().getMethod("testConnect").enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call call, Response response) {
-                        BLog.d("   queryAllLeader  " + response.isSuccessful());
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
                     }
 
                     @Override
-                    public void onFailure(Call call, Throwable t) {
-                        BLog.d("      queryAllLeader  " + t.getLocalizedMessage());
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
                     }
                 });
                 break;
+            case R.id.btn_auth_code:
+                //image_auth_code
+                NetUtil.getSingleton().getMethod("getAuthCode").enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ResponseBody responsBody = response.body();
+                                BLog.d("      contentLength==" + responsBody.contentLength());
+                                image_auth_code.setImageBitmap(BitmapFactory.decodeStream(responsBody.byteStream()));
+                                Set<String> strings = response.headers().names();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+                break;
+            case R.id.btn_yan_zheng:
+                String str = ed_authod_code.getText().toString();
+                if (!TextUtils.isEmpty(str)) {
+                    NetUtil.getSingleton().verCodePost("isTrueCode", str).enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            BLog.d("           response " + response.isSuccessful() + "   " + response.body());
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                            BLog.d("           onFailure " + t.getLocalizedMessage());
+                        }
+                    });
+                }
+                break;
+
         }
 
     }

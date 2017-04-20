@@ -95,6 +95,37 @@
         <Button
             android:id="@+id/btn_mybatis_xml"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="btn_mybatis_xml" />
+
+        <Button
+            android:id="@+id/btn_auth_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="getAuthCode " />
+
+        <ImageView
+            android:id="@+id/image_auth_code"
+            android:layout_width="66dp"
+            android:layout_height="45dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_authod_code"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_yan_zheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

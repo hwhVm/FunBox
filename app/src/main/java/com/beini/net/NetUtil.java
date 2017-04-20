@@ -1,15 +1,23 @@
 package com.beini.net;
 
+import android.os.Environment;
+
+import com.beini.base.BaseApplication;
 import com.beini.constants.NetConstants;
+import com.beini.net.interceptor.AddCookiesInterceptor;
+import com.beini.net.interceptor.ReceivedCookiesInterceptor;
 import com.beini.net.request.BaseRequestJson;
 import com.beini.net.request.PageRequest;
 import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.utils.BLog;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Cache;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -44,6 +52,7 @@ public class NetUtil {
 //                                    return null;
 //                                }
 //                            })
+                            .cache(new Cache(new File(Environment.getExternalStorageDirectory() + "/tmp"), 10 * 1024 * 1024))   //设置缓存目录和10M缓存
                             .build();
                     retrofit = new Retrofit.Builder()
                             .client(client)
@@ -61,8 +70,17 @@ public class NetUtil {
     /**
      * 参数
      */
-    public Call getMethod(String url) {
+    public Call<ResponseBody> getMethod(String url) {
         return apiServer.sendRequestGetNoP(url);
+    }
+
+    public Call<String> verCode(String url, String code) {
+        return apiServer.verCode(url, code);
+    }
+
+    public Call<String> verCodePost(String url, String code) {
+
+        return apiServer.sendRequestGetWithValue(url, code);
     }
 
     /**
