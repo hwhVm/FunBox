@@ -11,6 +11,10 @@ import com.beini.net.request.PageRequest;
 import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.utils.BLog;
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,6 +48,8 @@ public class NetUtil {
             synchronized (NetUtil.class) {
                 if (instance == null) {
                     instance = new NetUtil();
+                    ClearableCookieJar cookieJar =
+                            new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getInstance()));
                     OkHttpClient client = new OkHttpClient//添加头信息，cookie等
                             .Builder().connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
 //                            .addNetworkInterceptor(new Interceptor() {
@@ -52,6 +58,7 @@ public class NetUtil {
 //                                    return null;
 //                                }
 //                            })
+                            .cookieJar(cookieJar)
                             .cache(new Cache(new File(Environment.getExternalStorageDirectory() + "/tmp"), 10 * 1024 * 1024))   //设置缓存目录和10M缓存
                             .build();
                     retrofit = new Retrofit.Builder()

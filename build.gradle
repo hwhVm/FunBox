@@ -18,6 +18,7 @@ allprojects {
         jcenter()
         maven {
             url 'http://www.idescout.com/maven/repo/'
+            maven { url "https://jitpack.io" }
         }
     }
 }

@@ -18,6 +18,7 @@ import com.beini.db.cache.FileUtil;
 import com.beini.net.NetUtil;
 import com.beini.net.RxNetUtil;
 import com.beini.net.help.ProgressDownloader;
+import com.beini.net.okhttp.OkhttpUtils;
 import com.beini.net.request.PageRequest;
 import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
@@ -26,6 +27,7 @@ import com.beini.ui.fragment.net.model.NetModel;
 import com.beini.utils.BLog;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -284,6 +286,22 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
 
                     }
                 });
+//                OkhttpUtils.getInstance().requestDataGet("getAuthCode").enqueue(new okhttp3.Callback() {
+//                    @Override
+//                    public void onFailure(okhttp3.Call call, IOException e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onResponse(okhttp3.Call call, final okhttp3.Response response) throws IOException {
+//                        getActivity().runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                image_auth_code.setImageBitmap(BitmapFactory.decodeStream(response.body().byteStream()));
+//                            }
+//                        });
+//                    }
+//                });
                 break;
             case R.id.btn_yan_zheng:
                 String str = ed_authod_code.getText().toString();
@@ -300,6 +318,19 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
                             BLog.d("           onFailure " + t.getLocalizedMessage());
                         }
                     });
+//                    OkhttpUtils.getInstance().requestDataGet("isTrueCode").enqueue(new okhttp3.Callback() {
+//                        @Override
+//                        public void onFailure(okhttp3.Call call, IOException e) {
+//                            BLog.d("           onFailure " + e.getLocalizedMessage());
+//                        }
+//
+//                        @Override
+//                        public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+//                            BLog.d("           response " + response.isSuccessful() + "   " + response.body());
+//
+//                        }
+//                    });
+
                 }
                 break;
 
