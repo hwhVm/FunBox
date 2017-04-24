@@ -12,6 +12,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.annotations.AnnotationsFragment;
 import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
+import com.beini.ui.fragment.fingerprint.FingerprintFragment;
 import com.beini.ui.fragment.green.GreenDaoFragment;
 import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
@@ -43,6 +44,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("retrofit 2.0 ");
         functionList.add("GreenDaoFragment");
         functionList.add("WfiListFragment");
+        functionList.add("FingerprintFragment");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -76,6 +78,9 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 7:
                     baseActivity.replaceFragment(WfiListFragment.class);
+                    break;
+                case 8:
+                    baseActivity.replaceFragment(FingerprintFragment.class);
                     break;
             }
         }
