@@ -4,20 +4,20 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.beini.R;
 import com.beini.bind.ContentView;
-import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.bind.ViewInjectorImpl;
 import com.beini.ui.fragment.home.HomeFragment;
@@ -41,13 +41,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     public Toolbar toolbar;
     @ViewInject(R.id.layout_coor)
     LinearLayout layout_coor;
-    @ViewInject(R.id.rg_bottom)
-    RadioGroup rg_bottom;
-    @ViewInject(R.id.rb_1)
-    RadioButton rb_1;
     @ViewInject(R.id.top_bar_title)
     TextView top_bar_title;
-
+    @ViewInject(R.id.navigation)
+    BottomNavigationView navigation;
 
     private FragmentManager fragmentManager;
     private KeyBackListener keyBackListener;
@@ -71,32 +68,35 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  //透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);  //透明导航栏
         ViewInjectorImpl.registerInstance(this);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         this.initView();
     }
 
-    @Event({R.id.rb_1, R.id.rb_2, R.id.rb_3})
-    private void mEvent(View view) {
-        switch (view.getId()) {
-            case R.id.rb_1:
-                this.replaceFragment(HomeFragment.class);
-                FragmentHelper.homeTag = 0;
-                break;
-            case R.id.rb_2:
-                this.replaceFragment(Rb2Fragment.class);
-                FragmentHelper.homeTag = 1;
-                break;
-            case R.id.rb_3:
-                this.replaceFragment(Rb3Fragment.class);
-                FragmentHelper.homeTag = 2;
-                break;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            BLog.d(" item.getItemId()="+item.getItemId());
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    replaceFragment(HomeFragment.class);
+                    FragmentHelper.homeTag = 0;
+                    return true;
+                case R.id.navigation_dashboard:
+                    replaceFragment(Rb2Fragment.class);
+                    FragmentHelper.homeTag = 1;
+                    return true;
+                case R.id.navigation_notifications:
+                    replaceFragment(Rb3Fragment.class);
+                    FragmentHelper.homeTag = 2;
+                    return true;
+            }
+            return false;
         }
 
-    }
+    };
 
-    public void goToHome() {
-        mEvent(rb_1);
-        rb_1.setChecked(true);
-    }
 
     public abstract void initView();
 
@@ -174,7 +174,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     @Override
     public void setBottom(int isHide) {
-        rg_bottom.setVisibility(isHide);
+        navigation.setVisibility(isHide);
     }
 
     @Override
@@ -213,7 +213,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     }
 
     /**
-     *
      * 释放activity的资源，例如释放网络连接，注销监听广播接收者
      */
     @Override

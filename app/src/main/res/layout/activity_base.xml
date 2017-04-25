@@ -5,10 +5,10 @@
     android:id="@+id/layout_coor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.example.administrator.baseapp.base.BaseActivity">
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    tools:context=".base.BaseActivity">
     <!--AppBarLayout继承自LinearLayout，布局方向为垂直方向。
     所以你可以把它当成垂直布局的LinearLayout来使用。AppBarLayout是在LinearLayou上加了一些材料设计的概念，
     它可以让你定制当某个可滚动View的滚动手势发生变化时，其内部的子View实现何种动作。-->
@@ -42,45 +42,17 @@
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+          />
 
-        <RadioGroup
-            android:id="@+id/rg_bottom"
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:layout_height="45dp"
+            android:layout_gravity="bottom"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/navigation" />
 
-            <RadioButton
-                android:id="@+id/rb_1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/bottom_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:text="1" />
-
-            <RadioButton
-                android:id="@+id/rb_2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/bottom_selector1"
-                android:button="@null"
-                android:gravity="center"
-                android:text="2" />
-
-            <RadioButton
-                android:id="@+id/rb_3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/bottom_selector2"
-                android:button="@null"
-                android:gravity="center"
-                android:text="3" />
-        </RadioGroup>
     </android.support.design.widget.AppBarLayout>
 
 

@@ -52,7 +52,7 @@ public class LoginFragment extends BaseFragment {
 
             if (!EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
                 baseActivity.remove(LoginFragment.this);
-                baseActivity.goToHome();
+//                baseActivity.goToHome();
             } else {
 
                 return;
