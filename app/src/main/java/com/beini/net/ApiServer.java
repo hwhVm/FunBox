@@ -2,28 +2,28 @@ package com.beini.net;
 
 
 import com.beini.net.request.BaseRequestJson;
-import com.beini.net.request.PageRequest;
-import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
@@ -32,7 +32,7 @@ import retrofit2.http.Url;
  */
 
 public interface ApiServer {
-
+    //*************************************************get  method *******************************************************
     @GET("{url}")
     Call<ResponseBody> sendRequestGetNoP(@Path("url") String url);
 
@@ -42,7 +42,7 @@ public interface ApiServer {
      * QueryMap :多个参数
      */
     @GET("{url}")
-    Call<String> sendRequestGetWithValue(@Path("url") String url,@Query("code") String page);
+    Call<String> sendRequestGetWithValue(@Path("url") String url, @Query("code") String page);
 
     /**
      * json
@@ -50,9 +50,30 @@ public interface ApiServer {
     @GET("{url}")
     Call<BaseResponseJson> sendRequestGet(@Path("url") String url, @Body BaseRequestJson baseRequestJson);
 
+//*************************************************post  method *******************************************************
+
     /**
-     * Post method
+     * 表单 提交
      */
+    @FormUrlEncoded
+    @POST("{url}")
+    Call<String> postForm(@Path("url") String url,
+                          @FieldMap Map<String, String> maps);
+
+    /**
+     * 对象
+     */
+    @POST("{url}")
+    Call<String> PostBody(@Path("url") String url,
+                          @Body Objects objects);
+
+    /**
+     * 多参数 @QueryMap
+     */
+    @PUT("{url}")
+    Call<String> queryMap(@Path("url") String url,
+            @QueryMap Map<String, String> maps);
+
 
     @POST("{url}")
     Call<String> verCode(@Path("url") String url, @Query("code") String code);
@@ -69,9 +90,7 @@ public interface ApiServer {
     @POST("{url}")
     Call<BaseResponseJson> sendRequestPost(@Path("url") String url, @Body Object baseRequestJson);
 
-    /**
-     * 下载
-     */
+    //*************************************************上传 *******************************************************
 
     /**
      * http://blog.csdn.net/sk719887916/article/details/51755427
@@ -104,6 +123,7 @@ public interface ApiServer {
      * 断点续传
      * 可以做取消、继续下载的功能，或者从异常情况下恢复的再下载功能。
      */
+    //*************************************************下载 *******************************************************
 
     /**
      * 文件下载

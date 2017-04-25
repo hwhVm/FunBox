@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beini.ui.fragment.websocket.WebScoketFragment">
+
+    <Button
+        android:id="@+id/btn_web_socket_conntect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="connect" />
+
+    <Button
+        android:id="@+id/btn_web_socket_disconntect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="disconnect" />
+
+    <Button
+        android:id="@+id/btn_web_socket_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send" />
+
+    <Button
+        android:id="@+id/btn_global_web_scoket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="触发服务器全局推送内容" />
+</LinearLayout>

@@ -4,11 +4,7 @@ import android.os.Environment;
 
 import com.beini.base.BaseApplication;
 import com.beini.constants.NetConstants;
-import com.beini.net.interceptor.AddCookiesInterceptor;
-import com.beini.net.interceptor.ReceivedCookiesInterceptor;
 import com.beini.net.request.BaseRequestJson;
-import com.beini.net.request.PageRequest;
-import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.utils.BLog;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
@@ -18,7 +14,9 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -102,6 +100,15 @@ public class NetUtil {
     }
 
     /**
+     * 带参数
+     */
+    public Call<String> sendPostWithParm(String url, String message) {
+        Map<String, String> maps = new HashMap<>();
+        maps.put("SESSION_USERNAME",message);
+        return apiServer.postForm(url, maps);
+    }
+//***********************************************************上传**********************************************************
+    /**
      * 上传 单张
      *
      * @param file
@@ -166,7 +173,7 @@ public class NetUtil {
      * 断点续传
      * 1、记录断点位置 2、缓存保存 3、服务器支持。
      */
-
+//***********************************************************下载**********************************************************
     /**
      * 文件下载
      *
