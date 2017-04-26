@@ -12,6 +12,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.net.NetUtil;
+import com.beini.ui.fragment.notification.NotifyUtility;
 import com.beini.utils.BLog;
 
 import org.java_websocket.client.WebSocketClient;
@@ -22,6 +23,9 @@ import org.java_websocket.handshake.ServerHandshake;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.channels.NotYetConnectedException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,11 +45,11 @@ public class WebScoketFragment extends BaseFragment {
 
     }
 
-    @Event({R.id.btn_web_socket_conntect, R.id.btn_web_socket_disconntect, R.id.btn_web_socket_send, R.id.btn_global_web_scoket})
+    @Event({R.id.btn_login_web_scoket,R.id.btn_web_socket_conntect, R.id.btn_web_socket_disconntect, R.id.btn_web_socket_send, R.id.btn_global_web_scoket})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_web_socket_conntect:
-                connectToServer();
+                    connectToServer();
                 break;
             case R.id.btn_web_socket_disconntect:
                 if (null != mClient) {
@@ -66,7 +70,8 @@ public class WebScoketFragment extends BaseFragment {
                 }
                 break;
             case R.id.btn_global_web_scoket:
-                NetUtil.getSingleton().sendPostWithParm("auditing", "SESSION_USERNAME").enqueue(new Callback<String>() {
+                Map<String, String> map = new HashMap<>();
+                NetUtil.getSingleton().sendPostWithParm("auditing",map).enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         BLog.d("  response==" + response.isSuccessful());
@@ -75,6 +80,21 @@ public class WebScoketFragment extends BaseFragment {
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
                         BLog.d("            t=" + t.getLocalizedMessage());
+                    }
+                });
+                break;
+            case R.id.btn_login_web_scoket:
+                Map<String, String> maps = new HashMap<>();
+                maps.put("userId", UUID.randomUUID().toString());
+                NetUtil.getSingleton().sendPostWithParm("webSocketSaveSession", maps).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                            BLog.d("       "+response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
                     }
                 });
                 break;
@@ -100,6 +120,7 @@ public class WebScoketFragment extends BaseFragment {
             URI uri = new URI(address);
             mClient = new Client(uri, draft);
             mClient.connect();
+
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -120,6 +141,9 @@ public class WebScoketFragment extends BaseFragment {
         @Override
         public void onMessage(String message) {
             BLog.d("       onMessage  message=" + message);
+            if (Integer.parseInt(message) != 0) {
+                NotifyUtility.start(baseActivity, null, "来自服务器的消息", message);
+            }
         }
 
         @Override

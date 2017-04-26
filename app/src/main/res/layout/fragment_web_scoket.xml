@@ -25,6 +25,12 @@
         android:text="send" />
 
     <Button
+        android:id="@+id/btn_login_web_scoket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="先把id存在服务器的session中" />
+
+    <Button
         android:id="@+id/btn_global_web_scoket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -14,7 +14,6 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -62,9 +61,9 @@ public class NetUtil {
                     retrofit = new Retrofit.Builder()
                             .client(client)
                             .baseUrl(NetConstants.baseUrl)
-
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
+
                     apiServer = retrofit.create(ApiServer.class);
                 }
             }
@@ -102,12 +101,12 @@ public class NetUtil {
     /**
      * 带参数
      */
-    public Call<String> sendPostWithParm(String url, String message) {
-        Map<String, String> maps = new HashMap<>();
-        maps.put("SESSION_USERNAME",message);
+    public Call<String> sendPostWithParm(String url, Map<String, String> maps) {
+
         return apiServer.postForm(url, maps);
     }
 //***********************************************************上传**********************************************************
+
     /**
      * 上传 单张
      *
@@ -174,6 +173,7 @@ public class NetUtil {
      * 1、记录断点位置 2、缓存保存 3、服务器支持。
      */
 //***********************************************************下载**********************************************************
+
     /**
      * 文件下载
      *
