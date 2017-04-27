@@ -1,8 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.baseapp.ui.fragment.popupwindow.PopupWindowFragment">
+    tools:context=".ui.fragment.popupwindow.PopupWindowFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <Button
@@ -11,4 +12,63 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_Time"
+        android:layout_margin="10dp"
+        android:text="@string/picker_time"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <Button
+        android:id="@+id/btn_Options"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tvTime"
+        android:text="@string/picker_province"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/btn_CustomTime"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tvTime"
+        android:text="@string/picker_custom_time"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/btn_CustomOptions"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tvTime"
+        android:text="@string/picker_custom_province"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/btn_no_linkage"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tvTime"
+        android:text="条件选择器(不联动)"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/btn_GotoJsonData"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/tvTime"
+        android:text="省市区Json文件解析示例"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+
+    <Button
+        android:id="@+id/btn_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解析数据"/>
+
+    <Button
+        android:id="@+id/btn_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="弹出省市区选择器"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
