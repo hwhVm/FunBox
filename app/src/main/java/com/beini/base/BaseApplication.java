@@ -1,5 +1,6 @@
 package com.beini.base;
 
+import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.beini.ndk.NDKMain;
@@ -7,7 +8,8 @@ import com.beini.utils.CrashHandler;
 import com.beini.utils.SystemUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
-import com.idescout.sql.SqlScoutServer;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,10 +30,18 @@ public class BaseApplication extends MultiDexApplication {
         }
         return application;
     }
+    private RefWatcher refWatcher;
 
+    public static RefWatcher getRefWatcher(Context context) {
+        BaseApplication application = (BaseApplication) context.getApplicationContext();
+        return application.refWatcher;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
         String appName = getApplicationInfo().packageName;
         application = this;
         if (appName.equals(SystemUtil.getCurProcessName(getApplicationContext()))) {//避免多进程下会重复执行

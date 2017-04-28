@@ -14,6 +14,7 @@ import com.beini.ui.view.dialog.DialogUtil;
 import com.beini.ui.view.dialog.UIDialog;
 import com.beini.utils.BLog;
 import com.beini.utils.permission.EasyPermissions;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.List;
 
@@ -99,6 +100,13 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
         baseActivity.setKeyBackListener(null);
         baseActivity.setOnTouchEventListener(null);
         baseActivity.setActivityResultListener(null);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        RefWatcher refWatcher = BaseApplication.getRefWatcher(getActivity());
+        refWatcher.watch(this);
     }
 
     private UIDialog mProDialog;

@@ -57,6 +57,20 @@
         android:hardwareAccelerated="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"
+
+            android:enabled="false"
+
+            android:process=":leakcanary"
+            />
+
+        <service
+
+            android:name="com.squareup.leakcanary.DisplayLeakService"
+
+            android:enabled="false"
+            />
         <activity android:name=".ui.activity.IndexActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
