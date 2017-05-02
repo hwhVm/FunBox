@@ -48,6 +48,11 @@ android {
         //设置DaoMaster 、DaoSession、Dao包名
         daoPackage 'com.beini.db.greendao'
     }
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
 }
 repositories {
     flatDir {

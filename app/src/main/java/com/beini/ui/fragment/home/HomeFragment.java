@@ -17,6 +17,7 @@ import com.beini.ui.fragment.audio.AudioFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
 import com.beini.ui.fragment.camera.CameraFragment;
+import com.beini.ui.fragment.cpptest.CppFragment;
 import com.beini.ui.fragment.localmusic.LocalMusicFragment;
 import com.beini.ui.fragment.notification.NotificationFragment;
 import com.beini.ui.fragment.popupwindow.PopupWindowFragment;
@@ -43,7 +44,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         checkPermissionMethod(perms, " ask  camera permission", 22);
-        functionList.add("dlna demo");
+        functionList.add("cpp");
         functionList.add("recording");
         functionList.add("Shake");
         functionList.add("Sideslip");
@@ -73,6 +74,7 @@ public class HomeFragment extends BaseFragment {
         public void onItemClick(View view, int position) {
             switch (position) {
                 case 0:
+                    baseActivity.replaceFragment(CppFragment.class);
                     break;
                 case 1:
                     baseActivity.replaceFragment(VoiceFragment.class);

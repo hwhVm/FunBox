@@ -104,9 +104,9 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         RefWatcher refWatcher = BaseApplication.getRefWatcher(getActivity());
         refWatcher.watch(this);
+        super.onDestroyView();
     }
 
     private UIDialog mProDialog;

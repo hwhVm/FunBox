@@ -11,18 +11,13 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 
 aux_source_directory (src/main/cpp/ A_SRC)
-aux_source_directory (src/main/cpp/color/ B_SRC)
-aux_source_directory (src/main/cpp/soundtouch/ C_SRC)
-aux_source_directory (src/main/cpp/faac/ D_SRC)
 
-list(APPEND C_SRC ${D_SRC})
-list(APPEND B_SRC ${C_SRC})
 list(APPEND A_SRC ${B_SRC})
 
 
 
 add_library( # Sets the name of the library.
-             Dibot
+             BaseProject
 
              # Sets the library as a shared library.
              SHARED
@@ -53,7 +48,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       Dibot
+                       BaseProject
 
                        # Links the target library to the log library
                        # included in the NDK.
