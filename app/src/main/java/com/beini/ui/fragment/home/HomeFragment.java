@@ -11,14 +11,13 @@ import com.beini.base.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.ani.AniFragment;
 import com.beini.ui.fragment.aidl.AIDLFragment;
+import com.beini.ui.fragment.ani.AniFragment;
 import com.beini.ui.fragment.audio.AudioFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
 import com.beini.ui.fragment.camera.CameraFragment;
 import com.beini.ui.fragment.localmusic.LocalMusicFragment;
-import com.beini.ui.fragment.music.MusicFragment;
 import com.beini.ui.fragment.notification.NotificationFragment;
 import com.beini.ui.fragment.popupwindow.PopupWindowFragment;
 import com.beini.ui.fragment.recording.VoiceFragment;
@@ -74,7 +73,6 @@ public class HomeFragment extends BaseFragment {
         public void onItemClick(View view, int position) {
             switch (position) {
                 case 0:
-                    baseActivity.replaceFragment(MusicFragment.class);
                     break;
                 case 1:
                     baseActivity.replaceFragment(VoiceFragment.class);

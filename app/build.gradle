@@ -18,26 +18,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         sourceSets {
-            main {
-                jni.srcDir "src/main/jni"
-                jniLibs.srcDirs "src/main/jniLibs"
-            }
         }
 
-        ndk {
-            moduleName "Ndk"
-            cFlags "-I./src/main/jni/soundtouch/include"
-            abiFilter("armeabi")
-            abiFilter("armeabi-v7a")
-            abiFilter("x86")
-            ldLibs "log", "z", "m"
-            stl "gnustl_static"
 
-        }
-        multiDexEnabled true
     }
     buildTypes {
         release {
+            multiDexEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -75,14 +62,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile files('libs/jetty-client-8.1.12.v20130726.jar')
-    compile files('libs/jetty-continuation-8.1.12.v20130726.jar')
-    compile files('libs/jetty-http-8.1.12.v20130726.jar')
-    compile files('libs/jetty-io-8.1.12.v20130726.jar')
-    compile files('libs/jetty-security-8.1.12.v20130726.jar')
-    compile files('libs/jetty-server-8.1.12.v20130726.jar')
-    compile files('libs/jetty-servlet-8.1.12.v20130726.jar')
-    compile files('libs/jetty-util-8.1.12.v20130726.jar')
     compile files('libs/servlet-api-3.0.jar')
     compile files('libs/seamless-http-1.1.0.jar')
     compile files('libs/seamless-util-1.1.0.jar')

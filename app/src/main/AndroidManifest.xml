@@ -86,9 +86,6 @@
         <service
             android:name=".ui.fragment.music.utils.DivoomUpnpService"
             android:exported="false" />
-        <service
-            android:name=".ui.fragment.SystemService"
-            android:exported="false" />
         <service android:name=".ui.fragment.broadcast.MyService" />
         <service android:name=".ui.fragment.localmusic.service.MusicService" />
         <service android:name=".ui.fragment.bluetooth.ble.SmartBLEService" />
