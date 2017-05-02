@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beini.ui.fragment.picPicker.PicPickeFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/btn_show_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+
+    <Button
+        android:id="@+id/btn_matisse"
+        android:layout_width="match_parent"
+        android:text="ddddd"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_dracula"
+        android:layout_width="match_parent"
+        android:text="夜间模式"
+        android:layout_height="wrap_content" />
+</LinearLayout>

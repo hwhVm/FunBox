@@ -100,4 +100,6 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    compile 'com.zhihu.android:matisse:0.4.3'//知乎图片选择框架
+    compile 'com.github.bumptech.glide:glide:3.7.0'//谷歌图片加载框架
 }
