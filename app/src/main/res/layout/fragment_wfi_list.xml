@@ -11,6 +11,11 @@
         android:layout_height="wrap_content"
         android:text="refresh" />
 
+    <TextView
+        android:id="@+id/text_wifi_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_wifi"
         android:layout_width="match_parent"

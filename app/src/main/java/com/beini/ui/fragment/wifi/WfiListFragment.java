@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.beini.R;
 import com.beini.adapter.BaseAdapter;
@@ -14,6 +15,7 @@ import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
+import com.beini.net.utils.GetWifiInfoUtil;
 import com.beini.utils.BLog;
 
 import java.util.List;
@@ -26,6 +28,9 @@ import java.util.List;
 public class WfiListFragment extends BaseFragment {
     @ViewInject(R.id.recycle_wifi)
     RecyclerView recycle_wifi;
+    @ViewInject(R.id.text_wifi_info)
+    TextView text_wifi_info;
+
     private WifiTool wiFiAdmin;
     private List<ScanResult> list;
     private boolean isFirstLoad = true;
@@ -36,6 +41,7 @@ public class WfiListFragment extends BaseFragment {
     public void initView() {
         wiFiAdmin = new WifiTool(baseActivity);
         getAllNetWorkList();
+        text_wifi_info.setText(GetWifiInfoUtil.getWifiInfo(getActivity()));
     }
 
     @Event({R.id.btn_wifi_refresh})
@@ -72,7 +78,7 @@ public class WfiListFragment extends BaseFragment {
         public void onItemClick(View view, int position) {
             ScanResult scanResult = list.get(position);
             String strResult = connectWifi("divoomzhongke508", scanResult);
-            BLog.d("         strResult="+strResult+"   SSID=="+scanResult.SSID);
+            BLog.d("         strResult=" + strResult + "   SSID==" + scanResult.SSID);
         }
     };
 
