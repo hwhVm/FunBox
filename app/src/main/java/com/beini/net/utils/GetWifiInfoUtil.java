@@ -47,4 +47,6 @@ public class GetWifiInfoUtil {
         return (paramInt & 0xFF) + "." + (0xFF & paramInt >> 8) + "." + (0xFF & paramInt >> 16) + "."
                 + (0xFF & paramInt >> 24);
     }
+
+
 }

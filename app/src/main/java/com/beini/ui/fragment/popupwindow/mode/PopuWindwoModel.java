@@ -47,7 +47,7 @@ public class PopuWindwoModel {
         //设置PopupWindow的View点击事件
         setOnPopupViewClick(view);
         //设置背景色
-        setBackgroundAlpha(0.5f);
+//        setBackgroundAlpha(0.5f);
     }
 
     private void setOnPopupViewClick(View view) {
