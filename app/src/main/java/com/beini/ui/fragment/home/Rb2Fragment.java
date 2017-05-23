@@ -1,5 +1,6 @@
 package com.beini.ui.fragment.home;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.annotations.AnnotationsFragment;
+import com.beini.ui.fragment.args.ArgsFragment;
 import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
 import com.beini.ui.fragment.fingerprint.FingerprintFragment;
 import com.beini.ui.fragment.green.GreenDaoFragment;
@@ -49,6 +51,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("FingerprintFragment");
         functionList.add("webSocket");
         functionList.add("pic picker");
+        functionList.add("args");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -91,6 +94,11 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 10:
                     baseActivity.replaceFragment(PicPickeFragment.class);
+                    break;
+                case 11:
+                    Bundle args = new Bundle();
+                    args.putString("name", "beini");
+                    baseActivity.replaceFragment(ArgsFragment.class,args);
                     break;
             }
         }

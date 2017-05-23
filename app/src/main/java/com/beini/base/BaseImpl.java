@@ -1,6 +1,7 @@
 package com.beini.base;
 
 import android.app.Fragment;
+import android.os.Bundle;
 
 /**
  * Created by beini on 2017/2/9.
@@ -10,6 +11,7 @@ public interface BaseImpl {
     void initView();
 
     void replaceFragment(Class<?> fragment);
+    void replaceFragment(Class<?> fragment, Bundle args);
 
     void back();
 

@@ -107,14 +107,27 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
             this.setBottom(View.GONE);
         }
         Fragment newFragment = fragmentManager.findFragmentByTag(fragment.getName());
-
         if (newFragment != null) {
             FragmentHelper.showFragment(fragmentManager, newFragment);
         } else {
             FragmentHelper.hideAllFragment(fragmentManager);
             FragmentHelper.addFragment(fragmentManager, baseFragment, fragment.getName());
         }
-
+    }
+    @Override
+    public void replaceFragment(Class<?> fragment, Bundle args) {
+        BaseFragment baseFragment = (BaseFragment) ObjectUtil.createInstance(fragment);
+        if (!(baseFragment instanceof HomeFragment || baseFragment instanceof Rb2Fragment || baseFragment instanceof Rb3Fragment)) {
+            this.setBottom(View.GONE);
+        }
+        Fragment newFragment = fragmentManager.findFragmentByTag(fragment.getName());
+        if (newFragment != null) {
+            FragmentHelper.showFragment(fragmentManager, newFragment);
+        } else {
+            baseFragment.setArguments(args);
+            FragmentHelper.hideAllFragment(fragmentManager);
+            FragmentHelper.addFragment(fragmentManager, baseFragment, fragment.getName());
+        }
     }
 
     @Override
