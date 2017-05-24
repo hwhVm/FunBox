@@ -1,5 +1,6 @@
 package com.beini.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -30,6 +31,7 @@ public class FragmentHelper {
      * @param fragment
      * @param fragmentTag
      */
+    @SuppressLint("ResourceType")
     public static void addFragment(FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
         if (fragmentManager != null && fragment != null) {
             FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -50,6 +52,7 @@ public class FragmentHelper {
      * @param fragmentManager
      * @param fragment
      */
+    @SuppressLint("ResourceType")
     public static void showFragment(FragmentManager fragmentManager, Fragment fragment) {
         hideAllFragment(fragmentManager);
         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -67,6 +70,7 @@ public class FragmentHelper {
      * @param fragmentManager
      * @param fragment
      */
+    @SuppressLint("ResourceType")
     public static void removeFragment(FragmentManager fragmentManager, Fragment fragment) {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         if (fragment != null) {

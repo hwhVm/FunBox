@@ -7,7 +7,6 @@ import com.beini.ndk.NDKMain;
 import com.beini.utils.CrashHandler;
 import com.beini.utils.SystemUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -49,7 +48,7 @@ public class BaseApplication extends MultiDexApplication {
             ndk = new NDKMain();
             Fresco.initialize(getInstance());
             CrashHandler.getInstance().init(getApplicationContext());
-            Stetho.initializeWithDefaults(this);
+//            Stetho.initializeWithDefaults(this);
         }
     }
 

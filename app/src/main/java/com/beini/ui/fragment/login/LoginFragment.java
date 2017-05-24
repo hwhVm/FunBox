@@ -1,6 +1,5 @@
 package com.beini.ui.fragment.login;
 
-import android.os.Build;
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,10 +10,6 @@ import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.home.HomeFragment;
 import com.beini.ui.fragment.login.model.LoginModel;
-import com.beini.utils.BLog;
-import com.beini.utils.permission.EasyPermissions;
-
-import java.util.List;
 
 /**
  * Created by beini on 2017/2/9.
@@ -43,23 +38,6 @@ public class LoginFragment extends BaseFragment {
                 loginModel.login();
                 break;
         }
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            BLog.d("     "+(!EasyPermissions.somePermissionPermanentlyDenied(this, perms)));
-
-            if (!EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-                baseActivity.remove(LoginFragment.this);
-//                baseActivity.goToHome();
-            } else {
-
-                return;
-            }
-        }
-
-
     }
 
     // get   set

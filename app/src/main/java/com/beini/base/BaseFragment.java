@@ -2,7 +2,6 @@ package com.beini.base;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,10 +11,6 @@ import android.view.ViewGroup;
 import com.beini.bind.ViewInjectorImpl;
 import com.beini.ui.view.dialog.DialogUtil;
 import com.beini.ui.view.dialog.UIDialog;
-import com.beini.utils.BLog;
-import com.beini.utils.permission.EasyPermissions;
-
-import java.util.List;
 
 
 /**
@@ -23,7 +18,7 @@ import java.util.List;
  */
 
 
-public abstract class BaseFragment extends Fragment implements EasyPermissions.PermissionCallbacks {
+public abstract class BaseFragment extends Fragment {
     public BaseActivity baseActivity;
 
     @Nullable
@@ -59,38 +54,6 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
     }
 
     public void returnLoad() {
-    }
-
-    public void checkPermissionMethod(String[] perms, String tipStr, int code) {
-        BLog.d("       EasyPermissions.hasPermissions(baseActivity, perms)="+EasyPermissions.hasPermissions(baseActivity, perms));
-        if (!EasyPermissions.hasPermissions(baseActivity, perms)) {
-            EasyPermissions.requestPermissions(this, tipStr, code, perms);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        BLog.d("  onRequestPermissionsResult   "+ requestCode );
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-        BLog.d("    onPermissionsGranted  " + requestCode);
-
-    }
-
-
-    @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            BLog.d("   onPermissionsDenied  " + requestCode + "   " + (EasyPermissions.somePermissionPermanentlyDenied(this, perms)));
-            if (!EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-//                            new AppSettingsDialog.Builder(this).build().show();
-
-            }
-        }
     }
 
     @Override

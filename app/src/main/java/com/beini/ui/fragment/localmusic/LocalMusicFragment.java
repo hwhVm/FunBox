@@ -25,7 +25,6 @@ import com.beini.ui.fragment.localmusic.service.MusicService;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import static android.content.Context.BIND_AUTO_CREATE;
 
@@ -84,10 +83,6 @@ public class LocalMusicFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-
-    }
 
     @Event({R.id.btn_last, R.id.btn_next, R.id.btn_start, R.id.btn_stop,R.id.btn_play_net_music})
     public void onClick(View v) {

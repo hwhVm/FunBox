@@ -1,6 +1,5 @@
 package com.beini.ui.fragment.camera;
 
-import android.Manifest;
 import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
@@ -51,7 +50,7 @@ public class CameraFragment extends BaseFragment implements OnTouchEventListener
         surfaceView.getHolder().setKeepScreenOn(true);// 屏幕常亮
         surfaceView.getHolder().addCallback(new SurfaceCallback());//为SurfaceView的句柄添加一个回调函数
         baseActivity.setOnTouchEventListener(this);
-        checkPermissionMethod(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, "ff", 44);
+//        checkPermissionMethod(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, "ff", 44);
     }
 
     @Event({R.id.takepicture, R.id.scalePic})

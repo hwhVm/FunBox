@@ -43,7 +43,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        checkPermissionMethod(perms, " ask  camera permission", 22);
+//        checkPermissionMethod(perms, " ask  camera permission", 22);
         functionList.add("cpp");
         functionList.add("recording");
         functionList.add("Shake");
