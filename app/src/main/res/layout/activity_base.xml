@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:clipToPadding="true"
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context=".base.BaseActivity">
     <!--AppBarLayout继承自LinearLayout，布局方向为垂直方向。
@@ -14,7 +15,8 @@
     它可以让你定制当某个可滚动View的滚动手势发生变化时，其内部的子View实现何种动作。-->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar

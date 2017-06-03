@@ -20,6 +20,7 @@ import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.ui.fragment.picPicker.PicPickeFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.beini.ui.fragment.video.VideoFragment;
+import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
 import com.beini.ui.fragment.websocket.WebScoketFragment;
 import com.beini.ui.fragment.webview.WebViewTestFragment;
 import com.beini.ui.fragment.wifi.WfiListFragment;
@@ -52,6 +53,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("webSocket");
         functionList.add("pic picker");
         functionList.add("args");
+        functionList.add("ViewFlippeFragment");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -98,7 +100,10 @@ public class Rb2Fragment extends BaseFragment {
                 case 11:
                     Bundle args = new Bundle();
                     args.putString("name", "beini");
-                    baseActivity.replaceFragment(ArgsFragment.class,args);
+                    baseActivity.replaceFragment(ArgsFragment.class, args);
+                    break;
+                case 12:
+                    baseActivity.replaceFragment(ViewFlippeFragment.class);
                     break;
             }
         }
