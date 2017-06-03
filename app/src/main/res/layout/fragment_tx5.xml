@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beini.ui.fragment.webview.tx5.Tx5Fragment">
+
+    <Button
+        android:id="@+id/btn_webview_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进入全屏播放视频" />
+
+    <com.beini.ui.fragment.webview.tx5.utils.X5WebView
+        android:id="@+id/forum_context"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
+
+</LinearLayout>
