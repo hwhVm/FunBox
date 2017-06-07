@@ -11,14 +11,16 @@ import android.widget.Toast;
 
 import com.beini.R;
 import com.beini.base.BaseFragment;
+import com.beini.bean.BaseEntity;
+import com.beini.bean.UserInfo;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.db.cache.FileUtil;
 import com.beini.net.NetUtil;
 import com.beini.net.RxNetUtil;
+import com.beini.net.RxSchedulers;
 import com.beini.net.help.ProgressDownloader;
-import com.beini.net.okhttp.OkhttpUtils;
 import com.beini.net.request.PageRequest;
 import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
@@ -26,14 +28,17 @@ import com.beini.net.response.ProgressResponseBody;
 import com.beini.ui.fragment.net.model.NetModel;
 import com.beini.utils.BLog;
 
+import org.greenrobot.greendao.annotation.NotNull;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.subscribers.ResourceSubscriber;
 import okhttp3.ResponseBody;
@@ -178,26 +183,26 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
 //                        BLog.d(" "+t.getLocalizedMessage());
 //                    }
 //                });
-//                RxNetUtil.getSingleton().insertRxUserRequest(userRequest, new ResourceSubscriber<BaseResponseJson>() {
-//
-//                    @Override
-//                    public void onNext(@NotNull BaseResponseJson baseResponseJson) {
-//                        BLog.d("        onNext  " + (baseResponseJson == null));
-//                        if (baseResponseJson != null) {
-//                            BLog.d("        " + baseResponseJson.getReturnCode());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable t) {
-//                        BLog.d("        onError  " + t.getLocalizedMessage());
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        BLog.d("        onComplete  ");
-//                    }
-//                }, AndroidSchedulers.mainThread());
+                RxNetUtil.getSingleton().insertRxUserRequest(userRequest, new ResourceSubscriber<BaseResponseJson>() {
+
+                    @Override
+                    public void onNext(@NotNull BaseResponseJson baseResponseJson) {
+                        BLog.d("        onNext  " + (baseResponseJson == null));
+                        if (baseResponseJson != null) {
+                            BLog.d("        " + baseResponseJson.getReturnCode());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        BLog.d("        onError  " + t.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        BLog.d("        onComplete  ");
+                    }
+                }, AndroidSchedulers.mainThread());
 
                 RxNetUtil.getSingleton().sendRequest("insertUserM", userRequest, new ResourceSubscriber<BaseResponseJson>() {
                     @Override
@@ -378,5 +383,39 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
         File f3 = new File(Environment.getExternalStorageDirectory() + File.separator + "Jjj.apk");
         files.add(f3);
         return files;
+    }
+
+    public void testRxJavaRetrofit2(String userId, String password,android.content.Context context) {
+        Observable<BaseEntity<UserInfo>> observable = RxNetUtil.login(userId, password);
+        observable.compose(RxSchedulers.compose()).subscribe(new Observer<Object>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+
+//        observable.compose(RxSchedulers.compose()).subscribe(new BaseObserver<UserInfo>(context) {
+//            @Override
+//            protected void onHandleSuccess(UserInfo userInfo) {
+//                // 保存用户信息等操作
+//            }
+//        });
+
+
     }
 }
