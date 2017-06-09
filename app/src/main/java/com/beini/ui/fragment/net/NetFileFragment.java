@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.beini.R;
 import com.beini.base.BaseFragment;
-import com.beini.bean.BaseEntity;
 import com.beini.bean.UserInfo;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
@@ -36,10 +35,12 @@ import java.util.List;
 import java.util.Set;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
+import io.reactivex.functions.Function;
 import io.reactivex.subscribers.ResourceSubscriber;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -385,8 +386,15 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
         return files;
     }
 
-    public void testRxJavaRetrofit2(String userId, String password,android.content.Context context) {
-        Observable<BaseEntity<UserInfo>> observable = RxNetUtil.login(userId, password);
+    public void testRxJavaRetrofit2(String userId, String password, android.content.Context context) {
+        Observable<UserInfo> observable = RxNetUtil.login(userId, password);
+
+        observable.retryWhen(new Function<Observable<Throwable>, ObservableSource<?>>() {
+            @Override
+            public ObservableSource<?> apply(Observable<Throwable> throwableObservable) throws Exception {
+                return null;
+            }
+        });
         observable.compose(RxSchedulers.compose()).subscribe(new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -408,13 +416,6 @@ public class NetFileFragment extends BaseFragment implements ProgressResponseBod
 
             }
         });
-
-//        observable.compose(RxSchedulers.compose()).subscribe(new BaseObserver<UserInfo>(context) {
-//            @Override
-//            protected void onHandleSuccess(UserInfo userInfo) {
-//                // 保存用户信息等操作
-//            }
-//        });
 
 
     }

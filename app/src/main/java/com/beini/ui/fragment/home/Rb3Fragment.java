@@ -11,7 +11,7 @@ import com.beini.base.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
+import com.beini.ui.fragment.webtest.ShiroFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Rb3Fragment extends BaseFragment {
     public void initView() {
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
-        functionList.add(" 1");
+        functionList.add(" shiro权限框架测试");
         functionList.add(" 2");
         functionList.add(" 3");
         functionList.add(" 4");
@@ -47,7 +47,7 @@ public class Rb3Fragment extends BaseFragment {
         public void onItemClick(View view, int position) {
             switch (position) {
                 case 0:
-                    baseActivity.replaceFragment(FacereCongnitioonFragment.class);
+                    baseActivity.replaceFragment(ShiroFragment.class);
                     break;
             }
         }

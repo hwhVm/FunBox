@@ -5,5 +5,5 @@ package com.beini.constants;
  */
 
 public class NetConstants {
-    public static String baseUrl = "http://10.0.0.53:8080/";
+    public static String baseUrl = "http://10.0.0.42:8080/";
 }

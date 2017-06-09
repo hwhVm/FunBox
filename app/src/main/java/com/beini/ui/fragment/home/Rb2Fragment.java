@@ -18,6 +18,7 @@ import com.beini.ui.fragment.fingerprint.FingerprintFragment;
 import com.beini.ui.fragment.green.GreenDaoFragment;
 import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.ui.fragment.picPicker.PicPickeFragment;
+import com.beini.ui.fragment.rx.RxRetryFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.beini.ui.fragment.video.VideoFragment;
 import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
@@ -56,6 +57,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("args");
         functionList.add("ViewFlippeFragment");
         functionList.add("t x5 browser");
+        functionList.add("rx重试机制");
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.setAdapter(homeListAdapter);
@@ -109,6 +111,9 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 13:
                     baseActivity.replaceFragment(Tx5Fragment.class);
+                    break;
+                case 14:
+                    baseActivity.replaceFragment(RxRetryFragment.class);
                     break;
             }
         }

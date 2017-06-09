@@ -2,7 +2,6 @@ package com.beini.net;
 
 import android.support.annotation.NonNull;
 
-import com.beini.bean.BaseEntity;
 import com.beini.bean.UserInfo;
 import com.beini.constants.NetConstants;
 import com.beini.net.request.UserRequest;
@@ -109,7 +108,7 @@ public class RxNetUtil<T> {
      * @param password
      * @return
      */
-    public static Observable<BaseEntity<UserInfo>>  login(String userId, String password) {
+    public static Observable<UserInfo>  login(String userId, String password) {
 
         return rxReServer.login(userId, password);
     }

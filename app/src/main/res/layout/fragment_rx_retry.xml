@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beini.ui.fragment.rx.RxRetryFragment">
+
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="retry" />
+
+    <Button
+        android:id="@+id/btn_repeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="repeat" />
+
+    <Button
+        android:id="@+id/btn_retrywhen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="retryWhen" />
+
+    <Button
+        android:id="@+id/btn_repeat_when"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="repeatWhen" />
+
+</LinearLayout>
