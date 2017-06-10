@@ -25,10 +25,9 @@ public class ShiroFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        baseActivity.setTopBar(View.VISIBLE);
     }
 
-    @Event(R.id.btn_shiro_test)
+    @Event({R.id.btn_shiro_test, R.id.btn_shiro_has_role})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_shiro_test:
@@ -36,8 +35,22 @@ public class ShiroFragment extends BaseFragment {
                 Map<String, String> maps = new HashMap<>();
                 maps.put("name", "beini1");
 //                maps.put("password","1234560");
-                maps.put("password","d8e423a9d5eb97da9e2d58cd57b92808");
+                maps.put("password", "d8e423a9d5eb97da9e2d58cd57b92808");
                 NetUtil.getSingleton().sendPostWithParm("dologin", maps).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        BLog.d("   respone==" + response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        BLog.d("    t==" + t.getLocalizedMessage());
+                    }
+                });
+                break;
+            case R.id.btn_shiro_has_role:
+                Map<String, String> noParm = new HashMap<>();
+                NetUtil.getSingleton().sendPostWithParm("queryAllLeader", noParm).enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         BLog.d("   respone==" + response.body());
@@ -55,6 +68,5 @@ public class ShiroFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        baseActivity.setTopBar(View.GONE);
     }
 }

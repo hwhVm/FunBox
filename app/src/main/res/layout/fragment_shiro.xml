@@ -1,7 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.beini.ui.fragment.webtest.ShiroFragment">
 
     <Button
@@ -10,4 +11,10 @@
         android:layout_height="wrap_content"
         android:text="Shiro 测试" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_shiro_has_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shiro 测试 是否有某种权限" />
+
+</LinearLayout>

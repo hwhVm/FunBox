@@ -12,7 +12,6 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,8 +64,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
         fragmentManager = getFragmentManager();
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  //透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);  //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  //透明状态栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);  //透明导航栏
         ViewInjectorImpl.registerInstance(this);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         this.initView();
