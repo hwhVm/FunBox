@@ -25,7 +25,7 @@ public class ShiroFragment extends BaseFragment {
 
     @Override
     public void initView() {
-
+        baseActivity.setTopBar(View.VISIBLE);
     }
 
     @Event(R.id.btn_shiro_test)
@@ -50,5 +50,11 @@ public class ShiroFragment extends BaseFragment {
                 });
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        baseActivity.setTopBar(View.GONE);
     }
 }
