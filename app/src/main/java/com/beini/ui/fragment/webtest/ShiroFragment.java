@@ -50,7 +50,7 @@ public class ShiroFragment extends BaseFragment {
                 break;
             case R.id.btn_shiro_has_role:
                 Map<String, String> noParm = new HashMap<>();
-                NetUtil.getSingleton().sendPostWithParm("queryAllLeader", noParm).enqueue(new Callback<String>() {
+                    NetUtil.getSingleton().sendPostWithParm("queryAllLeader", noParm).enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         BLog.d("   respone==" + response.body());
