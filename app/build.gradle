@@ -111,4 +111,7 @@ dependencies {
     //谷歌图片加载框架
     implementation 'com.android.support:support-v4:25.3.1'
     compile files('libs/tx5.jar')
+    //添加rxbind
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
 }

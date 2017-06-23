@@ -14,7 +14,7 @@ import android.view.MotionEvent;
 public class ColorSelectBar extends android.support.v7.widget.AppCompatSeekBar {
     private int[] mSelectorArray;
     private int offset;
-    private int defaultColor = -15204608;//drawable == null || dot == null给个默认值 绿色
+    private int defaultColor = -15204608;//给个默认值 绿色
 
     public ColorSelectBar(Context context) {
         this(context, null);
@@ -76,7 +76,7 @@ public class ColorSelectBar extends android.support.v7.widget.AppCompatSeekBar {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        this.getParent().requestDisallowInterceptTouchEvent(true);
+        this.getParent().requestDisallowInterceptTouchEvent(true);//通知父类不要拦截事件
         super.onTouchEvent(event);
         return true;
     }

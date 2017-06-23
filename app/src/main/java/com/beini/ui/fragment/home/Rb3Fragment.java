@@ -11,6 +11,7 @@ import com.beini.base.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
+import com.beini.ui.fragment.rgb.ColorPickerFragment;
 import com.beini.ui.fragment.rgb.RGBFragment;
 import com.beini.ui.fragment.webtest.ShiroFragment;
 
@@ -52,6 +53,9 @@ public class Rb3Fragment extends BaseFragment {
                     break;
                 case 1:
                     baseActivity.replaceFragment(RGBFragment.class);
+                    break;
+                case 2:
+                    baseActivity.replaceFragment(ColorPickerFragment.class);
                     break;
             }
         }
