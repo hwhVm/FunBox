@@ -11,6 +11,7 @@ import com.beini.base.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
+import com.beini.ui.fragment.rgb.RGBFragment;
 import com.beini.ui.fragment.webtest.ShiroFragment;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class Rb3Fragment extends BaseFragment {
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         functionList.add(" shiro权限框架测试");
-        functionList.add(" 2");
+        functionList.add(" rgb");
         functionList.add(" 3");
         functionList.add(" 4");
         functionList.add(" 5");
@@ -48,6 +49,9 @@ public class Rb3Fragment extends BaseFragment {
             switch (position) {
                 case 0:
                     baseActivity.replaceFragment(ShiroFragment.class);
+                    break;
+                case 1:
+                    baseActivity.replaceFragment(RGBFragment.class);
                     break;
             }
         }

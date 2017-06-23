@@ -90,7 +90,7 @@ dependencies {
     //
     compile 'com.google.dagger:dagger:2.7'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
-    //脸部识别
+    //人脸部识别
     compile 'com.google.android.gms:play-services-vision:8.1.0'
     compile 'com.android.support:cardview-v7:21.0.3'
     compile 'com.android.support:multidex:1.0.1'
