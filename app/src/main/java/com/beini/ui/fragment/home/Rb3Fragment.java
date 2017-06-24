@@ -33,7 +33,7 @@ public class Rb3Fragment extends BaseFragment {
         baseActivity.setTopBar(View.GONE);
         functionList.add(" shiro权限框架测试");
         functionList.add(" rgb");
-        functionList.add(" 3");
+        functionList.add(" 拾色器");
         functionList.add(" 4");
         functionList.add(" 5");
         functionList.add(" 6");
