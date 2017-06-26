@@ -22,6 +22,7 @@ import com.beini.ui.fragment.rx.RxRetryFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.beini.ui.fragment.video.VideoFragment;
 import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
+import com.beini.ui.fragment.websocket.OkhttpWebSocketFragment;
 import com.beini.ui.fragment.websocket.WebScoketFragment;
 import com.beini.ui.fragment.webview.WebViewTestFragment;
 import com.beini.ui.fragment.webview.tx5.Tx5Fragment;
@@ -53,6 +54,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("WfiListFragment");
         functionList.add("FingerprintFragment");
         functionList.add("webSocket");
+        functionList.add("OkHttp WebSocket");
         functionList.add("pic picker");
         functionList.add("args");
         functionList.add("ViewFlippeFragment");
@@ -99,20 +101,23 @@ public class Rb2Fragment extends BaseFragment {
                     baseActivity.replaceFragment(WebScoketFragment.class);
                     break;
                 case 10:
-                    baseActivity.replaceFragment(PicPickeFragment.class);
+                    baseActivity.replaceFragment(OkhttpWebSocketFragment.class);
                     break;
                 case 11:
+                    baseActivity.replaceFragment(PicPickeFragment.class);
+                    break;
+                case 12:
                     Bundle args = new Bundle();
                     args.putString("name", "beini");
                     baseActivity.replaceFragment(ArgsFragment.class, args);
                     break;
-                case 12:
+                case 13:
                     baseActivity.replaceFragment(ViewFlippeFragment.class);
                     break;
-                case 13:
+                case 14:
                     baseActivity.replaceFragment(Tx5Fragment.class);
                     break;
-                case 14:
+                case 15:
                     baseActivity.replaceFragment(RxRetryFragment.class);
                     break;
             }
