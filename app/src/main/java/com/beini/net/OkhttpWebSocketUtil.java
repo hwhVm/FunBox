@@ -27,6 +27,7 @@ public class OkhttpWebSocketUtil {
                 .readTimeout(3000, TimeUnit.SECONDS)//设置读取超时时间
                 .writeTimeout(3000, TimeUnit.SECONDS)//设置写的超时时间
                 .connectTimeout(3000, TimeUnit.SECONDS)//设置连接超时时间
+                .pingInterval(10, TimeUnit.SECONDS) // websocket 轮训间隔
                 .build();
         String ip = "10.0.0.35";
         String port = "8080/webSocketServer";
