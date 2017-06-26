@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.beini.ui.fragment.websocket.OkhttpWebSocketFragment">
+    tools:context="com.beini.ui.fragment.websocketandsocket.OkhttpWebSocketFragment">
 
     <Button
         android:id="@+id/btn_okhttp_connect_websocket"

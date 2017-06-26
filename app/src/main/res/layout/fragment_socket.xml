@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_connetc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试连接" />
+    <Button
+        android:id="@+id/btn_stop_socket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试连接" />
+
+    <Button
+        android:id="@+id/btn_screen_shot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="截屏" />
+
+    <Button
+        android:id="@+id/btn_alt_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="按下Alt+TAB键（切换桌面窗口）" />
+
+</LinearLayout>

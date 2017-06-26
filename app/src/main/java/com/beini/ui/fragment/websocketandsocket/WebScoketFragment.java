@@ -1,4 +1,4 @@
-package com.beini.ui.fragment.websocket;
+package com.beini.ui.fragment.websocketandsocket;
 
 
 import android.support.design.widget.Snackbar;

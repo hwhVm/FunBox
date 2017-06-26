@@ -22,8 +22,9 @@ import com.beini.ui.fragment.rx.RxRetryFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.beini.ui.fragment.video.VideoFragment;
 import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
-import com.beini.ui.fragment.websocket.OkhttpWebSocketFragment;
-import com.beini.ui.fragment.websocket.WebScoketFragment;
+import com.beini.ui.fragment.websocketandsocket.OkhttpWebSocketFragment;
+import com.beini.ui.fragment.websocketandsocket.SocketFragment;
+import com.beini.ui.fragment.websocketandsocket.WebScoketFragment;
 import com.beini.ui.fragment.webview.WebViewTestFragment;
 import com.beini.ui.fragment.webview.tx5.Tx5Fragment;
 import com.beini.ui.fragment.wifi.WfiListFragment;
@@ -55,6 +56,7 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add("FingerprintFragment");
         functionList.add("webSocket");
         functionList.add("OkHttp WebSocket");
+        functionList.add("Socket");
         functionList.add("pic picker");
         functionList.add("args");
         functionList.add("ViewFlippeFragment");
@@ -104,20 +106,23 @@ public class Rb2Fragment extends BaseFragment {
                     baseActivity.replaceFragment(OkhttpWebSocketFragment.class);
                     break;
                 case 11:
-                    baseActivity.replaceFragment(PicPickeFragment.class);
+                    baseActivity.replaceFragment(SocketFragment.class);
                     break;
                 case 12:
+                    baseActivity.replaceFragment(PicPickeFragment.class);
+                    break;
+                case 13:
                     Bundle args = new Bundle();
                     args.putString("name", "beini");
                     baseActivity.replaceFragment(ArgsFragment.class, args);
                     break;
-                case 13:
+                case 14:
                     baseActivity.replaceFragment(ViewFlippeFragment.class);
                     break;
-                case 14:
+                case 15:
                     baseActivity.replaceFragment(Tx5Fragment.class);
                     break;
-                case 15:
+                case 16:
                     baseActivity.replaceFragment(RxRetryFragment.class);
                     break;
             }
