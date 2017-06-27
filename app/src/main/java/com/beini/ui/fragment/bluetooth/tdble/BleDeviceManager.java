@@ -3,7 +3,7 @@ package com.beini.ui.fragment.bluetooth.tdble;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.ArrayList;
 import java.util.List;

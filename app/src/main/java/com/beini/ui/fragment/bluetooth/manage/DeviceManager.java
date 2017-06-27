@@ -6,7 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Build;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.ArrayList;
 import java.util.List;

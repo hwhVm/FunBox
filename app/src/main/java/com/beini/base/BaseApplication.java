@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.beini.ndk.NDKMain;
-import com.beini.utils.CrashHandler;
-import com.beini.utils.SystemUtil;
+import com.beini.util.CrashHandler;
+import com.beini.util.SystemUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;

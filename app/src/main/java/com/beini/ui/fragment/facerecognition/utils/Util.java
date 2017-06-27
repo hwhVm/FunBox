@@ -8,7 +8,7 @@ import android.media.ExifInterface;
 import android.util.SparseArray;
 import android.view.Surface;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;

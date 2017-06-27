@@ -7,7 +7,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.List;
 

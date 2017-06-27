@@ -16,7 +16,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.Arrays;
 import java.util.List;

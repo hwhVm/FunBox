@@ -1,13 +1,11 @@
 package com.beini.ui.fragment.wifi;
 
 import android.net.wifi.ScanResult;
-import android.net.wifi.WifiInfo;
 import android.support.v7.widget.RecyclerView;
 
 import com.beini.R;
 import com.beini.adapter.BaseAdapter;
 import com.beini.bean.BaseBean;
-import com.beini.utils.BLog;
 
 import java.util.List;
 

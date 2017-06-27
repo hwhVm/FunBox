@@ -5,7 +5,7 @@ import android.util.Log;
 import com.beini.R;
 import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

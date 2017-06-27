@@ -18,8 +18,8 @@ import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.event.PlayVoiceStatus;
 import com.beini.ui.fragment.recording.model.VoiceModel;
-import com.beini.utils.BLog;
-import com.beini.utils.VoiceUtils;
+import com.beini.util.BLog;
+import com.beini.util.VoiceUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

@@ -22,8 +22,8 @@ import android.widget.TextView;
 
 import com.beini.R;
 import com.beini.ui.view.edit.EmojiAndChatFilter;
-import com.beini.utils.Px_DipUtils;
-import com.beini.utils.StringUtils;
+import com.beini.util.Px_DipUtils;
+import com.beini.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

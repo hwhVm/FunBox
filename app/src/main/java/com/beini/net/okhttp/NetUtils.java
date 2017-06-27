@@ -3,7 +3,7 @@ package com.beini.net.okhttp;
 import android.os.Environment;
 import android.util.Log;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.io.File;
 import java.io.FileOutputStream;

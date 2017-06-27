@@ -14,7 +14,7 @@ import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.zxing.activity.CaptureActivity;
 import com.beini.ui.fragment.zxing.encoding.EncodingUtils;
-import com.beini.utils.listener.ActivityResultListener;
+import com.beini.util.listener.ActivityResultListener;
 
 /**
  * https://github.com/zxing/zxing

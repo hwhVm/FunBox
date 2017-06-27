@@ -6,7 +6,7 @@ import android.media.ThumbnailUtils;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.io.File;
 import java.io.FileOutputStream;

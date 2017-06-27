@@ -1,6 +1,6 @@
 package com.beini.ui.fragment.bluetooth.ble;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 /**
  * Created by beini on 2017/3/17.

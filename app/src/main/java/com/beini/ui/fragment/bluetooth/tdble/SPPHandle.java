@@ -3,7 +3,7 @@ package com.beini.ui.fragment.bluetooth.tdble;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.io.IOException;
 import java.io.InputStream;

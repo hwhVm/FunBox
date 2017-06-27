@@ -25,7 +25,7 @@ import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.net.response.ProgressResponseBody;
 import com.beini.ui.fragment.net.model.NetModel;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import org.greenrobot.greendao.annotation.NotNull;
 

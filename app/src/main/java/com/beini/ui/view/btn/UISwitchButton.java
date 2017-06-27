@@ -18,7 +18,7 @@ import android.view.ViewParent;
 import android.widget.CheckBox;
 
 import com.beini.R;
-import com.beini.utils.Px_Dip;
+import com.beini.util.Px_Dip;
 
 
 public class UISwitchButton extends CheckBox {

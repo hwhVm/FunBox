@@ -6,7 +6,7 @@ import com.beini.net.NetUtil;
 import com.beini.net.request.LoginRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.ui.fragment.login.LoginFragment;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import retrofit2.Call;
 import retrofit2.Callback;

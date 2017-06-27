@@ -10,7 +10,7 @@ import com.beini.R;
 import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.io.BufferedReader;

@@ -9,7 +9,6 @@ import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.ui.view.ColorSelectBar;
-import com.beini.utils.BLog;
 
 /**
  * Create by beini 2017/6/23

@@ -14,7 +14,7 @@ import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.facerecognition.utils.Util;
 import com.beini.ui.fragment.facerecognition.view.MImageView;
 import com.beini.ui.fragment.facerecognition.view.MSurfaceView;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 
 /**

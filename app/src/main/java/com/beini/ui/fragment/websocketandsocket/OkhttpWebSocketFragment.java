@@ -9,7 +9,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.net.NetUtil;
 import com.beini.net.OkhttpWebSocketUtil;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.HashMap;

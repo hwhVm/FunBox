@@ -18,10 +18,10 @@ import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.camera.presenter.MainPresenter;
-import com.beini.utils.BLog;
-import com.beini.utils.SnackbarUtil;
-import com.beini.utils.listener.KeyBackListener;
-import com.beini.utils.listener.OnTouchEventListener;
+import com.beini.util.BLog;
+import com.beini.util.SnackbarUtil;
+import com.beini.util.listener.KeyBackListener;
+import com.beini.util.listener.OnTouchEventListener;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;

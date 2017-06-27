@@ -7,7 +7,7 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.Map;
 import java.util.Set;

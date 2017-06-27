@@ -6,7 +6,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 
 /**

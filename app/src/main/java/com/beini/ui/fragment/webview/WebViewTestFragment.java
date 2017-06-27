@@ -20,7 +20,7 @@ import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,6 +1,6 @@
 package com.beini.net.response;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.io.IOException;
 

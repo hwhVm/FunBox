@@ -7,7 +7,7 @@ import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.io.File;
 import java.io.IOException;

@@ -11,7 +11,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.db.greendao.GreenDaoManage;
 import com.beini.db.greendao.UserDao;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.List;
 

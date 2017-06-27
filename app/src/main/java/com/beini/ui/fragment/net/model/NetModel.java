@@ -5,7 +5,7 @@ import android.os.Environment;
 import com.beini.db.io.FileUtil;
 import com.beini.net.NetUtil;
 import com.beini.ui.fragment.net.NetFileFragment;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import io.reactivex.Flowable;
 import io.reactivex.functions.Consumer;

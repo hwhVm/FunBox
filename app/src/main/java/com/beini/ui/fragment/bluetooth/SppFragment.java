@@ -24,8 +24,8 @@ import com.beini.ui.fragment.bluetooth.ble.Global;
 import com.beini.ui.fragment.bluetooth.ble.SmartBLEService;
 import com.beini.ui.fragment.bluetooth.ble.SppProc;
 import com.beini.ui.fragment.bluetooth.ble.SyncHelper;
-import com.beini.utils.BLog;
-import com.beini.utils.listener.ActivityResultListener;
+import com.beini.util.BLog;
+import com.beini.util.listener.ActivityResultListener;
 
 import java.util.HashMap;
 import java.util.Map;

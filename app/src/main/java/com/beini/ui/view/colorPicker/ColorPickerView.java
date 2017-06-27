@@ -31,7 +31,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 /**
  * 向用户显示一个颜色选择器,允许他们选择一个颜色。

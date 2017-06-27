@@ -12,7 +12,7 @@ import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.service.DemoService;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 /**
  * Create by beini  2017/3/21

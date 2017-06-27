@@ -22,13 +22,13 @@ import com.beini.bind.ViewInjectorImpl;
 import com.beini.ui.fragment.home.HomeFragment;
 import com.beini.ui.fragment.home.Rb2Fragment;
 import com.beini.ui.fragment.home.Rb3Fragment;
-import com.beini.utils.BLog;
-import com.beini.utils.FragmentHelper;
-import com.beini.utils.ObjectUtil;
-import com.beini.utils.WindowUtils;
-import com.beini.utils.listener.ActivityResultListener;
-import com.beini.utils.listener.KeyBackListener;
-import com.beini.utils.listener.OnTouchEventListener;
+import com.beini.util.BLog;
+import com.beini.util.FragmentHelper;
+import com.beini.util.ObjectUtil;
+import com.beini.util.WindowUtils;
+import com.beini.util.listener.ActivityResultListener;
+import com.beini.util.listener.KeyBackListener;
+import com.beini.util.listener.OnTouchEventListener;
 
 /**
  * Created by beini on 2017/2/8.

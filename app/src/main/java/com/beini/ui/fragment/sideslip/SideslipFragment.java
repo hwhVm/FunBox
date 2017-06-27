@@ -13,7 +13,7 @@ import com.beini.R;
 import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.utils.listener.KeyBackListener;
+import com.beini.util.listener.KeyBackListener;
 
 @ContentView(R.layout.fragment_sideslip)
 public class SideslipFragment extends BaseFragment implements NavigationView.OnNavigationItemSelectedListener, KeyBackListener {

@@ -7,7 +7,7 @@ import com.beini.base.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.ui.view.colorPicker.ColorPickerView;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 @ContentView(R.layout.fragment_color_picker)
 public class ColorPickerFragment extends BaseFragment {

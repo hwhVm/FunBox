@@ -30,8 +30,8 @@ import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
-import com.beini.utils.BLog;
-import com.beini.utils.listener.ActivityResultListener;
+import com.beini.util.BLog;
+import com.beini.util.listener.ActivityResultListener;
 
 import org.greenrobot.eventbus.EventBus;
 

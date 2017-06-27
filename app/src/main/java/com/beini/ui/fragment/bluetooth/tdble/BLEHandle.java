@@ -8,7 +8,7 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
 
 import com.beini.base.BaseApplication;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.List;
 import java.util.UUID;

@@ -16,7 +16,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.net.utils.GetWifiInfoUtil;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import java.util.List;
 

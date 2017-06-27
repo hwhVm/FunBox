@@ -1,22 +1,16 @@
 package com.beini.net.okhttp;
 
 import android.os.Environment;
-import android.util.Log;
 
 import com.beini.constants.NetConstants;
-import com.beini.utils.BLog;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  * Created by beini on 2017/4/21.

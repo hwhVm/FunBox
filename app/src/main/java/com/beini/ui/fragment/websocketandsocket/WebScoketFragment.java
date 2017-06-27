@@ -13,7 +13,7 @@ import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.net.NetUtil;
 import com.beini.ui.fragment.notification.NotifyUtility;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;

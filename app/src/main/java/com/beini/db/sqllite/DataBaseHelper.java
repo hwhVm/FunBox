@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 /**
  * Created by beini on 2016/5/4.

@@ -6,7 +6,7 @@ import android.net.DhcpInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 
 
 /**

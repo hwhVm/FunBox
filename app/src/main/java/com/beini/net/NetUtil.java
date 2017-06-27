@@ -6,7 +6,7 @@ import com.beini.base.BaseApplication;
 import com.beini.constants.NetConstants;
 import com.beini.net.request.BaseRequestJson;
 import com.beini.net.response.BaseResponseJson;
-import com.beini.utils.BLog;
+import com.beini.util.BLog;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
