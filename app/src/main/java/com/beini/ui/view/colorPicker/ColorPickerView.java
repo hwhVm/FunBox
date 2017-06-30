@@ -45,35 +45,6 @@ public class ColorPickerView extends View {
     private final static int PANEL_SAT_VAL = 0;
     private final static int PANEL_HUE = 1;
 
-    /**
-     * The width in pixels of the border
-     * surrounding all color panels.
-     */
-    private final static float BORDER_WIDTH_PX = 1;
-
-    /**
-     * The width in dp of the hue panel.
-     */
-    private float HUE_PANEL_WIDTH = 30f;
-    /**
-     * The height in dp of the alpha panel
-     */
-    private float ALPHA_PANEL_HEIGHT = 20f;
-    /**
-     * The distance in dp between the different
-     * color panels.
-     */
-    private float PANEL_SPACING = 10f;
-    /**
-     * The radius in dp of the color palette tracker circle.
-     */
-    private float PALETTE_CIRCLE_TRACKER_RADIUS = 5f;
-    /**
-     * The dp which the tracker of the hue or alpha panel
-     * will extend outside of its bounds.
-     */
-    private float RECTANGLE_TRACKER_OFFSET = 2f;
-
 
     private float mDensity = 1f;
 
@@ -99,7 +70,7 @@ public class ColorPickerView extends View {
     private int colorStart = 0xffffffff;
     private int colorEnd = 0xff000000;
     //
-    private int colorCicular=0xffdddddd;
+    private int colorCicular = 0xffdddddd;
     /*
      * To remember which panel that has the "focus" when
      * processing hardware button data.
@@ -111,19 +82,17 @@ public class ColorPickerView extends View {
      * the finger tracker will get clipped when
      * it is drawn outside of the view.
      */
-    private float mDrawingOffset;
-    /*
-     * Distance form the edges of the view
-     * of where we are allowed to draw.
-     */
     private RectF mSatValRect;
     private RectF mHueRect;
 
+    private float PALETTE_CIRCLE_TRACKER_RADIUS = 5f;
+    private float RECTANGLE_TRACKER_OFFSET = 2f;
 
     private Point mStartTouchPoint = null;
 
     private int screenWidth;
     private int screenHeight;
+
 
     public interface OnColorChangedListener {
         void onColorChanged(int color);
@@ -152,11 +121,6 @@ public class ColorPickerView extends View {
 
         PALETTE_CIRCLE_TRACKER_RADIUS *= mDensity;
         RECTANGLE_TRACKER_OFFSET *= mDensity;
-        HUE_PANEL_WIDTH *= mDensity;
-        ALPHA_PANEL_HEIGHT *= mDensity;
-        PANEL_SPACING = PANEL_SPACING * mDensity;
-
-        mDrawingOffset = calculateRequiredOffset();//计算所需位移
 
         //初始化绘制三区域的画笔
         mSatValPaint = new Paint();
@@ -176,14 +140,7 @@ public class ColorPickerView extends View {
         //Needed for receiving trackball motion events. 设置焦点
         setFocusable(true);
         setFocusableInTouchMode(true);
-    }
 
-
-    private float calculateRequiredOffset() {
-        float offset = Math.max(PALETTE_CIRCLE_TRACKER_RADIUS, RECTANGLE_TRACKER_OFFSET);
-        offset = Math.max(offset, BORDER_WIDTH_PX * mDensity);
-
-        return offset * 1.5f;
     }
 
     private int[] buildHueColorArray() {
@@ -203,6 +160,7 @@ public class ColorPickerView extends View {
     protected void onDraw(Canvas canvas) {
         drawSatValPanel(canvas);//绘制饱和度选择区域
         drawHuePanel(canvas);//绘制右侧色相选择区域
+
     }
 
     /**
@@ -213,11 +171,10 @@ public class ColorPickerView extends View {
     private void drawSatValPanel(Canvas canvas) {
 
         final RectF rect = mSatValRect;
-
         //明度线性渲染器
         if (mValShader == null) {
             mValShader = new LinearGradient(rect.left, rect.top, rect.left, rect.bottom,
-                    colorStart   , colorEnd, TileMode.CLAMP);
+                    colorStart, colorEnd, TileMode.CLAMP);
         }
         //HSV转化为RGB
         int rgb = Color.HSVToColor(new float[]{mHue, 1f, 1f});
@@ -229,16 +186,15 @@ public class ColorPickerView extends View {
         mSatValPaint.setShader(mShader);
 
         canvas.drawRect(rect, mSatValPaint);
+
         //初始化选择圆块的位置
-        Point p = satValToPoint(mSat, mVal);
-        //绘制黑色内圆
-        mSatValTrackerPaint.setColor(colorEnd);
-        canvas.drawCircle(p.x, p.y, PALETTE_CIRCLE_TRACKER_RADIUS - 1f * mDensity, mSatValTrackerPaint);
-        //绘制外圆
+        mSatValTrackerPaint.setStyle(Paint.Style.FILL);
         mSatValTrackerPaint.setColor(colorCicular);
-        canvas.drawCircle(p.x, p.y, PALETTE_CIRCLE_TRACKER_RADIUS, mSatValTrackerPaint);
+        canvas.drawCircle(circularWidth, mSatValRect.bottom-30, circularWidth, mSatValTrackerPaint);
 
     }
+
+    private int circularWidth = 30;//圆形半径
 
     /**
      * 绘制右侧色相选择区域
@@ -282,20 +238,6 @@ public class ColorPickerView extends View {
         return p;
     }
 
-
-    private Point satValToPoint(float sat, float val) {
-
-        final RectF rect = mSatValRect;
-        final float height = rect.height();
-        final float width = rect.width();
-
-        Point p = new Point();
-
-        p.x = (int) (sat * width + rect.left);
-        p.y = (int) ((1f - val) * height + rect.top);
-
-        return p;
-    }
 
     private float[] pointToSatVal(float x, float y) {
 
@@ -354,21 +296,13 @@ public class ColorPickerView extends View {
      */
     @Override
     public boolean onTrackballEvent(MotionEvent event) {
-
         float x = event.getX();
         float y = event.getY();
-
         boolean update = false;//是否需要更新颜色
-
-
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
-
             switch (mLastTouchedPanel) {
-
                 case PANEL_SAT_VAL://饱和度&亮度选择区域
-
                     float sat, val;
-
                     sat = mSat + x / 50f;
                     val = mVal - y / 50f;
 
@@ -388,11 +322,9 @@ public class ColorPickerView extends View {
                     mVal = val;
 
                     update = true;
-
                     break;
 
                 case PANEL_HUE:
-
                     float hue = mHue - y * 10f;
 
                     if (hue < 0f) {
@@ -404,7 +336,6 @@ public class ColorPickerView extends View {
                     mHue = hue;
 
                     update = true;
-
                     break;
 
             }
@@ -605,29 +536,5 @@ public class ColorPickerView extends View {
         invalidate();
     }
 
-    /**
-     * Get the drawing offset of the color picker view.
-     * The drawing offset is the distance from the side of
-     * a panel to the side of the view minus the padding.
-     * Useful if you want to have your own panel below showing
-     * the currently selected color and want to align it perfectly.
-     *
-     * @return The offset in pixels.
-     */
-    public float getDrawingOffset() {
-        return mDrawingOffset;
-    }
-
-    public void setSliderTrackerColor(int color) {
-        mSliderTrackerColor = color;
-
-        mHueTrackerPaint.setColor(mSliderTrackerColor);
-
-        invalidate();
-    }
-
-    public int getSliderTrackerColor() {
-        return mSliderTrackerColor;
-    }
 
 }
