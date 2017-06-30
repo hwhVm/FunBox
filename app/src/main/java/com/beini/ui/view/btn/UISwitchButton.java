@@ -18,7 +18,7 @@ import android.view.ViewParent;
 import android.widget.CheckBox;
 
 import com.beini.R;
-import com.beini.util.Px_Dip;
+import com.beini.util.Px_DipUtils;
 
 
 public class UISwitchButton extends CheckBox {
@@ -71,8 +71,8 @@ public class UISwitchButton extends CheckBox {
 	}
 
 	private void init(Context context, AttributeSet attrs) {
-		COMMON_WIDTH_IN_PIXEL= Px_Dip.dip2px(context,43);
-		COMMON_HEIGHT_IN_PIXEL=Px_Dip.dip2px(context,23);
+		COMMON_WIDTH_IN_PIXEL= Px_DipUtils.dip2px(context,43);
+		COMMON_HEIGHT_IN_PIXEL=Px_DipUtils.dip2px(context,23);
 		mPaint = new Paint();
 		mPaint.setColor(Color.WHITE);
 		Resources resources = context.getResources();

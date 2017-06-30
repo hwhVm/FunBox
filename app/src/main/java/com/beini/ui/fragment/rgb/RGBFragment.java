@@ -26,7 +26,6 @@ public class RGBFragment extends BaseFragment {
         color_select_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
             }
 
             @Override

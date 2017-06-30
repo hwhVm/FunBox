@@ -13,6 +13,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.gesture.GestureDetectorFragment;
 import com.beini.ui.fragment.rgb.ColorPickerFragment;
+import com.beini.ui.fragment.rgb.ColorPickerVFragment;
 import com.beini.ui.fragment.rgb.RGBFragment;
 import com.beini.ui.fragment.webtest.ShiroFragment;
 
@@ -34,7 +35,8 @@ public class Rb3Fragment extends BaseFragment {
         baseActivity.setTopBar(View.GONE);
         functionList.add(" shiro权限框架测试");
         functionList.add(" rgb");
-        functionList.add(" 拾色器");
+        functionList.add(" 拾色器h");
+        functionList.add(" 拾色器v");
         functionList.add(" 手势");
         functionList.add(" 5");
         functionList.add(" 6");
@@ -60,6 +62,9 @@ public class Rb3Fragment extends BaseFragment {
                     break;
                 case 3:
                     baseActivity.replaceFragment(GestureDetectorFragment.class);
+                    break;
+                case 4:
+                    baseActivity.replaceFragment(ColorPickerVFragment.class);
                     break;
             }
         }
