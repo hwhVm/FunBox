@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2010 Daniel Nilsson
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.beini.ui.view.colorPicker;
 
 import android.content.Context;
@@ -36,15 +20,12 @@ import android.view.WindowManager;
 import com.beini.util.BLog;
 
 /**
- * 向用户显示一个颜色选择器,允许他们选择一个颜色。
- * 滑块的alpha通道也可以。
- * 使它通过设置组可见滑块(布尔)为true。
+ * 颜色选择器
  */
 public class ColorPickerView extends View {
 
     private final static int PANEL_SAT_VAL = 0;
     private final static int PANEL_HUE = 1;
-
 
     private float mDensity = 1f;
 
@@ -52,7 +33,6 @@ public class ColorPickerView extends View {
 
     private Paint mSatValPaint;
     private Paint mSatValTrackerPaint;
-
     private Paint mHuePaint;
     private Paint mHueTrackerPaint;
 
@@ -66,26 +46,19 @@ public class ColorPickerView extends View {
 
     private int mSliderTrackerColor = 0xff1c1c1c;
     private int mBorderColor = 0xff6E6E6E;
-    //
+
     private int colorStart = 0xffffffff;
     private int colorEnd = 0xff000000;
-    //
+
     private int colorCicular = 0xffdddddd;
     /*
-     * To remember which panel that has the "focus" when
-     * processing hardware button data.
+     * 记录最后一个选择的颜色版
      */
     private int mLastTouchedPanel = PANEL_SAT_VAL;
 
-    /**
-     * Offset from the edge we must have or else
-     * the finger tracker will get clipped when
-     * it is drawn outside of the view.
-     */
     private RectF mSatValRect;
     private RectF mHueRect;
 
-    private float PALETTE_CIRCLE_TRACKER_RADIUS = 5f;
     private float RECTANGLE_TRACKER_OFFSET = 2f;
 
     private Point mStartTouchPoint = null;
@@ -93,6 +66,7 @@ public class ColorPickerView extends View {
     private int screenWidth;
     private int screenHeight;
 
+    private int circularWidth = 30;//圆形半径
 
     public interface OnColorChangedListener {
         void onColorChanged(int color);
@@ -112,14 +86,15 @@ public class ColorPickerView extends View {
     }
 
     private void init(Context context) {
-        mDensity = getContext().getResources().getDisplayMetrics().density;//获取屏幕密度并初始化三区域各项参数
+
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getRealMetrics(dm);
         screenWidth = dm.widthPixels;// 屏幕宽
         screenHeight = dm.heightPixels;// 屏幕高
 
-        PALETTE_CIRCLE_TRACKER_RADIUS *= mDensity;
+        mDensity = dm.density;//获取屏幕密度并初始化三区域各项参数
+
         RECTANGLE_TRACKER_OFFSET *= mDensity;
 
         //初始化绘制三区域的画笔
@@ -137,21 +112,24 @@ public class ColorPickerView extends View {
         mHueTrackerPaint.setStrokeWidth(2f * mDensity);
         mHueTrackerPaint.setAntiAlias(true);
 
-        //Needed for receiving trackball motion events. 设置焦点
+        //接收轨迹球运动焦点 设置焦点
         setFocusable(true);
         setFocusableInTouchMode(true);
 
     }
 
     private int[] buildHueColorArray() {
-
         int[] hue = new int[361];
 
         int count = 0;
-        for (int i = hue.length - 1; i >= 0; i--, count++) {
+//        for (int i = hue.length - 1; i >= 0; i--, count++) {
+//            hue[count] = Color.HSVToColor(new float[]{i, 1f, 1f});
+        //360 ---> 0
+        //0--->360
+//        }
+        for (int i = 0; i <= 360; i++, count++) {
             hue[count] = Color.HSVToColor(new float[]{i, 1f, 1f});
         }
-
         return hue;
     }
 
@@ -159,7 +137,7 @@ public class ColorPickerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         drawSatValPanel(canvas);//绘制饱和度选择区域
-        drawHuePanel(canvas);//绘制右侧色相选择区域
+        drawHuePanel(canvas);//绘制下面色相选择区域
 
     }
 
@@ -188,13 +166,24 @@ public class ColorPickerView extends View {
         canvas.drawRect(rect, mSatValPaint);
 
         //初始化选择圆块的位置
+        Point p = satValToPoint(mSat, mVal);
         mSatValTrackerPaint.setStyle(Paint.Style.FILL);
         mSatValTrackerPaint.setColor(colorCicular);
-        canvas.drawCircle(circularWidth, mSatValRect.bottom-30, circularWidth, mSatValTrackerPaint);
+        canvas.drawCircle(p.x, p.y - circularWidth, this.circularWidth, mSatValTrackerPaint);
 
     }
 
-    private int circularWidth = 30;//圆形半径
+    private Point satValToPoint(float mSat, float mVal) {
+
+        final RectF rect = mSatValRect;
+        final float height = rect.height();
+        final float width = rect.width();
+        Point p = new Point();
+        p.x = (int) (mSat * width + rect.left);
+        p.y = (int) ((1f - mVal) * height + rect.top);
+
+        return p;
+    }
 
     /**
      * 绘制右侧色相选择区域
@@ -232,7 +221,8 @@ public class ColorPickerView extends View {
 
         Point p = new Point();
 
-        p.x = (int) (width - (hue * width / 360f) + rect.left);
+//      p.x = (int) (width - (hue * width / 360f) + rect.left);
+        p.x = (int) ((hue * width / 360f) + rect.left);
         p.y = (int) rect.top;
 
         return p;
@@ -283,8 +273,8 @@ public class ColorPickerView extends View {
         } else {
             x = x - rect.left;
         }
-
-        return 360f - (x * 360f / width);
+        return x * 360f / width;
+//        return 360f - (x * 360f / width);
     }
 
 
@@ -337,24 +327,16 @@ public class ColorPickerView extends View {
 
                     update = true;
                     break;
-
             }
 
-
         }
-
-
         if (update) {
-
             if (mListener != null) {
                 mListener.onColorChanged(Color.HSVToColor(mAlpha, new float[]{mHue, mSat, mVal}));
             }
-
             invalidate();
             return true;
         }
-
-
         return super.onTrackballEvent(event);
     }
 
@@ -412,15 +394,12 @@ public class ColorPickerView extends View {
         int startX = mStartTouchPoint.x;
         int startY = mStartTouchPoint.y;
 
-
         if (mHueRect.contains(startX, startY)) {
             mLastTouchedPanel = PANEL_HUE;
             mHue = pointToHueX(event.getX());
             update = true;
         } else if (mSatValRect.contains(startX, startY)) {
-
             mLastTouchedPanel = PANEL_SAT_VAL;
-
             float[] result = pointToSatVal(event.getX(), event.getY());
 
             mSat = result[0];
@@ -438,11 +417,6 @@ public class ColorPickerView extends View {
 
     /**
      * view大小变化时执行
-     *
-     * @param w
-     * @param h
-     * @param oldw
-     * @param oldh
      */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -517,13 +491,9 @@ public class ColorPickerView extends View {
      *                 your OnColorChangedListener.
      */
     public void setColor(int color, boolean callback) {
-
         int alpha = Color.alpha(color);
-
         float[] hsv = new float[3];
-
         Color.colorToHSV(color, hsv);
-
         mAlpha = alpha;
         mHue = hsv[0];
         mSat = hsv[1];
