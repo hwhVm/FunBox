@@ -65,6 +65,7 @@ public class ColorPickerView extends View {
 
     private int screenWidth;
     private int screenHeight;
+    private int statusBarHeight = 0;
 
     private int circularWidth = 30;//圆形半径
 
@@ -93,6 +94,12 @@ public class ColorPickerView extends View {
         screenWidth = dm.widthPixels;// 屏幕宽
         screenHeight = dm.heightPixels;// 屏幕高
 
+        // 获取状态栏高度——方法1
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+        }
+        BLog.e("        statusBarHeigh=" + statusBarHeight);
         mDensity = dm.density;//获取屏幕密度并初始化三区域各项参数
 
         RECTANGLE_TRACKER_OFFSET *= mDensity;
@@ -210,8 +217,8 @@ public class ColorPickerView extends View {
         r.bottom = rect.bottom + RECTANGLE_TRACKER_OFFSET;
 
         //绘制选择条
-        canvas.drawRoundRect(r, 2, 2, mHueTrackerPaint);
-
+//        canvas.drawRoundRect(r, 2, 2, mHueTrackerPaint);
+        canvas.drawCircle(p.x, r.top+(r.bottom-r.top)/2-statusBarHeight, 10, mSatValTrackerPaint);
     }
 
     private Point hueToPointX(float hue) {
@@ -424,14 +431,14 @@ public class ColorPickerView extends View {
         //初始化饱和度区域
         float leftSat = 0;
         float topSat = 0;
-        float bottomSat = screenHeight - 200;
+        float bottomSat = screenHeight - statusBarHeight - 200;
         float rightSat = screenWidth;
         mSatValRect = new RectF(leftSat, topSat, rightSat, bottomSat);
         BLog.e(" 初始化饱和度区域    leftSat=" + leftSat + " topSat=" + topSat + " bottomSat=" + bottomSat + " rightSat=" + rightSat);
 
         float leftHue = leftSat;
         float topHue = bottomSat;
-        float bottomHue = screenHeight;
+        float bottomHue = screenHeight - statusBarHeight;
         float rightHue = rightSat;
         BLog.e("   leftHue=" + leftHue + "   topHue=" + topHue + "   bottomHue=" + bottomHue + "   rightHue=" + rightHue);
         mHueRect = new RectF(leftHue, topHue, rightHue, bottomHue);
