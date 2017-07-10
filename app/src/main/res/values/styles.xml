@@ -64,4 +64,8 @@
         <item name="android:windowEnterAnimation">@anim/pickerview_dialog_scale_in</item>
         <item name="android:windowExitAnimation">@anim/pickerview_dialog_scale_out</item>
     </style>
+    <!--初始化界面-->
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/logo_splash</item>
+    </style>
 </resources>

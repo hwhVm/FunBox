@@ -5,7 +5,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.beini.R;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;

@@ -7,9 +7,9 @@ import android.app.FragmentTransaction;
 import android.view.View;
 
 import com.beini.R;
-import com.beini.base.BaseActivity;
-import com.beini.base.BaseApplication;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseActivity;
+import com.beini.app.GlobalApplication;
+import com.beini.app.BaseFragment;
 import com.beini.ui.fragment.home.HomeFragment;
 import com.beini.ui.fragment.home.Rb2Fragment;
 import com.beini.ui.fragment.home.Rb3Fragment;
@@ -140,7 +140,7 @@ public class FragmentHelper {
             }
 
         } else {
-            SnackbarUtil.showShort(view, BaseApplication.getInstance().getString(R.string.app_exit));
+            SnackbarUtil.showShort(view, GlobalApplication.getInstance().getString(R.string.app_exit));
             long timeMillis = System.currentTimeMillis();
             if (timeMillis - mLastKeyDown >= 2000) {
                 mLastKeyDown = timeMillis;

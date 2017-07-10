@@ -1,7 +1,7 @@
 package com.beini.ui.fragment.recording;
 
 import com.beini.R;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 
 

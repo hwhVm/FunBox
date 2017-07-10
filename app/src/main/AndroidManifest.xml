@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.beini">
-
+    <!--访问网络权限-->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Wifi连接需要的权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,21 +13,10 @@
     <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <!-- DLNA -->
+
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <uses-permission-sdk-23 android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 往SDCard写入数据权限 -->
@@ -35,30 +24,23 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--震动-->
     <uses-permission android:name="android.permission.VIBRATE" />
-
+    <!--蓝牙相关权限-->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!-- 录像的权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.BIND_JOB_SERVICE" />
     <!--WiFi扫描权限-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-
-
-    <!--腾讯 x5浏览器内核-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <meta-data
         android:name="com.google.android.gms.vision.DEPENDENCIES"
         android:value="face" />
+
     <application
-        android:name=".base.BaseApplication"
+        android:name=".app.GlobalApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -66,40 +48,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"
+        <!--活动-->
+        <activity
+            android:name=".ui.activity.IndexActivity"
+            android:screenOrientation="portrait" />
 
-            android:enabled="false"
-
-            android:process=":leakcanary" />
-
-        <service
-
-            android:name="com.squareup.leakcanary.DisplayLeakService"
-
-            android:enabled="false" />
-
-        <activity android:name=".ui.activity.IndexActivity">
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.fragment.zxing.activity.CaptureActivity" />
 
+        <activity
+            android:name=".ui.fragment.zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait" />
+        <!--广播-->
         <receiver android:name=".broadcast.ControlReceiver" />
-
+        <!--服务-->
         <service android:name="org.fourthline.cling.android.AndroidUpnpServiceImpl" />
-        <service
-            android:name=".ui.fragment.music.utils.DivoomUpnpService"
-            android:exported="false" />
         <service android:name=".ui.fragment.broadcast.MyService" />
         <service android:name=".ui.fragment.localmusic.service.MusicService" />
         <service android:name=".ui.fragment.bluetooth.ble.SmartBLEService" />
         <service android:name=".service.DemoService" />
         <service android:name=".ui.fragment.screenrecord.RecordService" />
-        <service android:name=".service.MJobService" />
         <service android:name=".service.MJobService" />
     </application>
 

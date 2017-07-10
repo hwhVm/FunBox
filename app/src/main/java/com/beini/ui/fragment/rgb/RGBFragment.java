@@ -5,7 +5,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.beini.R;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.ui.view.ColorSelectBar;

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="color_white">#FFFFFFFF</color>
+    <color name="color_white">#FFFFFF</color>
     <color name="orange">#ffa500</color>  <!-- 橙色 -->
     <color name="gray">#808080</color>
     <color name="red2">#cc2222</color>

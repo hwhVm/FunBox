@@ -2,7 +2,7 @@ package com.beini.net;
 
 import android.os.Environment;
 
-import com.beini.base.BaseApplication;
+import com.beini.app.GlobalApplication;
 import com.beini.constants.NetConstants;
 import com.beini.net.request.BaseRequestJson;
 import com.beini.net.response.BaseResponseJson;
@@ -46,7 +46,7 @@ public class NetUtil {
                 if (instance == null) {
                     instance = new NetUtil();
                     ClearableCookieJar cookieJar =
-                            new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getInstance()));
+                            new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(GlobalApplication.getInstance()));
                     OkHttpClient client = new OkHttpClient//添加头信息，cookie等
                             .Builder().connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
 //                            .addNetworkInterceptor(new Interceptor() {

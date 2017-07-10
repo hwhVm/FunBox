@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.beini.R;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.ui.fragment.bluetooth.ble.Band;

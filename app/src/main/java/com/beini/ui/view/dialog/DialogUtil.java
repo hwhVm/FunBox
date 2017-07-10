@@ -2,7 +2,7 @@ package com.beini.ui.view.dialog;
 
 import android.content.Context;
 
-import com.beini.base.BaseApplication;
+import com.beini.app.GlobalApplication;
 
 /**
  * Created by beini on 2016/12/27.
@@ -46,7 +46,7 @@ public class DialogUtil {
     }
 
     public static UIDialog uploadDailog(String msg) {
-        final UIDialog uploadDialog = new UIDialog(BaseApplication.getInstance()).builder();
+        final UIDialog uploadDialog = new UIDialog(GlobalApplication.getInstance()).builder();
         uploadDialog.setLoading(msg).setCanceledOnTouchOutside(false).setCancelable(false);
         return uploadDialog;
     }

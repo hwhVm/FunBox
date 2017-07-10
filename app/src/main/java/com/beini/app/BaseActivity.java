@@ -1,4 +1,4 @@
-package com.beini.base;
+package com.beini.app;
 
 import android.app.Fragment;
 import android.app.FragmentManager;

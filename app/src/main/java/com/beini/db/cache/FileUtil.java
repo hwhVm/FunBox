@@ -3,7 +3,7 @@ package com.beini.db.cache;
 import android.annotation.SuppressLint;
 import android.os.Environment;
 
-import com.beini.base.BaseApplication;
+import com.beini.app.GlobalApplication;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +31,7 @@ public class FileUtil {
 		// 包路径, 从这里复制数据库文件
 		StringBuilder path = new StringBuilder();
 		path.append("/data/data/");
-		path.append(BaseApplication.getInstance().getPackageName());//Application
+		path.append(GlobalApplication.getInstance().getPackageName());//Application
 		path.append("/databases");
 		// 测试阶段， 指定要复制的文件名， 这个为数据库文件
 		File sourceFile = new File(path.toString(), "要复制的数据库文件名");

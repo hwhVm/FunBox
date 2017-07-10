@@ -4,7 +4,7 @@ import android.support.v4.view.ViewPager;
 
 import com.beini.R;
 import com.beini.adapter.ViewPagerAdapter;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.event.ImageEvent;

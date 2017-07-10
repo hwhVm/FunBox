@@ -27,5 +27,16 @@ public class BLog {
 
     }
 
+    public static void d(String customTag, String msg) {
+        if (Constants.DEBUG) {
+            Log.e(customTag, "-------------------------------------->" + msg);
+        }
+    }
 
+    public static void e(String customTag, String msg) {
+        if (Constants.DEBUG) {
+            Log.e(customTag, "-------------------------------------->" + msg);
+        }
+
+    }
 }

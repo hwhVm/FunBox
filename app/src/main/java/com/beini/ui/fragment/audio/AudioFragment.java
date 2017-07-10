@@ -12,7 +12,7 @@ import android.os.SystemClock;
 import android.support.annotation.RequiresApi;
 
 import com.beini.R;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.broadcast.ControlReceiver;
 import com.beini.util.BLog;

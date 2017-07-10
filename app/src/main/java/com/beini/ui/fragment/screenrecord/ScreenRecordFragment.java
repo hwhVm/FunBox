@@ -24,8 +24,8 @@ import android.widget.Button;
 
 import com.beini.R;
 import com.beini.adapter.BaseAdapter;
-import com.beini.base.BaseApplication;
-import com.beini.base.BaseFragment;
+import com.beini.app.GlobalApplication;
+import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
@@ -60,7 +60,7 @@ public class ScreenRecordFragment extends BaseFragment implements ActivityResult
 
     @Override
     public void initView() {
-        projectionManager = (MediaProjectionManager) BaseApplication.getInstance().getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+        projectionManager = (MediaProjectionManager) GlobalApplication.getInstance().getSystemService(Context.MEDIA_PROJECTION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             initPermission();
         }

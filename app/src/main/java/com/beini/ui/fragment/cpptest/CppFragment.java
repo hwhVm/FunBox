@@ -4,8 +4,8 @@ package com.beini.ui.fragment.cpptest;
 import android.widget.TextView;
 
 import com.beini.R;
-import com.beini.base.BaseApplication;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
+import com.beini.app.GlobalApplication;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 
@@ -19,7 +19,7 @@ public class CppFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        text_cpp.setText(BaseApplication.getInstance().getNdk().stringFromJNI());
+        text_cpp.setText(GlobalApplication.getInstance().getNdk().stringFromJNI());
     }
 
 }

@@ -2,7 +2,7 @@ package com.beini.db.greendao;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.beini.base.BaseApplication;
+import com.beini.app.GlobalApplication;
 
 
 /**
@@ -25,8 +25,8 @@ public class GreenDaoManage {
             synchronized (GreenDaoManage.class) {
                 if (instance == null) {
                     instance = new GreenDaoManage();
-//                    mHelper = new DaoMaster.DevOpenHelper(BaseApplication.getInstance(), DB_NAME, null);
-                    db = new DBHelper(BaseApplication.getInstance(), null).getWritableDatabase();
+//                    mHelper = new DaoMaster.DevOpenHelper(GlobalApplication.getInstance(), DB_NAME, null);
+                    db = new DBHelper(GlobalApplication.getInstance(), null).getWritableDatabase();
                     // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
                     mDaoMaster = new DaoMaster(db);
                     mDaoSession = mDaoMaster.newSession();

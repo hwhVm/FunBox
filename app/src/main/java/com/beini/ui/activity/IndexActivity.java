@@ -1,6 +1,6 @@
 package com.beini.ui.activity;
 
-import com.beini.base.BaseActivity;
+import com.beini.app.BaseActivity;
 import com.beini.ui.fragment.home.HomeFragment;
 
 /**
@@ -16,4 +16,9 @@ public class IndexActivity extends BaseActivity {
         replaceFragment(HomeFragment.class);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        Debug.stopMethodTracing();
+    }
 }

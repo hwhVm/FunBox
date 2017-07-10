@@ -7,7 +7,7 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
 
-import com.beini.base.BaseApplication;
+import com.beini.app.GlobalApplication;
 import com.beini.util.BLog;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class BLEHandle implements IBlueHandle {
     public void start(BluetoothDevice device) {
         mDevice = device;
        BLog.d( "mBluetoothGatt start");
-        mBluetoothGatt = device.connectGatt(BaseApplication.getInstance().getBaseContext(), true, mGattCallback);
+        mBluetoothGatt = device.connectGatt(GlobalApplication.getInstance().getBaseContext(), true, mGattCallback);
        BLog.d( "mBluetoothGatt start ok ");
     }
     private BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {

@@ -3,7 +3,7 @@ package com.beini.ui.fragment.sms;
 import android.util.Log;
 
 import com.beini.R;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.util.BLog;
 

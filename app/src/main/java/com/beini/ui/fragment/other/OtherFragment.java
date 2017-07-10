@@ -4,7 +4,7 @@ package com.beini.ui.fragment.other;
 import android.support.v4.app.Fragment;
 
 import com.beini.R;
-import com.beini.base.BaseFragment;
+import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 
 /**
