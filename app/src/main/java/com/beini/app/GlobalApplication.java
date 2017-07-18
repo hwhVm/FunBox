@@ -5,10 +5,10 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.beini.ndk.NDKMain;
-import com.beini.util.CrashHandler;
 import com.beini.util.SystemUtil;
 import com.beini.util.listener.ActivityCallbacks;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.ArrayList;
@@ -25,7 +25,6 @@ public class GlobalApplication extends MultiDexApplication {
     private static GlobalApplication application;
     private ExecutorService executorService;
     private NDKMain ndk;
-    private final String TAG = "GlobalApplication";
     private Activity curActivity = null;//当前栈顶的activity
     private List<Activity> activities;
 
@@ -53,12 +52,15 @@ public class GlobalApplication extends MultiDexApplication {
             executorService = Executors.newCachedThreadPool();//创建线程池
             ndk = new NDKMain();
 //          Stetho.initializeWithDefaults(this);
+            //为了保证运营数据的准确性，建议不要在异步线程初始化Bugly。
+            CrashReport.initCrashReport(getApplicationContext(), "2acd33499a", false);
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
+
                     Fresco.initialize(getInstance());
                     initTbs();
-                    CrashHandler.getInstance().init(getApplicationContext());
+//                    CrashHandler.getInstance().init(getApplicationContext());
                 }
             });
         }
