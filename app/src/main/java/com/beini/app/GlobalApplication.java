@@ -8,6 +8,7 @@ import com.beini.ndk.NDKMain;
 import com.beini.util.SystemUtil;
 import com.beini.util.listener.ActivityCallbacks;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 
@@ -51,9 +52,8 @@ public class GlobalApplication extends MultiDexApplication {
             this.registerActivityLifecycleCallbacks(new ActivityCallbacks());
             executorService = Executors.newCachedThreadPool();//创建线程池
             ndk = new NDKMain();
+            initBugly();
 //          Stetho.initializeWithDefaults(this);
-            //为了保证运营数据的准确性，建议不要在异步线程初始化Bugly。
-            CrashReport.initCrashReport(getApplicationContext(), "2acd33499a", false);
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -64,6 +64,14 @@ public class GlobalApplication extends MultiDexApplication {
                 }
             });
         }
+    }
+
+    private void initBugly() {
+        //Bugly会在启动10s后联网同步数据。若您有特别需求，可以修改这个时间。
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        strategy.setAppReportDelay(20000);   //改为20s
+        //为了保证运营数据的准确性，建议不要在异步线程初始化Bugly。
+        Bugly.init(getApplicationContext(), "2acd33499a", true,strategy);
     }
 
     /**

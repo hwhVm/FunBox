@@ -68,6 +68,11 @@
         <activity
             android:name=".ui.fragment.zxing.activity.CaptureActivity"
             android:screenOrientation="portrait" />
+        <!--腾讯bugly-->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
         <!--广播-->
         <receiver android:name=".broadcast.ControlReceiver" />
         <!--服务-->
@@ -78,6 +83,18 @@
         <service android:name=".service.DemoService" />
         <service android:name=".ui.fragment.screenrecord.RecordService" />
         <service android:name=".service.MJobService" />
+        <!--provider-->
+        <!-- 腾讯 bugly 如果您想兼容Android N或者以上的设备，必须要在AndroidManifest.xml文件中配置FileProvider来访问共享路径的文件。-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
     </application>
 
 </manifest>
