@@ -23,6 +23,7 @@ import java.util.List;
 public class FragmentHelper {
     private static List<String> tags = new ArrayList<>();
     private static FragmentManager fm;
+    public static int homeTag = 0;
 
     /**
      * add fragment
@@ -113,7 +114,7 @@ public class FragmentHelper {
     private static long mLastKeyDown = 0;
 
     public static void removePreFragment(BaseActivity baseActivity) {
-        if (tags != null && tags.size() > 1) {//不在主页面
+        if (tags != null && tags.size() > 1 && isHomeFragment(fm)) {//不在主页面
             String current = tags.get(tags.size() - 1);
             String old = tags.get(tags.size() - 2);
 
@@ -122,12 +123,19 @@ public class FragmentHelper {
 
             if ((oldFragment instanceof HomeFragment || oldFragment instanceof Rb2Fragment || oldFragment instanceof Rb3Fragment)) {
                 baseActivity.setBottom(View.VISIBLE);
+                Fragment baseFragment = fm.findFragmentByTag(HomeFragment.class.getName());
+                if (homeTag == 2) {
+                    baseFragment = fm.findFragmentByTag(Rb3Fragment.class.getName());
+                } else if (homeTag == 1) {
+                    baseFragment = fm.findFragmentByTag(Rb2Fragment.class.getName());
+                }
+                showFragment(baseFragment);
             } else {
+                if (oldFragment != null) {
+                    showFragment(oldFragment);
+                }
+            }
 
-            }
-            if (oldFragment != null) {
-                showFragment(oldFragment);
-            }
         } else {
             ToastUtils.showShortToast(GlobalApplication.getInstance().getString(R.string.app_exit));
             long timeMillis = System.currentTimeMillis();
@@ -148,6 +156,14 @@ public class FragmentHelper {
             for (int i = 0; i < tags.size(); i++) {
                 BLog.d("  d    tags===" + tags.get(i));
             }
+        }
+    }
+
+    private static boolean isHomeFragment(FragmentManager fragmentManager) {
+        if (fragmentManager.findFragmentById(R.id.content_frame) instanceof HomeFragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb2Fragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb3Fragment) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

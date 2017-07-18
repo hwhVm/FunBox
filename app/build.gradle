@@ -121,4 +121,7 @@ dependencies {
 //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     //okhttp
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    //
+    compile 'com.github.hackware1993:MagicIndicator:1.5.0'
+    compile 'com.android.support:support-v13:25.0.1'
 }

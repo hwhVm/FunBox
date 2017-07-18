@@ -75,12 +75,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     replaceFragment(HomeFragment.class);
+                    FragmentHelper.homeTag = 0;
                     return true;
                 case R.id.navigation_dashboard:
                     replaceFragment(Rb2Fragment.class);
+                    FragmentHelper.homeTag = 1;
                     return true;
                 case R.id.navigation_notifications:
                     replaceFragment(Rb3Fragment.class);
+                    FragmentHelper.homeTag = 2;
                     return true;
             }
             return false;
