@@ -1,6 +1,5 @@
 package com.beini.ui.fragment.home;
 
-import android.Manifest;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -39,11 +38,9 @@ public class HomeFragment extends BaseFragment {
     @ViewInject(R.id.recycler_view_home)
     RecyclerView recycler_view_home;
     private List<String> functionList = new ArrayList<>();
-    String[] perms = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
     public void initView() {
-//        checkPermissionMethod(perms, " ask  camera permission", 22);
         functionList.add("cpp");
         functionList.add("recording");
         functionList.add("Shake");

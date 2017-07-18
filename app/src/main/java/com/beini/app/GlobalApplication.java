@@ -1,13 +1,18 @@
 package com.beini.app;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.beini.ndk.NDKMain;
 import com.beini.util.CrashHandler;
 import com.beini.util.SystemUtil;
+import com.beini.util.listener.ActivityCallbacks;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.smtt.sdk.QbSdk;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,6 +26,8 @@ public class GlobalApplication extends MultiDexApplication {
     private ExecutorService executorService;
     private NDKMain ndk;
     private final String TAG = "GlobalApplication";
+    private Activity curActivity = null;//当前栈顶的activity
+    private List<Activity> activities;
 
     public static GlobalApplication getInstance() {
         if (application == null) {
@@ -30,12 +37,19 @@ public class GlobalApplication extends MultiDexApplication {
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
 //       Debug.startMethodTracing("GlobalApplication");//生成分析文件，对冷启动时间进行分析
-        application = this;
         String appName = getApplicationInfo().packageName;
         if (appName.equals(SystemUtil.getCurProcessName(getApplicationContext()))) {//避免多进程下会重复执行
+            activities = new ArrayList<>();
+            application = this;
+            this.registerActivityLifecycleCallbacks(new ActivityCallbacks());
             executorService = Executors.newCachedThreadPool();//创建线程池
             ndk = new NDKMain();
 //          Stetho.initializeWithDefaults(this);
@@ -81,5 +95,28 @@ public class GlobalApplication extends MultiDexApplication {
      */
     public NDKMain getNdk() {
         return ndk;
+    }
+
+    /**
+     * get set
+     */
+    public Activity getCurActivity() {
+        return curActivity;
+    }
+
+    public void setCurActivity(Activity curActivity) {
+        this.curActivity = curActivity;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void removeList(Activity activity) {
+        for (int i = 0; i < activities.size(); i++) {
+            if (activities.get(i).getClass().getName().equals(activity.getClass().getName())) {
+                activities.remove(i);
+            }
+        }
     }
 }

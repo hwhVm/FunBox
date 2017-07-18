@@ -12,7 +12,6 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.beini.R;
@@ -22,7 +21,6 @@ import com.beini.bind.ViewInjectorImpl;
 import com.beini.ui.fragment.home.HomeFragment;
 import com.beini.ui.fragment.home.Rb2Fragment;
 import com.beini.ui.fragment.home.Rb3Fragment;
-import com.beini.util.BLog;
 import com.beini.util.FragmentHelper;
 import com.beini.util.ObjectUtil;
 import com.beini.util.WindowUtils;
@@ -38,8 +36,6 @@ import com.beini.util.listener.OnTouchEventListener;
 public abstract class BaseActivity extends AppCompatActivity implements BaseImpl {
     @ViewInject(R.id.toolbar)
     public Toolbar toolbar;
-    @ViewInject(R.id.layout_coor)
-    LinearLayout layout_coor;
     @ViewInject(R.id.top_bar_title)
     TextView top_bar_title;
     @ViewInject(R.id.navigation)
@@ -76,19 +72,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            BLog.d(" item.getItemId()="+item.getItemId());
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     replaceFragment(HomeFragment.class);
-                    FragmentHelper.homeTag = 0;
                     return true;
                 case R.id.navigation_dashboard:
                     replaceFragment(Rb2Fragment.class);
-                    FragmentHelper.homeTag = 1;
                     return true;
                 case R.id.navigation_notifications:
                     replaceFragment(Rb3Fragment.class);
-                    FragmentHelper.homeTag = 2;
                     return true;
             }
             return false;
@@ -107,12 +99,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         }
         Fragment newFragment = fragmentManager.findFragmentByTag(fragment.getName());
         if (newFragment != null) {
-            FragmentHelper.showFragment(fragmentManager, newFragment);
+            FragmentHelper.showFragment(newFragment);
         } else {
-            FragmentHelper.hideAllFragment(fragmentManager);
-            FragmentHelper.addFragment(fragmentManager, baseFragment, fragment.getName());
+            FragmentHelper.addFragment(fragmentManager, baseFragment);
         }
     }
+
     @Override
     public void replaceFragment(Class<?> fragment, Bundle args) {
         BaseFragment baseFragment = (BaseFragment) ObjectUtil.createInstance(fragment);
@@ -121,11 +113,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         }
         Fragment newFragment = fragmentManager.findFragmentByTag(fragment.getName());
         if (newFragment != null) {
-            FragmentHelper.showFragment(fragmentManager, newFragment);
+            FragmentHelper.showFragment(newFragment);
         } else {
             baseFragment.setArguments(args);
-            FragmentHelper.hideAllFragment(fragmentManager);
-            FragmentHelper.addFragment(fragmentManager, baseFragment, fragment.getName());
+            FragmentHelper.addFragment(fragmentManager, baseFragment);
         }
     }
 
@@ -149,16 +140,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        BLog.d("   onActivityResult ");
         if (activityResultListener != null) {
-            BLog.d("   ----dd------------> ");
             activityResultListener.resultCallback(requestCode, resultCode, data);
         }
     }
 
     @Override
     public void onBackPressed() {
-        FragmentHelper.removePreFragment(layout_coor, fragmentManager, this);
+        FragmentHelper.removePreFragment(this);
     }
 
     @Override
@@ -176,12 +165,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     @Override
     public void back() {
-        FragmentHelper.removePreFragment(layout_coor, fragmentManager, this);
+        FragmentHelper.removePreFragment(this);
     }
 
     @Override
     public void remove(Fragment fragment) {
-        FragmentHelper.removeFragment(fragmentManager, fragment);
+        FragmentHelper.removeFragment(fragment);
     }
 
     @Override
