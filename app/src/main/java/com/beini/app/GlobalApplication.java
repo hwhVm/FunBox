@@ -59,7 +59,7 @@ public class GlobalApplication extends MultiDexApplication {
                 public void run() {
 
                     Fresco.initialize(getInstance());
-                    initTbs();
+//                    initTbs();
 //                    CrashHandler.getInstance().init(getApplicationContext());
                 }
             });

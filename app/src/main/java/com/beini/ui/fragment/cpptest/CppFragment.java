@@ -19,7 +19,11 @@ public class CppFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        text_cpp.setText(GlobalApplication.getInstance().getNdk().stringFromJNI());
+        showToast();
+        GlobalApplication.getInstance().getNdk().withArgs(" hellow  C++");
     }
 
+    public  void showToast() {
+        text_cpp.setText(GlobalApplication.getInstance().getNdk().getPassword());
+    }
 }
