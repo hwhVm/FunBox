@@ -21,7 +21,7 @@ import java.util.List;
  * Created by beini on 2017/2/9.
  */
 public class FragmentHelper {
-    private static List<String> tags = new ArrayList<>();
+    public static List<String> tags = new ArrayList<>();
     private static FragmentManager fm;
     public static int homeTag = 0;
 
@@ -56,7 +56,6 @@ public class FragmentHelper {
      */
     @SuppressLint("ResourceType")
     public static void showFragment(Fragment fragment) {
-        BLog.e("   fm==null??="+(fm==null));
         FragmentTransaction ft = fm.beginTransaction();
         hideAllFragment();
         if (fragment != null) {
@@ -65,6 +64,21 @@ public class FragmentHelper {
             ft.show(fragment);
             ft.commit();
         }
+    }
+
+    public static void hideOrShow(Fragment fragment, boolean isHidden) {
+        BLog.e("          tags.size()=" + tags.size());
+        for (int i = 0; i < tags.size(); i++) {
+            BLog.e("     " + tags.get(i));
+        }
+        FragmentTransaction ft = fm.beginTransaction();
+        FragmentHelper.hideAllFragment();
+        if (isHidden) {
+            ft.hide(fragment);
+        } else {
+            ft.show(fragment);
+        }
+        ft.commit();
     }
 
     /**
@@ -85,7 +99,6 @@ public class FragmentHelper {
             }
         }
     }
-
 
     /**
      * hide all fragment
@@ -167,4 +180,14 @@ public class FragmentHelper {
             return true;
         }
     }
+
+
+    public static FragmentManager getFm() {
+        return fm;
+    }
+
+    public static void setFm(FragmentManager fm) {
+        FragmentHelper.fm = fm;
+    }
+
 }

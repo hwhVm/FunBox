@@ -41,7 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     @ViewInject(R.id.navigation)
     BottomNavigationView navigation;
 
-    private FragmentManager fragmentManager;
+    private FragmentManager customerFragmentManager;
+
     private KeyBackListener keyBackListener;
     private ActivityResultListener activityResultListener;
 
@@ -59,12 +60,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
-        fragmentManager = getFragmentManager();
+        customerFragmentManager = getFragmentManager();
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  //透明状态栏
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);  //透明导航栏
         ViewInjectorImpl.registerInstance(this);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        this.initView();
+        if (savedInstanceState == null) {
+            this.initView();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -100,11 +103,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         if (!(baseFragment instanceof HomeFragment || baseFragment instanceof Rb2Fragment || baseFragment instanceof Rb3Fragment)) {
             this.setBottom(View.GONE);
         }
-        Fragment newFragment = fragmentManager.findFragmentByTag(fragment.getName());
+        Fragment newFragment = customerFragmentManager.findFragmentByTag(fragment.getName());
         if (newFragment != null) {
             FragmentHelper.showFragment(newFragment);
         } else {
-            FragmentHelper.addFragment(fragmentManager, baseFragment);
+            FragmentHelper.addFragment(customerFragmentManager, baseFragment);
         }
     }
 
@@ -114,12 +117,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         if (!(baseFragment instanceof HomeFragment || baseFragment instanceof Rb2Fragment || baseFragment instanceof Rb3Fragment)) {
             this.setBottom(View.GONE);
         }
-        Fragment newFragment = fragmentManager.findFragmentByTag(fragment.getName());
+        Fragment newFragment = customerFragmentManager.findFragmentByTag(fragment.getName());
         if (newFragment != null) {
             FragmentHelper.showFragment(newFragment);
         } else {
             baseFragment.setArguments(args);
-            FragmentHelper.addFragment(fragmentManager, baseFragment);
+            FragmentHelper.addFragment(customerFragmentManager, baseFragment);
         }
     }
 
@@ -236,4 +239,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
             //释放UI资源
         }
     }
+
+    public FragmentManager getCustomerFragmentManager() {
+        return customerFragmentManager;
+    }
+
+    public void setCustomerFragmentManager(FragmentManager customerFragmentManager) {
+        this.customerFragmentManager = customerFragmentManager;
+    }
+
 }

@@ -19,6 +19,7 @@ import com.beini.util.premission.EasyPermissions;
 import com.beini.util.premission.PermissionCallbacks;
 import com.beini.util.premission.PermissionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,12 +28,14 @@ import java.util.List;
  */
 
 
-public abstract class   BaseFragment extends Fragment implements PermissionCallbacks {
+public abstract class BaseFragment extends Fragment implements PermissionCallbacks {
 
     public BaseActivity baseActivity;
     private String remindTxt;//解释为什么申请权限
     private int requestCode;
     private String[] permissions;
+    private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
+    private static final String SAVE_FRAGMENTS_SIZE = "SAVE_FRAGMENTS_SIZE";
 
     @Nullable
     @Override
@@ -41,6 +44,24 @@ public abstract class   BaseFragment extends Fragment implements PermissionCallb
         this.initView();
         this.returnLoad();
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            FragmentHelper.tags = savedInstanceState.getStringArrayList(SAVE_FRAGMENTS_SIZE);
+            boolean isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN);
+            FragmentHelper.setFm(baseActivity.getFragmentManager());
+            FragmentHelper.hideOrShow(this, isSupportHidden);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden());
+        outState.putStringArrayList(SAVE_FRAGMENTS_SIZE, (ArrayList<String>) FragmentHelper.tags);
     }
 
     public abstract void initView();
@@ -117,7 +138,7 @@ public abstract class   BaseFragment extends Fragment implements PermissionCallb
         for (int i = 0; i < mPerms.length; i++) {
             msg = PermissionUtils.getSingleton().getPermissionString(mPerms[i]) + " ";
         }
-        remindTxt=getString(R.string.string_help_text1) + msg + "\n" + getString(R.string.string_help_text2) + "\n" + getString(R.string.string_help_text3);
+        remindTxt = getString(R.string.string_help_text1) + msg + "\n" + getString(R.string.string_help_text2) + "\n" + getString(R.string.string_help_text3);
 
         EasyPermissions.setCode(requestCode);
         if (EasyPermissions.hasPermissions(this.getActivity(), mPerms)) {
