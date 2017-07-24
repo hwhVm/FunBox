@@ -1,8 +1,11 @@
 package com.beini.ui.fragment.recording;
 
+import android.Manifest;
+
 import com.beini.R;
 import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
+import com.beini.util.BLog;
 
 
 /**
@@ -13,7 +16,12 @@ public class VoiceFragment extends BaseFragment {
 
     @Override
     public void initView() {
-
+        checkPermission(new CheckPermListener() {
+            @Override
+            public void superPermission() {
+                BLog.e("       superPermission         ");
+            }
+        }, 0x11, new String[]{Manifest.permission.RECORD_AUDIO});
     }
 
 

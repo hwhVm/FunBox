@@ -56,6 +56,7 @@ public class FragmentHelper {
      */
     @SuppressLint("ResourceType")
     public static void showFragment(Fragment fragment) {
+        BLog.e("   fm==null??="+(fm==null));
         FragmentTransaction ft = fm.beginTransaction();
         hideAllFragment();
         if (fragment != null) {

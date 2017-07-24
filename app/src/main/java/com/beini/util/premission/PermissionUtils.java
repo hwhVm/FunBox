@@ -9,7 +9,9 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
+import com.beini.R;
 import com.beini.app.GlobalApplication;
+import com.beini.util.StringUtils;
 
 /**
  * Create by beini 2017/7/11
@@ -37,17 +39,6 @@ public class PermissionUtils {
      * 没有的话会弹出授系统权对话框。
      */
     public void checkPermission() {
-//		RxPermissions.getInstance(activity)
-//				.request(Manifest.permission.CAMERA,
-//						Manifest.permission.READ_PHONE_STATE)
-//				.subscribe(new Action1<Boolean>() {
-//					@Override
-//					public void call(Boolean aBoolean) {
-//						if (aBoolean){
-//							LogUtil.e("拥有权限-------------》");
-//						}
-//					}
-//				});
         ActivityCompat.requestPermissions(GlobalApplication.getInstance().getCurActivity(),
                 new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION,
@@ -59,23 +50,17 @@ public class PermissionUtils {
 
     public String getPermissionString(String permission) {
         if (Manifest.permission.RECORD_AUDIO.equals(permission)) {
-//            return getString(R.string.permission_record);
-            return "permission_record";
+            return StringUtils.getString(R.string.permission_record);
         } else if (Manifest.permission.RECORD_AUDIO.equals(permission)) {
-//            return getString(R.string.permission_camera);
-            return "permission_camera";
+            return StringUtils.getString(R.string.permission_camera);
         } else if (Manifest.permission.ACCESS_FINE_LOCATION.equals(permission)) {
-//            return getString(R.string.permission_location);
-            return "permission_location";
+            return StringUtils.getString(R.string.permission_location);
         } else if (Manifest.permission.ACCESS_COARSE_LOCATION.equals(permission)) {
-//            return getString(R.string.permission_location);
-            return "permission_location";
+            return StringUtils.getString(R.string.permission_location);
         } else if (Manifest.permission.READ_EXTERNAL_STORAGE.equals(permission)) {
-//            return getString(R.string.permission_memory);
-            return "permission_memory";
+            return StringUtils.getString(R.string.permission_memory);
         } else if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission)) {
-//            return getString(R.string.permission_memory);
-            return "permission_memory";
+            return StringUtils.getString(R.string.permission_memory);
         } else
             return "";
     }

@@ -46,4 +46,18 @@
     <string name="color3_summary">picker with alpha slider</string>
     <string name="color4_title">Color 4</string>
     <string name="color4_summary">color set with HEX code in xml</string>
+    <!--权限相关-->
+    <string name="settings">设置</string>
+    <string name="help">帮助</string>
+    <string name="quit">退出</string>
+    <string name="string_help_text1">缺少必要权限-</string>
+    <string name="string_help_text2">请点击\"设置\"-\"权限\"-打开所需权限</string>
+    <string name="string_help_text3">最后点击两次后退按钮，即可返回</string>
+
+    <string name="permission_record">麦克风</string>
+    <string name="permission_camera">相机</string>
+    <string name="permission_memory">存储空间</string>
+    <string name="permission_phone_state">手机状态</string>
+    <string name="permission_location">位置信息</string>
+
 </resources>

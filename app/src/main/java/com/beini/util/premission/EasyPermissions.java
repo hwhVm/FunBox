@@ -16,8 +16,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
+import com.beini.app.BaseActivity;
 import com.beini.app.GlobalApplication;
 import com.beini.ui.view.dialog.UIDialog;
+import com.beini.util.FragmentHelper;
 import com.beini.util.StringUtils;
 
 import java.util.ArrayList;
@@ -197,7 +199,8 @@ public class EasyPermissions {
 
                 return true;
             } else {
-//                FragmentUtils.close(false);
+                FragmentHelper.removePreFragment((BaseActivity) GlobalApplication.getInstance().getCurActivity());
+
             }
         }
 

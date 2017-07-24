@@ -1,5 +1,6 @@
 package com.beini.ui.view.btn;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -243,7 +244,7 @@ public class UISwitchButton extends CheckBox {
                 }
                 mTurningOn = curBtnPos > bgWidth / 2 - btnWidth / 2;
                 break;
-            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_UP://防止抖动
                 bmCurBtnPic = bmBtnNormal;
                 float time = event.getEventTime() - event.getDownTime();
                 if (deltaY < mTouchSlop && deltaX < mTouchSlop
@@ -275,13 +276,13 @@ public class UISwitchButton extends CheckBox {
         return true;
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.saveLayerAlpha(mSaveLayerRectF, mAlpha, Canvas.MATRIX_SAVE_FLAG
                 | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
                 | Canvas.FULL_COLOR_LAYER_SAVE_FLAG
                 | Canvas.CLIP_TO_LAYER_SAVE_FLAG);
-
         // 绘制底部图片
         canvas.drawBitmap(bmCurBgPic, 0, 0, mPaint);
 

@@ -14,6 +14,7 @@ import com.beini.R;
 import com.beini.bind.ViewInjectorImpl;
 import com.beini.ui.view.dialog.DialogUtil;
 import com.beini.ui.view.dialog.UIDialog;
+import com.beini.util.FragmentHelper;
 import com.beini.util.premission.EasyPermissions;
 import com.beini.util.premission.PermissionCallbacks;
 import com.beini.util.premission.PermissionUtils;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 
 
-public abstract class BaseFragment extends Fragment implements PermissionCallbacks {
+public abstract class   BaseFragment extends Fragment implements PermissionCallbacks {
 
     public BaseActivity baseActivity;
     private String remindTxt;//解释为什么申请权限
@@ -116,8 +117,8 @@ public abstract class BaseFragment extends Fragment implements PermissionCallbac
         for (int i = 0; i < mPerms.length; i++) {
             msg = PermissionUtils.getSingleton().getPermissionString(mPerms[i]) + " ";
         }
-//        remindTxt=getString(R.string.string_help_text1) + msg + "\n" + getString(R.string.string_help_text2) + "\n" + getString(R.string.string_help_text3);
-        remindTxt = "string_help_text1" + msg + "\n" + "string_help_text2" + "\n" + "string_help_text3";
+        remindTxt=getString(R.string.string_help_text1) + msg + "\n" + getString(R.string.string_help_text2) + "\n" + getString(R.string.string_help_text3);
+
         EasyPermissions.setCode(requestCode);
         if (EasyPermissions.hasPermissions(this.getActivity(), mPerms)) {
             if (mListener != null)
@@ -182,9 +183,7 @@ public abstract class BaseFragment extends Fragment implements PermissionCallbac
                 R.string.dialog_ok, R.string.dialog_cancel, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        FragmentUtils.close(false);
-//                        FragmentHelper.removeFragment(baseActivity.getFragmentManager(),baseActivity.);
-
+                        FragmentHelper.removePreFragment(baseActivity);
                     }
                 }, perms);
     }
