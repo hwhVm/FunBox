@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.administrator.baseapp.ui.fragment.service.ServiceFragment">
+    tools:context=".ui.fragment.service.ServiceFragment">
 
     <Button
         android:id="@+id/btn_start_service"
@@ -16,4 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="stop  service" />
+
+    <Button
+        android:id="@+id/btn_start_foreground_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动前台服务" />
 </LinearLayout>

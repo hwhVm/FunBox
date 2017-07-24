@@ -50,9 +50,10 @@
         android:roundIcon="@mipmap/app_icon_serch"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--活动-->
+        <!--活动  start-->
         <activity
             android:name=".ui.activity.IndexActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <activity
@@ -73,9 +74,12 @@
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
-        <!--广播-->
+        <!--活动  end-->
+        <!--广播  start -->
         <receiver android:name=".broadcast.ControlReceiver" />
-        <!--服务-->
+        <!--<receiver android:name=".broadcast.ForegroundServiceRevice" />-->
+        <!--广播  end -->
+        <!--服务  start -->
         <service android:name="org.fourthline.cling.android.AndroidUpnpServiceImpl" />
         <service android:name=".ui.fragment.broadcast.MyService" />
         <service android:name=".ui.fragment.localmusic.service.MusicService" />
@@ -83,7 +87,10 @@
         <service android:name=".service.DemoService" />
         <service android:name=".ui.fragment.screenrecord.RecordService" />
         <service android:name=".service.MJobService" />
-        <!--provider-->
+        <!--前台服务-->
+        <service android:name=".service.ForegroundService"/>
+        <!--服务  end -->
+        <!--provider start-->
         <!-- 腾讯 bugly 如果您想兼容Android N或者以上的设备，必须要在AndroidManifest.xml文件中配置FileProvider来访问共享路径的文件。-->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -92,9 +99,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-
+        <!--provider end-->
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.service.DemoService;
+import com.beini.service.ForegroundService;
 import com.beini.util.BLog;
 
 /**
@@ -40,7 +41,7 @@ public class ServiceFragment extends BaseFragment {
         }
     };
 
-    @Event({R.id.btn_start_service, R.id.btn_stop_service})
+    @Event({R.id.btn_start_service, R.id.btn_stop_service,R.id.btn_start_foreground_service})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_start_service:
@@ -52,6 +53,11 @@ public class ServiceFragment extends BaseFragment {
                 BLog.d("     btn_stop_service  ");
                 Intent stopIntent = new Intent(baseActivity, DemoService.class);
                 baseActivity.stopService(stopIntent);
+                break;
+            case R.id.btn_start_foreground_service:
+                BLog.e("      click  btn_start_foreground_service");
+                Intent foregoundIntent = new Intent(baseActivity, ForegroundService.class);
+                baseActivity.startService(foregoundIntent);
                 break;
         }
     }

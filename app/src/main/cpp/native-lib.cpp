@@ -70,7 +70,6 @@ extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_beini_ndk_NDKMain_withArgs(JNIEnv *env, jobject/* this */, jstring args) {
     // TODO
-
     const char *str = env->GetStringUTFChars(args, 0);
     __android_log_print(ANDROID_LOG_ERROR,TAG," ");
     __android_log_print(ANDROID_LOG_ERROR, TAG, "------------>%c",str);
