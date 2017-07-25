@@ -1,7 +1,7 @@
 package com.beini.ui.fragment.home;
 
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.beini.R;
@@ -26,6 +26,7 @@ import com.beini.ui.fragment.shake.ShakeFragment;
 import com.beini.ui.fragment.sideslip.SideslipFragment;
 import com.beini.ui.fragment.sms.SmsFragment;
 import com.beini.ui.fragment.zxing.ZxingFragment;
+import com.beini.ui.view.RecycleDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,26 +42,30 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        functionList.add("cpp");
-        functionList.add("recording");
-        functionList.add("Shake");
-        functionList.add("Sideslip");
-        functionList.add("Local  Music");
-        functionList.add("Carmera");
-        functionList.add("spp ble");
-        functionList.add("sms");
-        functionList.add("QR code");
-        functionList.add("notification");
-        functionList.add("broadcast");
-        functionList.add("ani");
-        functionList.add("AudioFragment");
-        functionList.add("AIDL");
-        functionList.add("service  bind unbind  start  stop");
-        functionList.add("PopupWindowFragment");
+        functionList.add(getString(R.string.home_item_title_cpp));
+        functionList.add(getString(R.string.home_item_title_recording));
+        functionList.add(getString(R.string.home_item_title_shake));
+        functionList.add(getString(R.string.home_item_title_sideslip));
+        functionList.add(getString(R.string.home_item_title_music));
+        functionList.add(getString(R.string.home_item_title_carmra));
+        functionList.add(getString(R.string.home_item_title_spp_ble));
+        functionList.add(getString(R.string.home_item_title_sms));
+        functionList.add(getString(R.string.home_item_title_qr));
+        functionList.add(getString(R.string.home_item_title_notification));
+        functionList.add(getString(R.string.home_item_title_broadcast));
+        functionList.add(getString(R.string.home_item_title_ani));
+        functionList.add(getString(R.string.home_item_title_audio));
+        functionList.add(getString(R.string.home_item_title_aidl));
+        functionList.add(getString(R.string.home_item_title_service));
+        functionList.add(getString(R.string.home_item_title_popup_window));
+
+
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
-        recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
+//        recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
+        recycler_view_home.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
+        recycler_view_home.addItemDecoration(new RecycleDecoration(getActivity()));
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
 

@@ -1,8 +1,42 @@
 <resources>
     <string name="app_name">FunBox</string>
+    <!--主页标题-->
+    <string name="home_item_title_cpp">cpp</string>
+    <string name="home_item_title_recording">recording</string>
+    <string name="home_item_title_shake">Shake</string>
+    <string name="home_item_title_sideslip">Sideslip</string>
+    <string name="home_item_title_music">Local  Music</string>
+    <string name="home_item_title_carmra">Carmera</string>
+    <string name="home_item_title_spp_ble">spp ble</string>
+    <string name="home_item_title_sms">sms</string>
+    <string name="home_item_title_qr">QR code</string>
+    <string name="home_item_title_notification">notification</string>
+    <string name="home_item_title_broadcast">broadcast</string>
+    <string name="home_item_title_ani">ani</string>
+    <string name="home_item_title_audio">Audio</string>
+    <string name="home_item_title_aidl">AIDL</string>
+    <string name="home_item_title_service">service</string>
+    <string name="home_item_title_popup_window">PopupWindow</string>
+    <!--Rb2-->
+    <string name="rb2_item_title_popup_face_recognition">face recognition</string>
+    <string name="rb2_item_title_popup_video">video</string>
+    <string name="rb2_item_title_popup_webview">WebView</string>
+    <string name="rb2_item_title_popup_annotations">annotations</string>
+    <string name="rb2_item_title_popup_screen">screen record</string>
+    <string name="rb2_item_title_popup_retrofit">retrofit 2.0</string>
+    <string name="rb2_item_title_popup_greendao">GreenDao</string>
+    <string name="rb2_item_title_popup_wifi">WifiList</string>
+    <string name="rb2_item_title_popup_video_fingerprint">Fingerprint</string>
+    <string name="rb2_item_title_popup_video_websocket">webSocket</string>
+    <string name="rb2_item_title_popup_video_okhttp">OkHttp WebSocket</string>
+    <string name="rb2_item_title_popup_video_socket">Socket</string>
+    <string name="rb2_item_title_popup_video_pic">pic picker</string>
+    <string name="rb2_item_title_popup_video_args">args</string>
+    <string name="rb2_item_title_popup_video_view_flippe">ViewFlippeFragment</string>
+    <string name="rb2_item_title_popup_video_tx">t x5 browser</string>
+    <string name="rb2_item_title_popup_video_rx">rx重试机制</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="app_exit">再按返回键退出程序</string>
     <string name="app_title">Title</string>
 

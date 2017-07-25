@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.baseapp.ui.fragment.annotations.AnnotationsFragment">
+    tools:context=".ui.fragment.annotations.AnnotationsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <Button
         android:id="@+id/btn_send_ann"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        />
 
 </FrameLayout>

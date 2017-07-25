@@ -14,6 +14,7 @@ import com.beini.R;
 import com.beini.bind.ViewInjectorImpl;
 import com.beini.ui.view.dialog.DialogUtil;
 import com.beini.ui.view.dialog.UIDialog;
+import com.beini.util.BLog;
 import com.beini.util.FragmentHelper;
 import com.beini.util.premission.EasyPermissions;
 import com.beini.util.premission.PermissionCallbacks;
@@ -49,6 +50,7 @@ public abstract class BaseFragment extends Fragment implements PermissionCallbac
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BLog.e("            savedInstanceState != null    "+(savedInstanceState != null));
         if (savedInstanceState != null) {
             FragmentHelper.tags = savedInstanceState.getStringArrayList(SAVE_FRAGMENTS_SIZE);
             boolean isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN);
