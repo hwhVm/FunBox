@@ -1,12 +1,12 @@
 package com.beini.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 /**
  * 图片压缩工具类
@@ -65,8 +65,6 @@ public class BitmapCompressor {
 	/**
 	 * 官网：获取压缩后的图片
 	 * 
-	 * @param res
-	 * @param resId
 	 * @param reqWidth
 	 *            所需图片压缩尺寸最小宽度
 	 * @param reqHeight

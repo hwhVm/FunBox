@@ -57,7 +57,7 @@ android {
         }
     }
 
-    productFlavors {
+    productFlavors {//用于定义产品的特性，这是每个产品不同的地方。有了它我们可以用同一套代码创建不同的产品。多渠道打包
     }
 
 

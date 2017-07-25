@@ -6,7 +6,7 @@ import com.beini.constants.Constants;
 
 
 /**
- * Created by beini on 17-02-09.
+ * Created by beini on 17/02/09.
  */
 public class BLog {
 

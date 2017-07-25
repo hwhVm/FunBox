@@ -16,7 +16,7 @@ import android.view.View;
 import com.beini.R;
 import com.beini.app.GlobalApplication;
 import com.beini.util.BLog;
-import com.beini.util.Px_DipUtils;
+import com.beini.util.DensityUtils;
 
 /**
  * Created by beini on 2017/7/24.
@@ -199,14 +199,14 @@ public class CircleColorSelectPicke extends View {
 
         boolean flag = false;
         if (x < coreX && y < coreY) {
-            flag = Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) > Px_DipUtils.dip2px(GlobalApplication.getInstance(), 62));
+            flag = Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) > DensityUtils.dp2px(GlobalApplication.getInstance(), 62));
         } else if (x > coreX && y < coreY) {
-            flag = Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) > Px_DipUtils.dip2px(GlobalApplication.getInstance(), 62));
+            flag = Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) > DensityUtils.dp2px(GlobalApplication.getInstance(), 62));
         } else if (y > coreY && x < coreX) {
-            flag = Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) > Px_DipUtils.dip2px(GlobalApplication.getInstance(), 62));
+            flag = Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) > DensityUtils.dp2px(GlobalApplication.getInstance(), 62));
 
         } else if (y > coreY && x > coreX) {
-            flag = Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) > Px_DipUtils.dip2px(GlobalApplication.getInstance(), 62));
+            flag = Math.sqrt(Math.pow((x - coreX + ballRadius), 2) + Math.pow(y - coreY + ballRadius, 2)) < mBackgroundBitmap.getWidth() / 2 && (Math.sqrt(Math.pow((x - coreX - ballRadius), 2) + Math.pow(y - coreY - ballRadius, 2)) > DensityUtils.dp2px(GlobalApplication.getInstance(), 62));
 
         }
         return flag;

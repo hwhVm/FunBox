@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 
 /**
- * Toast统一管理类
+ * Snackbar统一管理类
  */
 public class SnackbarUtil {
 

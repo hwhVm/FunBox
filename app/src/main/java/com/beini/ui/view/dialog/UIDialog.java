@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.beini.R;
 import com.beini.ui.view.edit.EmojiAndChatFilter;
-import com.beini.util.Px_DipUtils;
+import com.beini.util.DensityUtils;
 import com.beini.util.StringUtils;
 
 import java.util.ArrayList;
@@ -319,7 +319,7 @@ public class UIDialog {
 				textView.setGravity(Gravity.CENTER);
 
 				textView.setTextColor(Color.parseColor("#"+(item.color.equals("")?"000000":item.color)));
-				textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, Px_DipUtils.dip2px(context,45)));
+				textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, DensityUtils.dp2px(context,45)));
 
 				// 点击事件
 				final int finalI = i;
@@ -338,7 +338,7 @@ public class UIDialog {
 				if (i!=itemList.size()-1){
 
 					TextView thread = new TextView(context);
-					thread.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, Px_DipUtils.dip2px(context,1)));
+					thread.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, DensityUtils.dp2px(context,1)));
 					thread.setGravity(Gravity.CENTER);
 					thread.setBackgroundColor(Color.parseColor("#EE9A00"));
 					lLayout_content.addView(thread);

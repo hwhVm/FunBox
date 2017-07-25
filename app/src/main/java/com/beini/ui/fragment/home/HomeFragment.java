@@ -17,6 +17,7 @@ import com.beini.ui.fragment.audio.SoundPoolFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
 import com.beini.ui.fragment.camera.CameraFragment;
+import com.beini.ui.fragment.control.SnapHeplerFragment;
 import com.beini.ui.fragment.cpptest.CppFragment;
 import com.beini.ui.fragment.localmusic.LocalMusicFragment;
 import com.beini.ui.fragment.notification.NotificationFragment;
@@ -60,6 +61,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add(getString(R.string.home_item_title_service));
         functionList.add(getString(R.string.home_item_title_popup_window));
         functionList.add(getString(R.string.home_item_title_popup_soundpool));
+        functionList.add(getString(R.string.home_item_title_snap_helper));
 
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
@@ -126,6 +128,9 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 16:
                     baseActivity.replaceFragment(SoundPoolFragment.class);
+                    break;
+                case 17:
+                    baseActivity.replaceFragment(SnapHeplerFragment.class);
                     break;
             }
         }
