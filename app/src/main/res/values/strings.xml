@@ -35,7 +35,12 @@
     <string name="rb2_item_title_popup_video_view_flippe">ViewFlippeFragment</string>
     <string name="rb2_item_title_popup_video_tx">t x5 browser</string>
     <string name="rb2_item_title_popup_video_rx">rx重试机制</string>
-
+    <!--rb3-->
+    <string name="rb3_item_title_shiro">shiro权限框架测试</string>
+    <string name="rb3_item_title_rgb">rgb</string>
+    <string name="rb3_item_title_color_picker_h">拾色器h</string>
+    <string name="rb3_item_title_color_picker_v">拾色器v</string>
+    <string name="rb3_item_title_popup_video_gesture">手势</string>
 
     <string name="app_exit">再按返回键退出程序</string>
     <string name="app_title">Title</string>

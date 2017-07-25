@@ -47,12 +47,11 @@ public class Rb3Fragment extends BaseFragment {
     public void initView() {
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
-
-        functionList.add(" shiro权限框架测试");
-        functionList.add(" rgb");
-        functionList.add(" 拾色器h");
-        functionList.add(" 拾色器v");
-        functionList.add(" 手势");
+        functionList.add(getString(R.string.rb3_item_title_shiro));
+        functionList.add(getString(R.string.rb3_item_title_rgb));
+        functionList.add(getString(R.string.rb3_item_title_color_picker_h));
+        functionList.add(getString(R.string.rb3_item_title_color_picker_v));
+        functionList.add(getString(R.string.rb3_item_title_popup_video_gesture));
 
         fragments.add(new ShiroFragment());
         fragments.add(new RGBFragment());
