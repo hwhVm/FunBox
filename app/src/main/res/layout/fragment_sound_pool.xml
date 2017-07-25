@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beini.ui.fragment.audio.SoundPoolFragment">
+
+    <Button
+        android:id="@+id/btn_click_sound_pool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="click me play" />
+
+</FrameLayout>

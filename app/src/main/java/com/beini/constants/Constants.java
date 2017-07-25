@@ -7,6 +7,4 @@ package com.beini.constants;
 public class Constants {
 
     public static Boolean DEBUG = true;
-    public static final String Media_SERVER = "Divoom media server";
-    public static final String SP_DLNA_SONG = "com.divoom.dibot.SP_DLNA_SONG";
 }

@@ -70,6 +70,9 @@ public class MusicService extends Service {
     /*迭代获取 音乐 文件*/
     private void fillMusicList(File dir) {
         File[] sourceFiles = dir.listFiles();
+        if (sourceFiles == null) {
+            return;
+        }
         BLog.d("长度" + String.valueOf(sourceFiles.length));
         for (File file : sourceFiles) {
             if (file.isDirectory()) {

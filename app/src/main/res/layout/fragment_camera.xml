@@ -24,7 +24,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:background="@mipmap/dibot_txet_icon_play_w"
+            android:background="@mipmap/txet_icon_play_w"
             android:contentDescription="@null"/>
 
         <ImageView
@@ -36,7 +36,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:background="@mipmap/dibot_txet_icon_open_w"
+            android:background="@mipmap/txet_icon_open_w"
             android:contentDescription="@null"/>
     </RelativeLayout>
 </FrameLayout>

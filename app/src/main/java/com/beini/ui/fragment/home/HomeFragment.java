@@ -13,6 +13,7 @@ import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.aidl.AIDLFragment;
 import com.beini.ui.fragment.ani.AniFragment;
 import com.beini.ui.fragment.audio.AudioFragment;
+import com.beini.ui.fragment.audio.SoundPoolFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
 import com.beini.ui.fragment.camera.CameraFragment;
@@ -58,7 +59,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add(getString(R.string.home_item_title_aidl));
         functionList.add(getString(R.string.home_item_title_service));
         functionList.add(getString(R.string.home_item_title_popup_window));
-
+        functionList.add(getString(R.string.home_item_title_popup_soundpool));
 
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
@@ -122,6 +123,9 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 15:
                     baseActivity.replaceFragment(PopupWindowFragment.class);
+                    break;
+                case 16:
+                    baseActivity.replaceFragment(SoundPoolFragment.class);
                     break;
             }
         }

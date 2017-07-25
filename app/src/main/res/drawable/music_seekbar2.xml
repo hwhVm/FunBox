@@ -6,7 +6,7 @@
             <solid android:color="@color/gray" />
         </shape>
     </item>
-    <item android:id="@android:id/secondaryProgress" android:drawable="@mipmap/dibot_btn_bg_b">
+    <item android:id="@android:id/secondaryProgress" android:drawable="@mipmap/btn_bg_b">
     </item>
     <item android:id="@android:id/progress">
         <clip>

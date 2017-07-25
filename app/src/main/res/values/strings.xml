@@ -17,6 +17,7 @@
     <string name="home_item_title_aidl">AIDL</string>
     <string name="home_item_title_service">service</string>
     <string name="home_item_title_popup_window">PopupWindow</string>
+    <string name="home_item_title_popup_soundpool">SoundPool</string>
     <!--Rb2-->
     <string name="rb2_item_title_popup_face_recognition">face recognition</string>
     <string name="rb2_item_title_popup_video">video</string>
@@ -98,5 +99,9 @@
     <string name="permission_memory">存储空间</string>
     <string name="permission_phone_state">手机状态</string>
     <string name="permission_location">位置信息</string>
+    <!--CameraFragment-->
+    <string name="camera_competele">complete</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

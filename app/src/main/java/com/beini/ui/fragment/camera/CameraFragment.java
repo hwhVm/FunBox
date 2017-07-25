@@ -1,7 +1,8 @@
 package com.beini.ui.fragment.camera;
 
+import android.Manifest;
 import android.app.Activity;
-import android.graphics.PixelFormat;
+import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -10,7 +11,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.beini.R;
 import com.beini.app.BaseFragment;
@@ -18,8 +18,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.ui.fragment.camera.presenter.MainPresenter;
-import com.beini.util.BLog;
-import com.beini.util.SnackbarUtil;
+import com.beini.util.ToastUtils;
 import com.beini.util.listener.KeyBackListener;
 import com.beini.util.listener.OnTouchEventListener;
 
@@ -39,18 +38,28 @@ public class CameraFragment extends BaseFragment implements OnTouchEventListener
     View layout;
     @ViewInject(R.id.surfaceView)
     SurfaceView surfaceView;
-    @ViewInject(R.id.layout_tack_pic_index)
-    FrameLayout layout_tack_pic_index;
 
     @Override
     public void initView() {
+        checkPermission(new CheckPermListener() {
+            @Override
+            public void superPermission() {
+
+            }
+        }, 0x112, new String[]{Manifest.permission.CAMERA});
+        checkPermission(new CheckPermListener() {
+            @Override
+            public void superPermission() {
+
+            }
+        }, 0x113, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE});
         presenter = new MainPresenter();
         baseActivity.setBottom(View.GONE);
         surfaceView.getHolder().setFixedSize(176, 144); //设置Surface分辨率
         surfaceView.getHolder().setKeepScreenOn(true);// 屏幕常亮
         surfaceView.getHolder().addCallback(new SurfaceCallback());//为SurfaceView的句柄添加一个回调函数
         baseActivity.setOnTouchEventListener(this);
-//        checkPermissionMethod(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, "ff", 44);
+
     }
 
     @Event({R.id.takepicture, R.id.scalePic})
@@ -78,7 +87,7 @@ public class CameraFragment extends BaseFragment implements OnTouchEventListener
                     .subscribe(new Consumer<Boolean>() {
                         @Override
                         public void accept(Boolean aBoolean) throws Exception {
-                            SnackbarUtil.showShort(layout_tack_pic_index, "complete ");
+                            ToastUtils.showShortToast(getString(R.string.camera_competele));
                         }
                     });
 
@@ -93,9 +102,9 @@ public class CameraFragment extends BaseFragment implements OnTouchEventListener
         public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                    int height) {
             parameters = camera.getParameters(); // 获取各项参数
-            parameters.setPictureFormat(PixelFormat.JPEG); // 设置图片格式
+            parameters.setPictureFormat(ImageFormat.JPEG); // 设置图片格式
             parameters.setPreviewSize(width, height); // 设置预览大小
-            parameters.setPreviewFpsRange(0,1000);  //设置每秒显示4帧
+            parameters.setPreviewFpsRange(0, 1000);  //设置每秒显示4帧
             parameters.setPictureSize(width, height); // 设置保存的图片尺寸
             parameters.setJpegQuality(80); // 设置照片质量
         }
@@ -129,7 +138,6 @@ public class CameraFragment extends BaseFragment implements OnTouchEventListener
      */
     @Override
     public void onTouchEvent(MotionEvent event) {
-        BLog.d("  event.getAction()= " + event.getAction());
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 layout.setVisibility(ViewGroup.VISIBLE);
