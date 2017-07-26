@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beini.ui.fragment.camera.CameraFunctionListFragment">
+
+    <Button
+        android:id="@+id/btn_camera_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自己实现 camera" />
+
+    <Button
+        android:id="@+id/btn_camera_system"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="调用系统" />
+    <Button
+        android:id="@+id/btn_camera2_system"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="调用Camera2 android 5.0" />
+</LinearLayout>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <SurfaceView
-        android:id="@+id/surfaceView_camera"
+        android:id="@+id/surfaceView_camera2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -16,7 +16,7 @@
         android:visibility="gone">
 
         <ImageView
-            android:id="@+id/takepicture"
+            android:id="@+id/takepicture2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -28,7 +28,7 @@
             android:contentDescription="@null"/>
 
         <ImageView
-            android:id="@+id/scalePic"
+            android:id="@+id/scalePic2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -39,5 +39,9 @@
             android:background="@mipmap/ae6"
             android:contentDescription="@null"/>
     </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>
 

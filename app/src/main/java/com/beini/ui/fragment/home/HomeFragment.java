@@ -16,7 +16,7 @@ import com.beini.ui.fragment.audio.AudioFragment;
 import com.beini.ui.fragment.audio.SoundPoolFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
-import com.beini.ui.fragment.camera.CameraFragment;
+import com.beini.ui.fragment.camera.CameraFunctionListFragment;
 import com.beini.ui.fragment.control.SnapHeplerFragment;
 import com.beini.ui.fragment.cpptest.CppFragment;
 import com.beini.ui.fragment.localmusic.LocalMusicFragment;
@@ -94,7 +94,7 @@ public class HomeFragment extends BaseFragment {
                     baseActivity.replaceFragment(LocalMusicFragment.class);
                     break;
                 case 5:
-                    baseActivity.replaceFragment(CameraFragment.class);
+                    baseActivity.replaceFragment(CameraFunctionListFragment.class);
                     break;
                 case 6:
                     baseActivity.replaceFragment(SppFragment.class);

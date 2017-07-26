@@ -6,7 +6,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.beini"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 25
         aaptOptions.cruncherEnabled = false
         aaptOptions.useNewCruncher = false
@@ -169,7 +169,5 @@ dependencies {
 
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
     compile 'com.tencent.bugly:nativecrashreport:3.3.0'
-
-
 }
 

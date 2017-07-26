@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beini.ui.fragment.camera.CallSystemCameraFragment">
+
+    <Button
+        android:id="@+id/btn_call_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始调用照相" />
+
+    <Button
+        android:id="@+id/btn_call_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="录像" />
+
+    <ImageView
+        android:id="@+id/image_get_system_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
