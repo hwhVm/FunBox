@@ -51,8 +51,9 @@ public class VideoViewFragment extends BaseFragment {
     @ViewInject(R.id.videoView1)
     VideoView videoView;
     private MediaController mController;
-    String localUrl = Environment.getExternalStorageDirectory().getPath() + "/APIC/aa.mp4";
-    String netUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+    private String localUrl = Environment.getExternalStorageDirectory().getPath() + "/APIC/aa.mp4";
+    private String netUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+    private int mCurrentPosition;//当前播放的位置
 
     @Override
     public void initView() {
@@ -60,14 +61,24 @@ public class VideoViewFragment extends BaseFragment {
         mController.setVisibility(View.INVISIBLE);  //隐藏VideoView自带的进度条
         videoView.setMediaController(mController);
         videoView.requestFocus();
-
+        //防止屏幕锁屏
         videoView.setOnCompletionListener(onCompletionListener);
-//        videoView.setOnErrorListener();//视频无法播放监听
+        videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                return false;
+            }
+        });//视频无法播放监听,播放发生错误监听
 //        videoView.setOnInfoListener();//缓冲监听
-//        videoView.setOnPreparedListener();//加载网络资源黑屏结束监听
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                //准备完成，比如可以隐藏加载框
+            }
+        });//加载网络资源黑屏结束监听,/播放前缓冲监听事件，比如加载视频时有加载提示框
     }
 
-    MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
+    MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {//播放完成监听
         @Override
         public void onCompletion(MediaPlayer mp) {
 

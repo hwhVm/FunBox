@@ -5,7 +5,6 @@ import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
-import android.os.Build;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -91,7 +90,7 @@ public class MediacodecFragment extends BaseFragment implements SurfaceHolder.Ca
 
     @SuppressLint("NewApi")
     private boolean SupportAvcCodec(){
-        if(Build.VERSION.SDK_INT>=18){
+//        if(Build.VERSION.SDK_INT>=18){
             for(int j = MediaCodecList.getCodecCount() - 1; j >= 0; j--){
                 MediaCodecInfo codecInfo = MediaCodecList.getCodecInfoAt(j);
 
@@ -102,7 +101,7 @@ public class MediacodecFragment extends BaseFragment implements SurfaceHolder.Ca
                     }
                 }
             }
-        }
+//        }
         return false;
     }
 
