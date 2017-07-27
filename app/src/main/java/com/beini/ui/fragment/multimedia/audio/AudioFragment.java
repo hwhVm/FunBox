@@ -1,4 +1,4 @@
-package com.beini.ui.fragment.audio;
+package com.beini.ui.fragment.multimedia.audio;
 
 import android.annotation.TargetApi;
 import android.content.ComponentName;
