@@ -51,7 +51,13 @@
         android:id="@+id/btn_media_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="recording" />
+        android:text="Mediacodec recording" />
+
+    <Button
+        android:id="@+id/btn_media_record_audiorecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AudioRecord recording" />
 
     <Button
         android:id="@+id/btn_media_local_music"

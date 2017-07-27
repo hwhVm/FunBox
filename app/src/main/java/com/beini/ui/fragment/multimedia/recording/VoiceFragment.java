@@ -19,7 +19,6 @@ import com.beini.constants.Constants;
 import com.beini.ui.fragment.multimedia.recording.bean.RecorderBean;
 import com.beini.ui.view.RecycleDecoration;
 import com.beini.util.BLog;
-import com.beini.util.SDCardUtils;
 import com.beini.util.ToastUtils;
 
 import org.reactivestreams.Subscription;
@@ -49,21 +48,20 @@ public class VoiceFragment extends BaseFragment {
     @ViewInject(R.id.btn_recorder)
     Button btn_recorder;
 
-    private MediaPlayer mediaPlayer;
-    private File mAudioFile;   //录音所保存的文件
-    private MediaRecorder mediaRecorder;
-    private final String outputFile = Constants.URL_ALL_FILE + "/voice/";//录音文件保存位置
-    private long startTime, endTime;  //录音开始时间与结束时间
-    private List<RecorderBean> recorderBeans = new ArrayList<>();
-    private RecorderAdapter recorderAdapter;
+    public MediaPlayer mediaPlayer;
+    public File mAudioFile;   //录音所保存的文件
+    public MediaRecorder mediaRecorder;
+    public final String outputFile = Constants.URL_ALL_FILE + "/voice/";//录音文件保存位置
+    public long startTime, endTime;  //录音开始时间与结束时间
+    public List<RecorderBean> recorderBeans = new ArrayList<>();
+    public RecorderAdapter recorderAdapter;
     //当前是否正在播放
-    private volatile boolean isPlaying;
+    public volatile boolean isPlaying;
     //判断是否在录音
-    private boolean isRecordering = false;
+    public boolean isRecordering = false;
 
     @Override
     public void initView() {
-        SDCardUtils.printlnEventment();
         checkPermission(new CheckPermListener() {//申请权限
             @Override
             public void superPermission() {
@@ -107,7 +105,7 @@ public class VoiceFragment extends BaseFragment {
         }
     };
 
-    private void startRecorder(FlowableEmitter<String> e) {//调用stop方法之后必须重新配置
+    public void startRecorder(FlowableEmitter<String> e) {//调用stop方法之后必须重新配置
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);////从麦克风采集声音数据
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);//创建录音文件,.m4a为MPEG-4音频标准的文件的扩展名
@@ -143,33 +141,15 @@ public class VoiceFragment extends BaseFragment {
         @Override
         public void onNext(String s) {
             if (isRecordering) {
-                //停止录音
-                mediaRecorder.stop();//必须在调用start后面
-                mediaRecorder.release();//每次完成后释放,避免占用和消耗系统资源
-                mediaRecorder = null;
-                //记录停止时间
-                endTime = System.currentTimeMillis();
-                //录音时间处理，比如只有大于2秒的录音才算成功
-                int time = (int) ((endTime - startTime) / 1000);
-                if (time >= 3) {
-                    //录音成功,添加数据
-                    RecorderBean bean = new RecorderBean();
-                    bean.setFilePath(mAudioFile.getAbsolutePath());
-                    recorderBeans.add(bean);
-                    recorderAdapter.notifyDataSetChanged();
-                    ToastUtils.showShortToast("录制成功");
-                } else {
-                    mAudioFile = null;
-                    showFailed();
-                }
                 isRecordering = false;
+                stopRecorder();
             }
         }
 
         @Override
         public void onError(Throwable t) {
             isRecordering = false;
-            ToastUtils.showShortToast("录制失败");
+            showFailed();
         }
 
         @Override
@@ -178,7 +158,30 @@ public class VoiceFragment extends BaseFragment {
         }
     };
 
-    private void showFailed() {
+    public void stopRecorder() {
+        //停止录音
+        mediaRecorder.stop();//必须在调用start后面
+        mediaRecorder.release();//每次完成后释放,避免占用和消耗系统资源
+        mediaRecorder = null;
+        //记录停止时间
+        endTime = System.currentTimeMillis();
+        //录音时间处理，比如只有大于2秒的录音才算成功
+        int time = (int) ((endTime - startTime) / 1000);
+        if (time >= 3) {
+            //录音成功,添加数据
+            RecorderBean bean = new RecorderBean();
+            bean.setFilePath(mAudioFile.getAbsolutePath());
+            recorderBeans.add(bean);
+            recorderAdapter.notifyDataSetChanged();
+            ToastUtils.showShortToast("录制成功");
+        } else {
+            mAudioFile = null;
+            showFailed();
+        }
+
+    }
+
+    public void showFailed() {
         ToastUtils.showShortToast("录制失败");
     }
 
@@ -195,7 +198,7 @@ public class VoiceFragment extends BaseFragment {
         }
     };
 
-    private void startPlay(String path) {
+    public void startPlay(String path) {
         try {
             //设置播放音频数据文件
             mediaPlayer.setDataSource(path);
