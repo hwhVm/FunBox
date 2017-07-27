@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.beini.ui.fragment.camera.CameraFunctionListFragment">
+    tools:context=".ui.fragment.multimedia.MediaFunctionListFragment">
 
     <Button
         android:id="@+id/btn_camera_customer"
@@ -16,9 +16,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="调用系统" />
+
     <Button
         android:id="@+id/btn_camera2_system"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="调用Camera2 android 5.0" />
+
+    <Button
+        android:id="@+id/btn_media_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MediaRecorder 录像" />
+
+    <Button
+        android:id="@+id/btn_media_audio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Audio" />
+
+    <Button
+        android:id="@+id/btn_media_sound_pool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SoundPool" />
+
+    <Button
+        android:id="@+id/btn_media_mediacodec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mediacodec" />
+
+    <Button
+        android:id="@+id/btn_media_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="recording" />
+
+    <Button
+        android:id="@+id/btn_media_local_music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Local Music" />
+    <Button
+        android:id="@+id/btn_media_qr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_item_title_qr" />
 </LinearLayout>

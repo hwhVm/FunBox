@@ -1,6 +1,6 @@
 package com.beini.event;
 
-import com.beini.ui.fragment.camera.bean.ImageBean;
+import com.beini.ui.fragment.multimedia.camera.bean.ImageBean;
 
 import java.util.List;
 

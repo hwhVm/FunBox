@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.beini.ui.fragment.audio.SoundPoolFragment">
+    tools:context=".ui.fragment.multimedia.camera.audio.SoundPoolFragment">
 
     <Button
         android:id="@+id/btn_click_sound_pool"

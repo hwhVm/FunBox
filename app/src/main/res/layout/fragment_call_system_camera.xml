@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.beini.ui.fragment.camera.CallSystemCameraFragment">
+    tools:context=".ui.fragment.multimedia.camera.CallSystemCameraFragment">
 
     <Button
         android:id="@+id/btn_call_camera"

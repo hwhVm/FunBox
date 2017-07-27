@@ -20,7 +20,6 @@ import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.ui.fragment.picPicker.PicPickeFragment;
 import com.beini.ui.fragment.rx.RxRetryFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
-import com.beini.ui.fragment.video.VideoFragment;
 import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
 import com.beini.ui.fragment.websocketandsocket.OkhttpWebSocketFragment;
 import com.beini.ui.fragment.websocketandsocket.SocketFragment;
@@ -47,7 +46,6 @@ public class Rb2Fragment extends BaseFragment {
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
         functionList.add(getString(R.string.rb2_item_title_popup_face_recognition));
-        functionList.add(getString(R.string.rb2_item_title_popup_video));
         functionList.add(getString(R.string.rb2_item_title_popup_webview));
         functionList.add(getString(R.string.rb2_item_title_popup_annotations));
         functionList.add(getString(R.string.rb2_item_title_popup_screen));
@@ -78,53 +76,50 @@ public class Rb2Fragment extends BaseFragment {
                     baseActivity.replaceFragment(FacereCongnitioonFragment.class);
                     break;
                 case 1:
-                    baseActivity.replaceFragment(VideoFragment.class);
-                    break;
-                case 2:
                     baseActivity.replaceFragment(WebViewTestFragment.class);
                     break;
-                case 3:
+                case 2:
                     baseActivity.replaceFragment(AnnotationsFragment.class);
                     break;
-                case 4:
+                case 3:
                     baseActivity.replaceFragment(ScreenRecordFragment.class);
                     break;
-                case 5:
+                case 4:
                     baseActivity.replaceFragment(NetFileFragment.class);
                     break;
-                case 6:
+                case 5:
                     baseActivity.replaceFragment(GreenDaoFragment.class);
                     break;
-                case 7:
+                case 6:
                     baseActivity.replaceFragment(WfiListFragment.class);
                     break;
-                case 8:
+                case 7:
                     baseActivity.replaceFragment(FingerprintFragment.class);
                     break;
-                case 9:
+                case 8:
                     baseActivity.replaceFragment(WebScoketFragment.class);
                     break;
-                case 10:
+                case 9:
                     baseActivity.replaceFragment(OkhttpWebSocketFragment.class);
                     break;
-                case 11:
+                case 10:
                     baseActivity.replaceFragment(SocketFragment.class);
                     break;
-                case 12:
+                case 11:
                     baseActivity.replaceFragment(PicPickeFragment.class);
                     break;
-                case 13:
+                case 12:
                     Bundle args = new Bundle();
                     args.putString("name", "beini");
                     baseActivity.replaceFragment(ArgsFragment.class, args);
                     break;
-                case 14:
+                case 13:
                     baseActivity.replaceFragment(ViewFlippeFragment.class);
                     break;
-                case 15:
+                case 14:
                     baseActivity.replaceFragment(Tx5Fragment.class);
                     break;
-                case 16:
+                case 15:
                     baseActivity.replaceFragment(RxRetryFragment.class);
                     break;
             }
