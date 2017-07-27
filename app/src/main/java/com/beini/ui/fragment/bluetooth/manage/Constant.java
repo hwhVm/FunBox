@@ -1,5 +1,7 @@
 package com.beini.ui.fragment.bluetooth.manage;
 
+import com.beini.app.GlobalApplication;
+
 /**
  * Created by beini on 2017/3/16.
  */
@@ -13,4 +15,8 @@ public class Constant {
     public static final int MESSAGE_DISMISS_DIALOG = 6;
 
     public static final String DEVICE_NAME = "TimeBox";
+
+
+
+
 }
