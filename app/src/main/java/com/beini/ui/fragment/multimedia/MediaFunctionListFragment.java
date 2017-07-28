@@ -33,7 +33,7 @@ public class MediaFunctionListFragment extends BaseFragment {
     }
 
     @Event({R.id.btn_camera_customer, R.id.btn_camera_system, R.id.btn_camera2_system, R.id.btn_media_video, R.id.btn_media_audio, R.id.btn_media_sound_pool,
-            R.id.btn_media_mediacodec, R.id.btn_media_record, R.id.btn_media_local_music, R.id.btn_media_qr,R.id.btn_media_record_audiorecord})
+            R.id.btn_media_mediacodec, R.id.btn_media_record, R.id.btn_media_local_music, R.id.btn_media_qr, R.id.btn_media_record_audiorecord, R.id.btn_media_extractor_muxer})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_camera_customer:
@@ -70,6 +70,9 @@ public class MediaFunctionListFragment extends BaseFragment {
                 break;
             case R.id.btn_media_record_audiorecord:
                 baseActivity.replaceFragment(AudioRecordFragment.class);
+                break;
+            case R.id.btn_media_extractor_muxer:
+                baseActivity.replaceFragment(MediaExtractorMuxerkFragment.class);
                 break;
         }
     }

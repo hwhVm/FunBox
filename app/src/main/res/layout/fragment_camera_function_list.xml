@@ -64,9 +64,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Local Music" />
+
     <Button
         android:id="@+id/btn_media_qr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/home_item_title_qr" />
+
+    <Button
+        android:id="@+id/btn_media_extractor_muxer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="音频和视频提取和生成" />
 </LinearLayout>
