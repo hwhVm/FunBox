@@ -2,11 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.baseapp.ui.fragment.video.VideoFragment">
+    tools:context=".ui.fragment.multimedia.video.VideoFragment">
 
     <Button
         android:id="@+id/btn_video_view"
         android:layout_width="wrap_content"
+        android:text="进入视频列表"
         android:layout_height="wrap_content" />
 
     <SurfaceView

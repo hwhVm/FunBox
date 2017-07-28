@@ -93,7 +93,7 @@ public class VideoFragment extends BaseFragment {
                 play();
                 break;
             case R.id.btn_video_view:
-                baseActivity.replaceFragment(VideoViewFragment.class);
+                baseActivity.replaceFragment(VideoListFragment.class);
                 break;
 
         }

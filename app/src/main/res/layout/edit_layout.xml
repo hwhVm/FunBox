@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <!--文字输入框-->
-    <com.example.administrator.baseapp.ui.view.edit.MEditChatText
+    <com.beini.ui.view.edit.MEditChatText
         android:id="@+id/dropview_edit"
         android:layout_width="0dip"
         android:layout_weight="1"

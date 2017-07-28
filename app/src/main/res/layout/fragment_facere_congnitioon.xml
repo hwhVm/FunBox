@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.baseapp.ui.fragment.facerecognition.FacereCongnitioonFragment">
+    tools:context=".ui.fragment.facerecognition.FacereCongnitioonFragment">
 
-    <com.example.administrator.baseapp.ui.fragment.facerecognition.view.MImageView
+    <com.beini.ui.fragment.facerecognition.view.MImageView
         android:id="@+id/image_test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom" />
 
-    <com.example.administrator.baseapp.ui.fragment.facerecognition.view.MSurfaceView
+    <com.beini.ui.fragment.facerecognition.view.MSurfaceView
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

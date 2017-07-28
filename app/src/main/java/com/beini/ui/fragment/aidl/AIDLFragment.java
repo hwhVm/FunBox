@@ -45,8 +45,8 @@ public class AIDLFragment extends BaseFragment {
 //                SnackbarUtil.showShort(view,myAIDLService.add(3, 4));
                 break;
             case R.id.btn_bind:
-                Intent intent = new Intent("com.example.administrator.baseapp.service.aidl.MService");
-                intent.setPackage("com.example.administrator.baseapp");
+                Intent intent = new Intent("MService");
+                intent.setPackage("com.beini");
                 baseActivity.bindService(intent, connection, BIND_AUTO_CREATE);
                 break;
 
