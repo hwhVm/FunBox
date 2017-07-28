@@ -40,6 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     TextView top_bar_title;
     @ViewInject(R.id.navigation)
     BottomNavigationView navigation;
+    public  int homeTag = 0;
 
     private FragmentManager customerFragmentManager;
 
@@ -78,15 +79,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     replaceFragment(HomeFragment.class);
-                    FragmentHelper.homeTag = 0;
+                    homeTag = 0;
                     return true;
                 case R.id.navigation_dashboard:
                     replaceFragment(Rb2Fragment.class);
-                    FragmentHelper.homeTag = 1;
+                    homeTag = 1;
                     return true;
                 case R.id.navigation_notifications:
                     replaceFragment(Rb3Fragment.class);
-                    FragmentHelper.homeTag = 2;
+                    homeTag = 2;
                     return true;
             }
             return false;

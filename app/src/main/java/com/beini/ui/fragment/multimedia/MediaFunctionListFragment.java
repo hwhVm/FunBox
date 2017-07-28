@@ -48,15 +48,17 @@ public class MediaFunctionListFragment extends BaseFragment {
             case R.id.btn_media_video:
                 baseActivity.replaceFragment(VideoFragment.class);
                 break;
+            case R.id.btn_media_mediacodec:
+                baseActivity.replaceFragment(MediacodecFragment.class);
+                break;
+
             case R.id.btn_media_audio:
                 baseActivity.replaceFragment(AudioFragment.class);
                 break;
             case R.id.btn_media_sound_pool:
                 baseActivity.replaceFragment(SoundPoolFragment.class);
                 break;
-            case R.id.btn_media_mediacodec:
-                baseActivity.replaceFragment(MediacodecFragment.class);
-                break;
+
             case R.id.btn_media_record:
                 baseActivity.replaceFragment(VoiceFragment.class);
                 break;
