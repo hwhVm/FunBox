@@ -1,6 +1,7 @@
 package com.beini.ui.fragment.multimedia;
 
 
+import android.Manifest;
 import android.view.View;
 
 import com.beini.R;
@@ -29,7 +30,12 @@ public class MediaFunctionListFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        checkPermission(new CheckPermListener() {
+            @Override
+            public void superPermission() {
 
+            }
+        }, 0x111, new String[]{Manifest.permission.CAMERA});
     }
 
     @Event({R.id.btn_camera_customer, R.id.btn_camera_system, R.id.btn_camera2_system, R.id.btn_media_video, R.id.btn_media_audio, R.id.btn_media_sound_pool,

@@ -3,7 +3,6 @@ package com.beini.ui.fragment.multimedia.camera;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +13,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
+import com.beini.constants.Constants;
 import com.beini.util.BLog;
 import com.beini.util.listener.ActivityResultListener;
 
@@ -24,7 +24,7 @@ import com.beini.util.listener.ActivityResultListener;
 @ContentView(R.layout.fragment_call_system_camera)
 public class CallSystemCameraFragment extends BaseFragment implements ActivityResultListener {
 
-    private final String URI = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();//图片保存地址
+    private final String URI = Constants.URL_ALL_FILE;//图片保存地址
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
     @ViewInject(R.id.image_get_system_pic)
@@ -42,13 +42,18 @@ public class CallSystemCameraFragment extends BaseFragment implements ActivityRe
         switch (view.getId()) {
             case R.id.btn_call_camera:
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// MediaStore.ACTION_IMAGE_CAPTURE// 拍摄照片；  MediaStore.ACTION_VIDEO_CAPTURE //拍摄视频；
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, URI);//设置拍摄后返回数据的地址：MediaStore.EXTRA_OUTPUT 参数用于指定拍摄完成后的照片/视频的储存路径。你可以使用Android默认的储存照片目录来保存：
-                baseActivity.startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                if (intent.resolveActivity(baseActivity.getPackageManager()) != null) {//向该方法传入包管理器可以对包管理器进行查询以确定是否有Activity能够启动该Intent
+                    String s = URI + "/temp.png";
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, s);//设置拍摄后返回数据的地址：MediaStore.EXTRA_OUTPUT 参数用于指定拍摄完成后的照片/视频的储存路径。你可以使用Android默认的储存照片目录来保存：
+                    baseActivity.startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                }//可以做一些提示
                 break;
             case R.id.btn_call_video:
                 Intent intentVideo = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                intentVideo.putExtra(MediaStore.EXTRA_OUTPUT, URI);
-                baseActivity.startActivityForResult(intentVideo, CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
+                if (intentVideo.resolveActivity(baseActivity.getPackageManager()) != null) {
+                    intentVideo.putExtra(MediaStore.EXTRA_OUTPUT, URI);
+                    baseActivity.startActivityForResult(intentVideo, CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
+                }//可以做一些提示
                 break;
         }
 

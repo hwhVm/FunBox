@@ -36,11 +36,6 @@ public class MediaExtractorMuxerkFragment extends BaseFragment {
         }
     }
 
-//    private void extractorVideo() {
-//
-//
-//    }
-
     protected boolean transcode(String input, String output) throws IOException {
 
         BLog.e("start processing...");
