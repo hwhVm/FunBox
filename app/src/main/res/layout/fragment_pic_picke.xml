@@ -9,13 +9,14 @@
     <Button
         android:id="@+id/btn_show_pic"
         android:layout_width="match_parent"
+        android:text="调系统图库"
         android:layout_height="wrap_content"
        />
 
     <Button
         android:id="@+id/btn_matisse"
         android:layout_width="match_parent"
-        android:text="ddddd"
+        android:text="调用知乎图片选择框架"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btn_dracula"

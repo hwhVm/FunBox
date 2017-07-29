@@ -39,8 +39,7 @@ public class PicPickeFragment extends BaseFragment implements ActivityResultList
     @Event({R.id.btn_show_pic, R.id.btn_matisse, R.id.btn_dracula})
     private void mEVent(View view) {
         switch (view.getId()) {
-            case R.id.btn_show_pic:
-                BLog.d("    -------------->PicPickeFragment   ");
+            case R.id.btn_show_pic://调用系统自带的图库
                 Intent toGallery = new Intent(Intent.ACTION_GET_CONTENT);
                 toGallery.setType("image/*");
                 toGallery.addCategory(Intent.CATEGORY_OPENABLE);
@@ -48,19 +47,19 @@ public class PicPickeFragment extends BaseFragment implements ActivityResultList
                 break;
             case R.id.btn_matisse:
                 Matisse.from(getActivity())
-                        .choose(MimeType.allOf())
+                        .choose(MimeType.ofAll(), true)//// 选择 mime 的类型
                         .countable(true)
-                        .maxSelectable(9)
+                        .maxSelectable(9)// 图片选择的最多数量
                         .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
                         .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
                         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new GlideEngine())
-                        .forResult(REQUEST_GALLERY);
+                        .thumbnailScale(0.85f)// 缩略图的比例
+                        .imageEngine(new GlideEngine())// 使用的图片加载引擎 GlideEngine
+                        .forResult(REQUEST_GALLERY);//// 设置作为标记的请求码
                 break;
             case R.id.btn_dracula://要导入Picasso，就不导入了
                 Matisse.from(getActivity())
-                        .choose(MimeType.of(MimeType.JPEG, MimeType.PNG))
+                        .choose(MimeType.of(MimeType.JPEG, MimeType.PNG,MimeType.GIF))
                         .theme(R.style.Matisse_Dracula)
                         .countable(false)
                         .maxSelectable(9)
@@ -79,6 +78,7 @@ public class PicPickeFragment extends BaseFragment implements ActivityResultList
             mSelected = Matisse.obtainResult(data);
             BLog.d("mSelected: " + mSelected);
         }
+
     }
 
     @Override

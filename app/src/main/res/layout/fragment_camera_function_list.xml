@@ -76,4 +76,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="音频和视频提取和生成" />
+
+    <Button
+        android:id="@+id/btn_fmpeg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

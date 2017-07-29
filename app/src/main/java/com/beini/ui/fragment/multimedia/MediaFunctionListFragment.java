@@ -13,6 +13,7 @@ import com.beini.ui.fragment.multimedia.audio.SoundPoolFragment;
 import com.beini.ui.fragment.multimedia.camera.CallSystemCameraFragment;
 import com.beini.ui.fragment.multimedia.camera.Camera2Fragment;
 import com.beini.ui.fragment.multimedia.camera.CameraFragment;
+import com.beini.ui.fragment.multimedia.ffmpeg.FFmpeg4AndroidFragment;
 import com.beini.ui.fragment.multimedia.localmusic.LocalMusicFragment;
 import com.beini.ui.fragment.multimedia.recording.AudioRecordFragment;
 import com.beini.ui.fragment.multimedia.recording.VoiceFragment;
@@ -39,7 +40,8 @@ public class MediaFunctionListFragment extends BaseFragment {
     }
 
     @Event({R.id.btn_camera_customer, R.id.btn_camera_system, R.id.btn_camera2_system, R.id.btn_media_video, R.id.btn_media_audio, R.id.btn_media_sound_pool,
-            R.id.btn_media_mediacodec, R.id.btn_media_record, R.id.btn_media_local_music, R.id.btn_media_qr, R.id.btn_media_record_audiorecord, R.id.btn_media_extractor_muxer})
+            R.id.btn_media_mediacodec, R.id.btn_media_record, R.id.btn_media_local_music, R.id.btn_media_qr, R.id.btn_media_record_audiorecord, R.id.btn_media_extractor_muxer,
+            R.id.btn_fmpeg})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_camera_customer:
@@ -79,6 +81,9 @@ public class MediaFunctionListFragment extends BaseFragment {
                 break;
             case R.id.btn_media_extractor_muxer:
                 baseActivity.replaceFragment(MediaExtractorMuxerkFragment.class);
+                break;
+            case R.id.btn_fmpeg:
+                baseActivity.replaceFragment(FFmpeg4AndroidFragment.class);
                 break;
         }
     }

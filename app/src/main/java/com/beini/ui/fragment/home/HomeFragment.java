@@ -3,6 +3,7 @@ package com.beini.ui.fragment.home;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.SimpleAdapter;
 
 import com.beini.R;
 import com.beini.adapter.HomeListAdapter;

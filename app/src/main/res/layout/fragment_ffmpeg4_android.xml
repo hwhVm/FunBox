@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.beini.ui.fragment.multimedia.ffmpeg.FFmpeg4AndroidFragment">
+    <Button
+        android:id="@+id/btn_choice_form_gallery"
+        android:layout_width="match_parent"
+        android:background="@color/color_light_blue"
+        android:text="选择图片视频"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_ffmpeg_rotate_90"
+        android:layout_width="match_parent"
+        android:text="旋转视频90度"
+        android:background="@color/color_light_blue"
+        android:layout_height="wrap_content" />
+    <GridView
+        android:id="@+id/gd_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
