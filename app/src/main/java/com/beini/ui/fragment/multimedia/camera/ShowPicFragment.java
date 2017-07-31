@@ -11,9 +11,9 @@ import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
 import com.beini.event.ImageEvent;
-import com.beini.ui.fragment.multimedia.camera.adapter.PicAdapter;
-import com.beini.ui.fragment.multimedia.camera.bean.ImageBean;
-import com.beini.ui.fragment.multimedia.camera.presenter.ShowPicPresenter;
+import com.beini.ui.fragment.multimedia.adapter.PicAdapter;
+import com.beini.ui.fragment.multimedia.bean.ImageBean;
+import com.beini.ui.fragment.multimedia.presenter.ShowPicPresenter;
 
 import org.greenrobot.eventbus.EventBus;
 

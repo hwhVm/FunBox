@@ -11,7 +11,7 @@ import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.constants.Constants;
-import com.beini.ui.fragment.multimedia.video.adapter.VideoListAdapter;
+import com.beini.ui.fragment.multimedia.adapter.VideoListAdapter;
 import com.beini.ui.view.RecycleDecoration;
 import com.beini.util.BLog;
 

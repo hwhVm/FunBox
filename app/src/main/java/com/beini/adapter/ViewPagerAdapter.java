@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.beini.R;
-import com.beini.ui.fragment.multimedia.camera.bean.ImageBean;
+import com.beini.ui.fragment.multimedia.bean.ImageBean;
 
 import java.util.List;
 

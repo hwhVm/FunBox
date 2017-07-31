@@ -16,7 +16,7 @@ import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.constants.Constants;
-import com.beini.ui.fragment.multimedia.recording.bean.RecorderBean;
+import com.beini.ui.fragment.multimedia.bean.RecorderBean;
 import com.beini.ui.view.RecycleDecoration;
 import com.beini.util.BLog;
 import com.beini.util.ToastUtils;

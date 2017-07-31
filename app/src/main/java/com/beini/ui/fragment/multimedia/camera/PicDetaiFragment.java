@@ -8,7 +8,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.event.ImageEvent;
-import com.beini.ui.fragment.multimedia.camera.bean.ImageBean;
+import com.beini.ui.fragment.multimedia.bean.ImageBean;
 import com.beini.util.BLog;
 
 import org.greenrobot.eventbus.EventBus;

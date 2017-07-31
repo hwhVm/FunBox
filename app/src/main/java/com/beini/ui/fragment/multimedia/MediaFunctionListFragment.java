@@ -19,6 +19,7 @@ import com.beini.ui.fragment.multimedia.recording.AudioRecordFragment;
 import com.beini.ui.fragment.multimedia.recording.VoiceFragment;
 import com.beini.ui.fragment.multimedia.video.MediacodecFragment;
 import com.beini.ui.fragment.multimedia.video.VideoFragment;
+import com.beini.ui.fragment.multimedia.video.VideoViewFragment;
 import com.beini.ui.fragment.multimedia.zxing.ZxingFragment;
 
 /**
@@ -41,7 +42,7 @@ public class MediaFunctionListFragment extends BaseFragment {
 
     @Event({R.id.btn_camera_customer, R.id.btn_camera_system, R.id.btn_camera2_system, R.id.btn_media_video, R.id.btn_media_audio, R.id.btn_media_sound_pool,
             R.id.btn_media_mediacodec, R.id.btn_media_record, R.id.btn_media_local_music, R.id.btn_media_qr, R.id.btn_media_record_audiorecord, R.id.btn_media_extractor_muxer,
-            R.id.btn_fmpeg})
+            R.id.btn_fmpeg, R.id.btn_video_view_play})
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_camera_customer:
@@ -84,6 +85,9 @@ public class MediaFunctionListFragment extends BaseFragment {
                 break;
             case R.id.btn_fmpeg:
                 baseActivity.replaceFragment(FFmpeg4AndroidFragment.class);
+                break;
+            case R.id.btn_video_view_play:
+                baseActivity.replaceFragment(VideoViewFragment.class);
                 break;
         }
     }

@@ -20,7 +20,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.multimedia.localmusic.service.MusicService;
+import com.beini.ui.fragment.multimedia.service.MusicService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

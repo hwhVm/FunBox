@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     TextView top_bar_title;
     @ViewInject(R.id.navigation)
     BottomNavigationView navigation;
-    public  int homeTag = 0;
+    public int homeTag = 0;
 
     private FragmentManager customerFragmentManager;
 

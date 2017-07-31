@@ -2,7 +2,6 @@ package com.beini.ui.fragment.multimedia.video;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Environment;
 import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -12,6 +11,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
+import com.beini.constants.Constants;
 
 /**
  * Create by beini 2017/3/22
@@ -51,7 +51,7 @@ public class VideoViewFragment extends BaseFragment {
     @ViewInject(R.id.videoView1)
     VideoView videoView;
     private MediaController mController;
-    private String localUrl = Environment.getExternalStorageDirectory().getPath() + "/APIC/aa.mp4";
+    private String localUrl = Constants.URL_ALL_FILE + "/APIC/aa.mp4";
     private String netUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
     private int mCurrentPosition;//当前播放的位置
 

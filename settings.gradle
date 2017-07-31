@@ -1,1 +1,1 @@
-include ':app', ':ffmpeg4android_lib'
+include ':app'

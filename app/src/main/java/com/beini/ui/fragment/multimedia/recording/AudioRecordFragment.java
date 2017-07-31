@@ -5,7 +5,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
-import com.beini.ui.fragment.multimedia.recording.bean.RecorderBean;
+import com.beini.ui.fragment.multimedia.bean.RecorderBean;
 import com.beini.util.BLog;
 import com.beini.util.ToastUtils;
 
@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import io.reactivex.FlowableEmitter;
+
 
 /**
  * Create by beini 2017/7/27

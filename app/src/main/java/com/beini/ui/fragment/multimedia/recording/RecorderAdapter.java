@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.beini.R;
 import com.beini.adapter.BaseAdapter;
 import com.beini.bean.BaseBean;
-import com.beini.ui.fragment.multimedia.recording.bean.RecorderBean;
+import com.beini.ui.fragment.multimedia.bean.RecorderBean;
 
 import java.util.List;
 

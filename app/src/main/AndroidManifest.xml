@@ -82,7 +82,7 @@
         <!--服务  start -->
         <service android:name="org.fourthline.cling.android.AndroidUpnpServiceImpl" />
         <service android:name=".ui.fragment.broadcast.MyService" />
-        <service android:name=".ui.fragment.multimedia.localmusic.service.MusicService" />
+        <service android:name=".ui.fragment.multimedia.service.MusicService" />
         <service android:name=".ui.fragment.bluetooth.ble.SmartBLEService" />
         <service android:name=".service.DemoService" />
         <service android:name=".ui.fragment.screenrecord.RecordService" />

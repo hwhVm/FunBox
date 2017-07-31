@@ -20,7 +20,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.multimedia.camera.presenter.MainPresenter;
+import com.beini.ui.fragment.multimedia.presenter.MainPresenter;
 import com.beini.util.BLog;
 import com.beini.util.ToastUtils;
 import com.beini.util.WindowUtils;
