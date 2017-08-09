@@ -18,7 +18,7 @@ import com.beini.ui.fragment.fingerprint.FingerprintFragment;
 import com.beini.ui.fragment.green.GreenDaoFragment;
 import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.ui.fragment.picPicker.PicPickeFragment;
-import com.beini.ui.fragment.rx.RxRetryFragment;
+import com.beini.ui.fragment.rx.RxIntervalFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
 import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
 import com.beini.ui.fragment.websocketandsocket.OkhttpWebSocketFragment;
@@ -120,7 +120,7 @@ public class Rb2Fragment extends BaseFragment {
                     baseActivity.replaceFragment(Tx5Fragment.class);
                     break;
                 case 15:
-                    baseActivity.replaceFragment(RxRetryFragment.class);
+                    baseActivity.replaceFragment(RxIntervalFragment.class);
                     break;
             }
         }
