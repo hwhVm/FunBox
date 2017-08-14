@@ -11,7 +11,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.annotations.AnnotationsFragment;
+import com.beini.ui.fragment.ani.AnnotationsFragment;
 import com.beini.ui.fragment.args.ArgsFragment;
 import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
 import com.beini.ui.fragment.fingerprint.FingerprintFragment;

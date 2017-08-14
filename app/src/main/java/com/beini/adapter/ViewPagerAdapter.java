@@ -19,8 +19,8 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  */
 
 public class ViewPagerAdapter extends PagerAdapter {
-    List<ImageBean> imageBeanList;
-    PhotoView photoView;
+    private List<ImageBean> imageBeanList;
+    private PhotoView photoView;
     private PhotoViewAttacher mAttacher;
     private Context context;
 

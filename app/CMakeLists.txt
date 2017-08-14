@@ -17,7 +17,7 @@ list(APPEND A_SRC ${B_SRC})
 
 
 add_library( # Sets the name of the library.
-             BaseProject
+             FunBox
 
              # Sets the library as a shared library.
              SHARED
@@ -48,7 +48,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       BaseProject
+                       FunBox
 
                        # Links the target library to the log library
                        # included in the NDK.

@@ -1,4 +1,4 @@
-package com.beini.ui.fragment.annotations;
+package com.beini.ui.fragment.ani;
 
 import android.support.annotation.NonNull;
 import android.view.View;

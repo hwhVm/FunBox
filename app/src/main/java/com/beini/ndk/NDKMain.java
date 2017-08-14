@@ -2,7 +2,7 @@ package com.beini.ndk;
 
 public class NDKMain {
     static {
-        System.loadLibrary("BaseProject");
+        System.loadLibrary("FunBox");
     }
 
     public native String getPassword();

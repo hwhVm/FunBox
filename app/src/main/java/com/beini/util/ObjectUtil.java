@@ -11,9 +11,7 @@ public class ObjectUtil {
             Class<?> c = Class.forName(className.getName());
             try {
                 return c.newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }
         } catch (ClassNotFoundException e) {

@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 public class HomeListAdapter extends BaseAdapter {
-    List<String> strings;
+    private List<String> strings;
 
     public HomeListAdapter(BaseBean<String> baseBean) {
         super(baseBean);

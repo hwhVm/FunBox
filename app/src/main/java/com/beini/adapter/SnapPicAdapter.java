@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public class SnapPicAdapter extends BaseAdapter{
-    List<Drawable> drawables;
+    private List<Drawable> drawables;
 
     public SnapPicAdapter(BaseBean<Drawable> baseBean) {
         super(baseBean);

@@ -50,27 +50,27 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    protected class ViewHolder extends RecyclerView.ViewHolder {
          View view;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
            this.view=view;
         }
     }
 
-    public TextView getTextView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
+    protected TextView getTextView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
         return (TextView)   viewHolder.view.findViewById(viewId);
     }
 
-    public ImageView getImageView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
+    protected ImageView getImageView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
         return (ImageView) viewHolder.view.findViewById(viewId);
     }
-    public Button getButton(@NonNull ViewHolder viewHolder, @IdRes int viewId) {
+    protected Button getButton(@NonNull ViewHolder viewHolder, @IdRes int viewId) {
         return (Button) viewHolder.view.findViewById(viewId);
     }
 
-    public SimpleDraweeView getSimpleDraweeView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
+    protected SimpleDraweeView getSimpleDraweeView(@NonNull ViewHolder viewHolder, @IdRes int viewId) {
         return (SimpleDraweeView) viewHolder.view.findViewById(viewId);
     }
 
