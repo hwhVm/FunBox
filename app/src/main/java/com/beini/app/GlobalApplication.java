@@ -30,9 +30,7 @@ public class GlobalApplication extends MultiDexApplication {
     private List<Activity> activities;
 
     public static GlobalApplication getInstance() {
-        if (application == null) {
-            application = new GlobalApplication();
-        }
+
         return application;
     }
 

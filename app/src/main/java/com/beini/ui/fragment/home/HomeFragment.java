@@ -3,7 +3,6 @@ package com.beini.ui.fragment.home;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.SimpleAdapter;
 
 import com.beini.R;
 import com.beini.adapter.HomeListAdapter;
@@ -53,6 +52,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add(getString(R.string.home_item_title_service));
         functionList.add(getString(R.string.home_item_title_popup_window));
         functionList.add(getString(R.string.home_item_title_snap_helper));
+        functionList.add(getString(R.string.home_item_title_label));
 
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
@@ -107,6 +107,8 @@ public class HomeFragment extends BaseFragment {
                     break;
                 case 12:
                     baseActivity.replaceFragment(SnapHeplerFragment.class);
+                    break;
+                case 13:
                     break;
             }
         }

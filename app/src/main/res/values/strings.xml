@@ -19,6 +19,7 @@
     <string name="home_item_title_popup_window">PopupWindow</string>
     <string name="home_item_title_popup_soundpool">SoundPool</string>
     <string name="home_item_title_snap_helper">RecyclerView + SnapHelper</string>
+    <string name="home_item_title_label">标签选择</string>
     <!--Rb2-->
     <string name="rb2_item_title_popup_face_recognition">face recognition</string>
     <string name="rb2_item_title_popup_video">video</string>
