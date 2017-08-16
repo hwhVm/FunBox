@@ -67,10 +67,6 @@ public class FragmentHelper {
     }
 
     public static void hideOrShow(Fragment fragment, boolean isHidden) {
-        BLog.e("          tags.size()=" + tags.size());
-        for (int i = 0; i < tags.size(); i++) {
-            BLog.e("     " + tags.get(i));
-        }
         FragmentTransaction ft = fm.beginTransaction();
         FragmentHelper.hideAllFragment();
         if (isHidden) {
@@ -148,18 +144,6 @@ public class FragmentHelper {
                 mLastKeyDown = timeMillis;
             } else {
                 System.exit(0);
-            }
-        }
-    }
-
-    /**
-     * print  all   save  frgment
-     */
-    public static void logPrint() {
-        if (tags != null) {
-            BLog.d("  logPrint=" + tags.size());
-            for (int i = 0; i < tags.size(); i++) {
-                BLog.d("  d    tags===" + tags.get(i));
             }
         }
     }

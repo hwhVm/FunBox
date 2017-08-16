@@ -6,23 +6,11 @@ import android.view.View;
 
 import com.beini.R;
 import com.beini.adapter.HomeListAdapter;
+import com.beini.app.AppRouter;
 import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.aidl.AIDLFragment;
-import com.beini.ui.fragment.ani.AniFragment;
-import com.beini.ui.fragment.bluetooth.SppFragment;
-import com.beini.ui.fragment.broadcast.BroadcastFragment;
-import com.beini.ui.fragment.control.SnapHeplerFragment;
-import com.beini.ui.fragment.cpptest.CppFragment;
-import com.beini.ui.fragment.multimedia.MediaFunctionListFragment;
-import com.beini.ui.fragment.notification.NotificationFragment;
-import com.beini.ui.fragment.popupwindow.PopupWindowFragment;
-import com.beini.ui.fragment.service.ServiceFragment;
-import com.beini.ui.fragment.shake.ShakeFragment;
-import com.beini.ui.fragment.sideslip.SideslipFragment;
-import com.beini.ui.fragment.sms.SmsFragment;
 import com.beini.ui.view.RecycleDecoration;
 
 import java.util.ArrayList;
@@ -70,43 +58,43 @@ public class HomeFragment extends BaseFragment {
         public void onItemClick(View view, int position) {
             switch (position) {
                 case 0:
-                    baseActivity.replaceFragment(CppFragment.class);
+                    AppRouter.homeCppRouter();
                     break;
                 case 1:
-                    baseActivity.replaceFragment(ShakeFragment.class);
+                    AppRouter.homeShakeRouter();
                     break;
                 case 2:
-                    baseActivity.replaceFragment(SideslipFragment.class);
+                    AppRouter.homeSideslipRouter();
                     break;
                 case 3:
-                    baseActivity.replaceFragment(MediaFunctionListFragment.class);
+                    AppRouter.homeMediaFunctionRouter();
                     break;
                 case 4:
-                    baseActivity.replaceFragment(SppFragment.class);
+                    AppRouter.homeSppRouter();
                     break;
                 case 5:
-                    baseActivity.replaceFragment(SmsFragment.class);
+                    AppRouter.homeSmsRouter();
                     break;
                 case 6:
-                    baseActivity.replaceFragment(NotificationFragment.class);
+                    AppRouter.homeNotificationRouter();
                     break;
                 case 7:
-                    baseActivity.replaceFragment(BroadcastFragment.class);
+                    AppRouter.homeBroadcastRouter();
                     break;
                 case 8:
-                    baseActivity.replaceFragment(AniFragment.class);
+                    AppRouter.homeAniRouter();
                     break;
                 case 9:
-                    baseActivity.replaceFragment(AIDLFragment.class);
+                    AppRouter.homeAIDLRouter();
                     break;
                 case 10:
-                    baseActivity.replaceFragment(ServiceFragment.class);
+                    AppRouter.homeServiceRouter();
                     break;
                 case 11:
-                    baseActivity.replaceFragment(PopupWindowFragment.class);
+                    AppRouter.homePopupWindowRouter();
                     break;
                 case 12:
-                    baseActivity.replaceFragment(SnapHeplerFragment.class);
+                    AppRouter.homeSnapHeplerRouter();
                     break;
                 case 13:
                     break;

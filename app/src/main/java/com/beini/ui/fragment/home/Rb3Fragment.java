@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.beini.R;
 import com.beini.adapter.MViewPagerAdapter;
+import com.beini.app.AppRouter;
 import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
@@ -52,12 +53,11 @@ public class Rb3Fragment extends BaseFragment {
         functionList.add(getString(R.string.rb3_item_title_color_picker_h));
         functionList.add(getString(R.string.rb3_item_title_color_picker_v));
         functionList.add(getString(R.string.rb3_item_title_popup_video_gesture));
-
-        fragments.add(new ShiroFragment());
-        fragments.add(new RGBFragment());
-        fragments.add(new ColorPickerFragment());
-        fragments.add(new ColorPickerVFragment());
-        fragments.add(new GestureDetectorFragment());
+        fragments.add(AppRouter.rb3Fragment(ShiroFragment.class));
+        fragments.add(AppRouter.rb3Fragment(RGBFragment.class));
+        fragments.add(AppRouter.rb3Fragment(ColorPickerFragment.class));
+        fragments.add(AppRouter.rb3Fragment(ColorPickerVFragment.class));
+        fragments.add(AppRouter.rb3Fragment(GestureDetectorFragment.class));
 
         magicIndicator.setBackgroundColor(Color.parseColor("#d43d3d"));
 

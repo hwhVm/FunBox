@@ -69,6 +69,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         if (savedInstanceState == null) {
             this.initView();
         }
+        navigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

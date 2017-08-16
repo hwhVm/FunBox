@@ -28,9 +28,11 @@ import io.reactivex.functions.Function;
 public class RxIntervalFragment extends BaseFragment {
     private Subscriber subscriber;
     private CompositeDisposable composite2;
+
+
     @Override
     public void initView() {
-       composite2 = new CompositeDisposable();
+        composite2 = new CompositeDisposable();
 
     }
 

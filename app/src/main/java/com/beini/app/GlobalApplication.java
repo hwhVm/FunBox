@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.beini.ndk.NDKMain;
+import com.beini.util.BLog;
 import com.beini.util.SystemUtil;
 import com.beini.util.listener.ActivityCallbacks;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -103,6 +104,12 @@ public class GlobalApplication extends MultiDexApplication {
      */
     public NDKMain getNdk() {
         return ndk;
+    }
+
+    @Override
+    public void onLowMemory() {
+        BLog.e(" -------------->onLowMemory");
+        super.onLowMemory();
     }
 
     /**

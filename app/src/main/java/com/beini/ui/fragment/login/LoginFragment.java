@@ -4,11 +4,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.beini.R;
+import com.beini.app.AppRouter;
 import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.home.HomeFragment;
 import com.beini.ui.fragment.login.model.LoginModel;
 
 /**
@@ -42,7 +42,7 @@ public class LoginFragment extends BaseFragment {
 
     // get   set
     public void goToNexPage() {
-        baseActivity.replaceFragment(HomeFragment.class);
+        AppRouter.loginRouter();
     }
 
     public EditText getEd_username() {

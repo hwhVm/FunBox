@@ -1,7 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.beini.ui.fragment.rx.RxAllFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,4 +12,17 @@
         android:layout_height="wrap_content"
         android:text="Filter" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_stop_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="stop all" />
+
+    <TextView
+        android:id="@+id/text_show_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="ddd" />
+
+</LinearLayout>

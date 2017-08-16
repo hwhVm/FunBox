@@ -7,26 +7,11 @@ import android.view.View;
 
 import com.beini.R;
 import com.beini.adapter.HomeListAdapter;
+import com.beini.app.AppRouter;
 import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.fragment.ani.AnnotationsFragment;
-import com.beini.ui.fragment.args.ArgsFragment;
-import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
-import com.beini.ui.fragment.fingerprint.FingerprintFragment;
-import com.beini.ui.fragment.green.GreenDaoFragment;
-import com.beini.ui.fragment.net.NetFileFragment;
-import com.beini.ui.fragment.picPicker.PicPickeFragment;
-import com.beini.ui.fragment.rx.RxAllFragment;
-import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
-import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
-import com.beini.ui.fragment.websocketandsocket.OkhttpWebSocketFragment;
-import com.beini.ui.fragment.websocketandsocket.SocketFragment;
-import com.beini.ui.fragment.websocketandsocket.WebScoketFragment;
-import com.beini.ui.fragment.webview.WebViewTestFragment;
-import com.beini.ui.fragment.webview.tx5.Tx5Fragment;
-import com.beini.ui.fragment.wifi.WfiListFragment;
 import com.beini.ui.view.RecycleDecoration;
 
 import java.util.ArrayList;
@@ -73,54 +58,54 @@ public class Rb2Fragment extends BaseFragment {
         public void onItemClick(View view, int position) {
             switch (position) {
                 case 0:
-                    baseActivity.replaceFragment(FacereCongnitioonFragment.class);
+                    AppRouter.rb2FacereCongnitioonRouter();
                     break;
                 case 1:
-                    baseActivity.replaceFragment(WebViewTestFragment.class);
+                    AppRouter.rb2WebViewRouter();
                     break;
                 case 2:
-                    baseActivity.replaceFragment(AnnotationsFragment.class);
+                    AppRouter.rb2AnnotationsRouter();
                     break;
                 case 3:
-                    baseActivity.replaceFragment(ScreenRecordFragment.class);
+                    AppRouter.rb2ScreenRecordRouter();
                     break;
                 case 4:
-                    baseActivity.replaceFragment(NetFileFragment.class);
+                    AppRouter.rb2NetFileRouter();
                     break;
                 case 5:
-                    baseActivity.replaceFragment(GreenDaoFragment.class);
+                    AppRouter.rb2GreenDaoRouter();
                     break;
                 case 6:
-                    baseActivity.replaceFragment(WfiListFragment.class);
+                    AppRouter.rb2WfiListRouter();
                     break;
                 case 7:
-                    baseActivity.replaceFragment(FingerprintFragment.class);
+                    AppRouter.rb2FingerprintRouter();
                     break;
                 case 8:
-                    baseActivity.replaceFragment(WebScoketFragment.class);
+                    AppRouter.rb2WebScoketRouter();
                     break;
                 case 9:
-                    baseActivity.replaceFragment(OkhttpWebSocketFragment.class);
+                    AppRouter.rb2OkhttpWebSocketRouter();
                     break;
                 case 10:
-                    baseActivity.replaceFragment(SocketFragment.class);
+                    AppRouter.rb2SocketRouter();
                     break;
                 case 11:
-                    baseActivity.replaceFragment(PicPickeFragment.class);
+                    AppRouter.rb2PicPickeRouter();
                     break;
                 case 12:
                     Bundle args = new Bundle();
                     args.putString("name", "beini");
-                    baseActivity.replaceFragment(ArgsFragment.class, args);
+                    AppRouter.rb2ArgsRouter(args);
                     break;
                 case 13:
-                    baseActivity.replaceFragment(ViewFlippeFragment.class);
+                    AppRouter.rb2ViewFlippeRouter();
                     break;
                 case 14:
-                    baseActivity.replaceFragment(Tx5Fragment.class);
+                    AppRouter.rb2Tx5Router();
                     break;
                 case 15:
-                    baseActivity.replaceFragment(RxAllFragment.class);
+                    AppRouter.rb2RxRouter();
                     break;
             }
         }
