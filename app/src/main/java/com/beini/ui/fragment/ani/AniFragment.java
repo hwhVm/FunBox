@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -18,16 +17,17 @@ import com.beini.util.BLog;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Create by beini 2017/8/17
  */
 @ContentView(R.layout.fragment_ani)
 public class AniFragment extends BaseFragment {
-    private AnimatorSet showAnim, hiddenAnim;
     @ViewInject(R.id.frontView)
     LinearLayout frontView;
-    private long fWidth, fHeight, bHeight;
     @ViewInject(R.id.bottom)
     LinearLayout bottomView;
+
+    private AnimatorSet showAnim, hiddenAnim;
+    private long fWidth, fHeight, bHeight;
 
     @Override
     public void initView() {

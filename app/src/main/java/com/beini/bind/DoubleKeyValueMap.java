@@ -14,7 +14,7 @@ public class DoubleKeyValueMap<K1, K2, V> {
     private final ConcurrentHashMap<K1, ConcurrentHashMap<K2, V>> k1_k2V_map;
 
     public DoubleKeyValueMap() {
-        this.k1_k2V_map = new ConcurrentHashMap<K1, ConcurrentHashMap<K2, V>>();
+        this.k1_k2V_map = new ConcurrentHashMap<>();
     }
 
     public void put(K1 key1, K2 key2, V value) {

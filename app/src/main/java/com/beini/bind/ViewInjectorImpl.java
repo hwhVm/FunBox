@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.beini.bind.ViewInjector;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -18,7 +16,7 @@ import java.util.HashSet;
  */
 public final class ViewInjectorImpl implements ViewInjector {
 
-    private static final HashSet<Class<?>> IGNORED = new HashSet<Class<?>>();
+    private static final HashSet<Class<?>> IGNORED = new HashSet<>();
 
     static {
         IGNORED.add(Object.class);
@@ -28,6 +26,7 @@ public final class ViewInjectorImpl implements ViewInjector {
             IGNORED.add(Class.forName("android.support.v4.app.Fragment"));
             IGNORED.add(Class.forName("android.support.v4.app.FragmentActivity"));
         } catch (Throwable ignored) {
+
         }
     }
 
@@ -183,8 +182,8 @@ public final class ViewInjectorImpl implements ViewInjector {
         if (methods != null && methods.length > 0) {
             for (Method method : methods) {
 
-                if (Modifier.isStatic(method.getModifiers())
-                        || !Modifier.isPrivate(method.getModifiers())) {
+                if (Modifier.isStatic(method.getModifiers())//判断方法是否是静态
+                        || !Modifier.isPrivate(method.getModifiers())) {//判断方法是否私有
                     continue;
                 }
 

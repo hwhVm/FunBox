@@ -2,8 +2,8 @@ package com.beini.imageload;
 
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
-import android.util.Log;
 
+import com.beini.util.BLog;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.controller.ControllerListener;
@@ -44,7 +44,7 @@ public class FrescoUtil {
         @Override
         public void onFinalImageSet(String id, Object imageInfo, Animatable animatable) {
             super.onFinalImageSet(id, imageInfo, animatable);
-            Log.d("com.beini", "onFinalImageSet---");
+            BLog.d("onFinalImageSet---");
 //				if (animatable != null) {
 //					animatable.start();
 //				}
@@ -53,13 +53,13 @@ public class FrescoUtil {
         @Override
         public void onFailure(String id, Throwable throwable) {
             super.onFailure(id, throwable);
-            Log.d("com.beini", "onFailure--- id==" + id + "throwable==" + throwable.toString());
+            BLog.d("onFailure--- id==" + id + "throwable==" + throwable.toString());
         }
 
         @Override
         public void onIntermediateImageFailed(String id, Throwable throwable) {
             super.onIntermediateImageFailed(id, throwable);
-            Log.d("com.beini", "onIntermediateImageFailed---");
+            BLog.d("onIntermediateImageFailed---");
         }
     };
 }

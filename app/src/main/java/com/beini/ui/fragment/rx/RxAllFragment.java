@@ -60,11 +60,23 @@ public class RxAllFragment extends BaseFragment {
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_rx_filter:
-                backPressure();
                 break;
             case R.id.btn_stop_all:
                 break;
         }
+    }
+
+    private void isNewThread() {
+        Flowable.create(new FlowableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(FlowableEmitter<Object> e) throws Exception {
+                e.onNext(true);
+            }
+        }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.newThread()).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+            }
+        });
     }
 
     private void temp() {
@@ -279,13 +291,12 @@ public class RxAllFragment extends BaseFragment {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
-                Thread.sleep(2000);
+                BLog.e("                --->" + Thread.currentThread().getName());
                 e.onNext("A");
-
 //                e.onNext("B");
 //                e.onNext("C");
             }
-        });
+        }).subscribeOn(Schedulers.io());
     }
 
     //创建 String 发射器
@@ -293,13 +304,14 @@ public class RxAllFragment extends BaseFragment {
         return Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<Integer> e) throws Exception {
+                BLog.e("                --->" + Thread.currentThread().getName());
                 e.onNext(1);
 //                e.onNext(2);
 //                e.onNext(3);
 //                e.onNext(4);
 //                e.onNext(5);
             }
-        });
+        }).subscribeOn(Schedulers.io());
     }
 
     private void onErrorTest() {
@@ -327,19 +339,25 @@ public class RxAllFragment extends BaseFragment {
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<Integer> e) throws Exception {
+                BLog.e("                --->" + Thread.currentThread().getName());
+                BLog.e("        111111111");
                 e.onNext(1);
+                BLog.e("        2222222222");
+                e.onNext(2);
+                BLog.e("        3333");
+
+            }
+        }).flatMap(new Function<Integer, ObservableSource<String>>() {
+            @Override
+            public ObservableSource<String> apply(@NonNull Integer integer) throws Exception {
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    list.add(integer + "   " + i);
+                }
+                return Observable.fromIterable(list);
             }
         })
-                .flatMap(new Function<Integer, ObservableSource<String>>() {
-                    @Override
-                    public ObservableSource<String> apply(@NonNull Integer integer) throws Exception {
-                        List<String> list = new ArrayList<>();
-                        for (int i = 0; i < 3; i++) {
-                            list.add(integer + "   " + i);
-                        }
-                        return Observable.fromIterable(list);
-                    }
-                })
+                .subscribeOn(Schedulers.newThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

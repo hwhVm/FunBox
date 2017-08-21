@@ -41,6 +41,7 @@ public class HomeFragment extends BaseFragment {
         functionList.add(getString(R.string.home_item_title_popup_window));
         functionList.add(getString(R.string.home_item_title_snap_helper));
         functionList.add(getString(R.string.home_item_title_label));
+        functionList.add(getString(R.string.home_item_title_canvas));
 
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
@@ -97,6 +98,9 @@ public class HomeFragment extends BaseFragment {
                     AppRouter.homeSnapHeplerRouter();
                     break;
                 case 13:
+                    break;
+                case 14:
+                    AppRouter.homeCanvasRouter();
                     break;
             }
         }

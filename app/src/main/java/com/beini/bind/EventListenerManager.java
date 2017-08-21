@@ -16,7 +16,7 @@ import java.util.Map;
 final class EventListenerManager {
 
     private final static long QUICK_EVENT_TIME_SPAN = 300;
-    private final static HashSet<String> AVOID_QUICK_EVENT_SET = new HashSet<String>(2);
+    private final static HashSet<String> AVOID_QUICK_EVENT_SET = new HashSet<>(2);
 
     static {
         AVOID_QUICK_EVENT_SET.add("onClick");
@@ -32,7 +32,7 @@ final class EventListenerManager {
      * value: listener
      */
     private final static DoubleKeyValueMap<ViewInfo, Class<?>, Object>
-            listenerCache = new DoubleKeyValueMap<ViewInfo, Class<?>, Object>();
+            listenerCache = new DoubleKeyValueMap<>();
 
 
     public static void addEventMethod(
