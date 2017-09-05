@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.1'
     defaultConfig {
         applicationId "com.beini"
         minSdkVersion 21
@@ -171,6 +171,5 @@ dependencies {
 
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
     compile 'com.tencent.bugly:nativecrashreport:3.3.0'
-
 }
 

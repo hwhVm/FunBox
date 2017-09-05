@@ -1,6 +1,7 @@
 package com.beini.ui.fragment.rx;
 
 
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
@@ -60,10 +61,74 @@ public class RxAllFragment extends BaseFragment {
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_rx_filter:
+                mapThread();
                 break;
             case R.id.btn_stop_all:
+
                 break;
         }
+    }
+
+    /**
+     * 线程切换问题
+     * 1 默认情况： apply 都在主线程执行
+     * 2 设置切换线程后，改变的是下游的线程
+     * 3
+     */
+    public void mapThread() {
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                BLog.e("  1  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
+                e.onNext(11);
+            }
+        }).subscribeOn(AndroidSchedulers.mainThread()).map(new Function<Integer, Integer>() {
+            @Override
+            public Integer apply(Integer integer) throws Exception {
+                BLog.e("  2  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
+                BLog.e("  integer="+integer);
+                return 22;
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        BLog.e("     integer="+integer);
+                        BLog.e("  3  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
+                    }
+                });
+//        Observable.just(1)
+////                .observeOn(Schedulers.io())
+//                .map(new Function<Integer, Integer>() {
+//                    @Override
+//                    public Integer apply(Integer integer) throws Exception {
+//                        BLog.e("  1  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
+//                        Thread.sleep(3000);
+//                        return 2;
+//                    }
+//                })
+//                .map(new Function<Integer, Integer>() {
+//                    @Override
+//                    public Integer apply(Integer integer) throws Exception {
+//                        Thread.sleep(2000);
+//                        BLog.e("  2  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
+//                        return 3;
+//                    }
+//                })
+////                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Integer>() {
+//                    @Override
+//                    public void accept(Integer integer) throws Exception {
+//                        BLog.e("  3  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
+//                        BLog.e("          integer=       " + integer);
+//                    }
+//                });
+
+    }
+
+
+    private Observable createDelayObservable(int index) {
+        return Observable.just(1 * index, 2 * index, 3 * index).delay(index, TimeUnit.SECONDS);
     }
 
     private void isNewThread() {

@@ -23,18 +23,18 @@ public final class CustomerCanvas extends View {
      *
      * @param context
      */
-//    public CustomerCanvas(Context context) {
-//        super(context);
-//    }
+    public CustomerCanvas(Context context) {
+        super(context);
+    }
 
     /**
      * 在布局文件里创建view的时候调用这个构造函数
      * @param context
      * @param attrs
      */
-//    public CustomerCanvas(Context context, @Nullable AttributeSet attrs) {
-//        super(context, attrs);
-//    }
+    public CustomerCanvas(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
 
     /**
      * 在布局文件创建view的时候并且设置了自定义的属性(attribute)
@@ -42,16 +42,12 @@ public final class CustomerCanvas extends View {
      * @param attrs
      * @param defStyleAttr
      */
-//    public CustomerCanvas(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-//        super(context, attrs, defStyleAttr);
-//    }
+    public CustomerCanvas(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     /**
      *  在布局文件创建view的时候并且,设置了自定义的属性(attribute)或者资源文件
-     * @param context
-     * @param attrs
-     * @param defStyleAttr
-     * @param defStyleRes
      */
 //    public CustomerCanvas(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 //        super(context, attrs, defStyleAttr, defStyleRes);
