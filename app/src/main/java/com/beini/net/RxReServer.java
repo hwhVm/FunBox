@@ -8,6 +8,7 @@ import com.beini.net.response.BaseResponseJson;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -37,5 +38,17 @@ public interface RxReServer<T> {
             @Field("userId") String userId,
             @Field("password") String password
     );
+
+    //其他方式
+    @POST("{url}")
+    @NonNull
+    Flowable<ResponseBody> sendRequestReturnResponseBody(@Path("url") String url, @Body Object baseRequestJson);
+
+    @POST("{url}")
+    @NonNull
+    Flowable<String> sendRequestString(@Path("url") String url, @Body Object baseRequestJson);
+
+    @POST("{url}")
+    Call<ResponseBody> sendRequestCall(@Path("url") String url, @Body Object baseRequestJson);
 
 }
