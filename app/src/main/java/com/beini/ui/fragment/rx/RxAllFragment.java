@@ -3,6 +3,7 @@ package com.beini.ui.fragment.rx;
 
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -39,6 +41,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Create by beini 2017/8/11
+ * https://www.cnblogs.com/Free-Thinker/p/7561443.html
  */
 @ContentView(R.layout.fragment_rx_all)
 public class RxAllFragment extends BaseFragment {
@@ -70,6 +73,110 @@ public class RxAllFragment extends BaseFragment {
     }
 
     /**
+     * --doOnSubscribe-accept--------->
+     * ---accept--------->
+     * ----subscribe-------->
+     */
+    public void rxDoOnSubscribe() {
+        Flowable.create(new FlowableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(FlowableEmitter<Object> e) throws Exception {
+                e.onNext(1);
+                e.onComplete();
+                Log.d("com.beini", "----subscribe-------->");
+            }
+        }, BackpressureStrategy.BUFFER)
+                .doOnSubscribe(new Consumer<Subscription>() {
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        Log.d("com.beini", "--doOnSubscribe-accept--------->");
+                    }
+                }).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                Log.d("com.beini", "---accept--------->");
+            }
+        });
+    }
+
+    public void rxDoOnNext() {
+
+        Flowable.create(new FlowableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(FlowableEmitter<Object> e) throws Exception {
+
+            }
+        }, BackpressureStrategy.BUFFER)
+                .doOnNext(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                })
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                });
+    }
+
+    public void rxMerge() {
+        Flowable flowable1 = Flowable.create(new FlowableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(FlowableEmitter<Object> e) throws Exception {
+                e.onNext("a");
+                e.onNext("a");
+            }
+        }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io());
+
+        Flowable flowable2 = Flowable.create(new FlowableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(FlowableEmitter<Object> e) throws Exception {
+                e.onNext(1);
+                e.onNext(1);
+            }
+        }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io());
+        //合并数据  先发送observable2的全部数据，然后发送 observable1的全部数据
+        Flowable.merge(flowable1, flowable2).subscribe(new FlowableSubscriber() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                s.request(100);
+            }
+
+            @Override
+            public void onNext(Object o) {
+                Log.d("com.beini", "     o==" + o);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    public void rxScan() {
+        Flowable flowable = Flowable.just(1, 2, 3, 4, 5, 6);
+        flowable.scan(new BiFunction<Integer, Integer, Integer>() {
+            @Override
+            public Integer apply(Integer integer, Integer integer2) throws Exception {
+                return integer + integer2;
+            }
+        }).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+
+            }
+        });
+    }
+
+    /**
      * 线程切换问题
      * 1 默认情况： apply 都在主线程执行
      * 2 设置切换线程后，改变的是下游的线程
@@ -82,18 +189,19 @@ public class RxAllFragment extends BaseFragment {
                 BLog.e("  1  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
                 e.onNext(11);
             }
-        }).subscribeOn(AndroidSchedulers.mainThread()).map(new Function<Integer, Integer>() {
-            @Override
-            public Integer apply(Integer integer) throws Exception {
-                BLog.e("  2  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
-                BLog.e("  integer="+integer);
-                return 22;
-            }
-        }).observeOn(AndroidSchedulers.mainThread())
+        }).subscribeOn(AndroidSchedulers.mainThread())
+                .map(new Function<Integer, Integer>() {
+                    @Override
+                    public Integer apply(Integer integer) throws Exception {
+                        BLog.e("  2  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
+                        BLog.e("  integer=" + integer);
+                        return 22;
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer integer) throws Exception {
-                        BLog.e("     integer="+integer);
+                        BLog.e("     integer=" + integer);
                         BLog.e("  3  Thread=     " + (Thread.currentThread() == Looper.getMainLooper().getThread()));
                     }
                 });
