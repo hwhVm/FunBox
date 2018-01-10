@@ -6,6 +6,7 @@ import android.util.Log;
 import com.beini.util.BLog;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,45 +29,37 @@ import okhttp3.Response;
  * Created by beini on 2016/11/4.
  */
 
-public class NetUtils {
+public class OkhttpNetUtil {
 
-    private static NetUtils ourInstance = new NetUtils();
+    private static OkhttpNetUtil okhttpInstance = new OkhttpNetUtil();
+    private int cacheSize = 10 * 1024 * 1024; // 10 MiB
+    private static File file = new File(Environment.getDataDirectory() + "/cacheBeini/");
 
-    public static NetUtils getInstance() {
-        return ourInstance;
-    }
-
-    OkHttpClient client;
-
-    /**
-     * OkHttpClient clientWith60sTimeout = client.newBuilder().
-     * readTimeout(60, TimeUnit.SECONDS).
-     * build();
-     */
-    public NetUtils() {
-//		Log.d("com.beini", "----初始化okhttp请求----------->NetUtils");
-        int cacheSize = 10 * 1024 * 1024; // 10 MiB
-        File file = new File(Environment.getDataDirectory() + "/cacheBeini/");
-        Cache cacheBeini = new Cache(file, cacheSize);
+    public static OkhttpNetUtil getInstance() {
         if (!file.exists()) {
             file.mkdir();
         }
-        client = new OkHttpClient
-                .Builder()
-                .readTimeout(10, TimeUnit.SECONDS)//设置超时时间
-                .cache(cacheBeini)//设置缓存
-                //	proxy(proxy).//设置代理
-                //	authenticator(authenticator).
-                .build();
-
+        return okhttpInstance;
     }
+
+    /**
+     * 因为OkHttpClient有自己的连接池和线程池，使用的时候重用一个单例就可以了；闲置的连接和线程会被释放；
+     * 也可以通过 client.dispatcher().executorService().shutdown();
+     * client.connectionPool().evictAll();自己释放连接和线程
+     */
+    final OkHttpClient client = new OkHttpClient
+            .Builder()
+            .readTimeout(10, TimeUnit.SECONDS)//设置超时时间
+            .cache(new Cache(file, cacheSize))//设置缓存
+            //.proxy(proxy)//设置代理
+            //.authenticator(authenticator)
+            .build();
 
     /**
      * Http 缓存
      */
     public void httpCache() {
         String url = "http://www.cnblogs.com/whoislcj/p/5537640.html";
-        final long starTime = System.currentTimeMillis();
         final CacheControl.Builder builder = new CacheControl.Builder();
         builder.maxAge(10, TimeUnit.MILLISECONDS);
         CacheControl cache = builder.build();
@@ -84,7 +77,6 @@ public class NetUtils {
                     String string = response.body().string();
                     long endTime = System.currentTimeMillis();
                     Log.d("com.beini", "response ----->" + string);
-                    Log.e("com.beini", "---------->time=" + (starTime - endTime));
                 }
             }
         });
@@ -106,20 +98,34 @@ public class NetUtils {
                 .build();
         //异步
         client.newCall(request).enqueue(new Callback() {
+            /**
+             * 触发条件：1 连接取消 2 连接问题  3 超时
+             * @param call
+             * @param e
+             */
             @Override
             public void onFailure(Call call, IOException e) {
 
             }
 
+            /**
+             * The recipient of the callback may
+             * consume the response body on another thread.
+             * @param call
+             * @param response
+             */
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    Log.d("com.beini", "----------------------->" + response.body().string());
+            public void onResponse(Call call, Response response) {
+                if (response.isSuccessful()) {//code >= 200 && code < 300;
+                    try {
+                        Log.d("com.beini", "----------------------->" + response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-
-//		//同步
+//		同步
 //		try {
 //			Response mResponse = okHttpClient.newCall(request).execute();
 //		} catch (IOException e) {
@@ -128,7 +134,8 @@ public class NetUtils {
     }
 
     /**
-     * 读取响应头  get
+     * get
+     * 读取响应头
      */
     public void getHead() {
         Log.d("com.beini", "------------------>读取响应头");
@@ -136,9 +143,9 @@ public class NetUtils {
         final Request request = new Request.Builder()
                 .url(url)
                 .build();
+
         Call call = client.newCall(request);
-//异步
-        call.enqueue(new Callback() {
+        call.enqueue(new Callback() {//异步
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -159,13 +166,13 @@ public class NetUtils {
         //		call.cancel();//取消
         //同步
         /**
-         * 	try {
-         Response response = call.execute();
-
-         } catch (IOException e) {
-         e.printStackTrace();
+         *
+         * try {
+         *      Response response = call.execute();
+         *  } catch (IOException e) {
+         *     e.printStackTrace();
+         *  }
          */
-//	}
     }
     /**
      * 下载  上传-----------------------------
@@ -173,12 +180,13 @@ public class NetUtils {
     /**
      * 文件  表单 上传
      */
-    public void reqFile() {
+    public void uploadFile() {
         String url = "http://10.0.0.48:8080/SpringMVC/upload";
 
         File file = new File(new StringBuilder().append(Environment.getExternalStorageDirectory() + "/A.xml").toString());
 
-        RequestBody fileBody = RequestBody.create(MediaType.parse("image/png"), file);
+        RequestBody fileBody = RequestBody.create(MediaType.parse("image/png;charset=utf-8"), file);
+
         RequestBody requestBody = new MultipartBody.Builder()
                 .addFormDataPart("upFile", file.getName(), fileBody)
                 .build();
@@ -220,17 +228,51 @@ public class NetUtils {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
                 if (response.isSuccessful()) {
-                    FileOutputStream fos = null;
-                    byte[] buf = new byte[2048];
-                    int len = 0;
-                    InputStream is = response.body().byteStream();
-
-
+                    FileOutputStream fileOutputStream;
+                    InputStream inputStream = response.body().byteStream();
+                    try {
+                        fileOutputStream = new FileOutputStream(new File("/sdcard/wangshu.jpg"));
+                        byte[] buffer = new byte[2048];
+                        int len;
+                        while ((len = inputStream.read(buffer)) != -1) {
+                            fileOutputStream.write(buffer, 0, len);
+                        }
+                        fileOutputStream.flush();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+
             }
         });
+    }
+
+    public void uploadbyMultipartBody() {
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("title", "file")
+                .addFormDataPart("image", "image1.jpg", RequestBody.create(MediaType.parse("image/png;"), new File("")))
+                .build();
+        Request request = new Request.Builder()
+                .header("Authorization", "Client-ID " + "...")
+                .url("")
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+            }
+        });
+
     }
 
 }
