@@ -5,10 +5,10 @@ import android.os.Bundle;
 import com.beini.ui.fragment.aidl.AIDLFragment;
 import com.beini.ui.fragment.ani.AniFragment;
 import com.beini.ui.fragment.ani.AnnotationsFragment;
-import com.beini.ui.fragment.ani.BeatFragment;
 import com.beini.ui.fragment.args.ArgsFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
+import com.beini.ui.fragment.cache.DiskLruFragment;
 import com.beini.ui.fragment.control.SnapHeplerFragment;
 import com.beini.ui.fragment.cpptest.CppFragment;
 import com.beini.ui.fragment.customview.CanvasFragment;
@@ -47,7 +47,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(BeatFragment.class);
+        baseActivity.replaceFragment(DiskLruFragment.class);
     }
 
     public static void loginRouter() {

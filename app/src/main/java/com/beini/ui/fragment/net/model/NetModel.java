@@ -2,6 +2,7 @@ package com.beini.ui.fragment.net.model;
 
 import android.os.Environment;
 
+import com.beini.db.cache.DiskLruCacheUtils;
 import com.beini.db.io.FileUtil;
 import com.beini.net.retrofit.NetUtil;
 import com.beini.ui.fragment.net.NetFileFragment;
@@ -25,6 +26,31 @@ public class NetModel {
     public NetModel(NetFileFragment netFileFragment) {
         this.netFileFragment = netFileFragment;
     }
+
+    public static void downLoadFileAndCache() {
+        String url = "http://120.76.41.61/source/sound/sleep/Sleep_Bird_Chirping.mp3";
+
+        NetUtil.getSingleton().downloadFile(url).enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        DiskLruCacheUtils.getInstance().setCache("aaaaaa", response.body().byteStream());
+                    }
+                }.start();
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     public void downLoadFile() {
         String url = "http://120.76.41.61/source/sound/sleep/Sleep_Bird_Chirping.mp3";
@@ -61,7 +87,7 @@ public class NetModel {
                     @Override
                     public void accept(Response<ResponseBody> response) throws Exception {
                         ResponseBody responsBody = response.body();
-                        BLog.d("      contentLength=="+responsBody.contentLength());
+                        BLog.d("      contentLength==" + responsBody.contentLength());
                         FileUtil.writeBytesToSD(Environment.getExternalStorageDirectory() + "/aa.mp3", responsBody.bytes());
                     }
                 });
@@ -73,4 +99,6 @@ public class NetModel {
             }
         });
     }
+
+
 }

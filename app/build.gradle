@@ -171,5 +171,8 @@ dependencies {
 
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
     compile 'com.tencent.bugly:nativecrashreport:3.3.0'
+    //硬盘缓存  https://github.com/JakeWharton/DiskLruCache
+    compile 'com.jakewharton:disklrucache:2.0.2'
+
 }
 

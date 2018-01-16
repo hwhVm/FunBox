@@ -30,8 +30,6 @@ public class BeatImageView extends android.support.v7.widget.AppCompatImageView 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        setScaleX(scale);
-        setScaleY(scale);
     }
 
 
@@ -44,7 +42,8 @@ public class BeatImageView extends android.support.v7.widget.AppCompatImageView 
             public void onAnimationUpdate(ValueAnimator animation) {
                 scale = (float) animation.getAnimatedValue();
                 BLog.e("scale=" + scale);
-                postInvalidate();
+                setScaleX(scale);
+                setScaleY(scale);
             }
         });
         // 重复次数 -1表示无限循环
@@ -54,10 +53,9 @@ public class BeatImageView extends android.support.v7.widget.AppCompatImageView 
         mAnimator.start();
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        // 关闭动画
-        mAnimator.end();
+    public void stopAnimation() {
+        mAnimator.end();        // 关闭动画
     }
+
+
 }

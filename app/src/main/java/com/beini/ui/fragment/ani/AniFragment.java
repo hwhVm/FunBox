@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -121,5 +123,33 @@ public class AniFragment extends BaseFragment {
         hiddenAnim = new AnimatorSet();
         hiddenAnim.playTogether(fViewScaleXAnim, fViewAlphaAnim, fViewRotationAnim, fViewResumeAnim, fViewScaleYAnim, fViewTransYAnim, sViewTransYAnim);
         hiddenAnim.setDuration(350);
+    }
+
+    /**
+     * 平移
+     */
+    public void translation() {
+        View customerView = null;
+        ObjectAnimator objectAnimatort1 = ObjectAnimator.ofFloat(customerView, "translationX", 0, 300);
+        ObjectAnimator objectAnimatort2 = ObjectAnimator.ofFloat(customerView, "translationY", 0, 300);
+        ObjectAnimator objectAnimators1 = ObjectAnimator.ofFloat(customerView, "scaleX", 1f, 2f);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(4000);
+        animatorSet.play(objectAnimatort1).with(objectAnimatort2).after(objectAnimators1);
+        animatorSet.start();
+    }
+
+    public void valueAnimatorMethod(View customerView) {
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 300).setDuration(2000);
+        valueAnimator.setTarget(customerView);
+        valueAnimator.start();
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Float value = (Float) animation.getAnimatedValue();
+                Log.e("com.beini", " value=" + value);
+            }
+        });
     }
 }

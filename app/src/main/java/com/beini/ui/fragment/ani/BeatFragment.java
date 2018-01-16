@@ -18,4 +18,10 @@ public class BeatFragment extends BaseFragment {
     public void initView() {
         image_beat.startAnimation();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        image_beat.stopAnimation();
+    }
 }

@@ -3,37 +3,41 @@ package com.beini.db.cache;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Environment;
 
-import com.beini.db.io.DiskLruCache;
+import com.beini.app.GlobalApplication;
+import com.beini.util.BLog;
+import com.jakewharton.disklrucache.DiskLruCache;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 
 /**
  * Created by beini on 2017/3/15.
  */
 
-public class DkskLruCacheUtils {
-    DiskLruCache mDiskLruCache = null;
-    Context context;
+public class DiskLruCacheUtils {
+    private static DiskLruCache mDiskLruCache = null;
 
-    public DkskLruCacheUtils(Context context) {
-        this.context = context;
-        File cacheDir = getDiskCacheDir(context, "bitmap");
+
+    public static DiskLruCacheUtils getInstance() {
+        BLog.e("DiskLruCacheUtils");
+        DiskLruCacheUtils diskLruCacheUtils = new DiskLruCacheUtils();
+        File cacheDir = getDiskCacheDir(GlobalApplication.getInstance().getApplicationContext(), "bitmap");
+        BLog.e("cacheDir "+cacheDir.getAbsolutePath());
         if (!cacheDir.exists()) {
             cacheDir.mkdirs();
         }
         //第一个参数指定的是数据的缓存地址，第二个参数指定当前应用程序的版本号，第三个参数指定同一个key可以对应多少个缓存文件，基本都是传1，第四个参数指定最多可以缓存多少字节的数据。
         try {
-            mDiskLruCache = DiskLruCache.open(cacheDir, getAppVersion(context), 1, 10 * 1024 * 1024);
+            mDiskLruCache = DiskLruCache.open(cacheDir, getAppVersion(GlobalApplication.getInstance().getApplicationContext()), 1, 10 * 1024 * 1024);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return diskLruCacheUtils;
     }
 
     /**
@@ -42,7 +46,7 @@ public class DkskLruCacheUtils {
      * @param context
      * @return
      */
-    public int getAppVersion(Context context) {
+    public static int getAppVersion(Context context) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return info.versionCode;
@@ -59,7 +63,7 @@ public class DkskLruCacheUtils {
      * @param uniqueName
      * @return
      */
-    public File getDiskCacheDir(Context context, String uniqueName) {
+    public static File getDiskCacheDir(Context context, String uniqueName) {
         String cachePath;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                 || !Environment.isExternalStorageRemovable()) {
@@ -75,19 +79,37 @@ public class DkskLruCacheUtils {
         mDiskLruCache.remove(key);
     }
 
-    public void setCache(String key) throws IOException {
-        DiskLruCache.Editor editor = mDiskLruCache.edit(key);
+    public boolean setCache(String key, InputStream inputStream) {
 
-    }
-
-    public Bitmap getCache(String key) throws IOException {
-        DiskLruCache.Snapshot snapShot = mDiskLruCache.get(key);
-        Bitmap bitmap = null;
-        if (snapShot != null) {
-            InputStream is = snapShot.getInputStream(0);
-            bitmap = BitmapFactory.decodeStream(is);
-
+        DiskLruCache.Editor editor;
+        try {
+            editor = mDiskLruCache.edit(key);
+            OutputStream outputStream = editor.newOutputStream(0);
+            int index;
+            while ((index = inputStream.read()) != -1) {
+                outputStream.write(index);
+            }
+            inputStream.close();
+            outputStream.close();
+            editor.commit();
+        } catch (IOException e) {
+            return false;
         }
-        return bitmap;
+
+        return true;
     }
+
+    public InputStream getCache(String key) {
+        DiskLruCache.Editor editor;
+        InputStream inputStream = null;
+        try {
+            editor = mDiskLruCache.edit(key);
+            inputStream = editor.newInputStream(0);
+            editor.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return inputStream;
+    }
+
 }
