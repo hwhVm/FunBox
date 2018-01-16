@@ -1,4 +1,4 @@
-package com.beini.net;
+package com.beini.net.retrofit;
 
 import android.support.annotation.NonNull;
 
@@ -6,6 +6,7 @@ import com.beini.bean.UserInfo;
 import com.beini.constants.NetConstants;
 import com.beini.net.request.UserRequest;
 import com.beini.net.response.BaseResponseJson;
+import com.beini.net.server.RxApiServer;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -28,10 +29,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by beini on 2017/4/14.
  */
 
-public class RxNetUtil<T> {
+public class RxNetUtil {
     private static RxNetUtil instance;
     private static Retrofit retrofit;
-    private static RxReServer rxReServer;
+    private static RxApiServer rxReServer;
     private static int DEFAULT_TIMEOUT = 5;
 
     public static RxNetUtil getSingleton() {
@@ -69,7 +70,7 @@ public class RxNetUtil<T> {
                             // 添加Retrofit到RxJava的转换器
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build();
-                    rxReServer = retrofit.create(RxReServer.class);
+                    rxReServer = retrofit.create(RxApiServer.class);
                 }
             }
         }

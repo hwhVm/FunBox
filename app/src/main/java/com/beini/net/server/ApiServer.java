@@ -1,4 +1,4 @@
-package com.beini.net;
+package com.beini.net.server;
 
 
 import com.beini.net.request.BaseRequestJson;

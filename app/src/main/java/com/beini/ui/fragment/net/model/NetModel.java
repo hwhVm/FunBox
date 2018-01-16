@@ -3,7 +3,7 @@ package com.beini.ui.fragment.net.model;
 import android.os.Environment;
 
 import com.beini.db.io.FileUtil;
-import com.beini.net.NetUtil;
+import com.beini.net.retrofit.NetUtil;
 import com.beini.ui.fragment.net.NetFileFragment;
 import com.beini.util.BLog;
 

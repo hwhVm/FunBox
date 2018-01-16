@@ -2,7 +2,7 @@ package com.beini.ui.fragment.login.model;
 
 import android.app.Fragment;
 
-import com.beini.net.NetUtil;
+import com.beini.net.retrofit.NetUtil;
 import com.beini.net.request.LoginRequest;
 import com.beini.net.response.BaseResponseJson;
 import com.beini.ui.fragment.login.LoginFragment;
@@ -30,7 +30,7 @@ public class LoginModel {
 
         NetUtil.getSingleton().sendRequestPost("login", loginRequest).enqueue(new Callback<BaseResponseJson>() {
             @Override
-            public void onResponse(Call<BaseResponseJson> call, Response<BaseResponseJson> response) {
+            public void onResponse(Call<BaseResponseJson> call, Response<BaseResponseJson> response) {//回调在主线程执行
                 if (response.body().getReturnCode() == 0) {
                     ((LoginFragment) fragment).goToNexPage();
                     ((LoginFragment) fragment).baseActivity.remove(fragment);

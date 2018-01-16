@@ -7,7 +7,7 @@ import com.beini.R;
 import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
-import com.beini.net.NetUtil;
+import com.beini.net.retrofit.NetUtil;
 import com.beini.util.BLog;
 
 import java.util.HashMap;

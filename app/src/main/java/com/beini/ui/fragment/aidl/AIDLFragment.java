@@ -22,7 +22,12 @@ public class AIDLFragment extends BaseFragment {
 
     @Override
     public void initView() {
-
+//        //获取WindowManager服务引用
+//        WindowManager wm = (WindowManager) baseActivity.getSystemService(getApplication().WINDOW_SERVICE);
+//        //布局参数layoutParams相关设置略...
+//        View view = LayoutInflater.from(getApplication()).inflate(R.layout.float_layout, null);
+//        //添加view
+//        wm.addView(view, layoutParams);
     }
 
     private ServiceConnection connection = new ServiceConnection() {
@@ -34,7 +39,6 @@ public class AIDLFragment extends BaseFragment {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             BLog.d("     onServiceConnected    ");
-//            myAIDLService = (MAIDLService) ((MService.Stub) service).getService();
         }
     };
 

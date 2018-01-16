@@ -2,7 +2,7 @@ package com.beini.test;
 
 import android.os.Environment;
 
-import com.beini.net.NetUtil;
+import com.beini.net.retrofit.NetUtil;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;

@@ -1,4 +1,4 @@
-package com.beini.net;
+package com.beini.net.retrofit;
 
 import android.os.Environment;
 
@@ -6,6 +6,7 @@ import com.beini.app.GlobalApplication;
 import com.beini.constants.NetConstants;
 import com.beini.net.request.BaseRequestJson;
 import com.beini.net.response.BaseResponseJson;
+import com.beini.net.server.ApiServer;
 import com.beini.util.BLog;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
@@ -27,6 +28,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by beini on 2017/2/10.
@@ -61,7 +63,8 @@ public class NetUtil {
                     retrofit = new Retrofit.Builder()
                             .client(client)
                             .baseUrl(NetConstants.baseUrl)
-                            .addConverterFactory(GsonConverterFactory.create())
+                            .addConverterFactory(ScalarsConverterFactory.create())//String
+                            .addConverterFactory(GsonConverterFactory.create())//json
                             .build();
 
                     apiServer = retrofit.create(ApiServer.class);

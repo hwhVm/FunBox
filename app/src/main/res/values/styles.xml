@@ -68,4 +68,5 @@
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/logo_splash</item>
     </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.beini.net;
+package com.beini.net.server;
 
 import android.support.annotation.NonNull;
 
@@ -20,7 +20,7 @@ import retrofit2.http.Path;
  * Created by beini on 2017/4/14.
  */
 
-public interface RxReServer<T> {
+public interface RxApiServer<T> {
     /**
      * @FormUrlEncoded: 表单的方式传递键值对
      */

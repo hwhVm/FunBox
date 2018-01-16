@@ -1,10 +1,9 @@
 package com.beini.net;
 
-import android.os.Environment;
-
 
 import com.beini.constants.NetConstants;
 import com.beini.net.response.ProgressResponseBody;
+import com.beini.net.server.ApiServer;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +15,8 @@ import java.nio.channels.FileChannel;
 import io.reactivex.Flowable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
