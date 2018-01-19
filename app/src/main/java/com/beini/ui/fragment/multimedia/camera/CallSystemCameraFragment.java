@@ -1,6 +1,7 @@
 package com.beini.ui.fragment.multimedia.camera;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -64,7 +65,7 @@ public class CallSystemCameraFragment extends BaseFragment implements ActivityRe
     public void resultCallback(int requestCode, int resultCode, Intent data) {
         BLog.e("   requestCode=" + requestCode + "     resultCode=" + resultCode + "    ");
         // 如果是拍照
-        if (CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE == requestCode && baseActivity.RESULT_OK == resultCode) {
+        if (CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE == requestCode && Activity.RESULT_OK == resultCode) {
             // Check if the result includes a thumbnail Bitmap
             if (data != null) {
                 // 没有指定特定存储路径的时候
@@ -82,7 +83,7 @@ public class CallSystemCameraFragment extends BaseFragment implements ActivityRe
 
         }
         //录像
-        if (CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE == requestCode && baseActivity.RESULT_OK == resultCode) {
+        if (CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE == requestCode && Activity.RESULT_OK == resultCode) {
             BLog.e("     ---------------------->录像");
         }
     }

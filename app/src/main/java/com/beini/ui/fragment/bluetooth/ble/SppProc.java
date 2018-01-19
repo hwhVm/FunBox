@@ -19,7 +19,7 @@ public class SppProc {
         TEMPRETURE(new byte[]{0x1});
         private byte[] cmd_data;
 
-        private LIGHT_MODE(byte[] data) {
+        LIGHT_MODE(byte[] data) {
             this.cmd_data = data;
         }
 

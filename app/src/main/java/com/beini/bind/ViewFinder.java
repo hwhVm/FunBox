@@ -35,7 +35,7 @@ final class ViewFinder {
             pView = this.findViewById(pid);
         }
 
-        View view = null;
+        View view;
         if (pView != null) {
             view = pView.findViewById(id);
         } else {

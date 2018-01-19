@@ -45,7 +45,7 @@ public class VideoUtil {
     public static String bitmap2File(Bitmap bitmap, String name) {
         File f = new File(Environment.getExternalStorageDirectory() + name + ".jpg");
         if (f.exists()) f.delete();
-        FileOutputStream fOut = null;
+        FileOutputStream fOut;
         try {
             fOut = new FileOutputStream(f);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);

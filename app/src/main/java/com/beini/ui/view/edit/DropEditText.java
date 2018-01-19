@@ -100,7 +100,7 @@ public class DropEditText extends FrameLayout implements View.OnClickListener, A
 
         count=adapter.getCount();
         mPopup = new PopupWindow(mPopView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        mPopup.setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+        mPopup.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.transparent)));
         mPopup.setFocusable(true); // 让popwin获取焦点
     }
 

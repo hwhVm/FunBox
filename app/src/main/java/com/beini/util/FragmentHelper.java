@@ -149,11 +149,7 @@ public class FragmentHelper {
     }
 
     private static boolean isHomeFragment(FragmentManager fragmentManager) {
-        if (fragmentManager.findFragmentById(R.id.content_frame) instanceof HomeFragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb2Fragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb3Fragment) {
-            return true;
-        } else {
-            return false;
-        }
+        return fragmentManager.findFragmentById(R.id.content_frame) instanceof HomeFragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb2Fragment || fragmentManager.findFragmentById(R.id.content_frame) instanceof Rb3Fragment;
     }
 
 

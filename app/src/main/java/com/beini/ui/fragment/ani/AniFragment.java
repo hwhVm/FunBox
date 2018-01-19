@@ -128,8 +128,7 @@ public class AniFragment extends BaseFragment {
     /**
      * 平移
      */
-    public void translation() {
-        View customerView = null;
+    public void translation(    View customerView) {
         ObjectAnimator objectAnimatort1 = ObjectAnimator.ofFloat(customerView, "translationX", 0, 300);
         ObjectAnimator objectAnimatort2 = ObjectAnimator.ofFloat(customerView, "translationY", 0, 300);
         ObjectAnimator objectAnimators1 = ObjectAnimator.ofFloat(customerView, "scaleX", 1f, 2f);

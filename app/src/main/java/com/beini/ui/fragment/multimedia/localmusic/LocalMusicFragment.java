@@ -110,7 +110,7 @@ public class LocalMusicFragment extends BaseFragment {
                 String path="http://120.76.41.61/source/sound/sleep/Sleep_Bird_Chirping.mp3";     //这里给一个歌曲的网络地址就行了
                 Uri uri  =  Uri.parse(path);
                 MediaPlayer player  =   new MediaPlayer();
-                player.create(getActivity(),uri);
+                MediaPlayer.create(getActivity(),uri);
                 player.start();
 //                player.setDataSource();
                 player.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {

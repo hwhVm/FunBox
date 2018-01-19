@@ -8,7 +8,6 @@ import com.beini.ui.fragment.ani.AnnotationsFragment;
 import com.beini.ui.fragment.args.ArgsFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
-import com.beini.ui.fragment.cache.DiskLruFragment;
 import com.beini.ui.fragment.control.SnapHeplerFragment;
 import com.beini.ui.fragment.cpptest.CppFragment;
 import com.beini.ui.fragment.customview.CanvasFragment;
@@ -33,6 +32,7 @@ import com.beini.ui.fragment.websocketandsocket.WebScoketFragment;
 import com.beini.ui.fragment.webview.WebViewTestFragment;
 import com.beini.ui.fragment.webview.tx5.Tx5Fragment;
 import com.beini.ui.fragment.wifi.WfiListFragment;
+import com.beini.ui.fragment.xrecyclerview.XrecyclerviewTestFragment;
 import com.beini.util.ObjectUtil;
 
 /**
@@ -47,7 +47,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(DiskLruFragment.class);
+        baseActivity.replaceFragment(XrecyclerviewTestFragment.class);
     }
 
     public static void loginRouter() {

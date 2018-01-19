@@ -13,7 +13,7 @@ public class SppDecodeHolder {
 
         private int _value;
 
-        private CMD_TYPE(int value) {
+        CMD_TYPE(int value) {
             _value = value;
         }
 
@@ -118,7 +118,7 @@ public class SppDecodeHolder {
             return;
         }
 
-        byte[] readrx = (byte[]) bytes;
+        byte[] readrx = bytes;
 
         // 讲读取到的数据 复制到 readBufk 中
         byte[] readBufk = new byte[length];

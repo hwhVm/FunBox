@@ -36,9 +36,6 @@
     <!-- bugly -->
     <uses-permission android:name="android.permission.READ_LOGS" />
 
-    <meta-data
-        android:name="com.google.android.gms.vision.DEPENDENCIES"
-        android:value="face" />
 
     <application
         android:name=".app.GlobalApplication"
@@ -49,21 +46,24 @@
         android:roundIcon="@mipmap/app_icon_serch"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="face" />
         <!-- 活动  start -->
         <activity
             android:name=".ui.activity.IndexActivity"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
         </activity>
         <activity
             android:name=".ui.fragment.multimedia.zxing.activity.CaptureActivity"

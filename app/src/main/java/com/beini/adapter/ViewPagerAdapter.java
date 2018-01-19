@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
 
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = container.inflate(context,
+        View view = View.inflate(context,
                 R.layout.fragment_pic_detai, null);
         //使用ImageLoader加载图片
 //        CSApplication.getInstance().imageLoader.displayImage(

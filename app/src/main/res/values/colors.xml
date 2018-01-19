@@ -24,4 +24,8 @@
     <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
     <color name="pickerview_bgColor_overlay">#60000000</color>
     <color name="pickerview_bgColor_default">#FFFFFFFF</color>
+    <!--透明-->
+    <color name="transparent">#00000000</color>
+    <!--浅蓝色-->
+    <color name="light_blue">#3B93FF</color>
 </resources>

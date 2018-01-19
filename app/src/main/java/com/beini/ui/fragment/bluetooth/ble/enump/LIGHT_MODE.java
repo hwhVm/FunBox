@@ -16,7 +16,7 @@ public enum LIGHT_MODE {
 
     private byte[] cmd_data;
 
-    private LIGHT_MODE(byte[] data) {
+    LIGHT_MODE(byte[] data) {
         this.cmd_data = data;
     }
 

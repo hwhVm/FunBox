@@ -76,11 +76,8 @@ public class PermissionUtils {
         boolean permission1 = (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(GlobalApplication.getInstance(), Manifest.permission.ACCESS_COARSE_LOCATION));
         boolean permission2 = (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(GlobalApplication.getInstance(), Manifest.permission.READ_EXTERNAL_STORAGE));
         boolean permission3 = (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(GlobalApplication.getInstance(), Manifest.permission.WRITE_EXTERNAL_STORAGE));
-        if (permission0 && permission1 && permission2 && permission3) {
-            return true;
-        }
+        return permission0 && permission1 && permission2 && permission3;
 
-        return false;
     }
 
 

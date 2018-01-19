@@ -53,7 +53,7 @@ public class AudioFragment extends BaseFragment {
         int request = audioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
 
         BLog.d("  request==" + request);
-        if (request == audioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+        if (request == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             BLog.d("    申请成功  registerMediaButtonEventReceiver");
             if (android.os.Build.VERSION.SDK_INT >= 21) {
                 //注册媒体按键 API 21+（Android 5.0）
@@ -62,7 +62,7 @@ public class AudioFragment extends BaseFragment {
                 //注册媒体按键 API 21 以下， 通常的做法
                 audioManager.registerMediaButtonEventReceiver(mComponentName);
             }
-        } else if (request == audioManager.AUDIOFOCUS_REQUEST_FAILED) {
+        } else if (request == AudioManager.AUDIOFOCUS_REQUEST_FAILED) {
             BLog.d("    申请失败");
         }
 

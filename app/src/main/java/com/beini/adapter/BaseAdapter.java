@@ -22,11 +22,11 @@ import java.util.List;
 
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
-    private List<T> baseLit;
+    private List<T> baseList;
     private int layoutId;
 
     public BaseAdapter(@NonNull BaseBean<T> baseBean) {
-        this.baseLit = baseBean.getBaseList();
+        this.baseList = baseBean.getBaseList();
         this.layoutId = baseBean.getId();
     }
 
@@ -42,30 +42,42 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     @Override
     public int getItemCount() {
-        if (baseLit == null || baseLit.size() == 0) {
+        if (baseList == null || baseList.size() == 0) {
             return 0;
         }
-        return baseLit.size();
+        return baseList.size();
     }
-
 
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
-         View view;
+        View view;
 
         ViewHolder(View view) {
             super(view);
-           this.view=view;
+            this.view = view;
         }
     }
 
-    protected TextView getTextView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
-        return (TextView)   viewHolder.view.findViewById(viewId);
+    public void addItem(T bean, int postion) {
+        baseList.add(postion, bean);
+        notifyItemInserted(postion);
+        notifyItemRangeChanged(postion, baseList.size());
     }
 
-    protected ImageView getImageView(@NonNull ViewHolder viewHolder,@IdRes int viewId) {
+    public void removeItem(int postion) {
+        baseList.remove(postion);
+        notifyItemRemoved(postion);
+        notifyItemRangeChanged(postion, baseList.size());
+    }
+
+    protected TextView getTextView(@NonNull ViewHolder viewHolder, @IdRes int viewId) {
+        return (TextView) viewHolder.view.findViewById(viewId);
+    }
+
+    protected ImageView getImageView(@NonNull ViewHolder viewHolder, @IdRes int viewId) {
         return (ImageView) viewHolder.view.findViewById(viewId);
     }
+
     protected Button getButton(@NonNull ViewHolder viewHolder, @IdRes int viewId) {
         return (Button) viewHolder.view.findViewById(viewId);
     }
@@ -75,7 +87,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
     }
 
     //item  click 事件
-   private OnItemClickListener itemClickListener = null;
+    private OnItemClickListener itemClickListener = null;
 
     public void setItemClick(OnItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
@@ -92,7 +104,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
     }
 
     // item onlongClick 事件
-    private  onItemLongClickListener itemLongClickListener = null;
+    private onItemLongClickListener itemLongClickListener = null;
 
     public void setOnItemLongClickListener(onItemLongClickListener onItemLongClickListener) {
         this.itemLongClickListener = onItemLongClickListener;

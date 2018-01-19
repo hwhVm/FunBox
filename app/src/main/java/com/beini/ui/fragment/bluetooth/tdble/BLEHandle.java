@@ -74,7 +74,7 @@ public class BLEHandle implements IBlueHandle {
             else{
                 connectFlag = 2;
             }
-        };
+        }
 
         //发现服务的回调
         @Override
@@ -143,7 +143,7 @@ public class BLEHandle implements IBlueHandle {
                BLog.d( "服务发现失败，错误码为:" + status);
                 connectFlag = 2;
             }
-        };
+        }
 
         //写操作的回调
         @Override
@@ -158,7 +158,7 @@ public class BLEHandle implements IBlueHandle {
                     e.printStackTrace();
                 }
             }
-        };
+        }
 
         //读操作的回调
         @Override
@@ -238,7 +238,7 @@ public class BLEHandle implements IBlueHandle {
     public void write(byte[] buffer) {
         final int MAX_BUFFER_LEN = 112;
         int buffer_offset = 0;
-        int len = 0;
+        int len;
         if(mBluetoothGatt!=null && mCharWrite != null) {
             while (true) {
                 if((buffer.length-buffer_offset)>MAX_BUFFER_LEN){

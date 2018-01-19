@@ -8,9 +8,9 @@
     <ToggleButton
         android:id="@+id/toggle_btn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textOff="off"
+        android:layout_height="wrap_content"
         android:checked="false"
-        android:textOn="on" />
+        android:textOff="@string/shake_off"
+        android:textOn="@string/shake_on" />
 
 </FrameLayout>

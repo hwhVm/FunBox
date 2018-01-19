@@ -1,7 +1,6 @@
 package com.beini.ui.fragment.shake;
 
 import android.hardware.Camera;
-import android.support.v4.app.Fragment;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
@@ -11,7 +10,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Create by beini 2018/1/19
  */
 @ContentView(R.layout.fragment_shake)
 public class ShakeFragment extends BaseFragment {
@@ -69,4 +68,8 @@ public class ShakeFragment extends BaseFragment {
         m_Camera.release();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

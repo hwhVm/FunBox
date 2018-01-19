@@ -31,7 +31,7 @@ import java.io.Closeable;
 import java.io.IOException;
 
 /**
- * Manages beeps and vibrations for {@link CaptureActivity}.
+ * Manages beeps and vibrations for {@link com.beini.ui.fragment.multimedia.zxing.activity.CaptureActivity}.
  */
 public class BeepManager implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, Closeable {
 

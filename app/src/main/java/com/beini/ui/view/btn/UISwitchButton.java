@@ -22,7 +22,7 @@ import com.beini.R;
 import com.beini.util.DensityUtils;
 
 
-public class UISwitchButton extends CheckBox {
+public class UISwitchButton extends android.support.v7.widget.AppCompatCheckBox {
     private Paint mPaint;
     private RectF mSaveLayerRectF;
     private float mFirstDownY;
@@ -49,7 +49,7 @@ public class UISwitchButton extends CheckBox {
     private Bitmap bmCurBtnPic;// 当前显示的按钮图片
     private Bitmap bmCurBgPic;// 当前背景图片
     private float bgWidth;// 背景宽度
-    private float bgHeight;;// 背景高度
+    private float bgHeight;// 背景高度
     private float btnWidth;// 按钮宽度
     private float offBtnPos;// 按钮关闭时位置
     private float onBtnPos;// 按钮开启时位置
@@ -82,9 +82,9 @@ public class UISwitchButton extends CheckBox {
         // get attrConfiguration
         TypedArray array = context.obtainStyledAttributes(attrs,
                 R.styleable.SwitchButton);
-        int width = (int) array.getDimensionPixelSize(
+        int width = array.getDimensionPixelSize(
                 R.styleable.SwitchButton_bmWidth, 0);
-        int height = (int) array.getDimensionPixelSize(
+        int height = array.getDimensionPixelSize(
                 R.styleable.SwitchButton_bmHeight, 0);
         array.recycle();
 

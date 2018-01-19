@@ -45,13 +45,19 @@ public class HomeFragment extends BaseFragment {
 
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
-//        recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
-        recycler_view_home.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+//      recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
+        recycler_view_home.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycler_view_home.addItemDecoration(new RecycleDecoration(getActivity()));
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
 
+    }
+
+    @Override
+    public void returnLoad() {
+        super.returnLoad();
+        baseActivity.setTopBar(View.GONE);
     }
 
     public HomeListAdapter.OnItemClickListener onItemClickListener = new HomeListAdapter.OnItemClickListener() {

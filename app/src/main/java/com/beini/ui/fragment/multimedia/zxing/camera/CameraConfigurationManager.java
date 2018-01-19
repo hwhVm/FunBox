@@ -59,7 +59,7 @@ public final class CameraConfigurationManager {
         Camera.Parameters parameters = camera.getParameters();
         WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = manager.getDefaultDisplay();
-        Point theScreenResolution = new Point();
+        Point theScreenResolution;
         theScreenResolution = getDisplaySize(display);
 
         screenResolution = theScreenResolution;

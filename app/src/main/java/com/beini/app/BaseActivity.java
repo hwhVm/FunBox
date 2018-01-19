@@ -23,7 +23,6 @@ import com.beini.ui.fragment.home.Rb2Fragment;
 import com.beini.ui.fragment.home.Rb3Fragment;
 import com.beini.util.FragmentHelper;
 import com.beini.util.ObjectUtil;
-import com.beini.util.WindowUtils;
 import com.beini.util.listener.ActivityResultListener;
 import com.beini.util.listener.KeyBackListener;
 import com.beini.util.listener.OnTouchEventListener;
@@ -52,9 +51,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            WindowUtils.setHide(this.getWindow().getDecorView());
-        }
+//        if (hasFocus) {
+//            WindowUtils.setHide(this.getWindow().getDecorView());
+//        }
     }
 
     @Override

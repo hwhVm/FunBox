@@ -28,12 +28,17 @@ public class SideslipFragment extends BaseFragment implements NavigationView.OnN
         baseActivity.setTopBar(View.VISIBLE);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 baseActivity, drawer, baseActivity.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         drawer.addDrawerListener(drawerListener);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         baseActivity.setKeyBackListener(null);
 
+    }
+
+    @Override
+    public void returnLoad() {
+        super.returnLoad();
     }
 
     @Override

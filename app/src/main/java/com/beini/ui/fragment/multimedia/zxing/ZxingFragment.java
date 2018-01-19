@@ -1,5 +1,6 @@
 package com.beini.ui.fragment.multimedia.zxing;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
@@ -64,7 +65,7 @@ public class ZxingFragment extends BaseFragment implements ActivityResultListene
 
     @Override
     public void resultCallback(int requestCode, int resultCode, Intent data) {
-        if (resultCode == baseActivity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             String result = data.getExtras().getString("result");
             tv_content.setText(result);
         }
