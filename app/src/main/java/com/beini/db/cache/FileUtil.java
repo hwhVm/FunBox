@@ -149,4 +149,20 @@ public class FileUtil {
             return size;
         }
     }
+
+    public static boolean createFileDir(String path) {
+        File file = new File(path);
+        if (file.exists()) {
+            if (!file.isDirectory()) {
+                file.delete();
+                boolean isCreate = file.mkdir();
+                return isCreate;
+            } else {
+                return true;
+            }
+        } else {
+            boolean isCreate = file.mkdirs();
+            return isCreate;
+        }
+    }
 }

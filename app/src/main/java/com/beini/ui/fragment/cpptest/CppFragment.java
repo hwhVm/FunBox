@@ -1,13 +1,15 @@
 package com.beini.ui.fragment.cpptest;
 
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.beini.R;
 import com.beini.app.BaseFragment;
-import com.beini.app.GlobalApplication;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
+import com.beini.ndk.NDKMain;
+import com.beini.util.BLog;
 
 /**
  * Create by beini 2017/5/2
@@ -19,11 +21,14 @@ public class CppFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        showToast();
-        GlobalApplication.getInstance().getNdk().withArgs(" hellow  C++");
+        baseActivity.setTopBar(View.GONE);
+        baseActivity.setBottom(View.GONE);
+        NDKMain ndkMain = new NDKMain();
+        BLog.e("befor--------------->str=" + ndkMain.str);
+        ndkMain.accessField();
+        BLog.e("after--------------->str=" + ndkMain.str);
+        BLog.e("--------------->ndkMain.num="+ndkMain.num);
     }
 
-    public  void showToast() {
-        text_cpp.setText(GlobalApplication.getInstance().getNdk().getPassword());
-    }
+
 }

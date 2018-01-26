@@ -5,8 +5,8 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.beini.ndk.NDKMain;
+import com.beini.util.AppUtils;
 import com.beini.util.BLog;
-import com.beini.util.SystemUtil;
 import com.beini.util.listener.ActivityCallbacks;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.bugly.Bugly;
@@ -45,13 +45,13 @@ public class GlobalApplication extends MultiDexApplication {
         super.onCreate();
 //       Debug.startMethodTracing("GlobalApplication");//生成分析文件，对冷启动时间进行分析
         String appName = getApplicationInfo().packageName;
-        if (appName.equals(SystemUtil.getCurProcessName(getApplicationContext()))) {//避免多进程下会重复执行
+        if (appName.equals(AppUtils.getCurProcessName(getApplicationContext()))) {//避免多进程下会重复执行
             activities = new ArrayList<>();
             application = this;
             this.registerActivityLifecycleCallbacks(new ActivityCallbacks());
             executorService = Executors.newCachedThreadPool();//创建线程池
             ndk = new NDKMain();
-            initBugly();
+//            initBugly();
 //          Stetho.initializeWithDefaults(this);
             executorService.execute(new Runnable() {
                 @Override

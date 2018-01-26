@@ -31,23 +31,30 @@ public class FragmentHelper {
      * @param fragmentManager
      * @param fragment
      */
-    public static void addFragment(FragmentManager fragmentManager, Fragment fragment) {
-        if (fragmentManager != null && fragment != null) {
+    public static Fragment addFragment(FragmentManager fragmentManager, Class fragment, String tag) {
+        if (fragmentManager != null) {
             if (fm == null) {
                 fm = fragmentManager;
             }
             hideAllFragment();
             FragmentTransaction ft = fragmentManager.beginTransaction();
-//            if (!fragment.isAdded()) {
-//                ft.setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit, R.anim.fragment_slide_left_enter,
-//                        R.anim.fragment_slide_left_exit);//动画
-//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//            }
-            ft.add(R.id.content_frame, fragment, fragment.getClass().getName());
-            tags.add(fragment.getClass().getName());
+            //查找是否存在Fragment
+            Fragment currentFragment = fragmentManager.findFragmentByTag(tag);
+
+            if (currentFragment == null) {//创建
+                currentFragment = (Fragment) ObjectUtil.createInstance(fragment);
+                ft.add(R.id.content_frame, currentFragment, tag);
+                tags.add(tag);
+            } else {
+                ft.show(currentFragment);
+            }
             ft.commit();
+
+            return currentFragment;
         }
+        return null;
     }
+
 
     /**
      * show fragment

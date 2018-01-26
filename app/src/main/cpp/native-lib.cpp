@@ -18,6 +18,7 @@
  * JNIEXPORT:声明该接口为动态库导出接口。
  *
  * JNICALL:声明了函数参数的入栈方式。
+ *
  * **/
 extern "C"
 JNIEXPORT jstring JNICALL
@@ -71,8 +72,8 @@ JNIEXPORT jstring JNICALL
 Java_com_beini_ndk_NDKMain_withArgs(JNIEnv *env, jobject/* this */, jstring args) {
     // TODO
     const char *str = env->GetStringUTFChars(args, 0);
-    __android_log_print(ANDROID_LOG_ERROR,TAG," ");
-    __android_log_print(ANDROID_LOG_ERROR, TAG, "------------>%c",str);
+    __android_log_print(ANDROID_LOG_ERROR, TAG, " ");
+    __android_log_print(ANDROID_LOG_ERROR, TAG, "------------>%c", str);
     env->ReleaseStringUTFChars(args, str);
 
     return args;

@@ -22,7 +22,6 @@ import com.beini.ui.fragment.home.HomeFragment;
 import com.beini.ui.fragment.home.Rb2Fragment;
 import com.beini.ui.fragment.home.Rb3Fragment;
 import com.beini.util.FragmentHelper;
-import com.beini.util.ObjectUtil;
 import com.beini.util.listener.ActivityResultListener;
 import com.beini.util.listener.KeyBackListener;
 import com.beini.util.listener.OnTouchEventListener;
@@ -106,31 +105,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
 
     @Override
     public void replaceFragment(Class<?> fragment) {
-        BaseFragment baseFragment = (BaseFragment) ObjectUtil.createInstance(fragment);
-        if (!(baseFragment instanceof HomeFragment || baseFragment instanceof Rb2Fragment || baseFragment instanceof Rb3Fragment)) {
-            this.setBottom(View.GONE);
-        }
-        Fragment newFragment = customerFragmentManager.findFragmentByTag(fragment.getName());
-        if (newFragment != null) {
-            FragmentHelper.showFragment(newFragment);
-        } else {
-            FragmentHelper.addFragment(customerFragmentManager, baseFragment);
-        }
+        FragmentHelper.addFragment(customerFragmentManager, fragment, fragment.getName());
     }
 
     @Override
     public void replaceFragment(Class<?> fragment, Bundle args) {
-        BaseFragment baseFragment = (BaseFragment) ObjectUtil.createInstance(fragment);
-        if (!(baseFragment instanceof HomeFragment || baseFragment instanceof Rb2Fragment || baseFragment instanceof Rb3Fragment)) {
-            this.setBottom(View.GONE);
-        }
-        Fragment newFragment = customerFragmentManager.findFragmentByTag(fragment.getName());
-        if (newFragment != null) {
-            FragmentHelper.showFragment(newFragment);
-        } else {
-            baseFragment.setArguments(args);
-            FragmentHelper.addFragment(customerFragmentManager, baseFragment);
-        }
+        Fragment baseFragment = FragmentHelper.addFragment(customerFragmentManager, fragment, fragment.getName());
+        baseFragment.setArguments(args);
     }
 
     @Override

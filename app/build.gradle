@@ -175,5 +175,7 @@ dependencies {
     compile 'com.jakewharton:disklrucache:2.0.2'
     //下拉刷新，上拉加载
     compile 'com.jcodecraeer:xrecyclerview:1.5.8'
+    //对系统的日志的封装
+    compile 'com.orhanobut:logger:1.15'
 }
 

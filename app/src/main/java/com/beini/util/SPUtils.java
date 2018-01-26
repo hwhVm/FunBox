@@ -1,10 +1,12 @@
 package com.beini.util;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
-import android.content.Context;
-import android.content.SharedPreferences;
 /**
  * Created by beini on 2017/2/9.
  */
@@ -32,9 +34,9 @@ public class SPUtils
 	 */
 	public static void put(Context context, String key, Object object)
 	{
-
-		SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-				Context.MODE_PRIVATE);
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+//		SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+//				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sp.edit();
 
 		if (object instanceof String)

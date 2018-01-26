@@ -32,7 +32,6 @@ import com.beini.ui.fragment.websocketandsocket.WebScoketFragment;
 import com.beini.ui.fragment.webview.WebViewTestFragment;
 import com.beini.ui.fragment.webview.tx5.Tx5Fragment;
 import com.beini.ui.fragment.wifi.WfiListFragment;
-import com.beini.ui.fragment.xrecyclerview.XrecyclerviewTestFragment;
 import com.beini.util.ObjectUtil;
 
 /**
@@ -47,7 +46,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(XrecyclerviewTestFragment.class);
+        baseActivity.replaceFragment(CppFragment.class);
     }
 
     public static void loginRouter() {
