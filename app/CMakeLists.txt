@@ -11,6 +11,7 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 
 aux_source_directory (src/main/cpp/ A_SRC)
+aux_source_directory (src/main/cpp/customer/ B_SRC)
 
 list(APPEND A_SRC ${B_SRC})
 
@@ -24,7 +25,6 @@ add_library( # Sets the name of the library.
 
              # Provides a relative path to your source file(s).
              ${A_SRC}
-             src/main/cpp/ORM.c
              )
 
 
