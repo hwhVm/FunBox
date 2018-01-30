@@ -25,6 +25,7 @@ import com.beini.ui.fragment.service.ServiceFragment;
 import com.beini.ui.fragment.shake.ShakeFragment;
 import com.beini.ui.fragment.sideslip.SideslipFragment;
 import com.beini.ui.fragment.sms.SmsFragment;
+import com.beini.ui.fragment.sound.SoundFragment;
 import com.beini.ui.fragment.viewflippe.ViewFlippeFragment;
 import com.beini.ui.fragment.websocketandsocket.OkhttpWebSocketFragment;
 import com.beini.ui.fragment.websocketandsocket.SocketFragment;
@@ -46,7 +47,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(CppFragment.class);
+        baseActivity.replaceFragment(SoundFragment.class);
     }
 
     public static void loginRouter() {

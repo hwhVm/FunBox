@@ -10,6 +10,7 @@ import java.util.UUID;
 public class NDKMain {
     static {
         System.loadLibrary("FunBox");
+        System.loadLibrary("fmod-lib");
     }
 
     /**
@@ -110,4 +111,10 @@ public class NDKMain {
      * 自己写的c文件测试
      */
     public native void getCmethod();
+
+    /**
+     * 声音
+     */
+    //调用fmod去播放音乐
+    public native void playsMusic(String music_path);
 }

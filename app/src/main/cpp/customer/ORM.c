@@ -202,3 +202,4 @@ Java_com_beini_ndk_NDKMain_getCmethod(JNIEnv *env, jobject instance) {
     int result = add(1, 2);
     __android_log_print(ANDROID_LOG_ERROR, TAG, "------------>%d", result);
 }
+

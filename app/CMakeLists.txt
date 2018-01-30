@@ -12,9 +12,10 @@ cmake_minimum_required(VERSION 3.4.1)
 
 aux_source_directory (src/main/cpp/ A_SRC)
 aux_source_directory (src/main/cpp/customer/ B_SRC)
+aux_source_directory (src/main/cpp/inc/ C_SRC)
 
 list(APPEND A_SRC ${B_SRC})
-
+list(APPEND B_SRC ${C_SRC})
 
 
 add_library( # Sets the name of the library.
@@ -27,11 +28,13 @@ add_library( # Sets the name of the library.
              ${A_SRC}
              )
 
-
-
-
-
-
+add_library( # Sets the name of the library.
+             fmod-lib
+             # Sets the library as a shared library.
+             SHARED
+             # Provides a relative path to your source file(s).
+             ${CMAKE_CURRENT_SOURCE_DIR}/src/main/jni/${ANDROID_ABI}/libfmodL.so
+             )
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
@@ -51,7 +54,8 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
                        FunBox
-
+                        #导入fmod源码
+                       fmod-lib
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )

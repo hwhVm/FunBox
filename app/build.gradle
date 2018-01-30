@@ -119,7 +119,9 @@ dependencies {
 
     //retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'//ConverterFactory的String依赖包
+    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
+    //ConverterFactory的String依赖包
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
@@ -171,11 +173,15 @@ dependencies {
 
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
     compile 'com.tencent.bugly:nativecrashreport:3.3.1'
+
     //硬盘缓存  https://github.com/JakeWharton/DiskLruCache
     compile 'com.jakewharton:disklrucache:2.0.2'
+
     //下拉刷新，上拉加载
     compile 'com.jcodecraeer:xrecyclerview:1.5.8'
+
     //对系统的日志的封装
     compile 'com.orhanobut:logger:1.15'
+    implementation files('libs/fmod.jar')
 }
 
