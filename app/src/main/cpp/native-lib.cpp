@@ -5,9 +5,11 @@
 #include <jni.h>
 #include <string>
 #include<android/log.h>
-#include "inc/fmod.hpp"
-
+#include <unistd.h>
 #define  TAG "com.beini"
+
+
+
 /**
  * JNIEnv *env:代表了VM里的环境，本地代码可以通过这个env指针对Java代码进行操作，例如：创建Java类对象，调用Java对象方法，获取Java对象属性等
  *
@@ -73,54 +75,7 @@ JNIEXPORT jstring JNICALL
 Java_com_beini_ndk_NDKMain_withArgs(JNIEnv *env, jobject/* this */, jstring args) {
     // TODO
     const char *str = env->GetStringUTFChars(args, 0);
-    __android_log_print(ANDROID_LOG_ERROR, TAG, " ");
-    __android_log_print(ANDROID_LOG_ERROR, TAG, "------------>%c", str);
     env->ReleaseStringUTFChars(args, str);
 
     return args;
-}
-/**
-*声音
-*/
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_beini_ndk_NDKMain_playsMusic(JNIEnv *env, jobject instance, jstring music_path_) {
-    // TODO
-    __android_log_print(ANDROID_LOG_ERROR, TAG, "------------>%c", music_path_);
-    //得到音乐文件地址
-    const char *music_path = env->GetStringUTFChars( music_path_, 0);
-
-    //FMOD系统对象
-    FMOD::System       *system         = 0;
-    //音效
-    FMOD::Sound        *sound          = 0;
-    //声轨
-    FMOD::Channel       *channel       = 0;
-    //创建对象
-    FMOD::System_Create(&system);
-
-    //初始化 系统对象最大声轨为32
-    system->init(32,FMOD_INIT_NORMAL,0);
-
-    //加载声音 如果过大建议你用FMOD_CREATESTREAM 标志
-    system->createSound(music_path,FMOD_DEFAULT,0,&sound);
-
-    //播放音乐
-    system->playSound(sound,0, false,&channel);
-
-    //开启更新通道 官方demo写了 但是我我发现不写也没事
-    system->update();
-
-    //保存声音时间
-    unsigned int duration  =  0;
-
-    //得到声音
-    sound->getLength(&duration,FMOD_TIMEUNIT_MS);
-    //线程休眠 以微妙 所以要转
-//    usleep(duration*1000);
-    //释放资源
-    sound->release();
-    system->close();
-    system->release();
-    env->ReleaseStringUTFChars(music_path_, music_path);
 }

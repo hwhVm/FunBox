@@ -1,14 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.beini.ui.fragment.sound.SoundFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:id="@+id/btn_play_fmod_sound"
+    <TextView
+        android:id="@+id/sample_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Hello World!" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_click"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        app:layout_constraintTop_toBottomOf="@id/sample_text" />
+
+    <Button
+        android:id="@+id/btn_click_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="1"
+        app:layout_constraintTop_toBottomOf="@id/btn_click" />
+
+    <Button
+        android:id="@+id/btn_click_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="2"
+        app:layout_constraintTop_toBottomOf="@id/btn_click_1" />
+
+    <Button
+        android:id="@+id/btn_click_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="3"
+        app:layout_constraintTop_toBottomOf="@id/btn_click_2" />
+
+    <Button
+        android:id="@+id/btn_click_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="4"
+        app:layout_constraintTop_toBottomOf="@id/btn_click_3" />
+
+    <Button
+        android:id="@+id/btn_click_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="5"
+        app:layout_constraintTop_toBottomOf="@id/btn_click_4" />
+</android.support.constraint.ConstraintLayout>

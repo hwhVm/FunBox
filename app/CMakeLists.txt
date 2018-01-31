@@ -13,10 +13,12 @@ cmake_minimum_required(VERSION 3.4.1)
 aux_source_directory (src/main/cpp/ A_SRC)
 aux_source_directory (src/main/cpp/customer/ B_SRC)
 aux_source_directory (src/main/cpp/inc/ C_SRC)
+aux_source_directory (src/main/cpp/sound/ D_SRC)
 
-list(APPEND A_SRC ${B_SRC})
+
+list(APPEND C_SRC ${D_SRC})
 list(APPEND B_SRC ${C_SRC})
-
+list(APPEND A_SRC ${B_SRC})
 
 add_library( # Sets the name of the library.
              FunBox
@@ -28,18 +30,12 @@ add_library( # Sets the name of the library.
              ${A_SRC}
              )
 
-add_library( # Sets the name of the library.
-             fmod-lib
-             # Sets the library as a shared library.
-             SHARED
-             # Provides a relative path to your source file(s).
-             ${CMAKE_CURRENT_SOURCE_DIR}/src/main/jni/${ANDROID_ABI}/libfmodL.so
-             )
-# Searches for a specified prebuilt library and stores the path as a
-# variable. Because CMake includes system libraries in the search path by
-# default, you only need to specify the name of the public NDK library
-# you want to add. CMake verifies that the library exists before
-# completing its build.
+#设置变量
+set(libs "${CMAKE_SOURCE_DIR}/src/main/jni")
+#添加预编译so库
+add_library(fmod-lib SHARED IMPORTED )
+#设置预编译so库文件
+set_target_properties(  fmod-lib    PROPERTIES IMPORTED_LOCATION     "${libs}/${ANDROID_ABI}/libfmodL.so")
 
 find_library( # Sets the name of the path variable.
               log-lib
@@ -48,13 +44,8 @@ find_library( # Sets the name of the path variable.
               # you want CMake to locate.
               log )
 
-# Specifies libraries CMake should link to your target library. You
-# can link multiple libraries, such as libraries you define in this
-# build script, prebuilt third-party libraries, or system libraries.
-
 target_link_libraries( # Specifies the target library.
                        FunBox
-                        #导入fmod源码
                        fmod-lib
                        # Links the target library to the log library
                        # included in the NDK.
