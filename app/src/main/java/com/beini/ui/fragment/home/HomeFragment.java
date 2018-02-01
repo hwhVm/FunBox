@@ -1,7 +1,7 @@
 package com.beini.ui.fragment.home;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.beini.R;
@@ -11,7 +11,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.view.RecycleDecoration;
+import com.beini.ui.view.decoration.HomeDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +42,18 @@ public class HomeFragment extends BaseFragment {
         functionList.add(getString(R.string.home_item_title_snap_helper));
         functionList.add(getString(R.string.home_item_title_label));
         functionList.add(getString(R.string.home_item_title_canvas));
+        functionList.add(getString(R.string.home_item_title_fmod));
 
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
-//      recycler_view_home.setLayoutManager(new LinearLayoutManager(baseActivity));
-        recycler_view_home.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseActivity);
+        recycler_view_home.setLayoutManager(linearLayoutManager);
+//        recycler_view_home.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
-        recycler_view_home.addItemDecoration(new RecycleDecoration(getActivity()));
+        recycler_view_home.addItemDecoration(new HomeDecoration());
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
+        homeListAdapter.notifyDataSetChanged();
 
     }
 
@@ -106,6 +109,9 @@ public class HomeFragment extends BaseFragment {
                 case 13:
                     break;
                 case 14:
+                    AppRouter.homeCanvasRouter();
+                    break;
+                case 15:
                     AppRouter.homeCanvasRouter();
                     break;
             }

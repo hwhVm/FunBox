@@ -47,7 +47,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(SoundFragment.class);
+        baseActivity.replaceFragment(HomeFragment.class);
     }
 
     public static void loginRouter() {
@@ -112,6 +112,10 @@ public class AppRouter {
 
     public static void homeCanvasRouter() {
         baseActivity.replaceFragment(CanvasFragment.class);
+    }
+
+    public static void homeFmod() {
+        baseActivity.replaceFragment(SoundFragment.class);
     }
 
     /**

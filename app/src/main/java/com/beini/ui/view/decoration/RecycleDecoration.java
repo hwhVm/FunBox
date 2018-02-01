@@ -1,4 +1,4 @@
-package com.beini.ui.view;
+package com.beini.ui.view.decoration;
 
 import android.content.Context;
 import android.content.res.TypedArray;

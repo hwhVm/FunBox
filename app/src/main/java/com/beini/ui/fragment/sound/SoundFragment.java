@@ -38,8 +38,6 @@ public class SoundFragment extends BaseFragment {
         try {
             InputStream inputStream = getActivity().getAssets().open("demo.wav");
 
-//            byte[] bytes = new byte[(int) file.length()];
-
         } catch (IOException e) {
             e.printStackTrace();
         }

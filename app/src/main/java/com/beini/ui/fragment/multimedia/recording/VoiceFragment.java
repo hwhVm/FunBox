@@ -17,7 +17,7 @@ import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
 import com.beini.constants.Constants;
 import com.beini.ui.fragment.multimedia.bean.RecorderBean;
-import com.beini.ui.view.RecycleDecoration;
+import com.beini.ui.view.decoration.RecycleDecoration;
 import com.beini.util.BLog;
 import com.beini.util.ToastUtils;
 
@@ -112,7 +112,12 @@ public class VoiceFragment extends BaseFragment {
         mediaRecorder.setAudioSamplingRate(44100);   //设置采样频率,44100是所有安卓设备都支持的频率,频率越高，音质越好，当然文件越大
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC); //设置声音数据编码格式,音频通用格式是AAC
         mediaRecorder.setAudioEncodingBitRate(96000);  //设置编码频率
+        mediaRecorder.setOnInfoListener(new MediaRecorder.OnInfoListener() {
+            @Override
+            public void onInfo(MediaRecorder mr, int what, int extra) {
 
+            }
+        });
         //创建录音文件,.m4a为MPEG-4音频标准的文件的扩展名
         mAudioFile = new File(outputFile + System.currentTimeMillis() + ".m4a");
         //创建父文件夹

@@ -70,6 +70,8 @@ public class AudioRecordFragment extends VoiceFragment {
             while (isRecordering) {
                 int read = mAudioRecord.read(mBuffer, 0, BUFFER_SIZE);
                 BLog.e("              "+(mAudioRecord==null)+"      "+(mBuffer==null));
+
+
                 if (read > 0) {
                     //保存到指定文件
                     mFileOutPutStream.write(mBuffer, 0, read);

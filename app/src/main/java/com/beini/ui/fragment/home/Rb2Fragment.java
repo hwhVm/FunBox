@@ -12,7 +12,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.view.RecycleDecoration;
+import com.beini.ui.view.decoration.RecycleDecoration;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -63,7 +63,8 @@ Java_com_beini_ndk_NDKMain_playsMusic(JNIEnv
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_beini_ndk_NDKMain_playMusicByType(JNIEnv *env, jobject instance, jstring music_path_, jint type) {
+Java_com_beini_ndk_NDKMain_playMusicByType(JNIEnv *env, jobject instance, jstring music_path_,
+                                           jint type) {
 //初始化
     System *system;
     Sound *sound;
@@ -74,6 +75,7 @@ Java_com_beini_ndk_NDKMain_playMusicByType(JNIEnv *env, jobject instance, jstrin
     System_Create(&system);
     system->init(32, FMOD_INIT_NORMAL, NULL);
     const char *path_cstr = env->GetStringUTFChars(music_path_, NULL);
+
     try {
 //创建声音
         system->createSound(path_cstr, FMOD_DEFAULT, NULL, &sound);
@@ -150,3 +152,6 @@ Java_com_beini_ndk_NDKMain_playMusicByType(JNIEnv *env, jobject instance, jstrin
     system->release();
 
 }
+/**
+ * 基于字节流
+ */
