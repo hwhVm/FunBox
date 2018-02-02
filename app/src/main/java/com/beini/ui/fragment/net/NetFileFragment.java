@@ -15,7 +15,7 @@ import com.beini.bean.UserInfo;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
-import com.beini.db.cache.FileUtil;
+import com.beini.db.io.FileUtil;
 import com.beini.net.retrofit.NetUtil;
 import com.beini.net.retrofit.RxNetUtil;
 import com.beini.net.RxSchedulers;

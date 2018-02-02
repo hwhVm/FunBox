@@ -4,7 +4,8 @@ import android.os.Bundle;
 
 import com.beini.ui.fragment.aidl.AIDLFragment;
 import com.beini.ui.fragment.ani.AniFragment;
-import com.beini.ui.fragment.ani.AnnotationsFragment;
+import com.beini.ui.fragment.ani.FadeFragment;
+import com.beini.ui.fragment.annotations.AnnotationsFragment;
 import com.beini.ui.fragment.args.ArgsFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
 import com.beini.ui.fragment.broadcast.BroadcastFragment;
@@ -47,7 +48,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(HomeFragment.class);
+        baseActivity.replaceFragment(FadeFragment.class);
     }
 
     public static void loginRouter() {

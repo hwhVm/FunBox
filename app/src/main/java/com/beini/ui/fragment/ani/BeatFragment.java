@@ -5,9 +5,11 @@ import com.beini.R;
 import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
+import com.beini.ui.fragment.ani.view.BeatImageView;
 
 /**
  * Create  by beini  2017/1/16
+ * 心跳动画
  */
 @ContentView(R.layout.fragment_beat)
 public class BeatFragment extends BaseFragment {

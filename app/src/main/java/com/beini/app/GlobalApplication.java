@@ -65,12 +65,13 @@ public class GlobalApplication extends MultiDexApplication {
         }
     }
 
+
     private void initBugly() {
         //Bugly会在启动10s后联网同步数据。若您有特别需求，可以修改这个时间。
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppReportDelay(20000);   //改为20s
         //为了保证运营数据的准确性，建议不要在异步线程初始化Bugly。
-        Bugly.init(getApplicationContext(), "2acd33499a", true,strategy);
+        Bugly.init(getApplicationContext(), "2acd33499a", true, strategy);
     }
 
     /**
@@ -134,4 +135,5 @@ public class GlobalApplication extends MultiDexApplication {
             }
         }
     }
+
 }

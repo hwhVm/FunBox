@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.beini.ui.fragment.ani.BeatFragment">
 
-    <com.beini.ui.fragment.ani.BeatImageView
+    <com.beini.ui.fragment.ani.view.BeatImageView
         android:id="@+id/image_beat"
         android:layout_width="100dp"
         android:layout_height="100dp"

@@ -1,4 +1,4 @@
-package com.beini.ui.fragment.ani;
+package com.beini.ui.fragment.annotations;
 
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -14,6 +14,7 @@ import com.beini.util.BLog;
  * Create by beini  2017/3/24.
  * http://mobile.51cto.com/android-527752.htm
  * http://droidyue.com/blog/2016/08/14/android-annnotation/
+ * 注解
  */
 @ContentView(R.layout.fragment_annotations)
 public class AnnotationsFragment extends BaseFragment {

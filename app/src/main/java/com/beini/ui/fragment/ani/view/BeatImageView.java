@@ -1,4 +1,4 @@
-package com.beini.ui.fragment.ani;
+package com.beini.ui.fragment.ani.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
