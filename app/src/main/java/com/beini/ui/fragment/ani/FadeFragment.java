@@ -20,7 +20,7 @@ public class FadeFragment extends BaseFragment {
     @ViewInject(R.id.image_fade)
     ImageView image_fade;
     private AlphaAnimation alphaAnimation;
-    
+
     @Override
     public void initView() {
         baseActivity.setTopBar(View.GONE);
