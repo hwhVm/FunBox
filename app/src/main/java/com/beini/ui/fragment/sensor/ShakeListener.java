@@ -1,4 +1,4 @@
-package com.beini.ui.fragment.shake;
+package com.beini.ui.fragment.sensor;
 
 import android.content.Context;
 import android.hardware.Sensor;

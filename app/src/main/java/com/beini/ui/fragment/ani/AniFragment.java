@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.LinearLayout;
 
 import com.beini.R;
@@ -142,6 +143,7 @@ public class AniFragment extends BaseFragment {
     public void valueAnimatorMethod(View customerView) {
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 300).setDuration(2000);
         valueAnimator.setTarget(customerView);
+        valueAnimator.setInterpolator(new AccelerateInterpolator());
         valueAnimator.start();
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

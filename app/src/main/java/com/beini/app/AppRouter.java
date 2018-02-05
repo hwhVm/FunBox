@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.beini.ui.fragment.aidl.AIDLFragment;
 import com.beini.ui.fragment.ani.AniFragment;
-import com.beini.ui.fragment.ani.FadeFragment;
 import com.beini.ui.fragment.annotations.AnnotationsFragment;
 import com.beini.ui.fragment.args.ArgsFragment;
 import com.beini.ui.fragment.bluetooth.SppFragment;
@@ -12,6 +11,7 @@ import com.beini.ui.fragment.broadcast.BroadcastFragment;
 import com.beini.ui.fragment.control.SnapHeplerFragment;
 import com.beini.ui.fragment.cpptest.CppFragment;
 import com.beini.ui.fragment.customview.CanvasFragment;
+import com.beini.ui.fragment.customview.CutViewFragment;
 import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
 import com.beini.ui.fragment.fingerprint.FingerprintFragment;
 import com.beini.ui.fragment.green.GreenDaoFragment;
@@ -22,8 +22,8 @@ import com.beini.ui.fragment.picPicker.PicPickeFragment;
 import com.beini.ui.fragment.popupwindow.PopupWindowFragment;
 import com.beini.ui.fragment.rx.RxAllFragment;
 import com.beini.ui.fragment.screenrecord.ScreenRecordFragment;
+import com.beini.ui.fragment.sensor.ShakeFragment;
 import com.beini.ui.fragment.service.ServiceFragment;
-import com.beini.ui.fragment.shake.ShakeFragment;
 import com.beini.ui.fragment.sideslip.SideslipFragment;
 import com.beini.ui.fragment.sms.SmsFragment;
 import com.beini.ui.fragment.sound.SoundFragment;
@@ -48,7 +48,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(FadeFragment.class);
+        baseActivity.replaceFragment(CutViewFragment.class);
     }
 
     public static void loginRouter() {
