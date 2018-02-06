@@ -22,6 +22,7 @@ clipToPadding:控件的绘制区域是否在padding里面
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:visibility="gone"
         android:background="@color/light_blue"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -52,6 +53,7 @@ clipToPadding:控件的绘制区域是否在padding里面
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="bottom"
+        android:visibility="gone"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation" />
 

@@ -11,7 +11,6 @@ import com.beini.ui.fragment.broadcast.BroadcastFragment;
 import com.beini.ui.fragment.control.SnapHeplerFragment;
 import com.beini.ui.fragment.cpptest.CppFragment;
 import com.beini.ui.fragment.customview.CanvasFragment;
-import com.beini.ui.fragment.customview.CutViewFragment;
 import com.beini.ui.fragment.facerecognition.FacereCongnitioonFragment;
 import com.beini.ui.fragment.fingerprint.FingerprintFragment;
 import com.beini.ui.fragment.green.GreenDaoFragment;
@@ -48,7 +47,7 @@ public class AppRouter {
      * 入口初始化baseActivity
      */
     public static void indexArouter() {
-        baseActivity.replaceFragment(CutViewFragment.class);
+        baseActivity.replaceFragment(WebViewTestFragment.class);
     }
 
     public static void loginRouter() {
