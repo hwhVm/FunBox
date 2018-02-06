@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by beini on 2017/2/8.
  */
@@ -51,6 +53,7 @@ public class GlobalApplication extends MultiDexApplication {
             this.registerActivityLifecycleCallbacks(new ActivityCallbacks());
             executorService = Executors.newCachedThreadPool();//创建线程池
             ndk = new NDKMain();
+            initJpush();
 //            initBugly();
 //          Stetho.initializeWithDefaults(this);
             executorService.execute(new Runnable() {
@@ -63,6 +66,11 @@ public class GlobalApplication extends MultiDexApplication {
                 }
             });
         }
+    }
+
+    private void initJpush() {
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
 
