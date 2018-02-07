@@ -20,7 +20,15 @@ import com.beini.util.BLog;
  */
 @ContentView(R.layout.fragment_broadcast)
 public class BroadcastFragment extends BaseFragment {
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void initView() {
@@ -59,6 +67,11 @@ public class BroadcastFragment extends BaseFragment {
     private void mEvent(View view) {
         Intent i = new Intent(baseActivity, MyService.class);
        baseActivity.startService(i);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
     @Override

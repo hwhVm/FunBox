@@ -228,6 +228,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseImpl
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        super.onNewIntent(intent);
+    }
+
     public FragmentManager getCustomerFragmentManager() {
         return customerFragmentManager;
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">FunBox</string>
     <!--主页标题-->
+    <string name="splash_jump">跳过</string>
     <string name="home_item_title_cpp">cpp</string>
     <string name="home_item_title_recording">recording</string>
     <string name="home_item_title_shake">Shake</string>
