@@ -46,6 +46,10 @@ public class Rb2Fragment extends BaseFragment {
         functionList.add(getString(R.string.rb2_item_title_popup_video_view_flippe));
         functionList.add(getString(R.string.rb2_item_title_popup_video_tx));
         functionList.add(getString(R.string.rb2_item_title_popup_video_rx));
+        functionList.add(getString(R.string.rb2_item_title_swiperefresh));
+        functionList.add(getString(R.string.rb2_item_title_x_recyclerview));
+
+
         recycle_rb2.setLayoutManager(new LinearLayoutManager(baseActivity));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
         recycle_rb2.addItemDecoration(new RecycleDecoration(getActivity()));
@@ -106,6 +110,12 @@ public class Rb2Fragment extends BaseFragment {
                     break;
                 case 15:
                     AppRouter.rb2RxRouter();
+                    break;
+                case 16:
+                    AppRouter.rb2SwiperefreshRouter();
+                    break;
+                case 17:
+                    AppRouter.rb2xRecyclerviewRouter();
                     break;
             }
         }

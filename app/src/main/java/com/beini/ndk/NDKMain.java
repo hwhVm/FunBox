@@ -1,7 +1,5 @@
 package com.beini.ndk;
 
-import com.beini.ui.fragment.cpptest.Human;
-import com.beini.ui.fragment.cpptest.Man;
 import com.beini.util.BLog;
 
 import java.util.Random;
@@ -65,7 +63,7 @@ public class NDKMain {
      * 间接访问Java类的父类的方法
      */
     //父类的引用指向子类
-    Human man = new Man();
+//    Human man = new Man();
 
     public native void accessNonvirtualMethod();
 

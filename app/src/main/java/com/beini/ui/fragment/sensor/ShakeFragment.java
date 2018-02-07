@@ -1,6 +1,7 @@
 package com.beini.ui.fragment.sensor;
 
 import android.hardware.Camera;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
@@ -22,6 +23,8 @@ public class ShakeFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        baseActivity.setBottom(View.GONE);
+        baseActivity.setTopBar(View.GONE);
         mShakeListener = new ShakeListener(getActivity());
 
         toggle_btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

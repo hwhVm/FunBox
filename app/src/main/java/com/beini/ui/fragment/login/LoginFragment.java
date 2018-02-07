@@ -9,6 +9,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bind.ContentView;
 import com.beini.bind.Event;
 import com.beini.bind.ViewInject;
+import com.beini.ui.fragment.home.HomeFragment;
 import com.beini.ui.fragment.login.model.LoginModel;
 
 /**
@@ -33,7 +34,8 @@ public class LoginFragment extends BaseFragment {
     private void mEvent(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-//                baseActivity.goToHome();
+                baseActivity.replaceFragment(HomeFragment.class);
+                baseActivity.remove(this);
 //                checkPermissionMethod(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},"ff",44);
                 loginModel.login();
                 break;

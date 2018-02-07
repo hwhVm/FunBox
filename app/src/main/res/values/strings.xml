@@ -23,6 +23,16 @@
     <string name="home_item_title_label">标签选择</string>
     <string name="home_item_title_canvas">CanvasFragment</string>
     <string name="home_item_title_fmod">Fmod</string>
+    <string name="home_item_title_coord">CoordinatorLayout布局</string>
+    <string name="home_item_title_beat">心跳动画</string>
+    <string name="home_item_title_circle_ani">圆形进度条</string>
+    <string name="home_item_title_fade_ani">淡入淡出动画</string>
+    <string name="home_item_title_disklru">DiskLru</string>
+    <string name="home_item_title_cut">自定义裁剪</string>
+    <string name="home_item_title_other">Other</string>
+    <string name="home_item_title_sensor">传感器</string>
+    <string name="home_item_title_viewpager">ViewPager</string>
+    <string name="home_item_title_wifi">Wifi</string>
     <!--Rb2-->
     <string name="rb2_item_title_popup_face_recognition">face recognition</string>
     <string name="rb2_item_title_popup_video">video</string>
@@ -41,6 +51,8 @@
     <string name="rb2_item_title_popup_video_view_flippe">ViewFlippeFragment</string>
     <string name="rb2_item_title_popup_video_tx">t x5 browser</string>
     <string name="rb2_item_title_popup_video_rx">rx重试机制</string>
+    <string name="rb2_item_title_swiperefresh">Swiperefreshlayout</string>
+    <string name="rb2_item_title_x_recyclerview">Xrecyclerview</string>
     <!--rb3-->
     <string name="rb3_item_title_shiro">shiro权限框架测试</string>
     <string name="rb3_item_title_rgb">rgb</string>

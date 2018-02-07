@@ -1,7 +1,7 @@
 package com.beini.ui.fragment.home;
 
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.beini.R;
@@ -11,7 +11,7 @@ import com.beini.app.BaseFragment;
 import com.beini.bean.BaseBean;
 import com.beini.bind.ContentView;
 import com.beini.bind.ViewInject;
-import com.beini.ui.view.decoration.HomeDecoration;
+import com.beini.constants.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,14 +43,24 @@ public class HomeFragment extends BaseFragment {
         functionList.add(getString(R.string.home_item_title_label));
         functionList.add(getString(R.string.home_item_title_canvas));
         functionList.add(getString(R.string.home_item_title_fmod));
+        functionList.add(getString(R.string.home_item_title_coord));
+        functionList.add(getString(R.string.home_item_title_beat));
+        functionList.add(getString(R.string.home_item_title_circle_ani));
+        functionList.add(getString(R.string.home_item_title_fade_ani));
+        functionList.add(getString(R.string.home_item_title_disklru));
+        functionList.add(getString(R.string.home_item_title_cut));
+        functionList.add(getString(R.string.home_item_title_other));
+        functionList.add(getString(R.string.home_item_title_sensor));
+        functionList.add(getString(R.string.home_item_title_viewpager));
+        functionList.add(getString(R.string.home_item_title_wifi));
 
         baseActivity.setBottom(View.VISIBLE);
         baseActivity.setTopBar(View.GONE);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseActivity);
-        recycler_view_home.setLayoutManager(linearLayoutManager);
-//        recycler_view_home.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL));
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseActivity);
+//        recycler_view_home.setLayoutManager(linearLayoutManager);
+        recycler_view_home.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL));
         HomeListAdapter homeListAdapter = new HomeListAdapter(new BaseBean<>(R.layout.item_home, functionList));
-        recycler_view_home.addItemDecoration(new HomeDecoration());
+//        recycler_view_home.addItemDecoration(new HomeDecoration());
         recycler_view_home.setAdapter(homeListAdapter);
         homeListAdapter.setItemClick(onItemClickListener);
         homeListAdapter.notifyDataSetChanged();
@@ -67,52 +77,82 @@ public class HomeFragment extends BaseFragment {
         @Override
         public void onItemClick(View view, int position) {
             switch (position) {
-                case 0:
+                case Constants.HOME_CPP:
                     AppRouter.homeCppRouter();
                     break;
-                case 1:
+                case Constants.HOME_SHAKE:
                     AppRouter.homeShakeRouter();
                     break;
-                case 2:
+                case Constants.HOME_SIDESLIP:
                     AppRouter.homeSideslipRouter();
                     break;
-                case 3:
+                case Constants.HOME_MEDIAFUNCTION:
                     AppRouter.homeMediaFunctionRouter();
                     break;
-                case 4:
+                case Constants.HOME_SPP:
                     AppRouter.homeSppRouter();
                     break;
-                case 5:
+                case Constants.HOME_SMS:
                     AppRouter.homeSmsRouter();
                     break;
-                case 6:
+                case Constants.HOME_NOTIFICATION:
                     AppRouter.homeNotificationRouter();
                     break;
-                case 7:
+                case Constants.HOME_BROADCAST:
                     AppRouter.homeBroadcastRouter();
                     break;
-                case 8:
+                case Constants.HOME_ANI:
                     AppRouter.homeAniRouter();
                     break;
-                case 9:
+                case Constants.HOME_AIDL:
                     AppRouter.homeAIDLRouter();
                     break;
-                case 10:
+                case Constants.HOME_SERVICE:
                     AppRouter.homeServiceRouter();
                     break;
-                case 11:
+                case Constants.HOME_POPUPWINDOW:
                     AppRouter.homePopupWindowRouter();
                     break;
-                case 12:
+                case Constants.HOME_SNAP:
                     AppRouter.homeSnapHeplerRouter();
                     break;
-                case 13:
+                case Constants.HOME_TAG:
                     break;
-                case 14:
+                case Constants.HOME_CANVAS:
                     AppRouter.homeCanvasRouter();
                     break;
-                case 15:
-                    AppRouter.homeCanvasRouter();
+                case Constants.HOME_FMOD:
+                    AppRouter.homeFmod();
+                    break;
+                case Constants.HOME_COORDINATOR:
+                    AppRouter.homeCoordinatorLayout();
+                    break;
+                case Constants.HOME_BEAT:
+                    AppRouter.homeBeatRouter();
+                    break;
+                case Constants.HOME_CIRCLEANI:
+                    AppRouter.homeAniCircleRouter();
+                    break;
+                case Constants.HOME_ANI_FADE:
+                    AppRouter.homeAniFadeRouter();
+                    break;
+                case Constants.HOME_DISKLRU:
+                    AppRouter.homeDiskLruRouter();
+                    break;
+                case Constants.HOME_CUT:
+                    AppRouter.homeCutRouter();
+                    break;
+                case Constants.HOME_OTHER:
+                    AppRouter.homeOtherRouter();
+                    break;
+                case Constants.HOME_SENSOR:
+                    AppRouter.homeSensorRouter();
+                    break;
+                case Constants.HOME_VIEWPAGE:
+                    AppRouter.homeViewPager();
+                    break;
+                case Constants.HOME_NET:
+                    AppRouter.homeNetRouter();
                     break;
             }
         }

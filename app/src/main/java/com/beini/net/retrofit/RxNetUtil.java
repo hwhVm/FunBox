@@ -61,6 +61,7 @@ public class RxNetUtil {
 //
 //                                }
 //                            }).setLevel(HttpLoggingInterceptor.Level.BASIC))
+
                             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                             .build();
                     retrofit = new Retrofit.Builder()
@@ -76,6 +77,7 @@ public class RxNetUtil {
         }
         return instance;
     }
+
 
     public void insertRxUserRequest(final UserRequest userRequest, final ResourceSubscriber<BaseResponseJson> subscriber, Scheduler scheduler) {
         Flowable<BaseResponseJson> flowable = rxReServer.insertRxUserRequest("insertUserM", userRequest);
@@ -105,11 +107,12 @@ public class RxNetUtil {
 
     /**
      * 标准 rxjava2  retrofit2
+     *
      * @param userId
      * @param password
      * @return
      */
-    public static Observable<UserInfo>  login(String userId, String password) {
+    public static Observable<UserInfo> login(String userId, String password) {
 
         return rxReServer.login(userId, password);
     }

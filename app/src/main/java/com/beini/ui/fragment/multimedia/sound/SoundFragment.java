@@ -1,4 +1,4 @@
-package com.beini.ui.fragment.sound;
+package com.beini.ui.fragment.multimedia.sound;
 
 
 import android.view.View;
