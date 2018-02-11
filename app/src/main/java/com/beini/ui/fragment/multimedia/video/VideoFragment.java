@@ -46,7 +46,7 @@ public class VideoFragment extends BaseFragment {
 
         @Override
         public void surfaceCreated(SurfaceHolder holder) {//一般在这里调用画图的线程。然后画图的工作开始
-            BLog.e("          surfaceCreated      "+(mediaRecorder==null));
+            BLog.e("          surfaceCreated      " + (mediaRecorder == null));
             mediaRecorder.reset();
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -109,13 +109,13 @@ public class VideoFragment extends BaseFragment {
         }
     }
 
-                    public void start() {
-                        BLog.e("          surfaceCreated      ");
-                        try {
+    public void start() {
+        BLog.e("          surfaceCreated      ");
+        try {
             mediaRecorder.prepare();
             mediaRecorder.start();
         } catch (IOException e) {
-                            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
